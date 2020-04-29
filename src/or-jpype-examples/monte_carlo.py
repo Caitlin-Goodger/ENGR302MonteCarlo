@@ -13,7 +13,7 @@ class LandingPoints(list):
             
             # Load the document and get simulation
             orh = orhelper.Helper()
-            doc = orh.load_doc('listen.ork')
+            doc = orh.load_doc('model.ork')
             sim = doc.getSimulation(0)
             
             # Randomize various parameters
@@ -35,7 +35,7 @@ class LandingPoints(list):
                 
                 airstarter = AirStart( gauss(1000, 50) ) # simulation listener to drop from 1000 m +- 50        
                 lp = LandingPoint()
-                orh.run_simulation(sim, listeners=(airstarter, lp) )
+                orh.run_simulation(sim)
                 #self.append( lp )
     
     def print_stats(self):
@@ -70,5 +70,5 @@ class AirStart(orhelper.AbstractSimulationListener):
 
 if __name__ == '__main__':
     points = LandingPoints()
-    points.add_simulations(1)
+    points.add_simulations(5)
     points.print_stats()
