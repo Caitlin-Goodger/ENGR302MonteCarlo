@@ -23,6 +23,8 @@ One page overall introduction including sections 1.1 and 1.2.
 
 Identify the client and their contact details
 
+Andre Geldenhuis is the client for this project. He has experience with rockets and experience working with similar projects. He can be reached in the Customer Channel on Mattermost. He also has occasionally Q&A sessions during ENGR301 Lectures and can be reached during those times with questions. He can also be reached at andre.geldenhuis@vuw.ac.nz. 
+
 ### 1.1 Purpose
 
 One sentence describing the purpose of the system (9.5.1)
@@ -228,7 +230,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zac Durant   | |
 |Zak Kiernander | |
 |Nicole Stallinger      | |
-|Caitlin Goodger| |
+|Caitlin Goodger|1.1 |
 |Matthew Butterfield| |
 
 ---
