@@ -67,7 +67,7 @@ h) Site adaptation requirements.
 
 The project is extending existing software. OpenRocket is an exisiting opensource project that allows users to deisgn and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for mutliple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
 
-This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. 
+This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Misson Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. 
 
 #### 1.3.2 Product functions
 
