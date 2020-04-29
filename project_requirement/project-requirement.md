@@ -221,8 +221,9 @@ One page glossary _as required_.
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
-| Name | Sections Contributed To |
-| ---- | ---- |
+
+| Name | Sections Contributed|
+| ---- | ----               |
 |Luisa Kristen| |
 |Zac Durant   | |
 |Zak Kiernander | |
