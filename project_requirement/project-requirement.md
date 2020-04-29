@@ -65,7 +65,9 @@ f) Memory;
 g) Operations;  
 h) Site adaptation requirements.
 
-The project is extending exsisting software. OpenRocket is an exisiting opensource project that allows users to deisgn and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for mutliple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
+The project is extending existing software. OpenRocket is an exisiting opensource project that allows users to deisgn and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for mutliple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
+
+This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. 
 
 #### 1.3.2 Product functions
 
@@ -241,7 +243,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zac Durant   | |
 |Zak Kiernander | |
 |Nicole Stallinger      | |
-|Caitlin Goodger|1,1.1,5.2|
+|Caitlin Goodger|1,1.1,1.3.1,5.2|
 |Matthew Butterfield| |
 
 ---
