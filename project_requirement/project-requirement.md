@@ -175,6 +175,8 @@ Identify dates for key project deliverables:
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
+Due to the nature of this project it doesn't have a budget. The project is exctending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project so no physical items need to be purchased. 
+
 ### 5.3 Risks 
 
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
@@ -232,7 +234,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zac Durant   | |
 |Zak Kiernander | |
 |Nicole Stallinger      | |
-|Caitlin Goodger|1,1.1 |
+|Caitlin Goodger|1,1.1,5.2|
 |Matthew Butterfield| |
 
 ---
