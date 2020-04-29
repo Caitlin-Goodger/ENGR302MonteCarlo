@@ -38,6 +38,9 @@ The purpose of the system to proivde a rocket simulation that can help determine
 One paragraph describing the scope of the system (9.5.2)
 
 ### 1.3 Product overview 
+
+The following subsections describe the product perspective, functions, characteristics and liimitations.
+
 #### 1.3.1 Product perspective
 
 One page defining the system's relationship to other related products
@@ -61,6 +64,8 @@ e) Communications interfaces;
 f) Memory;  
 g) Operations;  
 h) Site adaptation requirements.
+
+The project is extending exsisting software. OpenRocket is an exisiting opensource project that allows users to deisgn and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for mutliple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
 
 #### 1.3.2 Product functions
 
