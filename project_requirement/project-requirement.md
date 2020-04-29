@@ -13,7 +13,6 @@ All team members are expected to contribute equally to the document and list the
 <div style="page-break-after: always;"></div>
 
 # ENGR 301 Project *NN* Project Proposal and Requirements Document
-#### Author list, a comma-separated list of the names of each member of the team.
 Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield. 
 
 ## 1. Introduction
@@ -222,6 +221,14 @@ One page glossary _as required_.
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
+| Name | Sections Contributed To |
+| ---- | ---- |
+|Luisa Kristen| |
+|Zac Durant   | |
+|Zak Kiernander | |
+|Nicole Stallinger      | |
+|Caitlin Goodger| |
+|Matthew Butterfield| |
 
 ---
 
