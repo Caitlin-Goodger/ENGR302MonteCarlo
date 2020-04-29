@@ -29,6 +29,8 @@ Andre Geldenhuis is the client for this project. He has experience with rockets 
 
 One sentence describing the purpose of the system (9.5.1)
 
+The purpose of the system to proivde a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points.
+
 ### 1.2 Scope
 
 One paragraph describing the scope of the system (9.5.2)
@@ -230,7 +232,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zac Durant   | |
 |Zak Kiernander | |
 |Nicole Stallinger      | |
-|Caitlin Goodger|1.1 |
+|Caitlin Goodger|1,1.1 |
 |Matthew Butterfield| |
 
 ---
