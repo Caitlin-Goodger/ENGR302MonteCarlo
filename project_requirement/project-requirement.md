@@ -37,6 +37,8 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 One paragraph describing the scope of the system (9.5.2)
 
+This product is a Rocket Simulation program. The program shall provide a simulation to give a prediction of the flight performance of a rocket with the ability to alter parameter variables such as the launch angle and parachute ejection time. The program shall provide likely landing locations based on varying parameters through a form of Monte Carlo simulation in order to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
+
 ### 1.3 Product overview 
 
 The following subsections describe the product perspective, functions, characteristics and liimitations.
