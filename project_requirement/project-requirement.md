@@ -31,7 +31,7 @@ Andre Geldenhuis is the client for this project. He has experience with rockets 
 
 One sentence describing the purpose of the system (9.5.1)
 
-The purpose of the system to proivde a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points.
+The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points.
 
 ### 1.2 Scope
 
@@ -65,9 +65,9 @@ f) Memory;
 g) Operations;  
 h) Site adaptation requirements.
 
-The project is extending existing software. OpenRocket is an exisiting opensource project that allows users to deisgn and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for mutliple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
+The project is extending existing software. OpenRocket is an existing opensource project that allows users to design and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use.
 
-This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Misson Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. 
+This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Mission Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. 
 
 #### 1.3.2 Product functions
 
@@ -229,7 +229,7 @@ Identify dates for key project deliverables:
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
-Due to the nature of this project it doesn't have a budget. The project is exctending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project so no physical items need to be purchased. 
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project, so no physical items need to be purchased. 
 
 ### 5.3 Risks 
 
