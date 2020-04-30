@@ -103,11 +103,15 @@ Automated parameter varying (with sensible means and standard deviations).
 
 Automated running of multiple simulations.
 
+Accept input of how many simulations to run.
+
+Accept custom rocket input.
+
 Produce scatter plot from automations of landing sites.
 
 ##### Extensions:
 
-Define an upward vector for the rocket to follow (minimising landing distance from launch).
+Define an upward vector for the rocket to follow (to minimise landing distance from launch).
 
 #### Rocket Simulation for Control Tuning and Design:
 
@@ -265,7 +269,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Luisa Kristen| |
 |Zac Durant   | |
 |Zak Kiernander | |
-|Nicole Stallinger      | |
+|Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
 |Matthew Butterfield| |
 
