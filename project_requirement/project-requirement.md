@@ -97,28 +97,6 @@ See 9.5.10. for most systems this will be around one page.
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
-#### Mission Control:
-
-Alert the rocket that launch is imminent (arm parachute ejection charges).
-
-Incorporate local area weather conditions (wind) to simulations.
-
-Automatically run multiple simulations. 
-
-Determine probable landing locations from simulations.
-
-Go/no go decision.
-
-GUI display of this information.
-
-
-##### Extensions:
-
-Calculate and suggest changes in the launch rod angle (to keep the rocket in landing bounds).
-
-Determine an upwind trajectory to follow with current wind levels and the monte-carlo simulations.
-
-
 #### Simulations for Range Safety and Site Selection- Monte Carlo:
 
 Automated parameter varying (with sensible means and standard deviations).
