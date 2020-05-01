@@ -308,7 +308,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zak Kiernander | |
 |Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
-|Matthew Butterfield| 1.2 |
+|Matthew Butterfield| 1,1.2,spelling and grammar |
 
 ---
 
