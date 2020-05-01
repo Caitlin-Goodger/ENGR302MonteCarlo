@@ -21,13 +21,6 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 One page overall introduction including sections 1.1 and 1.2.
 
-Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features. 
-
-While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause railwhip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
-
-Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
-
-
 ### Client
 
 Identify the client and their contact details
@@ -160,16 +153,6 @@ for the two available settings, matching the style of other OpenRocket settings.
 | | Open "Plot / Export" setting pop up window |
 | | Default to 
 
-| Visually showing possible landing locations          |                       |
-|------------------------------------------------------|-----------------------|
-| Highlight wanted simulations, or click "Select all"  |                       |
-| Click "Plot / Export"                                |                       |
-|                                                      | Generate plots        |
-|                                                      | Draw plots onto a map |
-|                                                      | Display map to user   |
-| Click download/export map                            |                       |
-
-
 ##### Extensions:
 
 Define an upward vector for the rocket to follow (to minimise landing distance from launch).
@@ -286,22 +269,14 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety. All teams must state in this section:
-
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc.  
-
-2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
-
-3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
-
-Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
-
+The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
+Due to COVID-19 reponse no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibilty of the team member.
+Regular breaks will be taken in the prearranged lab slots to ensure members have a chance to stretch and avoid strain. No ethical considerations need to be made around any animal or human subjects due to the nature of the project.
 
 #### 5.4.1 Safety Plans
 
 Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the saftey concerns involved.
 Due to the COVID-19 pandemic response safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are conducted remotely.
-
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
@@ -311,6 +286,7 @@ One page on assumptions and dependencies (9.5.7).
 ### 6.2 Acronyms and abbreviations
 
 One page glossary _as required_.
+H&S - Health and Safety
 
 ## 7. Contributions
 
@@ -319,11 +295,11 @@ A one page statement of contributions, including a list of each member of the gr
 | Name | Sections Contributed|
 | ---- | ----               |
 |Luisa Kristen| 5.1|
-|Zac Durant   | 5.4.1|
-|Zak Kiernander | 3.2 |
+|Zac Durant   | 5.4, 6.2|
+|Zak Kiernander | |
 |Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
-|Matthew Butterfield| 1,1.2 |
+|Matthew Butterfield| 1.2 |
 
 ---
 
