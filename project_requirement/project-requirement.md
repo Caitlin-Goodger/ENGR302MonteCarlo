@@ -21,6 +21,13 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 One page overall introduction including sections 1.1 and 1.2.
 
+Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features. 
+
+While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause railwhip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
+
+Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
+
+
 ### Client
 
 Identify the client and their contact details
@@ -316,7 +323,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zak Kiernander | 3.2 |
 |Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
-|Matthew Butterfield| 1.2 |
+|Matthew Butterfield| 1,1.2 |
 
 ---
 
