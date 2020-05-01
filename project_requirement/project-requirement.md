@@ -87,6 +87,7 @@ One page summary of the main functions of the product (9.5.4), briefly character
 One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
 To meet the requirements of the minimum viable product the project will;
+
 -Be able to take a rocket designed in OpenRocket
 -Take a given latitude and longitude point
 -Run mutliple simulations with the given rocket and co-ordinates and produce possible landing points
