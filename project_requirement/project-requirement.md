@@ -203,11 +203,15 @@ see 9.5.19.
 
 Identify dates for key project deliverables: 
 
-1. architectural prototype
-1. minimum viable product
-1. further releases
+**architectural prototype**
+The architectural prototype will be comeplete by 19 June 2020.
 
-(1 page).
+**minimum viable product**
+The minimum viable product as defined in part 1.3.2 of this document will be completed by 29 June 2020.
+
+**further releases**
+Further releases will occur up until the final prototype release, scheduled for the 16 October 2020.
+
 
 ### 5.2 Budget
 
@@ -268,7 +272,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Name | Sections Contributed|
 | ---- | ----               |
-|Luisa Kristen| |
+|Luisa Kristen| 5.1|
 |Zac Durant   | |
 |Zak Kiernander | |
 |Nicole Stallinger      |3.2 |
