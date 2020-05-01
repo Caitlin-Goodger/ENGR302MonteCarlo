@@ -84,6 +84,13 @@ This project is also part of a large project. There is another project focused o
 
 One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
+One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
+
+To meet the requirements of the minimum viable product the project will;
+-Be able to take a rocket designed in OpenRocket
+-Take a given latitude and longitude point
+-Run mutliple simulations with the given rocket and co-ordinates and produce possible landing points
+
 #### 1.3.3 User characteristics   
 
 One page identifying the main classes of users and their characteristics (9.5.5) 
