@@ -24,7 +24,8 @@ import net.sf.openrocket.util.Coordinate;
  */
 public class AbstractSimulationListener implements SimulationListener, SimulationComputationListener,
 		SimulationEventListener {
-	
+
+
 	////  SimulationListener  ////
 	
 	@Override

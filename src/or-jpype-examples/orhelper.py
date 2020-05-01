@@ -150,6 +150,7 @@ class AbstractSimulationListener(object):
     """ This is a python implementation of openrocket.simulation.AbstractSimulationListener.
         Subclasses of this are suitable for passing to helper.run_simulation.
     """
+
     
     def __str__(self):
         return "'" + 'Python simulation listener proxy : ' + str(self.__class__.__name__) + "'"

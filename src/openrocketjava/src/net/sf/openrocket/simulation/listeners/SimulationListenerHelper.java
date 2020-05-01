@@ -122,7 +122,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				//if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).addFlightEvent(status, event);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -136,19 +136,19 @@ public class SimulationListenerHelper {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Fire a handle flight event event.
-	 * 
+	 *
 	 * @return	<code>true</code> to handle the event normally, <code>false</code> to skip event.
 	 */
 	public static boolean fireHandleFlightEvent(SimulationStatus status, FlightEvent event) throws SimulationException {
 		boolean b;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				//if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).handleFlightEvent(status, event);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -162,20 +162,20 @@ public class SimulationListenerHelper {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Fire motor ignition event.
-	 * 
+	 *
 	 * @return	<code>true</code> to handle the event normally, <code>false</code> to skip event.
 	 */
 	public static boolean fireMotorIgnition(SimulationStatus status, MotorId motorId, MotorMount mount,
 			MotorInstance instance) throws SimulationException {
 		boolean b;
 		int modID = status.getModID(); // Contains also motor instance
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				//if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).motorIgnition(status, motorId, mount, instance);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -189,21 +189,21 @@ public class SimulationListenerHelper {
 		}
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * Fire recovery device deployment event.
-	 * 
+	 *
 	 * @return	<code>true</code> to handle the event normally, <code>false</code> to skip event.
 	 */
 	public static boolean fireRecoveryDeviceDeployment(SimulationStatus status, RecoveryDevice device)
 			throws SimulationException {
 		boolean b;
 		int modID = status.getModID(); // Contains also motor instance
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				//if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).recoveryDeviceDeployment(status, device);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -217,23 +217,23 @@ public class SimulationListenerHelper {
 		}
 		return true;
 	}
-	
-	
+
+
 	////////  SimulationComputationalListener methods  ////////
-	
+
 	/**
 	 * Fire preAtmosphericModel event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding atmospheric conditions.
 	 */
 	public static AtmosphericConditions firePreAtmosphericModel(SimulationStatus status)
 			throws SimulationException {
 		AtmosphericConditions conditions;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				conditions = ((SimulationComputationListener) l).preAtmosphericModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -247,10 +247,10 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postAtmosphericModel event.
-	 * 
+	 *
 	 * @return	the atmospheric conditions to use.
 	 */
 	public static AtmosphericConditions firePostAtmosphericModel(SimulationStatus status, AtmosphericConditions conditions)
@@ -258,10 +258,10 @@ public class SimulationListenerHelper {
 		AtmosphericConditions c;
 		AtmosphericConditions clone = conditions.clone();
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				c = ((SimulationComputationListener) l).postAtmosphericModel(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -276,22 +276,22 @@ public class SimulationListenerHelper {
 		}
 		return conditions;
 	}
-	
-	
+
+
 
 	/**
 	 * Fire preWindModel event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding wind.
 	 */
 	public static Coordinate firePreWindModel(SimulationStatus status)
 			throws SimulationException {
 		Coordinate wind;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				wind = ((SimulationComputationListener) l).preWindModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -305,19 +305,19 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postWindModel event.
-	 * 
+	 *
 	 * @return	the wind to use.
 	 */
 	public static Coordinate firePostWindModel(SimulationStatus status, Coordinate wind) throws SimulationException {
 		Coordinate w;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				w = ((SimulationComputationListener) l).postWindModel(status, wind);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -331,22 +331,22 @@ public class SimulationListenerHelper {
 		}
 		return wind;
 	}
-	
-	
+
+
 
 	/**
 	 * Fire preGravityModel event.
-	 * 
+	 *
 	 * @return	<code>NaN</code> normally, or overriding gravity.
 	 */
 	public static double firePreGravityModel(SimulationStatus status)
 			throws SimulationException {
 		double gravity;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				gravity = ((SimulationComputationListener) l).preGravityModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -360,19 +360,19 @@ public class SimulationListenerHelper {
 		}
 		return Double.NaN;
 	}
-	
+
 	/**
 	 * Fire postGravityModel event.
-	 * 
+	 *
 	 * @return	the gravity to use.
 	 */
 	public static double firePostGravityModel(SimulationStatus status, double gravity) throws SimulationException {
 		double g;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				g = ((SimulationComputationListener) l).postGravityModel(status, gravity);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -386,23 +386,23 @@ public class SimulationListenerHelper {
 		}
 		return gravity;
 	}
-	
-	
+
+
 
 
 	/**
 	 * Fire preFlightConditions event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding flight conditions.
 	 */
 	public static FlightConditions firePreFlightConditions(SimulationStatus status)
 			throws SimulationException {
 		FlightConditions conditions;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				conditions = ((SimulationComputationListener) l).preFlightConditions(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -416,10 +416,10 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postFlightConditions event.
-	 * 
+	 *
 	 * @return	the flight conditions to use: either <code>conditions</code> or a new object
 	 * 			containing the modified conditions.
 	 */
@@ -428,10 +428,10 @@ public class SimulationListenerHelper {
 		FlightConditions c;
 		FlightConditions clone = conditions.clone();
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				c = ((SimulationComputationListener) l).postFlightConditions(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -446,23 +446,23 @@ public class SimulationListenerHelper {
 		}
 		return conditions;
 	}
-	
-	
+
+
 
 
 	/**
 	 * Fire preAerodynamicCalculation event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding aerodynamic forces.
 	 */
 	public static AerodynamicForces firePreAerodynamicCalculation(SimulationStatus status)
 			throws SimulationException {
 		AerodynamicForces forces;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				forces = ((SimulationComputationListener) l).preAerodynamicCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -476,10 +476,10 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postAerodynamicCalculation event.
-	 * 
+	 *
 	 * @return	the aerodynamic forces to use.
 	 */
 	public static AerodynamicForces firePostAerodynamicCalculation(SimulationStatus status, AerodynamicForces forces)
@@ -487,10 +487,10 @@ public class SimulationListenerHelper {
 		AerodynamicForces f;
 		AerodynamicForces clone = forces.clone();
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				f = ((SimulationComputationListener) l).postAerodynamicCalculation(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -505,24 +505,24 @@ public class SimulationListenerHelper {
 		}
 		return forces;
 	}
-	
-	
+
+
 
 
 
 	/**
 	 * Fire preMassCalculation event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding mass data.
 	 */
 	public static MassData firePreMassCalculation(SimulationStatus status)
 			throws SimulationException {
 		MassData mass;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				mass = ((SimulationComputationListener) l).preMassCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -536,19 +536,19 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postMassCalculation event.
-	 * 
+	 *
 	 * @return	the aerodynamic forces to use.
 	 */
 	public static MassData firePostMassCalculation(SimulationStatus status, MassData mass) throws SimulationException {
 		MassData m;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				m = ((SimulationComputationListener) l).postMassCalculation(status, mass);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -562,23 +562,23 @@ public class SimulationListenerHelper {
 		}
 		return mass;
 	}
-	
-	
+
+
 
 
 	/**
 	 * Fire preThrustComputation event.
-	 * 
+	 *
 	 * @return	<code>NaN</code> normally, or overriding thrust.
 	 */
 	public static double firePreThrustCalculation(SimulationStatus status)
 			throws SimulationException {
 		double thrust;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				thrust = ((SimulationComputationListener) l).preSimpleThrustCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -592,19 +592,19 @@ public class SimulationListenerHelper {
 		}
 		return Double.NaN;
 	}
-	
+
 	/**
 	 * Fire postThrustComputation event.
-	 * 
+	 *
 	 * @return	the thrust value to use.
 	 */
 	public static double firePostThrustCalculation(SimulationStatus status, double thrust) throws SimulationException {
 		double t;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				t = ((SimulationComputationListener) l).postSimpleThrustCalculation(status, thrust);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -618,23 +618,23 @@ public class SimulationListenerHelper {
 		}
 		return thrust;
 	}
-	
-	
+
+
 
 
 
 	/**
 	 * Fire preMassCalculation event.
-	 * 
+	 *
 	 * @return	<code>null</code> normally, or overriding mass data.
 	 */
 	public static AccelerationData firePreAccelerationCalculation(SimulationStatus status) throws SimulationException {
 		AccelerationData acceleration;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				acceleration = ((SimulationComputationListener) l).preAccelerationCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -648,20 +648,20 @@ public class SimulationListenerHelper {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Fire postMassCalculation event.
-	 * 
+	 *
 	 * @return	the aerodynamic forces to use.
 	 */
 	public static AccelerationData firePostAccelerationCalculation(SimulationStatus status,
 			AccelerationData acceleration) throws SimulationException {
 		AccelerationData a;
 		int modID = status.getModID();
-		
+
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				if(l.getClass().getName().contains("proxy")) continue;
+				 if(l.getClass().getName().contains("proxy")) continue;
 				a = ((SimulationComputationListener) l).postAccelerationCalculation(status, acceleration);
 				if (modID != status.getModID()) {
 					warn(status, l);

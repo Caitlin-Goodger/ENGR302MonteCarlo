@@ -3,6 +3,8 @@ package net.sf.openrocket.util;
 import net.sf.openrocket.l10n.Translator;
 import net.sf.openrocket.startup.Application;
 
+import java.sql.SQLOutput;
+
 /**
  * A strategy that performs computations on WorldCoordinates.
  * <p>
@@ -13,7 +15,6 @@ import net.sf.openrocket.startup.Application;
  */
 public enum GeodeticComputationStrategy {
 	
-
 	/**
 	 * Perform computations using a flat Earth approximation.  addCoordinate computes the
 	 * location using a direct meters-per-degree scaling and getCoriolisAcceleration always
@@ -22,19 +23,17 @@ public enum GeodeticComputationStrategy {
 	FLAT {
 		private static final double METERS_PER_DEGREE_LATITUDE = 111325; // "standard figure"
 		private static final double METERS_PER_DEGREE_LONGITUDE_EQUATOR = 111050;
-		
-		
+
 		@Override
 		public WorldCoordinate addCoordinate(WorldCoordinate location, Coordinate delta) {
-			
 			double metersPerDegreeLongitude = METERS_PER_DEGREE_LONGITUDE_EQUATOR * Math.cos(location.getLatitudeRad());
 			// Limit to 1 meter per degree near poles
 			metersPerDegreeLongitude = MathUtil.max(metersPerDegreeLongitude, 1);
-			
+
 			double newLat = location.getLatitudeDeg() + delta.y / METERS_PER_DEGREE_LATITUDE;
 			double newLon = location.getLongitudeDeg() + delta.x / metersPerDegreeLongitude;
 			double newAlt = location.getAltitude() + delta.z;
-			
+
 			return new WorldCoordinate(newLat, newLon, newAlt);
 		}
 		
@@ -63,8 +62,8 @@ public enum GeodeticComputationStrategy {
 			}
 			
 			double bearing = Math.atan2(delta.x, delta.y);
-			
-			// Calculate the new lat and lon		
+
+			// Calculate the new lat and lon
 			double newLat, newLon;
 			double sinLat = Math.sin(location.getLatitudeRad());
 			double cosLat = Math.cos(location.getLatitudeRad());
@@ -73,12 +72,11 @@ public enum GeodeticComputationStrategy {
 			
 			newLat = Math.asin(sinLat * cosDR + cosLat * sinDR * Math.cos(bearing));
 			newLon = location.getLongitudeRad() + Math.atan2(Math.sin(bearing) * sinDR * cosLat, cosDR - sinLat * Math.sin(newLat));
-			
+
 			if (Double.isNaN(newLat) || Double.isNaN(newLon)) {
 				throw new BugException("addCoordinate resulted in NaN location:  location=" + location + " delta=" + delta
 						+ " newLat=" + newLat + " newLon=" + newLon);
 			}
-			
 			return new WorldCoordinate(Math.toDegrees(newLat), Math.toDegrees(newLon), newAlt);
 		}
 		

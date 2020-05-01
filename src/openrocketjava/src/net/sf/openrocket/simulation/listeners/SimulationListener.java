@@ -6,7 +6,7 @@ import net.sf.openrocket.simulation.exception.SimulationException;
 
 
 public interface SimulationListener {
-	
+
 	/**
 	 * Called when starting a simulation.
 	 * 

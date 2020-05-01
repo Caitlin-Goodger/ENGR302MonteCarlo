@@ -159,7 +159,6 @@ public class BasicEventSimulationEngine implements SimulationEngine {
 			throw e;
 		}
 
-		System.out.println("End sim");
 		SimulationListenerHelper.fireEndSimulation(status, null);
 		
 		flightData.addBranch(status.getFlightData());
@@ -274,11 +273,9 @@ public class BasicEventSimulationEngine implements SimulationEngine {
 	private MotorInstanceConfiguration setupMotorConfiguration(Configuration configuration) {
 		MotorInstanceConfiguration motors = new MotorInstanceConfiguration();
 		final String motorId = configuration.getMotorConfigurationID();
-		System.out.println(motorId);
 
 		Iterator<MotorMount> iterator = configuration.motorIterator();
 		while (iterator.hasNext()) {
-			System.out.println("Motor found");
 			MotorMount mount = iterator.next();
 			RocketComponent component = (RocketComponent) mount;
 			Motor motor = mount.getMotor(motorId);

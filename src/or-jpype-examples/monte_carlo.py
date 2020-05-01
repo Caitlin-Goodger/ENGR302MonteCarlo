@@ -34,30 +34,25 @@ class LandingPoints(list):
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
                 airstarter = AirStart( gauss(1000, 50) ) # simulation listener to drop from 1000 m +- 50        
-                #lp = LandingPoint()
-                testLp = orh.get_Landing_Listener()
-                orh.run_simulation(sim, [testLp])
-                #self.append( lp )
+                lp = LandingPoint()
+                orh.run_simulation(sim, [lp])
+                self.append( lp )
     
     def print_stats(self):
-        
-        ranges = [p.range for p in self]
-        bearings = [p.bearing for p in self]
-        
-        print 'Rocket landing zone %3.2f m +- %3.2f m bearing %3.2f deg +- %3.4f deg from launch site. Based on %i simulations.' % \
-            (np.mean(ranges), np.std(ranges), np.degrees(np.mean(bearings)), np.degrees(np.std(bearings)), len(self) )
+        lats = [p.lat for p in self]
+        longs = [p.long for p in self]
+        print 'Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
+            (np.mean(lats), np.mean(longs), len(self) )
 
 class LandingPoint(orhelper.AbstractSimulationListener):
-
-    def endSimulation(self, status, simulation_exception):
-        
-        worldpos = status.getRocketWorldPosition()
+    def endSimulation(self, status, simulation_exception):      
+        worldpos = status.getRocketPosition()
         conditions = status.getSimulationConditions()
         launchpos = conditions.getLaunchSite()
         geodetic_computation = conditions.getGeodeticComputation()
-        
-        self.range = geodetic_computation.range(launchpos, worldpos)
-        self.bearing = geodetic_computation.bearing(launchpos, worldpos)
+        landing_zone = geodetic_computation.addCoordinate(launchpos, worldpos)
+        self.lat = landing_zone.getLatitudeDeg()
+        self.long = landing_zone.getLongitudeDeg()
         
 class AirStart(orhelper.AbstractSimulationListener):
     
@@ -71,5 +66,5 @@ class AirStart(orhelper.AbstractSimulationListener):
 
 if __name__ == '__main__':
     points = LandingPoints()
-    points.add_simulations(1)
+    points.add_simulations(5)
     points.print_stats()
