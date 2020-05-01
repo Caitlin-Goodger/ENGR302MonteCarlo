@@ -153,6 +153,15 @@ for the two available settings, matching the style of other OpenRocket settings.
 | | Open "Plot / Export" setting pop up window |
 | | Default to 
 
+| Visually showing possible landing locations          |                       |
+|------------------------------------------------------|-----------------------|
+| Highlight wanted simulations, or click "Select all"  |                       |
+| Click "Plot / Export"                                |                       |
+|                                                      | Generate plots        |
+|                                                      | Draw plots onto a map |
+|                                                      | Display map to user   |
+| Click download/export map                            |                       |
+
 ##### Extensions:
 
 Define an upward vector for the rocket to follow (to minimise landing distance from launch).
@@ -296,7 +305,7 @@ A one page statement of contributions, including a list of each member of the gr
 | ---- | ----               |
 |Luisa Kristen| 5.1|
 |Zac Durant   | 5.4, 6.2|
-|Zak Kiernander | |
+|Zak Kiernander | 3.2 |
 |Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
 |Matthew Butterfield| 1.2 |
