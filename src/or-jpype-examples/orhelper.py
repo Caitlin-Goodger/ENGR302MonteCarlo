@@ -127,6 +127,9 @@ class Helper(object):
                 return component
         raise ValueError(root.toString()+' has no component named '+name)
 
+    def get_Landing_Listener(self):
+        return self.orp.simulation.listeners.Landing()
+
 class JIterator(object):
     "This class is a wrapper for java iterators to allow them to be used as python iterators"
     

@@ -122,6 +122,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).addFlightEvent(status, event);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -147,6 +148,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).handleFlightEvent(status, event);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -173,6 +175,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).motorIgnition(status, motorId, mount, instance);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -200,6 +203,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationEventListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				b = ((SimulationEventListener) l).recoveryDeviceDeployment(status, device);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -229,6 +233,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				conditions = ((SimulationComputationListener) l).preAtmosphericModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -256,6 +261,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				c = ((SimulationComputationListener) l).postAtmosphericModel(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -285,6 +291,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				wind = ((SimulationComputationListener) l).preWindModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -310,6 +317,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				w = ((SimulationComputationListener) l).postWindModel(status, wind);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -338,6 +346,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				gravity = ((SimulationComputationListener) l).preGravityModel(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -363,6 +372,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				g = ((SimulationComputationListener) l).postGravityModel(status, gravity);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -392,6 +402,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				conditions = ((SimulationComputationListener) l).preFlightConditions(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -420,6 +431,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				c = ((SimulationComputationListener) l).postFlightConditions(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -450,6 +462,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				forces = ((SimulationComputationListener) l).preAerodynamicCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -477,6 +490,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				f = ((SimulationComputationListener) l).postAerodynamicCalculation(status, clone);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -508,6 +522,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				mass = ((SimulationComputationListener) l).preMassCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -533,6 +548,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				m = ((SimulationComputationListener) l).postMassCalculation(status, mass);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -562,6 +578,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				thrust = ((SimulationComputationListener) l).preSimpleThrustCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -587,6 +604,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				t = ((SimulationComputationListener) l).postSimpleThrustCalculation(status, thrust);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -616,6 +634,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				acceleration = ((SimulationComputationListener) l).preAccelerationCalculation(status);
 				if (modID != status.getModID()) {
 					warn(status, l);
@@ -642,6 +661,7 @@ public class SimulationListenerHelper {
 		
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
+				if(l.getClass().getName().contains("proxy")) continue;
 				a = ((SimulationComputationListener) l).postAccelerationCalculation(status, acceleration);
 				if (modID != status.getModID()) {
 					warn(status, l);

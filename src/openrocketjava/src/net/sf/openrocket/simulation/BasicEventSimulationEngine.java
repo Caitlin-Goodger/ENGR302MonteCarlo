@@ -158,7 +158,8 @@ public class BasicEventSimulationEngine implements SimulationEngine {
 			SimulationListenerHelper.fireEndSimulation(status, e);
 			throw e;
 		}
-		
+
+		System.out.println("End sim");
 		SimulationListenerHelper.fireEndSimulation(status, null);
 		
 		flightData.addBranch(status.getFlightData());

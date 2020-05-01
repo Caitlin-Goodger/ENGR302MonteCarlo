@@ -34,8 +34,9 @@ class LandingPoints(list):
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
                 airstarter = AirStart( gauss(1000, 50) ) # simulation listener to drop from 1000 m +- 50        
-                lp = LandingPoint()
-                orh.run_simulation(sim)
+                #lp = LandingPoint()
+                testLp = orh.get_Landing_Listener()
+                orh.run_simulation(sim, [testLp])
                 #self.append( lp )
     
     def print_stats(self):
@@ -70,5 +71,5 @@ class AirStart(orhelper.AbstractSimulationListener):
 
 if __name__ == '__main__':
     points = LandingPoints()
-    points.add_simulations(5)
+    points.add_simulations(1)
     points.print_stats()
