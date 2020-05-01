@@ -37,7 +37,7 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 One paragraph describing the scope of the system (9.5.2)
 
-This product is a Rocket Simulation program. The program shall provide a simulation to give a prediction of the flight performance of a rocket with the ability to alter parameter variables such as the launch angle and parachute ejection time. The program shall provide likely landing locations based on varying parameters through a form of Monte Carlo simulation in order to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
+This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
 
 ### 1.3 Product overview 
 
@@ -319,7 +319,7 @@ A one page statement of contributions, including a list of each member of the gr
 |Zak Kiernander | |
 |Nicole Stallinger      |3.2 |
 |Caitlin Goodger|1,1.1,1.3.1,5.2|
-|Matthew Butterfield| |
+|Matthew Butterfield| 1.2 |
 
 ---
 
