@@ -129,23 +129,23 @@ This is typically the longest subsection in the document. List up to fifty use c
 #### Simulations for Range Safety and Site Selection- Monte Carlo:
 
 
-| Run Multiple Simulations Automatically |  |
-| ----------- | ----------- |
-| Configure rocket and simulation parameters | |
-| *Edit Simulation Automation* |        |
-| Click "Run Simulations"|         |
-| | *Automated parameter varying* |
-| | *Return the results of multiple simulations* |
+| Run Multiple Simulations Automatically     |                                              |
+| ------------------------------------------ | -------------------------------------------- |
+| Configure rocket and simulation parameters |                                              |
+| *Edit Simulation Automation*               |                                              |
+| Click "Run Simulations"                    |                                              |
+|                                            | *Automated parameter varying*                |
+|                                            | *Return the results of multiple simulations* |
 
 This use case is important because it automates the running of multiple
 simulations. Currently, if users want to run multiple simulations for a given 
 rocket, they have to run each simulation individually.  
 
-| Automated parameter varying |  |
-| ----------- | ----------- |
-|    | Take initial given values of parachute ejection time, launch angle or motor performance |
-| | Create a collection of random inputs for each value type|
-| | Run individual simulations, using the new inputs|
+| Automated parameter varying |                                                                                         |
+| --------------------------- | --------------------------------------------------------------------------------------- |
+|                             | Take initial given values of parachute ejection time, launch angle or motor performance |
+|                             | Create a collection of random inputs for each value type                                |
+|                             | Run individual simulations, using the new inputs                                        |
 
 This use case is important as it reduces a significant amount of manual work 
 done by users. Currently, users manually vary these values across several 
@@ -154,41 +154,42 @@ range. The size of the range can be varied in the Simulation Automation
 settings. The mid point of the range is provided by the user when configuring
 the base simulation. 
 
-| Edit Simulation Automation |  |
-| ----------- | ----------- |
-| Select "Edit Simulation Automation" |        |
-| | Display "Edit Simulation Automation" pop up window |
-| Edit "Amount of Simulations" |         |
-| Edit "Maximum Value Variance" | |
-| Select "Save as Default" | |
-| | Record changes |
+| Edit Simulation Automation          |                                                    |
+| ----------------------------------- | -------------------------------------------------- |
+| Select "Edit Simulation Automation" |                                                    |
+|                                     | Display "Edit Simulation Automation" pop up window |
+| Edit "Amount of Simulations"        |                                                    |
+| Edit "Maximum Value Variance"       |                                                    |
+| Select "Save as Default"            |                                                    |
+|                                     | Record changes                                     |
 
 This use case demonstrates how a user would interact with the multiple 
 simulation settings. The "Edit Simulation Automation" button will be a button
 next to "Edit Simulation". The pop up window contains an input box and slider 
 for the two available settings, matching the style of other OpenRocket settings.
 
-| Return the results of multiple simulations  |  |
-| ----------- | ----------- |
-|       |   |
-|    |         |
+| Return the results of multiple simulations |     |
+| ------------------------------------------ | --- |
+|                                            |     |
+|                                            |     |
 
-| Produce scatter plot from automations of landing sites  |  |
-| ----------- | ----------- |
-| Highlight wanted simulations, or click "Select all"      |        |
-| Click "Plot / Export"   |         |
-| | Open "Plot / Export" setting pop up window |
-| | Default to 
+| Produce scatter plot from automations of landing sites |                                            |
+| ------------------------------------------------------ | ------------------------------------------ |
+| Highlight wanted simulations, or click "Select all"    |                                            |
+| Click "Plot / Export"                                  |                                            |
+|                                                        | Open "Plot / Export" setting pop up window |
+|                                                        | Default to                                 |
+
+| Visually showing possible landing locations         |                       |
+| --------------------------------------------------- | --------------------- |
+| Highlight wanted simulations, or click "Select all" |                       |
+| Click "Plot / Export"                               |                       |
+|                                                     | Generate plots        |
+|                                                     | Draw plots onto a map |
+|                                                     | Display map to user   |
+| Click download/export map                           |                       |
 This use case is important as it shows the steps involved for a user to get visual feedback on the results of the simulation.
 
-| Visually showing possible landing locations          |                       |
-|------------------------------------------------------|-----------------------|
-| Highlight wanted simulations, or click "Select all"  |                       |
-| Click "Plot / Export"                                |                       |
-|                                                      | Generate plots        |
-|                                                      | Draw plots onto a map |
-|                                                      | Display map to user   |
-| Click download/export map                            |                       |
 
 ##### Extensions:
 
@@ -329,14 +330,14 @@ H&S - Health and Safety
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
-| Name | Sections Contributed|
-| ---- | ----               |
-|Luisa Kristen| 5.1|
-|Zac Durant   | 5.4, 6.2|
-|Zak Kiernander | 3.2 |
-|Nicole Stallinger      |3.2 |
-|Caitlin Goodger|1,1.1,1.3.1,5.2|
-|Matthew Butterfield| 1,1.2,spelling and grammar |
+| Name                | Sections Contributed       |
+| ------------------- | -------------------------- |
+| Luisa Kristen       | 5.1                        |
+| Zac Durant          | 5.4, 6.2                   |
+| Zak Kiernander      | 3.2                        |
+| Nicole Stallinger   | 3.2                        |
+| Caitlin Goodger     | 1,1.1,1.3.1,5.2            |
+| Matthew Butterfield | 1,1.2,spelling and grammar |
 
 ---
 
