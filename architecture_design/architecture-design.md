@@ -49,7 +49,12 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system.
+This product is a Rocket Simulation program. 
+
+*  The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. 
+*  The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. 
+*  The program shall provide estimate PID control parameters through the simulation.
+
 
 ### 1.3 Changes to requirements
 
@@ -138,7 +143,7 @@ Identify dates for key project deliverables:
 
 Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).
 
-(1 page). 
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project, so no physical items need to be purchased.
 
 #### 5.2.2 Procurement
 
@@ -151,12 +156,14 @@ Identify the ten most important project risks: their type, likelihood, impact, a
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety.
+The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
+Due to COVID-19 reponse no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibilty of the team member.
+Regular breaks will be taken in the prearranged lab slots to ensure members have a chance to stretch and avoid strain. No ethical considerations need to be made around any animal or human subjects due to the nature of the project.
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements.
-
+Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the saftey concerns involved.
+Due to the COVID-19 pandemic response safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are conducted remotely.
 
 ## 6. Appendices
 
@@ -170,7 +177,14 @@ One page glossary as required
 
 ## 7. Contributions
 
-An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
+| Name | Sections Contributed|
+| ---- | ----               |
+|Luisa Kristen| 1, 1.1, 1.2, 5.2.1, 5.4, 5.4.1|
+|Zac Durant   |             |
+|Zak Kiernander |           |
+|Nicole Stallinger|         |
+|Caitlin Goodger|           |
+|Matthew Butterfield|       |
 
 ---
 
