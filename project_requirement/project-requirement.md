@@ -244,18 +244,28 @@ This use case is important as it shows the steps involved for a user to get visu
 
 ##### Extensions:
 
-Define an upward vector for the rocket to follow (to minimise landing distance from launch).
-Overlaying over google maps
+- Define an upward vector for the rocket to follow
 
-#### Rocket Simulation for Control Tuning and Design:
+This would allow the user to specify the wind direction and minimise the distance travelled.
+- Overlaying over google maps
 
-Fix simulation listeners in Open Rocket.
+This would allow the user to view the possible landing sites overlaid on a google maps representation of the launch site, reducing guess work and providing more clarity on landing safety.
 
-Implement motor gimbaling.
+- Fix computational listeners in OpenRocket
 
-Implement a PID controller simulation.
+Fixing the implemenation of computational listeners would allow the program to make changes to the environment model mid-flight simulating for example varying wind speeds at different altitudes
+
+- Motor gimbaling
+
+Implemenation of motor gimbaling could be used to simulate the path of a rocket using a controller to adjust its direction.
+
+- PID Controller simulation
 
 Use the simulations to determine estimations for the PID control parameters.
+
+- Current weather integration
+
+Weather APIs could be used to fetch current environmental variables for simulation.
 
 
 ### 3.3 Usability Requirements
