@@ -84,13 +84,23 @@ This project is also part of a large project. There is another project focused o
 
 One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
-One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
-
 To meet the requirements of the minimum viable product the project will;
 
--Be able to take a rocket designed in OpenRocket
--Take a given latitude and longitude point
--Run mutliple simulations with the given rocket and co-ordinates and produce possible landing points
+- Be able to import a rocket file designed in OpenRocket.
+
+The program must be able to correctly load and work with OpenRocket .ork files defining the features of different rockets. This allows the customer to create simulations for a wide variety of different rocket configurations and enables the use of the already familar OpenRocket design system.
+
+- Take a given latitude and longitude point for launch.
+
+The program will need to correctly maintain and use a coordinate system to provide meaningful data from the simulation. This data could come in the form of simple projected latitude and longitude, distance-bearing predictions or scatter plots of posible landing zones.
+
+- Run multiple simulations with the given rocket and co-ordinates and produce possible landing points.
+
+The program must be able to create meaningful statistical variations to produce varying flights in the simulations. This is crucial to show the use a variety of possible landing sites should the environment chamge, minimising the chance of a dangerous launch.
+
+- Output results to both the screen and to a file.
+
+The program should output the results to the screen for quick viewing at mission control, allowing the user to quickly determine if the launch is safe. Outputting the results to a file would add functionality, allowing the user to use the tool as a method of evaluating rocket designs in various conditions.
 
 #### 1.3.3 User characteristics   
 
