@@ -105,6 +105,26 @@ The program should output the results to the screen for quick viewing at mission
 #### 1.3.3 User characteristics   
 
 One page identifying the main classes of users and their characteristics (9.5.5) 
+1. Rocket Hobbyist
+
+The main class of users is the rocket hobbyist engaged in designing and flying their own rockets. The program is designed specifically for these users to simulate their rockets and predict landing zones and the severity of environmental variations.
+Several characteristics are assumed about the user;
+
+- Familarity of rocket components and design
+
+We assume some knowledge of rocket components and design. This is necessary as the data will be presented in a manner that might not be entirely accessable to a user with no rocket hardware knowledge.
+
+- Experience with OpenRocket
+
+We rely on the user having experience with OpenRocket, especially the process of designed and exporting custom rockets.
+
+- Technologically literate
+
+We expect some level of familarity with computer systems and using applications. Design of user interface will assume the user is comfortable with navigating typical interfaces.
+
+- Understanding of coordinate system
+
+Some understanding of latitude and longitude coordinates will be required to make full use of the program output. In the initial program the presentation of the data may require some evaluation by the user to determine if the launch is safe. Extensions to the program would reduce the importance of this assumption.
 
 #### 1.3.4 Limitations
 
