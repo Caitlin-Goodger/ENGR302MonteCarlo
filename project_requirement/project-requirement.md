@@ -332,7 +332,7 @@ Further releases will occur up until the final prototype release, scheduled for 
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
-Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project, so no physical items need to be purchased. 
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. This means that there are no software items that need to be purchased for this project. There is also no physical hardware for this project, so no physical items need to be purchased. This means that there is no items, either hardware or software, to purchase for this project, so the lack of a budget.  
 
 ### 5.3 Risks 
 
