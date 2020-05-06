@@ -179,6 +179,7 @@ for the two available settings, matching the style of other OpenRocket settings.
 | Click "Plot / Export"   |         |
 | | Open "Plot / Export" setting pop up window |
 | | Default to 
+This use case is important as it shows the steps involved for a user to get visual feedback on the results of the simulation.
 
 | Visually showing possible landing locations          |                       |
 |------------------------------------------------------|-----------------------|
