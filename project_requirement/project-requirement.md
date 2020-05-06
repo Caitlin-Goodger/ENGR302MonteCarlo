@@ -289,6 +289,8 @@ Write a short natural language description of the top nonfunctional requirements
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
 
+Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on.
+
 ### 3.9 Supporting information
 
 see 9.5.19. 
@@ -357,7 +359,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Zak Kiernander      | 3.2                        |
 | Nicole Stallinger   | 3.2                        |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2            |
-| Matthew Butterfield | 1,1.2,spelling and grammar |
+| Matthew Butterfield | 1, 1.2, 3.8 spelling and grammar |
 
 ---
 
