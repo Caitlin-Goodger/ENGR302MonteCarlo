@@ -129,6 +129,25 @@ Some understanding of latitude and longitude coordinates will be required to mak
 #### 1.3.4 Limitations
 
 One page on the limitations on the product (9.5.6)
+- PID Control
+
+Inclusion of PID control will be limited in the intial development of the program by the lack of native support in OpenRocket's python scripting implementation. This functionality may be developed at a later date. 
+
+-  Safety Considerations
+
+The results of the simulations will be need to be given safety margins, reducing the possible precision. Variation of parameters such as wind will need to be slighty overestimated to ensure the program gives a worst case prediction.
+
+-  Internet access
+
+Under the assumption that the system must perform without access to the internet some functions might be impeded, particularly proposed extensions to the program such as google maps overlay and current weather data integration.
+
+- Physical conditions
+
+Some limitation will need to be placed on the range of environments the program is suitable to simulate. Outside of certain reasonable parameters the environment will likely be too extreme and unpredictable to remain reliable. Examples include extreme wind, rain or unreliable rocket designs.
+
+- Reliability
+
+Below the minimum required number of simulations the program output will not be reliable and should not be used to accurately predict the safety of a launch. In this configuration the program should warn the user and may not output all the usual predictions.
 
 ## 2. References
 
