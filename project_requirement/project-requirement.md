@@ -161,6 +161,19 @@ This use case is important because it automates the running of multiple
 simulations. Currently, if users want to run multiple simulations for a given 
 rocket, they have to run each simulation individually.  
 
+| Import a rocket               |                                                 |
+|-------------------------------|-------------------------------------------------|
+| Select "Import rocket"        |                                                 |
+|                               | Prompt file selector                            |
+| Navigate and open rocket file |                                                 |
+|                               | Parse file \(Display error if relevant\)        |
+|                               | Display base information for rocket from import |
+|                               | Prompt for number of simulations                |
+|                               | Prompt for long & lat locations                 |
+|                               | Run simulation                                  |
+|                               | Give simulation end results                     |
+
+
 | Automated parameter varying |                                                                                         |
 | --------------------------- | --------------------------------------------------------------------------------------- |
 |                             | Take initial given values of parachute ejection time, launch angle or motor performance |
