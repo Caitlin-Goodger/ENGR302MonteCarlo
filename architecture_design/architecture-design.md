@@ -80,6 +80,14 @@ See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
 
 For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
 
+#### Stakeholder Requirements
+
+##### Client
+
+##### School of Engineering and Computer Science
+* ECS requires that all aspects of the project are correctly licensed. 
+* ECS requires all aspects of the project follow the guidelines set out by ECS. 
+
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
 
