@@ -19,8 +19,6 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2.
-
 Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features. 
 
 While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause railwhip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
@@ -32,19 +30,13 @@ The rocket uses a PID (Proportional Integral Derivative) controller to keep it f
 
 ### Client
 
-Identify the client and their contact details
-
 Andre Geldenhuis is the client for this project. He has experience with rockets and experience working with similar projects. He can be reached in the Customer Channel on Mattermost. He also has occasionally Q&A sessions during ENGR301 Lectures and can be reached during those times with questions. He can also be reached at andre.geldenhuis@vuw.ac.nz. 
 
 ### 1.1 Purpose
 
-One sentence describing the purpose of the system (9.5.1)
-
 The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points.
 
 ### 1.2 Scope
-
-One paragraph describing the scope of the system (9.5.2)
 
 This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
 
@@ -54,28 +46,6 @@ The following subsections describe the product perspective, functions, character
 
 #### 1.3.1 Product perspective
 
-One page defining the system's relationship to other related products
-(9.5.3. but not the subsections in the standard.)
-
-> **9.5.3 Product perspective** <br>
-> Define the system's relationship to other related products. 
-> 
-> If the product is an element of a larger system, then relate the requirements of that larger system to the functionality of the product covered by the software requirements specification.
-> 
-> If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element. 
->
-> A block diagram showing the major elements of the larger system, interconnections, and external interfaces can be helpful.
-> 
-> Describe how the software operates within the following constraints:  
-a) System interfaces;  
-b) User interfaces;  
-c) Hardware interfaces;  
-d) Software interfaces;  
-e) Communications interfaces;  
-f) Memory;  
-g) Operations;  
-h) Site adaptation requirements.
-
 The project is extending existing software. OpenRocket is an existing opensource project that allows users to design and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use. The user will need to create the model for their rocket in OpenRocket. The project will then use that rocket to run the simulation. This means that it needs to be able to export the data from OpenRocket and be able to use it in the simulation. 
 
 The user interface should be simple and clear. As the user is likely coming from or has experience with using OpenRocket, they will want this projec to function in similar ways. Due to the fact that it is an extension of OpenRocket, this is important because it is building on their base. The user interfaces for this porject don't need to be extremely complicated because most of the interfaces that the project is added are for the user to select parameters and then get the output of the simulation. For the minimal product, this output could be written to a file. This would be easy for the user to understand as long as it is laid out in a sensible fashion. For an extension, a graphical interface could be added so that the output of the simulation is clear for the user to understand. 
@@ -83,8 +53,6 @@ The user interface should be simple and clear. As the user is likely coming from
 This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Mission Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. Mission Control will be using this project while at the rocket launch site which will likely not have an internet connection. This means that the project needs to be able to function without requiring an internet connection as well. 
 
 #### 1.3.2 Product functions
-
-One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.
 
 To meet the requirements of the minimum viable product the project will;
 
@@ -106,7 +74,6 @@ The program should output the results to the screen for quick viewing at mission
 
 #### 1.3.3 User characteristics   
 
-One page identifying the main classes of users and their characteristics (9.5.5) 
 1. Rocket Hobbyist
 
 The main class of users is the rocket hobbyist engaged in designing and flying their own rockets. The program is designed specifically for these users to simulate their rockets and predict landing zones and the severity of environmental variations.
@@ -130,7 +97,6 @@ Some understanding of latitude and longitude coordinates will be required to mak
 
 #### 1.3.4 Limitations
 
-One page on the limitations on the product (9.5.6)
 - PID Control
 
 Inclusion of PID control will be limited in the intial development of the program by the lack of native support in OpenRocket's python scripting implementation. This functionality may be developed at a later date. 
