@@ -31,10 +31,10 @@ class OpenRocketInstance(object):
         shutdownJVM()
         
         if not ty is None:
-            print 'Exception while calling openrocket'
-            print 'Exception info : ', ty, value, tb
-            print 'Traceback : '
-            traceback.print_exception(ty, value, tb)
+            print ('Exception while calling openrocket')
+            print ('Exception info : ', ty, value, tb)
+            print ('Traceback : '
+            traceback.print_exception(ty, value, tb))
         
 class Helper(object):
     """ This class contains a variety of useful helper functions and wrapper for using
