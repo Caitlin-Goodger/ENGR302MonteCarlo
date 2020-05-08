@@ -187,6 +187,16 @@ simulation settings. The "Edit Simulation Automation" button will be a button
 next to "Edit Simulation". The pop up window contains an input box and slider 
 for the two available settings, matching the style of other OpenRocket settings.
 
+| Editing simulation location      |                                         |
+|----------------------------------|-----------------------------------------|
+| \(Import rocket steps\)          |                                         |
+| Select "Edit Simulation options" |                                         |
+|                                  | Display Simulation options popup window |
+| Set Longitude,Latitude           |                                         |
+| Select Save                      |                                         |
+|                                  | Record changes                          |
+
+
 | Return the results of multiple simulations |     |
 | ------------------------------------------ | --- |
 |                                            |     |
