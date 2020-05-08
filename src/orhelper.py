@@ -144,6 +144,8 @@ class JIterator(object):
             raise StopIteration()
         else:
             return self.jit.next()
+    
+    __next__ = next # Python 3.X compatibility  
 
 class AbstractSimulationListener(object):
     """ This is a python implementation of openrocket.simulation.AbstractSimulationListener.

@@ -39,10 +39,11 @@ class LandingPoints(list):
                 self.append( lp )
     
     def print_stats(self):
-        lats = [p.lat for p in self]
-        longs = [p.long for p in self]
-        print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-            (np.mean(lats), np.mean(longs), len(self) ))
+        print("End of simulation")
+        # lats = [p.lat for p in self]
+        # longs = [p.long for p in self]
+        # print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
+        # (np.mean(lats), np.mean(longs), len(self) ))
 
 class LandingPoint(orhelper.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
