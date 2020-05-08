@@ -133,22 +133,25 @@ See 9.5.10. for most systems this will be around one page.
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
-#### Simulations for Range Safety and Site Selection- Monte Carlo:
+#### Run Multiple Simulations Automatically (Minimum Viable Product)
 
-
-| Run Multiple Simulations Automatically     |                                              |
+| User Intention                             | System Requirements                          |
 | ------------------------------------------ | -------------------------------------------- |
-| Configure rocket and simulation parameters |                                              |
-| *Edit Simulation Automation*               |                                              |
+| *Import rocket*                            |                                              |
 | Click "Run Simulations"                    |                                              |
 |                                            | *Automated parameter varying*                |
-|                                            | *Return the results of multiple simulations* |
+|                                            | Run multiple simulations                     |
+|                                            | *Return results (minimum viable product)*    |
 
-This use case is important because it automates the running of multiple
-simulations. Currently, if users want to run multiple simulations for a given 
-rocket, they have to run each simulation individually.  
+This use case shows the minimum viable product of this project. This does not 
+contain any extensions or features allowing the customisation of the 
+simulations. This use case is the most important as it represents the minimum
+level of functionality that would make a viable product.
 
-| Import a rocket               |                                                 |
+
+#### Import a Rocket
+
+| User Intention                | System Requirements                             |
 |-------------------------------|-------------------------------------------------|
 | Select "Import rocket"        |                                                 |
 |                               | Prompt file selector                            |
@@ -160,20 +163,56 @@ rocket, they have to run each simulation individually.
 |                               | Run simulation                                  |
 |                               | Give simulation end results                     |
 
+This use case allows users to import a customised rocket from OpenRocket into
+our project. This use case is contained within the minimum viable product. It
+is essential that users are able to import their own rockets so that the
+results of the simulations are applicable to a user's situation.
 
-| Automated parameter varying |                                                                                         |
+
+#### Automated parameter varying
+
+| User Intention              | System Requirements                                                                     |
 | --------------------------- | --------------------------------------------------------------------------------------- |
 |                             | Take initial given values of parachute ejection time, launch angle or motor performance |
 |                             | Create a collection of random inputs for each value type                                |
 |                             | Run individual simulations, using the new inputs                                        |
 
-This use case is important as it reduces a significant amount of manual work 
-done by users. This automated parameter varying forms the basis of the Monte
-Carlo simulations. Currently, users manually vary these values across several 
-simulations to form an average. The mid point of the range is provided by the user when configuring
-the base simulation. 
+This automated parameter varying forms the basis of the Monte Carlo simulations. 
+Currently, users manually vary these values and run simulations. This use case 
+is a part of the minimum viable product and important since it is what allows
+the user to get results from the Monte Carlo technique.
 
-| Edit Simulation Automation          |                                                    |
+
+#### Return Results (Minimum Viable Product)
+
+| User Intention                             | System Requirements                                |
+| ------------------------------------------ | --- |
+|                                            |     |
+|                                            |     |
+
+#### Run Multiple Simulations Automatically (Extended)
+
+| User Intention                             | System Requirements                          |
+| ------------------------------------------ | -------------------------------------------- |
+| *Import rocket*                            |                                              |
+| *Configure simulation parameters*          |                                              |
+| *Edit Simulation Automation*               |                                              |
+| Click "Run Simulations"                    |                                              |
+|                                            | *Automated parameter varying*                |
+|                                            | Run multiple simulations                     |
+|                                            | *Return results (extended)*                  |
+
+#### Return Results (Extended)
+
+| User Intention                             | System Requirements                                |
+| ------------------------------------------ | --- |
+|                                            |     |
+|                                            |     |
+
+
+#### Edit Simulation Automation 
+
+| User Intention                      | System Requirements                                |
 | ----------------------------------- | -------------------------------------------------- |
 | Select "Edit Simulation Automation" |                                                    |
 |                                     | Display "Edit Simulation Automation" pop up window |
@@ -187,6 +226,21 @@ simulation settings. The "Edit Simulation Automation" button will be a button
 next to "Edit Simulation". The pop up window contains an input box and slider 
 for the two available settings, matching the style of other OpenRocket settings.
 
+
+#### Visually Show Possible Landing Locations
+
+| User Intention                                      | System Requirements   |
+| --------------------------------------------------- | --------------------- |
+| Highlight wanted simulations, or click "Select all" |                       |
+| Click "Plot / Export"                               |                       |
+|                                                     | Generate plots        |
+|                                                     | Draw plots onto a map |
+|                                                     | Display map to user   |
+| Click download/export map                           |                       |
+
+This use case is important as it shows the steps involved for a user to get visual feedback on the results of the simulation.
+
+
 | Editing simulation location      |                                         |
 |----------------------------------|-----------------------------------------|
 | \(Import rocket steps\)          |                                         |
@@ -197,30 +251,7 @@ for the two available settings, matching the style of other OpenRocket settings.
 |                                  | Record changes                          |
 
 
-| Return the results of multiple simulations |     |
-| ------------------------------------------ | --- |
-|                                            |     |
-|                                            |     |
-
-| Produce scatter plot from automations of landing sites |                                            |
-| ------------------------------------------------------ | ------------------------------------------ |
-| Highlight wanted simulations, or click "Select all"    |                                            |
-| Click "Plot / Export"                                  |                                            |
-|                                                        | Open "Plot / Export" setting pop up window |
-|                                                        | Default to                                 |
-
-| Visually showing possible landing locations         |                       |
-| --------------------------------------------------- | --------------------- |
-| Highlight wanted simulations, or click "Select all" |                       |
-| Click "Plot / Export"                               |                       |
-|                                                     | Generate plots        |
-|                                                     | Draw plots onto a map |
-|                                                     | Display map to user   |
-| Click download/export map                           |                       |
-This use case is important as it shows the steps involved for a user to get visual feedback on the results of the simulation.
-
-
-##### Extensions:
+#### Further Extensions:
 
 - Define an upward vector for the rocket to follow
 
