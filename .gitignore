@@ -71,3 +71,7 @@ _minted*
 
 ## Log file
 # *.log
+
+
+## Python
+*.pyc
