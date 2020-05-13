@@ -5,6 +5,8 @@ stages:
 
 build:
   stage: Build
+  tags:
+    - shell
   script:
     - cd lib/openrocketjava/
     - ant clean
