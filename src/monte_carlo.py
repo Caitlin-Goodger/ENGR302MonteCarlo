@@ -4,6 +4,10 @@ import numpy as np
 import orhelper
 from random import gauss
 import math
+import argparse
+
+parser = argparse.ArgumentParser()
+args=0
         
 class LandingPoints(list):
     "A list of landing points with ability to run simulations and populate itself"    
@@ -13,7 +17,7 @@ class LandingPoints(list):
             
             # Load the document and get simulation
             orh = orhelper.Helper()
-            doc = orh.load_doc('model.ork')
+            doc = orh.load_doc(args.rocket)
             sim = doc.getSimulation(0)
             
             # Randomize various parameters
@@ -66,6 +70,10 @@ class AirStart(orhelper.AbstractSimulationListener):
         status.setRocketPosition(position)
 
 if __name__ == '__main__':
+
+    parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="Model rocket file")
+    args = parser.parse_args()
+
     points = LandingPoints()
     points.add_simulations(5)
     points.print_stats()
