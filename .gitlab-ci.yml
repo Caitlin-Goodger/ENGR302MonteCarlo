@@ -5,12 +5,10 @@ stages:
 
 build:
   stage: Build
-  tags:
-    - shell
   script:
-    - echo "static analysis"
-    - exit 0
-  allow_failure: true
+    - cd lib/openrocketjava/
+    - ant clean
+    - ant jar
 
 unittest:
   stage: Test
