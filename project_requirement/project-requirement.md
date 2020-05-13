@@ -340,7 +340,24 @@ Write a short natural language description of the top nonfunctional requirements
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
 
-Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on.
+Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on. This computer has to have JPype installed, and be running at least Python version 3.0, but Python 3.7.x is recommended.
+
+#### Client Requirements
+
+#### Faculty of Engineering and Computer Science
+The faculty requires that all aspects of the project are properly licensed. 
+
+The faculty requires that all aspects of the project follow the guidelines set out by ECS.
+
+##### Critical success factor
+It is critical to the success of the project and to the faculty that all guidelines set out by them are followed.
+
+#### Wider Rocket Community
+
+To improve and extend openRocket. To automate some processes, such as choosing variables, and exporting landing results.
+
+##### Critical success factor
+In order to be useful for the wider rocket community, it is vital that the software is open-source. This allows the community to use and edit our software under the open source license. If the project is not open source, the benefit to the rocket community would be greatly reduced. 
 
 ### 3.9 Supporting information
 
@@ -360,11 +377,10 @@ Identify dates for key project deliverables:
 The architectural prototype will be comeplete by 19 June 2020.
 
 **minimum viable product**
-The minimum viable product as defined in part 1.3.2 of this document will be completed by 29 June 2020.
+The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
 **further releases**
-Further releases will occur up until the final prototype release, scheduled for the 16 October 2020.
-
+Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
 
 ### 5.2 Budget
 
@@ -396,8 +412,8 @@ One page on assumptions and dependencies (9.5.7).
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary _as required_.
 H&S - Health and Safety
+ECS - School of Engineering and Computer Science.
 
 ## 7. Contributions
 
