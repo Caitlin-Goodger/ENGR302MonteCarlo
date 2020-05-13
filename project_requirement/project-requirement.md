@@ -290,6 +290,8 @@ The purpose of the system to provide a rocket simulation that can help determine
 Purpose and Objective: 
 For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
+For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. 
+
 ### 3.4 Performance requirements
 
 See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
@@ -431,7 +433,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Zac Durant          | 5.4, 6.2, 1.3                   |
 | Zak Kiernander      | 3.2                        |
 | Nicole Stallinger   | 3.2                        |
-| Caitlin Goodger     | 1,1.1,1.3.1,5.2            |
+| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3           |
 | Matthew Butterfield | 1, 1.2, 3.8 spelling and grammar |
 
 ---
