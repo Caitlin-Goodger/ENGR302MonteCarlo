@@ -28,9 +28,9 @@ class LandingPoints(list):
             for p in range(num):
                 print ('Running simulation ', p)
                 
-                opts.setLaunchRodAngle(math.radians( gauss(45, 5) ))    # 45 +- 5 deg in direction
-                opts.setLaunchRodDirection(math.radians( gauss(0, 5) )) # 0 +- 5 deg in direction
-                opts.setWindSpeedAverage( gauss(15, 5) )                # 15 +- 5 m/s in wind
+                opts.setLaunchRodAngle(math.radians( gauss(args.rodangle, args.rodanglesigma) ))    # 45 +- 5 deg in direction
+                opts.setLaunchRodDirection(math.radians( gauss(args.roddirection, args.roddirectionsigma) )) # 0 +- 5 deg in direction
+                opts.setWindSpeedAverage( gauss(args.windspeed, args.roddirectionsigma) )                # 15 +- 5 m/s in wind
                 for component_name in ('Nose cone', 'Body tube'):       # 5% in the mass of various components
                     component = orh.get_component_named( rocket, component_name )
                     mass = component.getMass()
@@ -72,6 +72,15 @@ class AirStart(orhelper.AbstractSimulationListener):
 if __name__ == '__main__':
 
     parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="Model rocket file")
+
+    parser.add_argument("-rda", "--rodangle", dest = "rodangle", default = 45, help="Launch rod angle", type=int)
+    parser.add_argument("-rdas", "--rodanglesigma", dest = "rodanglesigma", default = 5, help="Launch rod angle sigma", type=int)
+
+    parser.add_argument("-rdd", "--roddirection", dest = "roddirection", default = 0, help="Launch rod direction", type=int)
+    parser.add_argument("-rdds", "--roddirectionsigma", dest = "roddirectionsigma", default = 5, help="Launch rod direction sigma", type=int)
+
+    parser.add_argument("-wsa", "--windspeed", dest = "windspeed", default = 15, help="Wind speed average", type=int)
+    parser.add_argument("-wsas", "--windspeedsigma", dest = "roddirectionsigma", default = 5, help="Wind speed average sigma", type=int)
     args = parser.parse_args()
 
     points = LandingPoints()
