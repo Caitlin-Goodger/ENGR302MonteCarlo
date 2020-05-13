@@ -421,7 +421,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Name                | Sections Contributed       |
 | ------------------- | -------------------------- |
-| Luisa Kristen       | 5.1                        |
+| Luisa Kristen       | 3.8, 5.1                        |
 | Zac Durant          | 5.4, 6.2, 1.3                   |
 | Zak Kiernander      | 3.2                        |
 | Nicole Stallinger   | 3.2                        |
