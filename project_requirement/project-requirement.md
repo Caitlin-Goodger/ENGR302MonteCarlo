@@ -284,8 +284,11 @@ See 9.5.12. for most systems this will be around one page.
 > **9.5.12 Usability requirements**<br>
 > Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
 
-Goal
+Goal: 
 The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points. Since this system will be extending OpenRocket, it is important that it is easy for the user to move between systems. It is also important that it is open to the wider avionics community, so it will be made open source so that other can learn and build from it. 
+
+Purpose and Objective: 
+For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
 ### 3.4 Performance requirements
 
