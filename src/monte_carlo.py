@@ -39,11 +39,11 @@ class LandingPoints(list):
                 self.append( lp )
     
     def print_stats(self):
-        print("End of simulation")
-        # lats = [p.lat for p in self]
-        # longs = [p.long for p in self]
-        # print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-        # (np.mean(lats), np.mean(longs), len(self) ))
+        lats = [p.lat for p in self]
+        longs = [p.long for p in self]
+        
+        print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
+        (np.mean(lats), np.mean(longs), len(self) ))
 
 class LandingPoint(orhelper.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -52,8 +52,8 @@ class LandingPoint(orhelper.AbstractSimulationListener):
         launchpos = conditions.getLaunchSite()
         geodetic_computation = conditions.getGeodeticComputation()
         landing_zone = geodetic_computation.addCoordinate(launchpos, worldpos)
-        self.lat = landing_zone.getLatitudeDeg()
-        self.long = landing_zone.getLongitudeDeg()
+        self.lat = float(landing_zone.getLatitudeDeg())
+        self.long = float(landing_zone.getLongitudeDeg())
         
 class AirStart(orhelper.AbstractSimulationListener):
     
