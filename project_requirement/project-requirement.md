@@ -133,41 +133,46 @@ See 9.5.10. for most systems this will be around one page.
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
 
+Steps marked with asterisks are sub-cases.
+
 #### Run Multiple Simulations Automatically (Minimum Viable Product)
 
-| User Intention                             | System Requirements                          |
-| ------------------------------------------ | -------------------------------------------- |
-| *Import rocket*                            |                                              |
-| Click "Run Simulations"                    |                                              |
-|                                            | *Automated parameter varying*                |
-|                                            | Run multiple simulations                     |
-|                                            | *Return results (minimum viable product)*    |
+| User Intention                             	  	  | System Requirements                          |
+| --------------------------------------------------- | -------------------------------------------- |
+| *Import rocket (Minimum Viable Product)*            |                                              |
+| *Edit Simulation Location* 						  |                                              |
+| Click "Run Simulations"                    		  |                                              |
+|                                            		  | *Automated parameter varying*                |
+|                                            		  | Run multiple simulations                     |
+|                                            		  | *Return results (Minimum Viable Product)*    |
 
 This use case shows the minimum viable product of this project. This does not 
 contain any extensions or features allowing the customisation of the 
 simulations. This use case is the most important as it represents the minimum
-level of functionality that would make a viable product.
+level of functionality that would make a viable product. This is run through the command line and does not include any graphical user interface extensions.
 
+#### Import a Rocket (Minimum Viable Product)
 
-#### Import a Rocket
-
-| User Intention                | System Requirements                             |
-|-------------------------------|-------------------------------------------------|
-| Select "Import rocket"        |                                                 |
-|                               | Prompt file selector                            |
-| Navigate and open rocket file |                                                 |
-|                               | Parse file \(Display error if relevant\)        |
-|                               | Display base information for rocket from import |
-|                               | Prompt for number of simulations                |
-|                               | Prompt for long & lat locations                 |
-|                               | Run simulation                                  |
-|                               | Give simulation end results                     |
+| User Intention              			  | System Requirements                             |
+|-----------------------------------------|-------------------------------------------------|
+| Input rocket file location with CL flag |                                      			|
+|                            			  | Parse file \(Display error if relevant\)        |
+|                               		  | Display base information for rocket from import |       
 
 This use case allows users to import a customised rocket from OpenRocket into
 our project. This use case is contained within the minimum viable product. It
 is essential that users are able to import their own rockets so that the
-results of the simulations are applicable to a user's situation.
+results of the simulations are applicable to a user's situation, and therefore useful.
 
+#### Edit Simulation Location
+
+| User Intention                   | System Requirements  					 |
+|----------------------------------|-----------------------------------------|
+|                                  | Prompt for lat and long co-ordinates    |
+| Input values       		       |                                         |
+|                                  | Record changes                          |
+
+This use case allows users to input custom lat long co-ordinates through the command line.
 
 #### Automated parameter varying
 
@@ -182,74 +187,74 @@ Currently, users manually vary these values and run simulations. This use case
 is a part of the minimum viable product and important since it is what allows
 the user to get results from the Monte Carlo technique.
 
-
 #### Return Results (Minimum Viable Product)
 
-| User Intention                             | System Requirements                                |
-| ------------------------------------------ | --- |
-|                                            |     |
-|                                            |     |
+| User Intention                             | System Requirements                                     |
+| ------------------------------------------ | ------------------------------------------------------- |
+|                                            | Produce CSV file with the aggregated simulation results |
+| 					                         | Export and open results file 				   	       |
+
+This is the returnable results of the minimum viable product. This does not include a scatter plot graph. The results are automatically exported and opened for the user.
 
 #### Run Multiple Simulations Automatically (Extended)
 
 | User Intention                             | System Requirements                          |
 | ------------------------------------------ | -------------------------------------------- |
-| *Import rocket*                            |                                              |
-| *Configure simulation parameters*          |                                              |
+| *Import rocket (Extended)*   			     |                                              |
 | *Edit Simulation Automation*               |                                              |
 | Click "Run Simulations"                    |                                              |
 |                                            | *Automated parameter varying*                |
 |                                            | Run multiple simulations                     |
 |                                            | *Return results (extended)*                  |
 
-#### Return Results (Extended)
+This is an extended workflow that we hope to achieve by the end of trimester. This can be extended more so with the listed features in the "Further Extensions" section. The main benefit of this workflow is it running with a GUI, instead of through the command line interface.
 
-| User Intention                             | System Requirements                                |
-| ------------------------------------------ | --- |
-|                                            |     |
-|                                            |     |
+#### Import a Rocket (Extended)
 
+| User Intention                | System Requirements                             |
+|-------------------------------|-------------------------------------------------|
+| Select "Import rocket"        |                                                 |
+|                               | Prompt file selector                            |
+| Navigate and open rocket file |                                                 |
+|                               | Parse file \(Display error if relevant\)        |
+|                               | Display base information for rocket from import |       
+
+This extended use case includes a file selector and is prompted by users selecting "Import Rocket".
 
 #### Edit Simulation Automation 
 
-| User Intention                      | System Requirements                                |
-| ----------------------------------- | -------------------------------------------------- |
-| Select "Edit Simulation Automation" |                                                    |
-|                                     | Display "Edit Simulation Automation" pop up window |
-| Edit "Amount of Simulations"        |                                                    |
-| Edit "Maximum Value Variance"       |                                                    |
-| Select "Save as Default"            |                                                    |
-|                                     | Record changes                                     |
+| User Intention                  	    | System Requirements                                |
+| ------------------------------------- | -------------------------------------------------- |
+| Select "Edit Simulation Automation"	|                                                    |
+|                                     	| Display "Edit Simulation Automation" pop up window |
+| Edit "Amount of Simulations"        	|                                                    |
+| Set Longitude,Latitude          		|         				                             |
+| Select "Save"          			  	|                                                    |
+|                                     	| Record changes                                     |
 
 This use case demonstrates how a user would interact with the multiple 
-simulation settings. The "Edit Simulation Automation" button will be a button
-next to "Edit Simulation". The pop up window contains an input box and slider 
-for the two available settings, matching the style of other OpenRocket settings.
+simulation settings. The pop up window will match the style of other OpenRocket setting windows.
 
+#### Return Results (Extended)
 
-#### Visually Show Possible Landing Locations
+| User Intention                             | System Requirements                                     |
+| ------------------------------------------ | ------------------------------------------------------- |
+|                                            | Produce CSV file with the aggregated simulation results |
+|                                            | *Produce Scatter Plot* 								   |
+|											 | Display results to user with export options.            |
+
+The extended workflow of returning results includes a scatter plot graph of possible landing locations and a GUI display of results found.
+
+#### Produce Scatter Plot
 
 | User Intention                                      | System Requirements   |
 | --------------------------------------------------- | --------------------- |
-| Highlight wanted simulations, or click "Select all" |                       |
-| Click "Plot / Export"                               |                       |
 |                                                     | Generate plots        |
 |                                                     | Draw plots onto a map |
 |                                                     | Display map to user   |
-| Click download/export map                           |                       |
-
-This use case is important as it shows the steps involved for a user to get visual feedback on the results of the simulation.
 
 
-| Editing simulation location      |                                         |
-|----------------------------------|-----------------------------------------|
-| \(Import rocket steps\)          |                                         |
-| Select "Edit Simulation options" |                                         |
-|                                  | Display Simulation options popup window |
-| Set Longitude,Latitude           |                                         |
-| Select Save                      |                                         |
-|                                  | Record changes                          |
-
+This is the workflow of producing the scatter plot. This is an extension to the minimum viable product. 
 
 #### Further Extensions:
 
