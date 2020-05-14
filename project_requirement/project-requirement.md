@@ -409,13 +409,13 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 
 | Risks | Risk Type | Likelihood | Impact | Mitigation Strategies |
 |:-----: | ----------- | -------------- | ----- | ------------------ |
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
+|Program functioning unexpectedly on different devices | Software | 2 | 3 | Test on multiple different devices. |
+|Adding team members that do not work well with the team | Teamwork | 1 | 2 | Have a team contract which all members agree to at time of joining the group. |
+|Losing team member at crucial times| Teamwork | 1 | 3 | Communicate and document issues, progress and plans to the git. |
+|Team members burning out |Teamwork| 3 | 3 |Members communicate when they are having issues. Members have regular breaks during lab times. |
+|Loss of access to files|Technical|1|4|Assure that all files are on the git and on team members devices.|
+|Not meeting deadlines|Technical|3|2|Have regular meetings to manage milestones and divide tasks into smaller sections. |
+|Unresolved conflicts between team members|Teamwork|2|3|Have a team contract with paths to bringing up issues to the rest of the group|
 |        |             |                |     |     |
 |        |             |                |     |     |
 |        |             |                |     |     |
