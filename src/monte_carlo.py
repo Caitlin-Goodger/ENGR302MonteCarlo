@@ -4,6 +4,7 @@ import orhelper
 from random import gauss
 import math
 import argparse
+import csv
 
 parser = argparse.ArgumentParser()
 args = 0
@@ -48,7 +49,10 @@ class LandingPoints(list):
     def print_stats(self):
         lats = [p.lat for p in self]
         longs = [p.long for p in self]
-        
+        with open(args.outfile, 'w', newline='\n') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Latitude","Longitude"])
+            writer.writerows([[p.lat,p.long] for p in self])
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), len(self) ))
 
@@ -75,6 +79,7 @@ class AirStart(orhelper.AbstractSimulationListener):
 if __name__ == '__main__':
 
     parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="Model rocket file")
+    parser.add_argument("-o", "--output", dest = "outfile", default = "./out.csv", help="Output CSV location")
 
     parser.add_argument("-rda", "--rodangle", dest = "rodangle", default = 45, help="Launch rod angle", type=float)
     parser.add_argument("-rdas", "--rodanglesigma", dest = "rodanglesigma", default = 5, help="Launch rod angle sigma", type=float)
