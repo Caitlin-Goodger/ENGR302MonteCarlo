@@ -407,6 +407,15 @@ Identify the ten most important project risks to achieving project goals: their 
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
+| Risks | Risk Type | Likelihood | Impact | Mitigation Strategies |
+|:-----: | ----------- | -------------- | ----- | ------------------ |
+|        |             |                |     |     |
+|        |             |                |     |     |
+|        |             |                |     |     |
+|        |             |                |     |     |
+|        |             |                |     |     |
+|        |             |                |     |     |
+
 ### 5.4 Health and Safety
 
 The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
