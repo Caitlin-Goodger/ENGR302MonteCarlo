@@ -1,13 +1,12 @@
 import numpy as np
 from jpype import *
-import numpy as np
 import orhelper
 from random import gauss
 import math
 import argparse
 
 parser = argparse.ArgumentParser()
-args=0
+args = 0
         
 class LandingPoints(list):
     "A list of landing points with ability to run simulations and populate itself"    

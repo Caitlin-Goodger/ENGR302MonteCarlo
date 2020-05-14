@@ -16,10 +16,11 @@ public class PrintStreamLogger extends LogHelper {
 	
 	@Override
 	public void log(LogLine line) {
-		PrintStream stream = output.get(line.getLevel());
-		if (stream != null) {
-			stream.println(line.toString());
-		}
+		return; //this is not a fix, just a temp workaround.
+//		PrintStream stream = output.get(line.getLevel());
+//		if (stream != null) {
+//			stream.println(line.toString());
+//		}
 	}
 	
 	public PrintStream getOutput(LogLevel level) {
