@@ -22,10 +22,15 @@ class LandingPoints(list):
             # Randomize various parameters
             opts = sim.getOptions()
             rocket = opts.getRocket()
-            
+
+            # Set latitude and longitude
+            sim.getOptions().setLaunchLatitude(args.startlat)
+            sim.getOptions().setLaunchLongitude(args.startlong)
+
+            sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
             for p in range(num):
-                print ('Running simulation ', p)
+                print ('Running simulation ', p+1)
                 
                 opts.setLaunchRodAngle(math.radians( gauss(args.rodangle, args.rodanglesigma) ))    # 45 +- 5 deg in direction
                 opts.setLaunchRodDirection(math.radians( gauss(args.roddirection, args.roddirectionsigma) )) # 0 +- 5 deg in direction
@@ -36,7 +41,6 @@ class LandingPoints(list):
                     component.setMassOverridden(True)
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
-                airstarter = AirStart( gauss(1000, 50) ) # simulation listener to drop from 1000 m +- 50        
                 lp = LandingPoint()
                 orh.run_simulation(sim, [lp])
                 self.append( lp )
@@ -80,8 +84,12 @@ if __name__ == '__main__':
 
     parser.add_argument("-wsa", "--windspeed", dest = "windspeed", default = 15, help="Wind speed average", type=float)
     parser.add_argument("-wsas", "--windspeedsigma", dest = "roddirectionsigma", default = 5, help="Wind speed average sigma", type=float)
+
+    parser.add_argument("-lat", "--lat", dest = "startlat", default= 0, help = "Starting latitude",  type = float)
+    parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "Starting longitude",  type = float)
+    parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "Number of simulations to run", type = int) 
     args = parser.parse_args()
 
     points = LandingPoints()
-    points.add_simulations(5)
+    points.add_simulations(args.simcount)
     points.print_stats()
