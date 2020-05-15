@@ -290,12 +290,19 @@ See 9.5.12. for most systems this will be around one page.
 > Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
 
 Goal: 
+
+
 The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points. Since this system will be extending OpenRocket, it is important that it is easy for the user to move between systems. It is also important that it is open to the wider avionics community, so it will be made open source so that other can learn and build from it. 
 
+
 Purpose and Objective: 
+
+
 For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
-For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. 
+For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
+
+To satisify the users of this system, the sytsem needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameter. If the system has extented the minimum viable product, then it was aim to make it easy for the user, therefore satisfing them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible exteneding the system to make it easier to use. 
 
 ### 3.4 Performance requirements
 
