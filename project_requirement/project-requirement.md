@@ -14,7 +14,7 @@ Access to the standard can be found [here](https://ieeexplore-ieee-org.helicon.v
 
 <div style="page-break-after: always;"></div>
 
-# ENGR 301 Project *NN* Project Proposal and Requirements Document
+# ENGR 301 Project 14 Project Proposal and Requirements Document
 Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield. 
 
 ## 1. Introduction
@@ -374,7 +374,9 @@ In order to be useful for the wider rocket community, it is vital that the softw
 
 ### 3.9 Supporting information
 
-see 9.5.19. 
+The extension of openRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily availabe for future reference, due to the outputting of these to a CSV file.
+
+As this is an open source project, the final software will be freely available for anyone to view and edit. This adds to the longevity of the project, as it can be improved by the community in the future. 
 
 ## 4. Verification
 
@@ -387,7 +389,7 @@ see 9.5.19.
 Identify dates for key project deliverables: 
 
 **architectural prototype**
-The architectural prototype will be comeplete by 19 June 2020.
+The architectural prototype will be comeplete by 4 June 2020.
 
 **minimum viable product**
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
@@ -446,8 +448,8 @@ ECS - School of Engineering and Computer Science.
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
 | Name                | Sections Contributed             |
-| ------------------- | -------------------------------- |
-| Luisa Kristen       | 3.8, 5.1                         |
+| ------------------- | --------------------------       |
+| Luisa Kristen       | 3.8, 3.9, 5.1                    |
 | Zac Durant          | 5.4, 6.2, 1.3                    |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
