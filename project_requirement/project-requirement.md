@@ -70,7 +70,7 @@ The program must be able to create meaningful statistical variations to produce 
 
 - Output results to both the screen and to a file.
 
-The program should output the results to the screen for quick viewing at mission control, allowing the user to quickly determine if the launch is safe. Outputting the results to a file would add functionality, allowing the user to use the tool as a method of evaluating rocket designs in various conditions.
+The program should output meaningful results to the screen for quick viewing at mission control, allowing the user to quickly determine if the launch is safe. Outputting the results to a file would add functionality, allowing the user to use the tool as a method of evaluating rocket designs in various conditions.
 
 #### 1.3.3 User characteristics   
 
@@ -301,25 +301,23 @@ For the system to be efficient, the system needs to be able to complete the mini
 
 Performance requirements define the expected performance of our software, outlining what the user's base expectation can be from using our product. 
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
+- The software should provide a list of required/available parameters to the user to assist in usability
 
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
+- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (.ork files)
 
+- The program should support the use of a single user simulating the performance of a single modelled rocket. The user should be able to execute the program more than once simultaneously to exceed this limit. 
+
+- The user should be able to provide additional information to the program to be used for the simulations such as launchsite and environmental conditions
+
+- The number of supported simulations that can be run and summerised in a single execution should be guaranteed < 1000
+
+- Average time taken per simulation should not exceed 0.5 seconds
+
+- The time taken to perform the simulation should scale linearly with the number of individual simulations run
+
+- Resulting data should be output to the screen in a readable manner making use of summary functions and the full dataset should be output to a csv file
+
+- The program should use a sensible method of statistical variation to provided a meaningful exploration of possible launch scenarios
 
 ### 3.5 Logical database requirements
 
@@ -448,6 +446,7 @@ It is assumed that the user will already have a model rocket to load into openRo
 ### 6.2 Acronyms and abbreviations
 
 H&S - Health and Safety
+
 ECS - School of Engineering and Computer Science.
 
 ## 7. Contributions
@@ -457,7 +456,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
 | Luisa Kristen       | 3.8, 3.9, 5.1                    |
-| Zac Durant          | 5.4, 6.2, 1.3                    |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5                 |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
