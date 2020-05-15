@@ -14,7 +14,7 @@ Access to the standard can be found [here](https://ieeexplore-ieee-org.helicon.v
 
 <div style="page-break-after: always;"></div>
 
-# ENGR 301 Project *NN* Project Proposal and Requirements Document
+# ENGR 301 Project 14 Project Proposal and Requirements Document
 Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield. 
 
 ## 1. Introduction
@@ -70,7 +70,7 @@ The program must be able to create meaningful statistical variations to produce 
 
 - Output results to both the screen and to a file.
 
-The program should output the results to the screen for quick viewing at mission control, allowing the user to quickly determine if the launch is safe. Outputting the results to a file would add functionality, allowing the user to use the tool as a method of evaluating rocket designs in various conditions.
+The program should output meaningful results to the screen for quick viewing at mission control, allowing the user to quickly determine if the launch is safe. Outputting the results to a file would add functionality, allowing the user to use the tool as a method of evaluating rocket designs in various conditions.
 
 #### 1.3.3 User characteristics   
 
@@ -137,14 +137,14 @@ Steps marked with asterisks are sub-cases.
 
 #### Run Multiple Simulations Automatically (Minimum Viable Product)
 
-| User Intention                             	  	  | System Requirements                          |
-| --------------------------------------------------- | -------------------------------------------- |
-| *Import rocket (Minimum Viable Product)*            |                                              |
-| *Edit Simulation Location* 						  |                                              |
-| Click "Run Simulations"                    		  |                                              |
-|                                            		  | *Automated parameter varying*                |
-|                                            		  | Run multiple simulations                     |
-|                                            		  | *Return results (Minimum Viable Product)*    |
+| User Intention                           | System Requirements                       |
+| ---------------------------------------- | ----------------------------------------- |
+| *Import rocket (Minimum Viable Product)* |                                           |
+| *Edit Simulation Location*               |                                           |
+| Click "Run Simulations"                  |                                           |
+|                                          | *Automated parameter varying*             |
+|                                          | Run multiple simulations                  |
+|                                          | *Return results (Minimum Viable Product)* |
 
 This use case shows the minimum viable product of this project. This does not 
 contain any extensions or features allowing the customisation of the 
@@ -153,11 +153,11 @@ level of functionality that would make a viable product. This is run through the
 
 #### Import a Rocket (Minimum Viable Product)
 
-| User Intention              			  | System Requirements                             |
-|-----------------------------------------|-------------------------------------------------|
-| Input rocket file location with CL flag |                                      			|
-|                            			  | Parse file \(Display error if relevant\)        |
-|                               		  | Display base information for rocket from import |       
+| User Intention                          | System Requirements                             |
+| --------------------------------------- | ----------------------------------------------- |
+| Input rocket file location with CL flag |                                                 |
+|                                         | Parse file \(Display error if relevant\)        |
+|                                         | Display base information for rocket from import |
 
 This use case allows users to import a customised rocket from OpenRocket into
 our project. This use case is contained within the minimum viable product. It
@@ -166,21 +166,21 @@ results of the simulations are applicable to a user's situation, and therefore u
 
 #### Edit Simulation Location
 
-| User Intention                   | System Requirements  					 |
-|----------------------------------|-----------------------------------------|
-|                                  | Prompt for lat and long co-ordinates    |
-| Input values       		       |                                         |
-|                                  | Record changes                          |
+| User Intention | System Requirements                  |
+| -------------- | ------------------------------------ |
+|                | Prompt for lat and long co-ordinates |
+| Input values   |                                      |
+|                | Record changes                       |
 
 This use case allows users to input custom lat long co-ordinates through the command line.
 
 #### Automated parameter varying
 
-| User Intention              | System Requirements                                                                     |
-| --------------------------- | --------------------------------------------------------------------------------------- |
-|                             | Take initial given values of parachute ejection time, launch angle or motor performance |
-|                             | Create a collection of random inputs for each value type                                |
-|                             | Run individual simulations, using the new inputs                                        |
+| User Intention | System Requirements                                                                     |
+| -------------- | --------------------------------------------------------------------------------------- |
+|                | Take initial given values of parachute ejection time, launch angle or motor performance |
+|                | Create a collection of random inputs for each value type                                |
+|                | Run individual simulations, using the new inputs                                        |
 
 This automated parameter varying forms the basis of the Monte Carlo simulations. 
 Currently, users manually vary these values and run simulations. This use case 
@@ -189,69 +189,69 @@ the user to get results from the Monte Carlo technique.
 
 #### Return Results (Minimum Viable Product)
 
-| User Intention                             | System Requirements                                     |
-| ------------------------------------------ | ------------------------------------------------------- |
-|                                            | Produce CSV file with the aggregated simulation results |
-| 					                         | Export and open results file 				   	       |
+| User Intention | System Requirements                                     |
+| -------------- | ------------------------------------------------------- |
+|                | Produce CSV file with the aggregated simulation results |
+|                | Export and open results file                            |
 
 This is the returnable results of the minimum viable product. This does not include a scatter plot graph. The results are automatically exported and opened for the user.
 
 #### Run Multiple Simulations Automatically (Extended)
 
-| User Intention                             | System Requirements                          |
-| ------------------------------------------ | -------------------------------------------- |
-| *Import rocket (Extended)*   			     |                                              |
-| *Edit Simulation Automation*               |                                              |
-| Click "Run Simulations"                    |                                              |
-|                                            | *Automated parameter varying*                |
-|                                            | Run multiple simulations                     |
-|                                            | *Return results (extended)*                  |
+| User Intention               | System Requirements           |
+| ---------------------------- | ----------------------------- |
+| *Import rocket (Extended)*   |                               |
+| *Edit Simulation Automation* |                               |
+| Click "Run Simulations"      |                               |
+|                              | *Automated parameter varying* |
+|                              | Run multiple simulations      |
+|                              | *Return results (extended)*   |
 
 This is an extended workflow that we hope to achieve by the end of trimester. This can be extended more so with the listed features in the "Further Extensions" section. The main benefit of this workflow is it running with a GUI, instead of through the command line interface.
 
 #### Import a Rocket (Extended)
 
 | User Intention                | System Requirements                             |
-|-------------------------------|-------------------------------------------------|
+| ----------------------------- | ----------------------------------------------- |
 | Select "Import rocket"        |                                                 |
 |                               | Prompt file selector                            |
 | Navigate and open rocket file |                                                 |
 |                               | Parse file \(Display error if relevant\)        |
-|                               | Display base information for rocket from import |       
+|                               | Display base information for rocket from import |
 
 This extended use case includes a file selector and is prompted by users selecting "Import Rocket".
 
 #### Edit Simulation Automation 
 
-| User Intention                  	    | System Requirements                                |
-| ------------------------------------- | -------------------------------------------------- |
-| Select "Edit Simulation Automation"	|                                                    |
-|                                     	| Display "Edit Simulation Automation" pop up window |
-| Edit "Amount of Simulations"        	|                                                    |
-| Set Longitude,Latitude          		|         				                             |
-| Select "Save"          			  	|                                                    |
-|                                     	| Record changes                                     |
+| User Intention                      | System Requirements                                |
+| ----------------------------------- | -------------------------------------------------- |
+| Select "Edit Simulation Automation" |                                                    |
+|                                     | Display "Edit Simulation Automation" pop up window |
+| Edit "Amount of Simulations"        |                                                    |
+| Set Longitude,Latitude              |                                                    |
+| Select "Save"                       |                                                    |
+|                                     | Record changes                                     |
 
 This use case demonstrates how a user would interact with the multiple 
 simulation settings. The pop up window will match the style of other OpenRocket setting windows.
 
 #### Return Results (Extended)
 
-| User Intention                             | System Requirements                                     |
-| ------------------------------------------ | ------------------------------------------------------- |
-|                                            | Produce CSV file with the aggregated simulation results |
-|                                            | *Produce Scatter Plot* 								   |
-|											 | Display results to user with export options.            |
+| User Intention | System Requirements                                     |
+| -------------- | ------------------------------------------------------- |
+|                | Produce CSV file with the aggregated simulation results |
+|                | *Produce Scatter Plot*                                  |
+|                | Display results to user with export options.            |
 
 The extended workflow of returning results includes a scatter plot graph of possible landing locations and a GUI display of results found.
 
 #### Produce Scatter Plot
 
-| User Intention                                      | System Requirements   |
-| --------------------------------------------------- | --------------------- |
-|                                                     | Generate plots        |
-|                                                     | Draw plots onto a map |
-|                                                     | Display map to user   |
+| User Intention | System Requirements   |
+| -------------- | --------------------- |
+|                | Generate plots        |
+|                | Draw plots onto a map |
+|                | Display map to user   |
 
 
 This is the workflow of producing the scatter plot. This is an extension to the minimum viable product. 
@@ -290,40 +290,51 @@ See 9.5.12. for most systems this will be around one page.
 > Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
 
 Goal: 
+
+
 The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points. Since this system will be extending OpenRocket, it is important that it is easy for the user to move between systems. It is also important that it is open to the wider avionics community, so it will be made open source so that other can learn and build from it. 
 
+
 Purpose and Objective: 
+
+
 For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
-For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. 
+For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
+
+To satisify the users of this system, the sytsem needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameter. If the system has extented the minimum viable product, then it was aim to make it easy for the user, therefore satisfing them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible exteneding the system to make it easier to use. 
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
+Performance requirements define the expected performance of our software, outlining what the user's base expectation can be from using our product. 
 
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
+- The software should provide a list of required/available parameters to the user to assist in usability
 
+- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (.ork files)
+
+- The program should support the use of a single user simulating the performance of a single modelled rocket. The user should be able to execute the program more than once simultaneously to exceed this limit. 
+
+- The user should be able to provide additional information to the program to be used for the simulations such as launchsite and environmental conditions
+
+- The number of supported simulations that can be run and summerised in a single execution should be guaranteed < 1000
+
+- Average time taken per simulation should not exceed 0.5 seconds
+
+- The time taken to perform the simulation should scale linearly with the number of individual simulations run
+
+- Resulting data should be output to the screen in a readable manner making use of summary functions and the full dataset should be output to a csv file
+
+- The program should use a sensible method of statistical variation to provided a meaningful exploration of possible launch scenarios
 
 ### 3.5 Logical database requirements
 
 See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
+
+![Actor Diagram](actorDiagram.svg)
+
+![Class Diagram](classDiagram.svg)
 
 ### 3.6 Design constraints
 
@@ -384,9 +395,7 @@ Portability outlines how usable a system is in different operating environments.
 
 ### 3.8 Physical and Environmental Requirements 
 
-For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
-
-Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on. This computer has to have JPype installed, and be running at least Python version 3.0, but Python 3.7.x is recommended.
+Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on. This computer has to have JPype installed, and be running at least Python version 3.0, but Python 3.7 onwards is recommended.
 
 #### Client Requirements
 
@@ -396,18 +405,20 @@ The faculty requires that all aspects of the project are properly licensed.
 The faculty requires that all aspects of the project follow the guidelines set out by ECS.
 
 ##### Critical success factor
-It is critical to the success of the project and to the faculty that all guidelines set out by them are followed.
+It is critical to the success of the project and to the faculty that all guidelines set out by them are followed. This includes but is not limited to the project student agreement.
 
 #### Wider Rocket Community
 
-To improve and extend openRocket. To automate some processes, such as choosing variables, and exporting landing results.
+To improve and extend openRocket. This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference. 
 
 ##### Critical success factor
 In order to be useful for the wider rocket community, it is vital that the software is open-source. This allows the community to use and edit our software under the open source license. If the project is not open source, the benefit to the rocket community would be greatly reduced. 
 
 ### 3.9 Supporting information
 
-see 9.5.19. 
+The extension of openRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily availabe for future reference, due to the outputting of these to a CSV file.
+
+As this is an open source project, the final software will be freely available for anyone to view and edit. This adds to the longevity of the project, as it can be improved by the community in the future. 
 
 ## 4. Verification
 
@@ -419,20 +430,20 @@ see 9.5.19.
 
 Identify dates for key project deliverables: 
 
-**architectural prototype**
-The architectural prototype will be comeplete by 19 June 2020.
+**Architectural prototype**
+The architectural prototype will be comeplete by 4 June 2020.
 
-**minimum viable product**
+**Minimum viable product**
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
-**further releases**
+**Further releases**
 Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
 
 ### 5.2 Budget
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
-Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. This means that there are no software items that need to be purchased for this project. There is also no physical hardware for this project, so no physical items need to be purchased. This means that there is no items, either hardware or software, to purchase for this project, so the lack of a budget.  
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. This means that there are no software items that need to be purchased for this project. There is also no physical hardware for this project, so no physical items need to be purchased. This means that there is no items, either hardware or software, to purchase for this project, thus not requiring the presence of a budget. 
 
 ### 5.3 Risks 
 
@@ -440,18 +451,18 @@ Identify the ten most important project risks to achieving project goals: their 
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
-| Risks | Risk Type | Likelihood | Impact | Mitigation Strategies |
-|:-----: | ----------- | -------------- | ----- | ------------------ |
-|Program functioning unexpectedly on different devices | Software | 2 | 3 | Test on multiple different devices. |
-|Adding team members that do not work well with the team | Teamwork | 1 | 2 | Have a team contract which all members agree to at time of joining the group. |
-|Losing team member at crucial times| Teamwork | 1 | 3 | Communicate and document issues, progress and plans to the git. |
-|Team members burning out |Teamwork| 3 | 3 |Members communicate when they are having issues. Members have regular breaks during lab times. |
-|Loss of access to files|Technical|1|4|Assure that all files are on the git and on team members devices.|
-|Not meeting deadlines|Technical|3|2|Have regular meetings to manage milestones and divide tasks into smaller sections. |
-|Unresolved conflicts between team members|Teamwork|2|3|Have a team contract with paths to bringing up issues to the rest of the group|
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
+|                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
+| :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
+|Program functioning unexpectedly on different devices          | Technical     | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
+|Adding team members that do not work well with the team        | Teamwork      | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
+|Losing team member temporarily or permanently at crucial times | Teamwork      | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
+|Team members burning out                                       | Teamwork      | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
+|Loss of access to files                                        | Technical     | 1          | 4      | Assure that all files are on the git and on team members devices.                                                                                                                                                                           |
+|Not meeting deadlines by underestimating time required         | Technical     | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
+|Unresolved conflicts between team members                      | Teamwork      | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
+|Changes to project requirements                                | Requirements  | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
+|Issues with itegration of software                             | Technical     | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
+|Bugs within the code go undetected                             | Technical     | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
 
 ### 5.4 Health and Safety
 
@@ -467,25 +478,30 @@ Due to the COVID-19 pandemic response safety concerns around the observation of 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7).
-
+- It is assumed that the user has access to a computer, which is able to run openRocket. 
+- It is assumed that the members of the model rocket community, and other users, are familiar with openRocket.
+- It is assumed that the user will already have a model rocket to load into openRocket.
+- It is assumed that for use of the minimum viable product, the user is able to operate Command Line / Terminal, as this does not include the use of a GUI. 
+- It is assumed that the inputs entered by the user are of the correct type in order to successfully run the simulations. 
+  
 ### 6.2 Acronyms and abbreviations
 
 H&S - Health and Safety
+
 ECS - School of Engineering and Computer Science.
 
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
-| Name                | Sections Contributed       |
-| ------------------- | -------------------------- |
-| Luisa Kristen       | 3.8, 5.1                        |
-| Zac Durant          | 5.4, 6.2, 1.3                   |
-| Zak Kiernander      | 3.2                        |
-| Nicole Stallinger   | 3.2                        |
-| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3           |
-| Matthew Butterfield | 1, 1.2, 3.8 spelling and grammar |
+| Name                | Sections Contributed             |
+| ------------------- | --------------------------       |
+| Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5                    |
+| Zak Kiernander      | 3.2                              |
+| Nicole Stallinger   | 3.2                              |
+| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
+| Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
 
 ---
 
