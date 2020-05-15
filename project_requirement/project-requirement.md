@@ -348,6 +348,39 @@ Present the systemic (aka nonfunctional) requirements of the product (see ISO/IE
 List up to twenty systemic requirements / attributes.
 Write a short natural language description of the top nonfunctional requirements (approx. five pages).
 
+#### Open Source
+
+This is an open source project, as is OpenRocket. This product will be released under an open source license and published on GitLab for user collaboration and universal access.
+
+#### Usable
+
+This system must be usable by our target users, which are rocket hobbyist. The system needs to be designed so that users can efficiently utilise its key functions. High usability can be achieved by focusing on user needs during the system design, asking users for feedback throughout development, and assessing user experience with prototypes or the finished build.
+
+Usability can be assessed from user satisfaction. Good usabilty is seen when users are positive about their experience of using our demos and prototypes. It can also be assessed when observing user experience. A new user having issues with the interface being unintuitive, or inefficient, are indicators of poor usability. 
+
+#### Extensible
+
+This system will be designed to be highly receptive to future extensions. New functionality should be easy to integrate with the base system and not interfer with the base system. This will be worked towards with maintaining code modularity. Modularity will ensure that features can be easily plugged in, and the existing modules will be self contained.
+
+#### Fault Tolerant
+
+This system will be designed in anticipation of errors and exceptional inputs. A fault tolerant system would take these inputs and errors will not result in system failiure, and return the user to an error free state. 
+
+This attribute can be assessed with the development of test cases. 
+
+#### Documented
+
+This system will maintain up to date and usable documentation for developers and users. Our documentation will be include, but not be limited to, detailed comments, architecture diagrams, project requirement specifications, and a succinct user readme. 
+
+A well documented system for developers can be observed through the ease of colaboration. Work that is poorly documented will be harder for an new worker to independently pick up. Poor documentation for users can be seen when the learning curve to understand the system is higher than reasonable.
+
+#### Integrated
+
+It is crucial that this system is well integrated with OpenRocket. Integration is done mostly through the Orhelper class, which has been provided to interface with OpenRocket. 
+
+#### Portable
+
+Portability outlines how usable a system is in different operating environments.
 
 ### 3.8 Physical and Environmental Requirements 
 
