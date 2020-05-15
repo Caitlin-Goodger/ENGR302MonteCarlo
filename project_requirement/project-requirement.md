@@ -137,14 +137,14 @@ Steps marked with asterisks are sub-cases.
 
 #### Run Multiple Simulations Automatically (Minimum Viable Product)
 
-| User Intention                             	  	  | System Requirements                          |
-| --------------------------------------------------- | -------------------------------------------- |
-| *Import rocket (Minimum Viable Product)*            |                                              |
-| *Edit Simulation Location* 						  |                                              |
-| Click "Run Simulations"                    		  |                                              |
-|                                            		  | *Automated parameter varying*                |
-|                                            		  | Run multiple simulations                     |
-|                                            		  | *Return results (Minimum Viable Product)*    |
+| User Intention                           | System Requirements                       |
+| ---------------------------------------- | ----------------------------------------- |
+| *Import rocket (Minimum Viable Product)* |                                           |
+| *Edit Simulation Location*               |                                           |
+| Click "Run Simulations"                  |                                           |
+|                                          | *Automated parameter varying*             |
+|                                          | Run multiple simulations                  |
+|                                          | *Return results (Minimum Viable Product)* |
 
 This use case shows the minimum viable product of this project. This does not 
 contain any extensions or features allowing the customisation of the 
@@ -153,11 +153,11 @@ level of functionality that would make a viable product. This is run through the
 
 #### Import a Rocket (Minimum Viable Product)
 
-| User Intention              			  | System Requirements                             |
-|-----------------------------------------|-------------------------------------------------|
-| Input rocket file location with CL flag |                                      			|
-|                            			  | Parse file \(Display error if relevant\)        |
-|                               		  | Display base information for rocket from import |       
+| User Intention                          | System Requirements                             |
+| --------------------------------------- | ----------------------------------------------- |
+| Input rocket file location with CL flag |                                                 |
+|                                         | Parse file \(Display error if relevant\)        |
+|                                         | Display base information for rocket from import |
 
 This use case allows users to import a customised rocket from OpenRocket into
 our project. This use case is contained within the minimum viable product. It
@@ -166,21 +166,21 @@ results of the simulations are applicable to a user's situation, and therefore u
 
 #### Edit Simulation Location
 
-| User Intention                   | System Requirements  					 |
-|----------------------------------|-----------------------------------------|
-|                                  | Prompt for lat and long co-ordinates    |
-| Input values       		       |                                         |
-|                                  | Record changes                          |
+| User Intention | System Requirements                  |
+| -------------- | ------------------------------------ |
+|                | Prompt for lat and long co-ordinates |
+| Input values   |                                      |
+|                | Record changes                       |
 
 This use case allows users to input custom lat long co-ordinates through the command line.
 
 #### Automated parameter varying
 
-| User Intention              | System Requirements                                                                     |
-| --------------------------- | --------------------------------------------------------------------------------------- |
-|                             | Take initial given values of parachute ejection time, launch angle or motor performance |
-|                             | Create a collection of random inputs for each value type                                |
-|                             | Run individual simulations, using the new inputs                                        |
+| User Intention | System Requirements                                                                     |
+| -------------- | --------------------------------------------------------------------------------------- |
+|                | Take initial given values of parachute ejection time, launch angle or motor performance |
+|                | Create a collection of random inputs for each value type                                |
+|                | Run individual simulations, using the new inputs                                        |
 
 This automated parameter varying forms the basis of the Monte Carlo simulations. 
 Currently, users manually vary these values and run simulations. This use case 
@@ -189,69 +189,69 @@ the user to get results from the Monte Carlo technique.
 
 #### Return Results (Minimum Viable Product)
 
-| User Intention                             | System Requirements                                     |
-| ------------------------------------------ | ------------------------------------------------------- |
-|                                            | Produce CSV file with the aggregated simulation results |
-| 					                         | Export and open results file 				   	       |
+| User Intention | System Requirements                                     |
+| -------------- | ------------------------------------------------------- |
+|                | Produce CSV file with the aggregated simulation results |
+|                | Export and open results file                            |
 
 This is the returnable results of the minimum viable product. This does not include a scatter plot graph. The results are automatically exported and opened for the user.
 
 #### Run Multiple Simulations Automatically (Extended)
 
-| User Intention                             | System Requirements                          |
-| ------------------------------------------ | -------------------------------------------- |
-| *Import rocket (Extended)*   			     |                                              |
-| *Edit Simulation Automation*               |                                              |
-| Click "Run Simulations"                    |                                              |
-|                                            | *Automated parameter varying*                |
-|                                            | Run multiple simulations                     |
-|                                            | *Return results (extended)*                  |
+| User Intention               | System Requirements           |
+| ---------------------------- | ----------------------------- |
+| *Import rocket (Extended)*   |                               |
+| *Edit Simulation Automation* |                               |
+| Click "Run Simulations"      |                               |
+|                              | *Automated parameter varying* |
+|                              | Run multiple simulations      |
+|                              | *Return results (extended)*   |
 
 This is an extended workflow that we hope to achieve by the end of trimester. This can be extended more so with the listed features in the "Further Extensions" section. The main benefit of this workflow is it running with a GUI, instead of through the command line interface.
 
 #### Import a Rocket (Extended)
 
 | User Intention                | System Requirements                             |
-|-------------------------------|-------------------------------------------------|
+| ----------------------------- | ----------------------------------------------- |
 | Select "Import rocket"        |                                                 |
 |                               | Prompt file selector                            |
 | Navigate and open rocket file |                                                 |
 |                               | Parse file \(Display error if relevant\)        |
-|                               | Display base information for rocket from import |       
+|                               | Display base information for rocket from import |
 
 This extended use case includes a file selector and is prompted by users selecting "Import Rocket".
 
 #### Edit Simulation Automation 
 
-| User Intention                  	    | System Requirements                                |
-| ------------------------------------- | -------------------------------------------------- |
-| Select "Edit Simulation Automation"	|                                                    |
-|                                     	| Display "Edit Simulation Automation" pop up window |
-| Edit "Amount of Simulations"        	|                                                    |
-| Set Longitude,Latitude          		|         				                             |
-| Select "Save"          			  	|                                                    |
-|                                     	| Record changes                                     |
+| User Intention                      | System Requirements                                |
+| ----------------------------------- | -------------------------------------------------- |
+| Select "Edit Simulation Automation" |                                                    |
+|                                     | Display "Edit Simulation Automation" pop up window |
+| Edit "Amount of Simulations"        |                                                    |
+| Set Longitude,Latitude              |                                                    |
+| Select "Save"                       |                                                    |
+|                                     | Record changes                                     |
 
 This use case demonstrates how a user would interact with the multiple 
 simulation settings. The pop up window will match the style of other OpenRocket setting windows.
 
 #### Return Results (Extended)
 
-| User Intention                             | System Requirements                                     |
-| ------------------------------------------ | ------------------------------------------------------- |
-|                                            | Produce CSV file with the aggregated simulation results |
-|                                            | *Produce Scatter Plot* 								   |
-|											 | Display results to user with export options.            |
+| User Intention | System Requirements                                     |
+| -------------- | ------------------------------------------------------- |
+|                | Produce CSV file with the aggregated simulation results |
+|                | *Produce Scatter Plot*                                  |
+|                | Display results to user with export options.            |
 
 The extended workflow of returning results includes a scatter plot graph of possible landing locations and a GUI display of results found.
 
 #### Produce Scatter Plot
 
-| User Intention                                      | System Requirements   |
-| --------------------------------------------------- | --------------------- |
-|                                                     | Generate plots        |
-|                                                     | Draw plots onto a map |
-|                                                     | Display map to user   |
+| User Intention | System Requirements   |
+| -------------- | --------------------- |
+|                | Generate plots        |
+|                | Draw plots onto a map |
+|                | Display map to user   |
 
 
 This is the workflow of producing the scatter plot. This is an extension to the minimum viable product. 
@@ -407,18 +407,18 @@ Identify the ten most important project risks to achieving project goals: their 
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
-| Risks | Risk Type | Likelihood | Impact | Mitigation Strategies |
-|:-----: | ----------- | -------------- | ----- | ------------------ |
-|Program functioning unexpectedly on different devices | Software | 2 | 3 | Test on multiple different devices. |
-|Adding team members that do not work well with the team | Teamwork | 1 | 2 | Have a team contract which all members agree to at time of joining the group. |
-|Losing team member at crucial times| Teamwork | 1 | 3 | Communicate and document issues, progress and plans to the git. |
-|Team members burning out |Teamwork| 3 | 3 |Members communicate when they are having issues. Members have regular breaks during lab times. |
-|Loss of access to files|Technical|1|4|Assure that all files are on the git and on team members devices.|
-|Not meeting deadlines|Technical|3|2|Have regular meetings to manage milestones and divide tasks into smaller sections. |
-|Unresolved conflicts between team members|Teamwork|2|3|Have a team contract with paths to bringing up issues to the rest of the group|
-|        |             |                |     |     |
-|        |             |                |     |     |
-|        |             |                |     |     |
+|                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
+| :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
+|  Program functioning unexpectedly on different devices  | Software  | 2          | 3      | Test on multiple different devices.                                                            |
+| Adding team members that do not work well with the team | Teamwork  | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                  |
+|           Losing team member at crucial times           | Teamwork  | 1          | 3      | Communicate and document issues, progress and plans to the git.                                |
+|                Team members burning out                 | Teamwork  | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times. |
+|                 Loss of access to files                 | Technical | 1          | 4      | Assure that all files are on the git and on team members devices.                              |
+|                  Not meeting deadlines                  | Technical | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.             |
+|        Unresolved conflicts between team members        | Teamwork  | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group                 |
+|                                                         |           |            |        |                                                                                                |
+|                                                         |           |            |        |                                                                                                |
+|                                                         |           |            |        |                                                                                                |
 
 ### 5.4 Health and Safety
 
@@ -445,13 +445,13 @@ ECS - School of Engineering and Computer Science.
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
-| Name                | Sections Contributed       |
-| ------------------- | -------------------------- |
-| Luisa Kristen       | 3.8, 5.1                        |
-| Zac Durant          | 5.4, 6.2, 1.3                   |
-| Zak Kiernander      | 3.2                        |
-| Nicole Stallinger   | 3.2                        |
-| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3           |
+| Name                | Sections Contributed             |
+| ------------------- | -------------------------------- |
+| Luisa Kristen       | 3.8, 5.1                         |
+| Zac Durant          | 5.4, 6.2, 1.3                    |
+| Zak Kiernander      | 3.2                              |
+| Nicole Stallinger   | 3.2                              |
+| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
 | Matthew Butterfield | 1, 1.2, 3.8 spelling and grammar |
 
 ---
