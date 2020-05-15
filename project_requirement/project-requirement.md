@@ -325,6 +325,58 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
+@startuml actorDiagram
+actor user
+participant orhelper 
+participant openrocket
+
+note over orhelper : Helper class provided on OpenRocket wiki to interface with java source code
+note over openrocket: OpenRocket sourcecode provided methods for rocket simulation
+orhelper -> openrocket : Provides access to methods
+note right: Instantiates and manages JVM connection and creation of java proxies
+
+participant main
+participant simulation
+participant abstractlistener
+participant landingpoints
+
+main -> simulation : Provides interface for user to run simulation and receive results
+note over main: Provide entry point to program and allow user to interact with simulations
+landingpoints -> abstractlistener : Implements python proxy of java classes
+note over landingpoints : List of returned landing points from simulations
+note left: Implements proxy methods defined by abstractlistener to mimic java class
+simulation -> landingpoints : Records simulation results
+simulation -> orhelper : Accesses OpenRocket methods
+
+note over user : User of the system who supplies a rocket design to be tested and the desired parameters if any
+user -> main : Interacts with, specifying desired simulation parameters
+main -> user : Returns to screen and csv file results of simulations
+@enduml
+
+@startuml classDiagram
+class orhelper 
+orhelper : Provided on OpenRocket wiki to interface with OpenRocket java source code
+class openrocket
+openrocket : OpenRocket java source code providing methods for rocket simulation
+orhelper --> openrocket : Provides access to methods
+
+class main
+main : Provides entry point and access to simulation class to user
+main : Allows configuration of parameters and selection of rocket model
+class simulation
+simulation : Provides interface for user to run simulation and receive results
+class abstractlistener
+abstractlistener : Provides template for python proxy of java listeners
+class landingpoints
+landingpoints : Implements proxy interface and records landing point of simulations
+
+main --> simulation : Provides interface for user to run simulation and receive results
+landingpoints --|> abstractlistener : Implements python proxy of java classes
+simulation "1" *-- "many" landingpoints : Records simulation results
+simulation --> orhelper : Accesses OpenRocket methods
+
+@enduml
+
 ### 3.6 Design constraints
 
 see 9.5.15 and 9.5.16. for most systems, this will be around one page.
