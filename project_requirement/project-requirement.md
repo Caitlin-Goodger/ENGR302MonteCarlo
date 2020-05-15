@@ -327,6 +327,10 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
+![](actorDiagram.svg)
+
+![](classDiagram.svg)
+
 ### 3.6 Design constraints
 
 see 9.5.15 and 9.5.16. for most systems, this will be around one page.
