@@ -325,9 +325,9 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
-![](actorDiagram.svg)
+![Actor Diagram](actorDiagram.svg)
 
-![](classDiagram.svg)
+![Class Diagram](classDiagram.svg)
 
 ### 3.6 Design constraints
 
@@ -438,11 +438,12 @@ Due to the COVID-19 pandemic response safety concerns around the observation of 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7).
-
-It is assumed that the members of the model rocket community are familiar with openRocket.
-It is assumed that the user will already have a model rocket to load into openRocket.
-
+- It is assumed that the user has access to a computer, which is able to run openRocket. 
+- It is assumed that the members of the model rocket community, and other users, are familiar with openRocket.
+- It is assumed that the user will already have a model rocket to load into openRocket.
+- It is assumed that for use of the minimum viable product, the user is able to operate Command Line / Terminal, as this does not include the use of a GUI. 
+- It is assumed that the inputs entered by the user are of the correct type in order to successfully run the simulations. 
+  
 ### 6.2 Acronyms and abbreviations
 
 H&S - Health and Safety
@@ -455,8 +456,8 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
-| Luisa Kristen       | 3.8, 3.9, 5.1                    |
-| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5                 |
+| Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5                    |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
