@@ -325,6 +325,7 @@ See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an ob
 
 You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
+<div hidden>
 @startuml actorDiagram
 actor user
 participant orhelper 
@@ -352,7 +353,10 @@ note over user : User of the system who supplies a rocket design to be tested an
 user -> main : Interacts with, specifying desired simulation parameters
 main -> user : Returns to screen and csv file results of simulations
 @enduml
+</div>
+![](actorDiagram.svg)
 
+<div hidden>
 @startuml classDiagram
 class orhelper 
 orhelper : Provided on OpenRocket wiki to interface with OpenRocket java source code
@@ -376,6 +380,8 @@ simulation "1" *-- "many" landingpoints : Records simulation results
 simulation --> orhelper : Accesses OpenRocket methods
 
 @enduml
+</div>
+![](classDiagram.svg)
 
 ### 3.6 Design constraints
 
