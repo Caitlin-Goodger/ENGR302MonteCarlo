@@ -299,6 +299,8 @@ For the system to be efficient, the system needs to be able to complete the mini
 
 ### 3.4 Performance requirements
 
+Performance requirements define the expected performance of our software, outlining what the user's base expectation can be from using our product. 
+
 See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
 
 > **9.5.13 Performance requirements** <br>
@@ -351,9 +353,7 @@ Write a short natural language description of the top nonfunctional requirements
 
 ### 3.8 Physical and Environmental Requirements 
 
-For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
-
-Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on. This computer has to have JPype installed, and be running at least Python version 3.0, but Python 3.7.x is recommended.
+Due to the nature of the project being purely software does not have many physical or environmental requirements. The only requirement that the project has, is to have a computer to run the program on. This computer has to have JPype installed, and be running at least Python version 3.0, but Python 3.7 onwards is recommended.
 
 #### Client Requirements
 
@@ -363,11 +363,11 @@ The faculty requires that all aspects of the project are properly licensed.
 The faculty requires that all aspects of the project follow the guidelines set out by ECS.
 
 ##### Critical success factor
-It is critical to the success of the project and to the faculty that all guidelines set out by them are followed.
+It is critical to the success of the project and to the faculty that all guidelines set out by them are followed. This includes but is not limited to the project student agreement.
 
 #### Wider Rocket Community
 
-To improve and extend openRocket. To automate some processes, such as choosing variables, and exporting landing results.
+To improve and extend openRocket. This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference. 
 
 ##### Critical success factor
 In order to be useful for the wider rocket community, it is vital that the software is open-source. This allows the community to use and edit our software under the open source license. If the project is not open source, the benefit to the rocket community would be greatly reduced. 
@@ -388,20 +388,20 @@ As this is an open source project, the final software will be freely available f
 
 Identify dates for key project deliverables: 
 
-**architectural prototype**
+**Architectural prototype**
 The architectural prototype will be comeplete by 4 June 2020.
 
-**minimum viable product**
+**Minimum viable product**
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
-**further releases**
+**Further releases**
 Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
 
 ### 5.2 Budget
 
 Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
 
-Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. This means that there are no software items that need to be purchased for this project. There is also no physical hardware for this project, so no physical items need to be purchased. This means that there is no items, either hardware or software, to purchase for this project, so the lack of a budget.  
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. This means that there are no software items that need to be purchased for this project. There is also no physical hardware for this project, so no physical items need to be purchased. This means that there is no items, either hardware or software, to purchase for this project, thus not requiring the presence of a budget. 
 
 ### 5.3 Risks 
 
@@ -437,6 +437,9 @@ Due to the COVID-19 pandemic response safety concerns around the observation of 
 ### 6.1 Assumptions and dependencies 
 
 One page on assumptions and dependencies (9.5.7).
+
+It is assumed that the members of the model rocket community are familiar with openRocket.
+It is assumed that the user will already have a model rocket to load into openRocket.
 
 ### 6.2 Acronyms and abbreviations
 
