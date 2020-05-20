@@ -139,11 +139,14 @@ Schedules must be justified and supported by evidences; they must be either dire
 
 Identify dates for key project deliverables:
 
-1. prototype(s).
-1. first deployment to the client.
-1. further improvements required or specified by the client.
+**Architectural prototype**
+The architectural prototype will be comeplete by 4 June 2020.
 
-(1 page).
+**Minimum viable product**
+The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
+
+**Further releases**
+Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
 
 ### 5.2 Budget and Procurement
 
