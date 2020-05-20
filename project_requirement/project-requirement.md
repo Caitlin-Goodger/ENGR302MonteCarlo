@@ -401,6 +401,12 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 > 
 > For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
 
+The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no bhardware components to this system, there are no contraints on hardware. Since this system is software there are software constraints placed on the system.
+
+The report format
+
+There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting prodecures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no contraints placed on the design by external standards or regulatory requirements.  
+
 ### 3.7 Nonfunctional system attributes
 
 Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).
