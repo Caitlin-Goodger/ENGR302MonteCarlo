@@ -158,8 +158,7 @@ Due to the nature of this project it does not have a budget. The project is exte
 
 #### 5.2.2 Procurement
 
-Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
-(1 page).
+As stated previously, the nature of the project being purely software means that it does not require hardware items which would need to be procured. The only software required is OpenRocket which is open source and available for access at any point. The storage of the code will be on a group gitlab which is supplied by the university.
 
 ### 5.3 Risks 
 
@@ -214,7 +213,7 @@ ECS - School of Engineering and Computer Science.
 |Zak Kiernander |           |
 |Nicole Stallinger|         |
 |Caitlin Goodger|           |
-|Matthew Butterfield|       |
+|Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
 
 ---
 
