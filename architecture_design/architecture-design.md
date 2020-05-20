@@ -193,7 +193,11 @@ Due to the COVID-19 pandemic response safety concerns around the observation of 
 
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7) 
+- It is assumed that the user has access to a computer, which is able to run openRocket. 
+- It is assumed that the members of the model rocket community, and other users, are familiar with openRocket.
+- It is assumed that the user will already have a model rocket to load into openRocket.
+- It is assumed that for use of the minimum viable product, the user is able to operate Command Line / Terminal, as this does not include the use of a GUI. 
+- It is assumed that the inputs entered by the user are of the correct type in order to successfully run the simulations. 
 
 ### 6.2 Acronyms and abbreviations
 
