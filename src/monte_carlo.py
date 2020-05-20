@@ -5,10 +5,8 @@ from random import gauss
 import math
 import argparse
 import csv
-
-parser = argparse.ArgumentParser()
-args = 0
-        
+import sys
+    
 class LandingPoints(list):
     "A list of landing points with ability to run simulations and populate itself"    
     
@@ -75,6 +73,15 @@ class AirStart(orhelper.AbstractSimulationListener):
         position = status.getRocketPosition()
         position = position.add(0.0, 0.0, self.start_altitude)
         status.setRocketPosition(position)
+    
+class DefaultHelpParser(argparse.ArgumentParser):
+    def error(self, message):
+        sys.stderr.write('error: %s\n' % message)
+        self.print_help()
+        sys.exit()
+
+parser = DefaultHelpParser(argparse.ArgumentParser())
+args = 0
 
 if __name__ == '__main__':
 
