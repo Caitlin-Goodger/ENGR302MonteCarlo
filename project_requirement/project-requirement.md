@@ -164,7 +164,6 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 
 
 
-
 ### 3.2 Functions
 
 This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
@@ -245,6 +244,16 @@ This is the returnable results of the minimum viable product. This does not incl
 
 This is an extended workflow that we hope to achieve by the end of trimester. This can be extended more so with the listed features in the "Further Extensions" section. The main benefit of this workflow is it running with a GUI, instead of through the command line interface.
 
+#### Running simulation with MVP
+| User Intention                                                | System Requirements        |
+| ------------------------------------------------------------- | -------------------------- |
+| User sets \-o for csv output and \-rocket for the rocket file |                            |
+|                                                               | Find/Import rocket         |
+|                                                               | Run simulation             |
+|                                                               | Export file                |
+|                                                               | \(Show error if relevant\) |
+
+
 #### Import a Rocket (Extended)
 
 | User Intention                | System Requirements                             |
@@ -283,11 +292,14 @@ The extended workflow of returning results includes a scatter plot graph of poss
 
 #### Produce Scatter Plot
 
-| User Intention | System Requirements   |
-| -------------- | --------------------- |
-|                | Generate plots        |
-|                | Draw plots onto a map |
-|                | Display map to user   |
+| User Intention   | System Requirements   |
+| ---------------- | --------------------- |
+| Import rocket    |                       |
+| Select View plot |                       |
+|                  | Run Simulations       |
+|                  | Generate plots        |
+|                  | Draw plots onto a map |
+|                  | Display map to user   |
 
 
 This is the workflow of producing the scatter plot. This is an extension to the minimum viable product. 
@@ -487,18 +499,18 @@ Identify the ten most important project risks to achieving project goals: their 
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
 
-|                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
-| :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
-|Program functioning unexpectedly on different devices          | Technical     | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
-|Adding team members that do not work well with the team        | Teamwork      | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
-|Losing team member temporarily or permanently at crucial times | Teamwork      | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
-|Team members burning out                                       | Teamwork      | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
-|Loss of access to files                                        | Technical     | 1          | 4      | Assure that all files are on the git and on team members devices.                                                                                                                                                                           |
-|Not meeting deadlines by underestimating time required         | Technical     | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
-|Unresolved conflicts between team members                      | Teamwork      | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
-|Changes to project requirements                                | Requirements  | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
-|Issues with itegration of software                             | Technical     | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
-|Bugs within the code go undetected                             | Technical     | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
+| Risks                                                          | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
+| -------------------------------------------------------------- | ------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Program functioning unexpectedly on different devices          | Technical    | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
+| Adding team members that do not work well with the team        | Teamwork     | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
+| Losing team member temporarily or permanently at crucial times | Teamwork     | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
+| Team members burning out                                       | Teamwork     | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
+| Loss of access to files                                        | Technical    | 1          | 4      | Assure that all files are on the git and on team members devices.                                                                                                                                                                           |
+| Not meeting deadlines by underestimating time required         | Technical    | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
+| Unresolved conflicts between team members                      | Teamwork     | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
+| Changes to project requirements                                | Requirements | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
+| Issues with itegration of software                             | Technical    | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
+| Bugs within the code go undetected                             | Technical    | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
 
 ### 5.4 Health and Safety
 

@@ -139,11 +139,14 @@ Schedules must be justified and supported by evidences; they must be either dire
 
 Identify dates for key project deliverables:
 
-1. prototype(s).
-1. first deployment to the client.
-1. further improvements required or specified by the client.
+**Architectural prototype**
+The architectural prototype will be comeplete by 4 June 2020.
 
-(1 page).
+**Minimum viable product**
+The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
+
+**Further releases**
+Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
 
 ### 5.2 Budget and Procurement
 
@@ -161,6 +164,19 @@ Present a table of goods or services that will be required to deliver project go
 ### 5.3 Risks 
 
 Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).
+
+|                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
+| :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
+|Program functioning unexpectedly on different devices          | Technical     | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
+|Adding team members that do not work well with the team        | Teamwork      | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
+|Losing team member temporarily or permanently at crucial times | Teamwork      | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
+|Team members burning out                                       | Teamwork      | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
+|Loss of access to files                                        | Technical     | 1          | 4      | Assure that all files are on the git and on team members devices.                                                                                                                                                                           |
+|Not meeting deadlines by underestimating time required         | Technical     | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
+|Unresolved conflicts between team members                      | Teamwork      | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
+|Changes to project requirements                                | Requirements  | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
+|Issues with itegration of software                             | Technical     | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
+|Bugs within the code go undetected                             | Technical     | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
 
 ### 5.4 Health and Safety
 
