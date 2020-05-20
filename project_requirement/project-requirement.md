@@ -209,6 +209,16 @@ This is the returnable results of the minimum viable product. This does not incl
 
 This is an extended workflow that we hope to achieve by the end of trimester. This can be extended more so with the listed features in the "Further Extensions" section. The main benefit of this workflow is it running with a GUI, instead of through the command line interface.
 
+#### Running simulation with MVP
+| User Intention                                                | System Requirements        |
+| ------------------------------------------------------------- | -------------------------- |
+| User sets \-o for csv output and \-rocket for the rocket file |                            |
+|                                                               | Find/Import rocket         |
+|                                                               | Run simulation             |
+|                                                               | Export file                |
+|                                                               | \(Show error if relevant\) |
+
+
 #### Import a Rocket (Extended)
 
 | User Intention                | System Requirements                             |
@@ -247,11 +257,14 @@ The extended workflow of returning results includes a scatter plot graph of poss
 
 #### Produce Scatter Plot
 
-| User Intention | System Requirements   |
-| -------------- | --------------------- |
-|                | Generate plots        |
-|                | Draw plots onto a map |
-|                | Display map to user   |
+| User Intention   | System Requirements   |
+| ---------------- | --------------------- |
+| Import rocket    |                       |
+| Select View plot |                       |
+|                  | Run Simulations       |
+|                  | Generate plots        |
+|                  | Draw plots onto a map |
+|                  | Display map to user   |
 
 
 This is the workflow of producing the scatter plot. This is an extension to the minimum viable product. 
