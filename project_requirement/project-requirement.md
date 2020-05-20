@@ -401,9 +401,13 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 > 
 > For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
 
-The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no bhardware components to this system, there are no contraints on hardware. Since this system is software there are software constraints placed on the system.
+The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no hardware components to this system, there are no contraints on hardware. Since this system is software there are software constraints placed on the system.
 
-The report format
+One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is Open Rocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
+
+Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the contraints placed on this system, is the input that it should be able to recieve. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
+
+The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. ZThe report format should be understandable for the user, which is why the file choice was made. 
 
 There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting prodecures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no contraints placed on the design by external standards or regulatory requirements.  
 
@@ -554,7 +558,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1                    |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
-| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
+| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
 | Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
 
 ---
