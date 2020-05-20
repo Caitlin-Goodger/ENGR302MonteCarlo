@@ -201,7 +201,9 @@ Due to the COVID-19 pandemic response safety concerns around the observation of 
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary as required 
+H&S - Health and Safety
+
+ECS - School of Engineering and Computer Science.
 
 ## 7. Contributions
 
