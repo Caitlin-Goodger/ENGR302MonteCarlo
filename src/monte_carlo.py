@@ -78,21 +78,21 @@ class AirStart(orhelper.AbstractSimulationListener):
 
 if __name__ == '__main__':
 
-    parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="Model rocket file")
-    parser.add_argument("-o", "--output", dest = "outfile", default = "./out.csv", help="Output CSV location")
+    parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="The model rocket file to run the simulation with.")
+    parser.add_argument("-o", "--output", dest = "outfile", default = "./out.csv", help="The output CSV location.")
 
-    parser.add_argument("-rda", "--rodangle", dest = "rodangle", default = 45, help="Launch rod angle", type=float)
-    parser.add_argument("-rdas", "--rodanglesigma", dest = "rodanglesigma", default = 5, help="Launch rod angle sigma", type=float)
+    parser.add_argument("-rda", "--rodangle", dest = "rodangle", default = 45, help="The rod angle to launch at.", type = float)
+    parser.add_argument("-rdas", "--rodanglesigma", dest = "rodanglesigma", default = 5, help="The rod angle sigma to launch at.", type = float)
 
-    parser.add_argument("-rdd", "--roddirection", dest = "roddirection", default = 0, help="Launch rod direction", type=float)
-    parser.add_argument("-rdds", "--roddirectionsigma", dest = "roddirectionsigma", default = 5, help="Launch rod direction sigma", type=float)
+    parser.add_argument("-rdd", "--roddirection", dest = "roddirection", default = 0, help="The rod direction to launch at.", type = float)
+    parser.add_argument("-rdds", "--roddirectionsigma", dest = "roddirectionsigma", default = 5, help="The rod direction sigma to launch at.", type = float)
 
-    parser.add_argument("-wsa", "--windspeed", dest = "windspeed", default = 15, help="Wind speed average", type=float)
-    parser.add_argument("-wsas", "--windspeedsigma", dest = "roddirectionsigma", default = 5, help="Wind speed average sigma", type=float)
+    parser.add_argument("-wsa", "--windspeed", dest = "windspeed", default = 15, help="The average wind speed.", type = float)
+    parser.add_argument("-wsas", "--windspeedsigma", dest = "roddirectionsigma", default = 5, help="The average wind speed sigma.", type = float)
 
-    parser.add_argument("-lat", "--lat", dest = "startlat", default= 0, help = "Starting latitude",  type = float)
-    parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "Starting longitude",  type = float)
-    parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "Number of simulations to run", type = int) 
+    parser.add_argument("-lat", "--lat", dest = "startlat", default= 0, help = "The starting latitude for the simulation.",  type = float)
+    parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "The starting longitude for the simulation.",  type = float)
+    parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "The number of simulations to run.", type = int) 
     args = parser.parse_args()
 
     points = LandingPoints()
