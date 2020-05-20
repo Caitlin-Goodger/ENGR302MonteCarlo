@@ -127,7 +127,43 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page. 
+* Rocket Model Input
+    * Allows the user to specify a .ork file when running the program. This .ork file will describe the rocket to be modelled (Motor config, aerodynamics, weight etc)
+    * This file should be generated in the OpenRocket application by designing the desired rocket and exporting the OpenRocket rocket description to a file
+    * This file should be parsed to the system by a parameter or selected in a GUI
+    * This file must be a valid OpenRocket description from a compatable version of OpenRocket
+
+
+* Environmental Variables
+    * Allows the user to specify environmental parameters such as wind speed, launch angle and launch position when launching the program
+    * These inputs should be optional, allowing the user to run simulations with the default launch conditions and with some meaningful statistical variation
+    * These inputs should be within OpenRocket's tolerance for the given input type
+    * These inputs should all be in SI units
+
+
+* Screen Output
+    * Allows the user to view a summary of simulation results in the window from which they launched the simulation
+    * This output should be limited to summary statistics to reduce clutter and ensure the output is readable and useful
+    * All outputs should be in SI units
+
+
+* CSV Output
+    * Allows the user to view full simulation results in the spreadsheet viewer of their choice
+    * These outputs should be stored in a valid csv format viewable by most common spreadsheet programs and should format the data such that it can be easily understood and operated on
+    * Various simulation statistics should be stored from each of the individual flights along with summary statistics
+
+
+* Weather Data
+    * Allows the user to run simulations with current weather data fetched from a weather API
+    * These inputs will require an internet connection and should be disabled when a connection cannot be made - this should alert the user that manual weather data must be set
+
+
+* PID Control
+    * The possibilty of interfacing with a PID controller designed externally is a target of the system, allowing the user to simulate the performance of their rocket under a given PID configuration
+    * The input format of this interface is currently unspecified, as is the method of connecting this interface.
+
+
+
 
 ### 3.2 Functions
 
@@ -497,7 +533,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
 | Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
-| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5                    |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1                    |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3              |
