@@ -42,13 +42,15 @@ class LandingPoints(list):
                     component.setMassOverridden(True)
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
+                ma = MaxAltitude()
                 lp = LandingPoint()
-                orh.run_simulation(sim, [lp])
+                orh.run_simulation(sim, [lp, ma])
                 self.append( lp )
     
     def print_stats(self):
         lats = [p.lat for p in self]
         longs = [p.long for p in self]
+        # altitudes = [p.alt for worldpos in self]
         with open(args.outfile, 'w', newline='\n') as file:
             writer = csv.writer(file)
             writer.writerow(["Latitude","Longitude"])
@@ -65,6 +67,17 @@ class LandingPoint(orhelper.AbstractSimulationListener):
         landing_zone = geodetic_computation.addCoordinate(launchpos, worldpos)
         self.lat = float(landing_zone.getLatitudeDeg())
         self.long = float(landing_zone.getLongitudeDeg())
+
+class MaxAltitude(orhelper.AbstractSimulationListener):
+   
+   def __init__(self) :
+        self.worldpos = 0
+
+   def postStep(self, status):      
+        self.worldpos = max(self.worldpos, status.getRocketPosition().z)
+
+   def endSimulation(self, status, simulation_exception):
+       print('Max altitude: ' + str(self.worldpos))
         
 class AirStart(orhelper.AbstractSimulationListener):
     
