@@ -115,7 +115,12 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
+
+User interaction model
+![](../project_requirement/actorDiagram.svg)
+
+Class interaction model
+![](../project_requirement/classDiagram.svg)
 
 ### 4.2 Development
 ...
