@@ -128,11 +128,9 @@ Class interaction model
 
 ### 4.2 Development
 
+### 4.3 Process
 Sequence model
 ![](sequenceDiagram.svg)
-
-### 4.3 Process
-...
 
 ### 4.4 Physical 
 ...
