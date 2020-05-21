@@ -87,6 +87,10 @@ For most systems this will be about 2 pages, including a table mapping concerns 
 ##### School of Engineering and Computer Science
 * ECS requires that all aspects of the project are correctly licensed. 
 * ECS requires all aspects of the project follow the guidelines set out by ECS. 
+  
+##### Wider Rocket Community
+* To improve and extend openRocket. 
+  * This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference.
 
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
@@ -208,7 +212,7 @@ ECS - School of Engineering and Computer Science.
 
 | Name | Sections Contributed|
 | ---- | ----               |
-|Luisa Kristen| 1, 1.1, 1.2, 5.2.1, 5.4, 5.4.1|
+|Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.2.1, 5.4, 5.4.1|
 |Zac Durant   |             |
 |Zak Kiernander |           |
 |Nicole Stallinger|         |
