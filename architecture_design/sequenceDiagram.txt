@@ -1,0 +1,26 @@
+@startuml sequenceDiagram
+actor user order 0
+participant main order 20
+participant openrocket_simulator order 30
+
+user -> main : Upload rocket description and desired parameters
+activate main
+main -> user : Return any warnings about given/missing parameters
+user -> main : Confirm simulation choices
+
+main -> openrocket_simulator : Initialise JVM
+activate openrocket_simulator
+
+loop n times
+	main -> openrocket_simulator : Randomise parameters & send to simulator
+	openrocket_simulator -> main : Return results
+end
+deactivate openrocket_simulator
+
+create outputFile order 10
+main -> outputFile: Store simulation results
+
+main -> user : Return simualtion summary
+deactivate main
+
+@enduml

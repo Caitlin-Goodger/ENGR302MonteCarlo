@@ -127,7 +127,9 @@ Class interaction model
 ![](../project_requirement/classDiagram.svg)
 
 ### 4.2 Development
-...
+
+Sequence model
+![](sequenceDiagram.svg)
 
 ### 4.3 Process
 ...
@@ -218,7 +220,7 @@ ECS - School of Engineering and Computer Science.
 | Name | Sections Contributed|
 | ---- | ----               |
 |Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.2.1, 5.4, 5.4.1|
-|Zac Durant   |             |
+|Zac Durant   | 4.1, 4.2             |
 |Zak Kiernander |           |
 |Nicole Stallinger|         |
 |Caitlin Goodger|           |
