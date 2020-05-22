@@ -16,9 +16,7 @@ class OpenRocketInstance(object):
 
         print("Startup")
             
-        startJVM(getDefaultJVMPath(), "-Djava.class.path=%s" % jar_path)
-
-        print("JVM")
+        startJVM(getDefaultJVMPath(), "-Djava.class.path=%s" % jar_path, convertStrings=False)
 
         orp = JPackage("net").sf.openrocket
         orp.startup.Startup2.loadMotor()

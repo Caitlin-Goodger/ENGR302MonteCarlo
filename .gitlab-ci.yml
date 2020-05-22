@@ -11,6 +11,10 @@ build:
     - cd lib/openrocketjava/
     - ant clean
     - ant jar
+  artifacts:
+    paths:
+      - lib/build/jar/OpenRocket.jar
+    expire_in: 1 week
 
 unittest:
   stage: Test
