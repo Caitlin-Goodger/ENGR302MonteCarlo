@@ -60,6 +60,8 @@ This product is a Rocket Simulation program.
 
 If the requirement have changed significantly since the requirements document, outline the changes here. Changes must be justified and supported by evidences, i.e., they must be substantiated. (max one page, only if required)
 
+There are currently no changes to the requirements.
+
 ## 2. References
 
 References to other documents or standards. Follow the IEEE Citation Reference scheme, available from the [IEEE website](https://ieee-dataport.org/sites/default/files/analysis/27/IEEE%20Citation%20Guidelines.pdf) (PDF; 20 KB). (1 page, longer if required)
@@ -138,24 +140,25 @@ Sequence model
 ### 4.5 Scenarios
 ...
 
-## 5. Development Schedule
+## 5.1 Development Schedule
 
 _For each subsection, make clear what (if anything) has changed from the requirements document._ If unchanged, these sections should be copied over from the requirements document, not simply cross-referenced.
 
 Schedules must be justified and supported by evidences; they must be either direct client requirements or direct consequences of client requirements. If the requirements document did not contain justifications or supporting evidences, then both must be provided here.
 
-### 5.1 Schedule
-
-Identify dates for key project deliverables:
+Identifed dates for key project deliverables: 
 
 **Architectural prototype**
-The architectural prototype will be comeplete by 4 June 2020.
+The architectural prototype will be comeplete by 18 June 2020.
 
 **Minimum viable product**
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
 **Further releases**
-Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
+Further releases will occur up until the final prototype release, scheduled for the 1 October 2020.
+
+**Changes to these dates**
+These dates have not been changed from the project requirement document.
 
 ### 5.2 Budget and Procurement
 

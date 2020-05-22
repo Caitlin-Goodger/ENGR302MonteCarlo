@@ -38,7 +38,7 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 ### 1.2 Scope
 
-This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
+This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket [1]. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
 
 ### 1.3 Product overview 
 
@@ -119,7 +119,9 @@ Below the minimum required number of simulations the program output will not be 
 
 ## 2. References
 
-References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
+[1] “Developer's Guide,” Developer's Guide - OpenRocket wiki, 30-Apr-2020. [Online]. Available: http://wiki.openrocket.info/Developer's_Guide. [Accessed: 08-May-2020].
+
+[2] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
 
 ## 3. Specific requirements  
 
@@ -486,16 +488,32 @@ As this is an open source project, the final software will be freely available f
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables: 
+Identifed dates for key project deliverables: 
 
 **Architectural prototype**
-The architectural prototype will be comeplete by 4 June 2020.
+The architectural prototype will be comeplete by 18 June 2020.
 
 **Minimum viable product**
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
 **Further releases**
-Further releases will occur up until the final prototype release, scheduled for the 29 June 2020.
+Further releases will occur up until the final prototype release, scheduled for the 1 October 2020.
+
+**Sprints**
+Sprints start every second Friday, due to Retrospectives occuring overy second Thursday with our Tutor, Miniruwani.
+
+- Weeks 6-7 Project Requirement document and Minimum viable product.
+- Weeks 8-9 Minimum viable product. (MVP Milestone due at end of sprint.)
+- Weeks 10-11 Architecture Design Document
+- Week 12 No sprint due to test. Work on Architecture design document if possible.
+  
+Trimester 2:
+- Weeks 1-2 PID Controllers
+- Weeks 3-4 PID Controllers
+- Weeks 5-6 Upwind rocket vectors
+- Weeks 7-8 Upwind rocket vectors
+- Weeks 9-10 Convert scatter to map
+- Weeks 11-12 Convert scatter to map
 
 ### 5.2 Budget
 
@@ -505,11 +523,7 @@ Due to the nature of this project it does not have a budget. The project is exte
 
 ### 5.3 Risks 
 
-Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
-
-If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
-
-| Risks                                                          | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
+| Risks [2]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
 | -------------------------------------------------------------- | ------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Program functioning unexpectedly on different devices          | Technical    | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
 | Adding team members that do not work well with the team        | Teamwork     | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
