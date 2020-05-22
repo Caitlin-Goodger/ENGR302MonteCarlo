@@ -482,6 +482,28 @@ As this is an open source project, the final software will be freely available f
 
 3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
 
+### 4.1 External Interfaces
+
+Verification of external interfaces will include CI testing of invalid states and inputs from external entities in addition to runtime input verification to ensure external interactions are valid. Many invalid external interactions can occur:
+
+- Invalid rocket uploaded to system : System will accept only .ork files and catch any errors thrown when parsing the file, reporting any issues to the user.
+
+- Invalid environment variables : System will only accept inputs of the correct format and will warn the user when parameters are outside of normal bounds.
+
+- Failed API call : System should detect and deal with failed API calls smoothly, alerting the user to unavailability of the requested data.
+
+- Failure to write to file : System should alert the user that the file write has failed and request another file path be used.
+
+### 4.2 Functions
+
+Verifying the desired system functions are reliable and complete will be done through a combonation of CI tests and manual testing. By manually acting out each use case specified in 3.2 the user experience can be tested and any issues with usability or program execution can be found. CI tests will be used to automate some of these use case tests to ensure none of this required functionality experiences a regression.
+
+For each function described in 3.2 the use case will be tested and any undesired behaviour logged as an issue. Automated tests will also be written to test a variety of inputs including edge cases and invalid invocations.
+
+### 4.3 Usability
+
+
+
 ## 5. Development schedule.
 
 ### 5.1 Schedule
