@@ -8,9 +8,13 @@ build:
   tags:
     - shell
   script:
-    - echo "static analysis"
-    - exit 0
-  allow_failure: true
+    - cd lib/openrocketjava/
+    - ant clean
+    - ant jar
+  artifacts:
+    paths:
+      - lib/build/jar/OpenRocket.jar
+    expire_in: 1 week
 
 unittest:
   stage: Test
