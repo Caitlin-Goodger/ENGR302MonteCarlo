@@ -1,6 +1,7 @@
 import numpy as np
 from jpype import *
 import orhelper
+import abstractlistener
 from random import gauss
 import math
 import argparse
@@ -54,7 +55,7 @@ class LandingPoints(list):
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), len(self) ))
 
-class LandingPoint(orhelper.AbstractSimulationListener):
+class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
         worldpos = status.getRocketPosition()
         conditions = status.getSimulationConditions()
@@ -64,7 +65,7 @@ class LandingPoint(orhelper.AbstractSimulationListener):
         self.lat = float(landing_zone.getLatitudeDeg())
         self.long = float(landing_zone.getLongitudeDeg())
         
-class AirStart(orhelper.AbstractSimulationListener):
+class AirStart(abstractlistener.AbstractSimulationListener):
     
     def __init__(self, altitude) :
         self.start_altitude = altitude
