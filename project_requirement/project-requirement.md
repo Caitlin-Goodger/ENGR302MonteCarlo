@@ -163,7 +163,7 @@ Below the minimum required number of simulations the program output will not be 
 
 ## 3. Specific requirements  
 
-20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
+This section describes the external interfaces, functions, usability requirements, performance requirements, logical database requirements, design constraints, non-functional system attributes, physical and environmentally requirements and any supporting information.
 
 ### 3.1 External interfaces
 
@@ -654,11 +654,11 @@ ECS - School of Engineering and Computer Science.
 
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
-| Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
+| Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2, table of contents, spelling and grammar, proof-reading         |
 | Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1, 4                   |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2, 3.7                             |
-| Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
+| Caitlin Goodger     | 1,1.1,1.3,1.3.1,5.2,3,3.3,3.6              |
 | Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
 
 ---
