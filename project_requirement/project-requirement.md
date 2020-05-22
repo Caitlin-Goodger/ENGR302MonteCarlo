@@ -17,37 +17,13 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
   * [3. Specific requirements](#3-specific-requirements)
     + [3.1 External interfaces](#31-external-interfaces)
     + [3.2 Functions](#32-functions)
-      - [Run Multiple Simulations Automatically (Minimum Viable Product)](#run-multiple-simulations-automatically--minimum-viable-product-)
-      - [Import a Rocket (Minimum Viable Product)](#import-a-rocket--minimum-viable-product-)
-      - [Edit Simulation Location](#edit-simulation-location)
-      - [Automated parameter varying](#automated-parameter-varying)
-      - [Return Results (Minimum Viable Product)](#return-results--minimum-viable-product-)
-      - [Run Multiple Simulations Automatically (Extended)](#run-multiple-simulations-automatically--extended-)
-      - [Running simulation with MVP](#running-simulation-with-mvp)
-      - [Import a Rocket (Extended)](#import-a-rocket--extended-)
-      - [Edit Simulation Automation](#edit-simulation-automation)
-      - [Return Results (Extended)](#return-results--extended-)
-      - [Produce Scatter Plot](#produce-scatter-plot)
-      - [Further Extensions:](#further-extensions-)
     + [3.3 Usability Requirements](#33-usability-requirements)
     + [3.4 Performance requirements](#34-performance-requirements)
     + [3.5 Logical database requirements](#35-logical-database-requirements)
     + [3.6 Design constraints](#36-design-constraints)
     + [3.7 Nonfunctional system attributes](#37-nonfunctional-system-attributes)
-      - [Open Source](#open-source)
-      - [Usable](#usable)
-      - [Extensible](#extensible)
-      - [Fault Tolerant](#fault-tolerant)
-      - [Documented](#documented)
-      - [Integrated](#integrated)
-      - [Portable](#portable)
     + [3.8 Physical and Environmental Requirements](#38-physical-and-environmental-requirements)
-      - [Client Requirements](#client-requirements)
-      - [Faculty of Engineering and Computer Science](#faculty-of-engineering-and-computer-science)
-        * [Critical success factor](#critical-success-factor)
-      - [Wider Rocket Community](#wider-rocket-community)
-        * [Critical success factor](#critical-success-factor-1)
-    + [3.9 Supporting information](#39-supporting-information)
+      + [3.9 Supporting information](#39-supporting-information)
   * [4. Verification](#4-verification)
   * [5. Development schedule.](#5-development-schedule)
     + [5.1 Schedule](#51-schedule)
@@ -59,8 +35,6 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
     + [6.1 Assumptions and dependencies](#61-assumptions-and-dependencies)
     + [6.2 Acronyms and abbreviations](#62-acronyms-and-abbreviations)
   * [7. Contributions](#7-contributions)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
 ## 1. Introduction
@@ -84,7 +58,7 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 ### 1.2 Scope
 
-This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket [1]. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
+This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket [2]. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
 
 ### 1.3 Product overview 
 
@@ -167,11 +141,13 @@ Below the minimum required number of simulations the program output will not be 
 
 ## 2. References
 
-[1] “Developer's Guide,” Developer's Guide - OpenRocket wiki, 30-Apr-2020. [Online]. Available: http://wiki.openrocket.info/Developer's_Guide. [Accessed: 08-May-2020].
+[1] “GitHub Wiki TOC generator,” Generate TOC Table of Contents from GitHub Markdown or Wiki Online. [Online]. Available: http://ecotrust-canada.github.io/markdown-toc. [Accessed: 22-May-2020].
 
-[2] Civil Aviation Authority of New Zealand, Civil Aviation Rules Part 101 Gyrogliders and Parasails, Unmanned Aircraft (including Balloons), Kites and Rockets - Operating Rules, 31 December 2018. [Online]. Available: https://www.aviation.govt.nz/assets/rules/consolidations/Part_101_Consolidation.pdf. [Accessed: 22-May-2020].
+[2] “Developer's Guide,” Developer's Guide - OpenRocket wiki, 30-Apr-2020. [Online]. Available: http://wiki.openrocket.info/Developer's_Guide. [Accessed: 08-May-2020].
 
-[3] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
+[3] Civil Aviation Authority of New Zealand, Civil Aviation Rules Part 101 Gyrogliders and Parasails, Unmanned Aircraft (including Balloons), Kites and Rockets - Operating Rules, 31 December 2018. [Online]. Available: https://www.aviation.govt.nz/assets/rules/consolidations/Part_101_Consolidation.pdf. [Accessed: 22-May-2020].
+
+[4] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
 
 
 ## 3. Specific requirements  
@@ -434,7 +410,7 @@ The design constraints define the software and hardware requirements placed on t
 
 One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is Open Rocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
 
-There are many constraints and regulations for launching rockets. Rockets have to be in accordance with the New Zealand Civil Aviation Authority [2]. As mentioned above, this project has no hardware, and no constraints, as it is simulating rockets. However, given that this project is centred around rockets, they are constraints and regulations to be aware of. These regulations stipulate the maximum size of the rocket, as well as what it can and can not be made of. These are not regulations or constraints that affect this project but will affect the larger project that this system is a part of. One of the other projects, will be using this project to simulate how their rocket will fly. These regulations will constraint them, so it is something to be aware of. 
+There are many constraints and regulations for launching rockets. Rockets have to be in accordance with the New Zealand Civil Aviation Authority [3]. As mentioned above, this project has no hardware, and no constraints, as it is simulating rockets. However, given that this project is centred around rockets, they are constraints and regulations to be aware of. These regulations stipulate the maximum size of the rocket, as well as what it can and can not be made of. These are not regulations or constraints that affect this project but will affect the larger project that this system is a part of. One of the other projects, will be using this project to simulate how their rocket will fly. These regulations will constraint them, so it is something to be aware of. 
 
 Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the constraints placed on this system, is the input that it should be able to receive. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
 
@@ -556,7 +532,7 @@ Due to the nature of this project it does not have a budget. The project is exte
 
 ### 5.3 Risks 
 
-| Risks [3]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
+| Risks [4]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
 | -------------------------------------------------------------- | ------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Program functioning unexpectedly on different devices          | Technical    | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
 | Adding team members that do not work well with the team        | Teamwork     | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
