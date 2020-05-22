@@ -163,7 +163,7 @@ Below the minimum required number of simulations the program output will not be 
 
 ## 3. Specific requirements  
 
-This section describes the external interfaces, functions, usability requirements, performance requirements, logical database requirements, design constraints, non-functional system attributes, physical and environmentally requirements and any supporting information.
+This section describes the external interfaces, functions, usability requirements, performance requirements, logical database requirements, design constraints, non-functional system attributes, physical and environmental requirements and any supporting information.
 
 ### 3.1 External interfaces
 
@@ -245,7 +245,7 @@ results of the simulations are applicable to a user's situation, and therefore u
 | Input values   |                                      |
 |                | Record changes                       |
 
-This use case allows users to input custom lat long co-ordinates through the command line.
+This use case allows users to input custom latitude and longitude co-ordinates through the command line.
 
 #### Automated parameter varying
 
@@ -374,7 +374,7 @@ Whether APIs could be used to fetch current environmental variables for simulati
 Goal: 
 
 
-The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points. Since this system will be extending OpenRocket, it is important that it is easy for the user to move between systems. It is also important that it is open to the wider avionics community, so it will be made open source so that other can learn and build from it. 
+The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points. Since this system will be extending OpenRocket, it is important that it is easy for the user to move between systems. It is also important that it is open to the wider avionics community, so it will be made open source so that others can learn and build from it. 
 
 
 Purpose and Objective: 
@@ -382,9 +382,9 @@ Purpose and Objective:
 
 For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
-For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repetitively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
+For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This means that the user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repetitively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
 
-To satisfy the users of this system, the system needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameter. If the system has extended the minimum viable product, then it was aim to make it easy for the user, therefore satisfying them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible extending the system to make it easier to use. 
+To satisfy the users of this system, the system needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameters. If the system has extended the minimum viable product, then it will aim to make it easier for the user, therefore satisfying them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible extending the system to make it easier to use. 
 
 ### 3.4 Performance requirements
 
@@ -419,15 +419,15 @@ Performance requirements define the expected performance of our software, outlin
 
 The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no hardware components to this system, there are no constraints on hardware. Since this system is software there are software constraints placed on the system.
 
-One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is Open Rocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
+One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is OpenRocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
 
 There are many constraints and regulations for launching rockets. Rockets have to be in accordance with the New Zealand Civil Aviation Authority [3]. As mentioned above, this project has no hardware, and no constraints, as it is simulating rockets. However, given that this project is centred around rockets, they are constraints and regulations to be aware of. These regulations stipulate the maximum size of the rocket, as well as what it can and can not be made of. These are not regulations or constraints that affect this project but will affect the larger project that this system is a part of. One of the other projects, will be using this project to simulate how their rocket will fly. These regulations will constraint them, so it is something to be aware of. 
 
-Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the constraints placed on this system, is the input that it should be able to receive. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
+Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the constraints placed on this system, is the input that it should be able to receive. Since this project is an extension of OpenRocket, it means that it should take a rocket designed in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
 
 The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. The report format should be understandable for the user, which is why the file choice was made. The output of the simulation is the main reporting function of the system. There are no other constraints on the report format. 
 
-Due to the fact that the system is extending OpenRocket, there are some limitations around data naming. As there is a rocket being imported from OpenRocket, the data naming should be consistent with OpenRocket, to ensure that it is consistent for the user. The data naming should also be consistent across files, and inside files, to ensure consistency and ease of use. The user can also added parameters to the simulation, such as wind speed, as arguments and it is important that it is clear that these arguments have clear name. This can be helped by offering a help menu, clearly describing each argument option. This can also be mitigated by having clear data naming so it is clear to the user. 
+Due to the fact that the system is extending OpenRocket, there are some limitations around data naming. As there is a rocket being imported from OpenRocket, the data naming should be consistent with OpenRocket, to ensure that it is consistent for the user. The data naming should also be consistent across files, and inside files, to ensure consistency and ease of use. The user can also add parameters to the simulation, such as wind speed, as arguments and it is important that it is clear that these arguments have clear name. This can be helped by offering a help menu, clearly describing each argument option. This can also be mitigated by having clear data naming so it is clear to the user. 
 
 There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting procedures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no constraints placed on the design by external standards or regulatory requirements. 
 
@@ -483,14 +483,14 @@ It is critical to the success of the project and to the faculty that all guideli
 
 #### Wider Rocket Community
 
-To improve and extend openRocket. This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference. 
+To improve and extend OpenRocket. This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference. 
 
 ##### Critical success factor
 In order to be useful for the wider rocket community, it is vital that the software is open-source. This allows the community to use and edit our software under the open source license. If the project is not open source, the benefit to the rocket community would be greatly reduced. 
 
 ### 3.9 Supporting information
 
-The extension of openRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily available for future reference, due to the outputting of these to a CSV file.
+The extension of OpenRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily available for future reference, due to the outputting of these to a CSV file.
 
 As this is an open source project, the final software will be freely available for anyone to view and edit. This adds to the longevity of the project, as it can be improved by the community in the future. 
 
