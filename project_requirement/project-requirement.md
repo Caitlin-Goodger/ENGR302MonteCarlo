@@ -502,6 +502,32 @@ For each function described in 3.2 the use case will be tested and any undesired
 
 ### 4.3 Usability
 
+Verification of the usability criteria will consist of ensuring the product meets the minimum viable product specification as well as ensuring reliable effectiveness and efficiency.
+
+- MVP Spec : Adherence to the MVP specification will be assured by the verification of other sections of the program including functions, performance and system attributes. Provided these verifications pass we can be confident that the minimum viable product will meet usability critera for the client.
+
+- Effectiveness : Verification of effectiveness will entail testing the program with a variety of different parameters, inputs and desired outputs to ensure the system produces reliable and consistant results. CI testing allows the use of wide test spaces to ensure the system operates correctly within the supported parameters and that it will provided effective estimates to the user.
+
+- Efficiency : Verification of efficiency will consist of performance intensive stress tests of the system, ensuring the time and resources taken to compute the simulations is within useable range for the client. Simulations should not take more than 0.5 seconds each, allowing the user to perform a large number of simulations at once. CI tests will allow simulation executions to be timed and the performance change between development builds to be monitored.
+
+### 4.4 Performance
+
+Testing performance can be achieved easily using CI, allowing large test sets to be run automatically. 
+Running large numbers of simulations will allow us to guarentee our target specification of 1000 simulations and 0.5 seconds per simulation being supported. Performance tests will also involve ensuring that the statistical variation being used results in meaningful variation in the simulation results that given useful predictions on rocket performance.
+ 
+### 4.5 Logical Database
+
+Verification of the logical system design is a manual process, ensuring the implementation does not significantly deviate from the current UML description. This UML description can and will change as the project is developed. Verification will need to be made one new merges that the updated program still conforms to the UML or whether the UML diagram needs to be updated.
+
+### 4.6 Design Constraints 
+
+Design constraint requirements need to be verified by ensuring that all contrainsts enforced by external standards, regulations, client requirements and license requirements.
+
+- OpenRocket Integration : The product will be developed in a manner that ensures the compatability with OpenRocket. Due to the nature of the project, any change that would violate this constraint would render the product unusable and therefore specific testing of this requirement is not needed.
+
+- Open Source : The product is required to be made open source. Any addition to the program will need to be considered in this area to validate that libraries / packages used are permitted to be used open source and that all of our requirements are met under our OpenRocket open source obligations.
+
+### 4.7 Nonfunctional Attributes
 
 
 ## 5. Development schedule.
