@@ -149,6 +149,9 @@ Below the minimum required number of simulations the program output will not be 
 
 [4] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
 
+[5] “Features of OpenRocket,” OpenRocket. [Online]. Available: http://openrocket.info/features.html. [Accessed: 22-May-2020].
+
+[6] “gnu.org,” GNU Operating System. [Online]. Available: https://www.gnu.org/licenses/gpl-howto.html. [Accessed: 22-May-2020].
 
 ## 3. Specific requirements  
 
@@ -424,7 +427,7 @@ There are no constraints relating to accounting procedures or audit tracing. Thi
 
 #### Open Source
 
-This is an open source project, as is OpenRocket. This product will be released under an open source license and published on GitLab for user collaboration and universal access.
+This is an open source project, as is OpenRocket. This will be released under the GNU GPL v3 license, as to avoid any issues that would result from a conflicting license to OpenRocket [5][6]. 
 
 #### Usable
 
@@ -583,7 +586,7 @@ ECS - School of Engineering and Computer Science.
 | Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
 | Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1                    |
 | Zak Kiernander      | 3.2                              |
-| Nicole Stallinger   | 3.2                              |
+| Nicole Stallinger   | 3.2, 3.7                             |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
 | Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
 
