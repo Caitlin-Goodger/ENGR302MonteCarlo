@@ -480,8 +480,6 @@ As this is an open source project, the final software will be freely available f
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
-
 ### 4.1 External Interfaces
 
 Verification of external interfaces will include CI testing of invalid states and inputs from external entities in addition to runtime input verification to ensure external interactions are valid. Many invalid external interactions can occur:
@@ -529,6 +527,23 @@ Design constraint requirements need to be verified by ensuring that all contrain
 
 ### 4.7 Nonfunctional Attributes
 
+- Open Source : As above in 4.6 consideration will be made with each addition to the program that open source obligations are met.
+
+- Usability : Measures of usability are discussed in 4.3
+
+- Extensible : Verification of extensibility will be managed by code reviews and merge request approvals, ensuring members use good code practices to ensure the program remains consise and well organised. This will aid the extensibility of the code by ensuring the structure is not comprimised or poorly considered.
+
+- Fault Tolerant : Verification of fault tolerance will consist of both manual and CI tests to ensure the system behaves correctly in a fault state (invalid input, invalid results)
+
+- Documented : Verification of documentation obligations will be ensured by code reviews and precise use of project management features. Ensuring requirements, architecture and code is well documented will be tested regularly.
+
+- Integrated : As mentioned in 4.6 intgration obligations are mission critical and will be tested at every stage of development.
+
+- Portable : Portablity will be tested by ensuring packaged software is usuable on a variety of hardware and operating systems.
+
+### 4.8 Physical and Environmental
+
+Specific validation of physical and environmental requirements in not applicable to this project.
 
 ## 5. Development schedule.
 
@@ -603,7 +618,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
 | Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
-| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1                    |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1, 4                   |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2                              |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
