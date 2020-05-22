@@ -7,9 +7,13 @@ import argparse
 import csv
 import sys
     
-class LandingPoints(list):
+class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
     
+    def __init__(self) :
+        self.landing_points = []
+        self.max_altitudes = []
+
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
             
@@ -43,18 +47,20 @@ class LandingPoints(list):
                 ma = MaxAltitude()
                 lp = LandingPoint()
                 orh.run_simulation(sim, [lp, ma])
-                self.append( lp )
+                self.landing_points.append( lp )
+                self.max_altitudes.append( ma )
     
     def print_stats(self):
-        lats = [p.lat for p in self]
-        longs = [p.long for p in self]
-        # altitudes = [p.alt for worldpos in self]
+        lats = [p.lat for p in self.landing_points]
+        longs = [p.long for p in self.landing_points]
+        altitudes = [p.max_height for p in self.max_altitudes]
         with open(args.outfile, 'w', newline='\n') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude"])
-            writer.writerows([[p.lat,p.long] for p in self])
+            writer.writerow(["Latitude","Longitude","Max Altitude"])
+            for p, q, r in zip(lats, longs, altitudes):
+                writer.writerow([p, q, r])
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), len(self) ))
+        (np.mean(lats), np.mean(longs), len(self.landing_points) ))
 
 class LandingPoint(orhelper.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -69,13 +75,10 @@ class LandingPoint(orhelper.AbstractSimulationListener):
 class MaxAltitude(orhelper.AbstractSimulationListener):
    
    def __init__(self) :
-        self.worldpos = 0
+        self.max_height = 0
 
    def postStep(self, status):      
-        self.worldpos = max(self.worldpos, status.getRocketPosition().z)
-
-   def endSimulation(self, status, simulation_exception):
-       print('Max altitude: ' + str(self.worldpos))
+        self.max_height = float(max(self.max_height, status.getRocketPosition().z))
         
 class AirStart(orhelper.AbstractSimulationListener):
     
