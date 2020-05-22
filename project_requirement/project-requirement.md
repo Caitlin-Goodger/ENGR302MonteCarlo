@@ -490,7 +490,70 @@ As this is an open source project, the final software will be freely available f
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
+### 4.1 External Interfaces
+
+Verification of external interfaces will include CI testing of invalid states and inputs from external entities in addition to runtime input verification to ensure external interactions are valid. Many invalid external interactions can occur:
+
+- Invalid rocket uploaded to system : System will accept only .ork files and catch any errors thrown when parsing the file, reporting any issues to the user.
+
+- Invalid environment variables : System will only accept inputs of the correct format and will warn the user when parameters are outside of normal bounds.
+
+- Failed API call : System should detect and deal with failed API calls smoothly, alerting the user to unavailability of the requested data.
+
+- Failure to write to file : System should alert the user that the file write has failed and request another file path be used.
+
+### 4.2 Functions
+
+Verifying the desired system functions are reliable and complete will be done through a combonation of CI tests and manual testing. By manually acting out each use case specified in 3.2 the user experience can be tested and any issues with usability or program execution can be found. CI tests will be used to automate some of these use case tests to ensure none of this required functionality experiences a regression.
+
+For each function described in 3.2 the use case will be tested and any undesired behaviour logged as an issue. Automated tests will also be written to test a variety of inputs including edge cases and invalid invocations.
+
+### 4.3 Usability
+
+Verification of the usability criteria will consist of ensuring the product meets the minimum viable product specification as well as ensuring reliable effectiveness and efficiency.
+
+- MVP Spec : Adherence to the MVP specification will be assured by the verification of other sections of the program including functions, performance and system attributes. Provided these verifications pass we can be confident that the minimum viable product will meet usability critera for the client.
+
+- Effectiveness : Verification of effectiveness will entail testing the program with a variety of different parameters, inputs and desired outputs to ensure the system produces reliable and consistant results. CI testing allows the use of wide test spaces to ensure the system operates correctly within the supported parameters and that it will provided effective estimates to the user.
+
+- Efficiency : Verification of efficiency will consist of performance intensive stress tests of the system, ensuring the time and resources taken to compute the simulations is within useable range for the client. Simulations should not take more than 0.5 seconds each, allowing the user to perform a large number of simulations at once. CI tests will allow simulation executions to be timed and the performance change between development builds to be monitored.
+
+### 4.4 Performance
+
+Testing performance can be achieved easily using CI, allowing large test sets to be run automatically. 
+Running large numbers of simulations will allow us to guarentee our target specification of 1000 simulations and 0.5 seconds per simulation being supported. Performance tests will also involve ensuring that the statistical variation being used results in meaningful variation in the simulation results that given useful predictions on rocket performance.
+ 
+### 4.5 Logical Database
+
+Verification of the logical system design is a manual process, ensuring the implementation does not significantly deviate from the current UML description. This UML description can and will change as the project is developed. Verification will need to be made one new merges that the updated program still conforms to the UML or whether the UML diagram needs to be updated.
+
+### 4.6 Design Constraints 
+
+Design constraint requirements need to be verified by ensuring that all contrainsts enforced by external standards, regulations, client requirements and license requirements.
+
+- OpenRocket Integration : The product will be developed in a manner that ensures the compatability with OpenRocket. Due to the nature of the project, any change that would violate this constraint would render the product unusable and therefore specific testing of this requirement is not needed.
+
+- Open Source : The product is required to be made open source. Any addition to the program will need to be considered in this area to validate that libraries / packages used are permitted to be used open source and that all of our requirements are met under our OpenRocket open source obligations.
+
+### 4.7 Nonfunctional Attributes
+
+- Open Source : As above in 4.6 consideration will be made with each addition to the program that open source obligations are met.
+
+- Usability : Measures of usability are discussed in 4.3
+
+- Extensible : Verification of extensibility will be managed by code reviews and merge request approvals, ensuring members use good code practices to ensure the program remains consise and well organised. This will aid the extensibility of the code by ensuring the structure is not comprimised or poorly considered.
+
+- Fault Tolerant : Verification of fault tolerance will consist of both manual and CI tests to ensure the system behaves correctly in a fault state (invalid input, invalid results)
+
+- Documented : Verification of documentation obligations will be ensured by code reviews and precise use of project management features. Ensuring requirements, architecture and code is well documented will be tested regularly.
+
+- Integrated : As mentioned in 4.6 intgration obligations are mission critical and will be tested at every stage of development.
+
+- Portable : Portablity will be tested by ensuring packaged software is usuable on a variety of hardware and operating systems.
+
+### 4.8 Physical and Environmental
+
+Specific validation of physical and environmental requirements in not applicable to this project.
 
 ---
 
@@ -584,7 +647,7 @@ ECS - School of Engineering and Computer Science.
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
 | Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2         |
-| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1                    |
+| Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1, 4                   |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2, 3.7                             |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
