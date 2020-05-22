@@ -46,11 +46,11 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 ## 1. Introduction
 
-Amateur rockets are flown regularly worldwide. These rockets are typically flown with 'off the shelf' rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, and altitudes above 30 km are not unheard of. These rockets are almost never controlled; they are stable due to passive aerodynamic features. 
+Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features. 
 
 While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause rail-whip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
 
-Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured to give a more accurate simulation to allow for smaller adjustments including moving the centre of mass. Automation can allow this process to be sped up and determine the safety of the flight to a higher confidence.
+Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
 
 The rocket uses a PID (Proportional Integral Derivative) controller to keep it fixed on an axis. Normally, parameters of PID are difficult to obtain due to the short period of time that the rocket motors are burning. Simulation can allow for estimate parameters for the PID controller.
 
@@ -65,7 +65,7 @@ The purpose of the system to provide a rocket simulation that can help determine
 
 ### 1.2 Scope
 
-This product is a Rocket Simulation program. The program shall provide an automation of the simulation program OpenRocket, to give a prediction of the flight performance of a rocket [2]. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation. The program shall provide estimate PID control parameters through the simulation.
+This product is a Rocket Simulation program. The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket [2]. The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. The program shall provide estimate PID control parameters through the simulation.
 
 ### 1.3 Product overview 
 
@@ -73,11 +73,11 @@ The following subsections describe the product perspective, functions, character
 
 #### 1.3.1 Product perspective
 
-The project is extending existing software. OpenRocket is an existing open-source project that allows users to design and simulate rocket models before building or deploying them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use. The user will need to create the model for their rocket in OpenRocket. The project will then use that rocket to run the simulation. This means that it needs to be able to use this exported data from OpenRocket in the automated simulations. 
+The project is extending existing software. OpenRocket is an existing open-source project that allows users to design and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use. The user will need to create the model for their rocket in OpenRocket. The project will then use that rocket to run the simulation. This means that it needs to be able to export the data from OpenRocket and be able to use it in the simulation. 
 
-The user interface should be simple and clear. As the user is likely coming from or has experience with using OpenRocket, they will want this project to function in similar ways. The user interfaces for this project don't need to be extremely complicated because most of the interfaces that the project will add are for the user to select parameters and then get the output of the simulation. For the minimal product, this output could be written to a file. This would be easy for the user to understand as long as it is laid out in a sensible fashion. For an extension, a graphical interface could be added so that the user experience is enhanced.
+The user interface should be simple and clear. As the user is likely coming from or has experience with using OpenRocket, they will want this project to function in similar ways. Due to the fact that it is an extension of OpenRocket, this is important because it is building on their base. The user interfaces for this project don't need to be extremely complicated because most of the interfaces that the project is added are for the user to select parameters and then get the output of the simulation. For the minimal product, this output could be written to a file. This would be easy for the user to understand as long as it is laid out in a sensible fashion. For an extension, a graphical interface could be added so that the output of the simulation is clear for the user to understand. 
 
-This project is also a component of a large project. There is an second project focused on building a rocket and a third project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Mission Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. Mission Control will be using this project while at the rocket launch site which will likely not have an internet connection. This means that the project needs to be able to function without requiring an internet connection as well. 
+This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Mission Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. Mission Control will be using this project while at the rocket launch site which will likely not have an internet connection. This means that the project needs to be able to function without requiring an internet connection as well. 
 
 #### 1.3.2 Product functions
 
@@ -514,7 +514,7 @@ Verification of external interfaces will include CI testing of invalid states an
 
 ### 4.2 Functions
 
-Verifying the desired system functions are reliable and complete will be done through a combination of CI tests and manual testing. By manually acting out each use case specified in 3.2 the user experience can be tested and any issues with usability or program execution can be found. CI tests will be used to automate some of these use case tests to ensure none of this required functionality experiences a regression.
+Verifying the desired system functions are reliable and complete will be done through a combination of CI tests and manual testing. By manually acting out each use case specified in 3.2, the user experience can be tested and any issues with usability or program execution can be found. CI tests will be used to automate some of these use case tests to ensure none of this required functionality experiences a regression.
 
 For each function described in 3.2 the use case will be tested and any undesired behaviour logged as an issue. Automated tests will also be written to test a variety of inputs including edge cases and invalid invocations.
 
@@ -531,7 +531,7 @@ Verification of the usability criteria will consist of ensuring the product meet
 ### 4.4 Performance
 
 Testing performance can be achieved easily using CI, allowing large test sets to be run automatically. 
-Running large numbers of simulations will allow us to guarantee our target specification of 1000 simulations and 0.5 seconds per simulation being supported. Performance tests will also involve ensuring that the statistical variation being used results in meaningful variation in the simulation results that given useful predictions on rocket performance.
+Running large numbers of simulations will allow us to guarantee our target specification of 1000 simulations and 0.5 seconds per simulation being supported. Performance tests will also involve ensuring that the statistical variation being used results in meaningful variation in the simulation results that give useful predictions on rocket performance.
  
 ### 4.5 Logical Database
 
@@ -608,7 +608,7 @@ Due to the nature of this project it does not have a budget. The project is exte
 
 ### 5.3 Risks 
 
-| Risks [6]                                                      | Risk Type    | Likelihood [1-5] | Impact [1-5] | Mitigation Strategies                                                                                                                                                                                                                       |
+| Risks [6]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
 | -------------------------------------------------------------- | ------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Program functioning unexpectedly on different devices          | Technical    | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
 | Adding team members that do not work well with the team        | Teamwork     | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
@@ -656,11 +656,11 @@ ECS - School of Engineering and Computer Science.
 
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
-| Luisa Kristen       | 3.8, 3.9, 5.1 , 6.1, 6.2, table of contents, spelling and grammar, proof-reading         |
+| Luisa Kristen       | 2,3.8, 3.9, 5.1 , 6.1, 6.2, table of contents, spelling and grammar, proof-reading         |
 | Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1, 4                   |
 | Zak Kiernander      | 3.2                              |
-| Nicole Stallinger   | 2, 3.2, 3.7                             |
-| Caitlin Goodger     | 1,1.1,1.3,1.3.1,5.2,3,3.3,3.6              |
+| Nicole Stallinger   | 3.2, 3.7                             |
+| Caitlin Goodger     | 1,1.1,1.3,1.3.1,2,3,3.3,3.6,5.2,spelling and grammar, proof-reading              |
 | Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
 
 ---
