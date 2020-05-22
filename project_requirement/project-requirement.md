@@ -1,27 +1,13 @@
-# ENGR 301: Project Requirements Document
-
-The aim of this document is to specify the requirements of the system your group is to build. The focus of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. This document should communicate clearly to the supervisor, client and course coordinator what the system you build is going to do, and what constraints it must meet while doing so.
-
-The document should also demonstrate your understanding of the main analysis principles and quality guidelines, and applicable standards, using tools and notations as necessary to communicate the requirements precisely, unambiguously and clearly in a written technical document. Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those requirements that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification. 
-
-The ENGR 301 project proposal and requirements document should be based on the standard ISO/IEC/IEEE 29148:2011(E), primarily sections 8.4 and 9.5, plus section 9.4 for projects involving hardware and ISO 25010 SQuaRE for systemic requirements. While excerpts from the standard have been quoted within the template, to understand what is required it will be necessary to read earlier sections of the standards themselves. A supplementary treatment of requirements gathering in engineering projects may be found in [Requirements in Engineering Projects](https://victoria.rl.talis.com/items/F166DA94-DAD8-FBDB-0785-7A63C9BA3603.html?referrer=%2Flists%2F5886F297-2506-1F17-45D9-7F04CEE284EE.html%23item-F166DA94-DAD8-FBDB-0785-7A63C9BA3603) (Talis). The requirements document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief. 
-
-All team members are expected to contribute equally to the document and list their contributions in section 6 of the document. You should work on your document in your team's GitLab repository. While collective contributions are expected to be the exception rather than the rule, if more than one team member has contributed to a particular commit then all those team member IDs should be included in the first line of the git commit message. `git blame`, `git diff`, file histories, etc. will be tools used to assess individual contributions, so everyone is encouraged to contribute individually, commit early and commit often. Any team wishing to separate individually contributed sections into a single file before collation into the single proposal document for submission is welcome to do so.
-
-Access to the standard can be found [here](https://ieeexplore-ieee-org.helicon.vuw.ac.nz/stamp/stamp.jsp?tp=&arnumber=6146379). Jump to page 62.
-
----
-
-<div style="page-break-after: always;"></div>
-
 # ENGR 301 Project 14 Project Proposal and Requirements Document
 Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield. 
+
+---
 
 ## 1. Introduction
 
 Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features. 
 
-While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause railwhip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
+While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause rail-whip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
 
 Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
 
@@ -42,13 +28,13 @@ This product is a Rocket Simulation program. The program shall provide an automa
 
 ### 1.3 Product overview 
 
-The following subsections describe the product perspective, functions, characteristics and liimitations.
+The following subsections describe the product perspective, functions, characteristics and limitations.
 
 #### 1.3.1 Product perspective
 
-The project is extending existing software. OpenRocket is an existing opensource project that allows users to design and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use. The user will need to create the model for their rocket in OpenRocket. The project will then use that rocket to run the simulation. This means that it needs to be able to export the data from OpenRocket and be able to use it in the simulation. 
+The project is extending existing software. OpenRocket is an existing open-source project that allows users to design and simulate rocket models before creating the building them. This project is extending the simulation capabilities to allow for multiple simulations to be run at once. OpenRocket only allows for one simulation, with one set of conditions and parameters, so this project is extending this functionality to have multiple simulations and multiple conditions and parameters. Since this project is extending existing software it needs to be able to interact with OpenRocket and have similar looking interfaces for ease of use. The user will need to create the model for their rocket in OpenRocket. The project will then use that rocket to run the simulation. This means that it needs to be able to export the data from OpenRocket and be able to use it in the simulation. 
 
-The user interface should be simple and clear. As the user is likely coming from or has experience with using OpenRocket, they will want this projec to function in similar ways. Due to the fact that it is an extension of OpenRocket, this is important because it is building on their base. The user interfaces for this porject don't need to be extremely complicated because most of the interfaces that the project is added are for the user to select parameters and then get the output of the simulation. For the minimal product, this output could be written to a file. This would be easy for the user to understand as long as it is laid out in a sensible fashion. For an extension, a graphical interface could be added so that the output of the simulation is clear for the user to understand. 
+The user interface should be simple and clear. As the user is likely coming from or has experience with using OpenRocket, they will want this project to function in similar ways. Due to the fact that it is an extension of OpenRocket, this is important because it is building on their base. The user interfaces for this project don't need to be extremely complicated because most of the interfaces that the project is added are for the user to select parameters and then get the output of the simulation. For the minimal product, this output could be written to a file. This would be easy for the user to understand as long as it is laid out in a sensible fashion. For an extension, a graphical interface could be added so that the output of the simulation is clear for the user to understand. 
 
 This project is also part of a large project. There is another project focused on building a rocket and another project focused on Mission Control. This project will be the go-between of the hardware and the software components. This means that the project needs to be interact with the other two projects and communicate with them. The project building a rocket needs to be able to use the simulation to know how the rocket they have designed will travel and where it could land. The Mission Control project also needs to use the simulation for functionality such as knowing if the current weather conditions are safe to launch in. Mission Control will be using this project while at the rocket launch site which will likely not have an internet connection. This means that the project needs to be able to function without requiring an internet connection as well. 
 
@@ -58,15 +44,15 @@ To meet the requirements of the minimum viable product the project will;
 
 - Be able to import a rocket file designed in OpenRocket.
 
-The program must be able to correctly load and work with OpenRocket .ork files defining the features of different rockets. This allows the customer to create simulations for a wide variety of different rocket configurations and enables the use of the already familar OpenRocket design system.
+The program must be able to correctly load and work with OpenRocket `.ork` files defining the features of different rockets. This allows the customer to create simulations for a wide variety of different rocket configurations and enables the use of the already familiar OpenRocket design system.
 
 - Take a given latitude and longitude point for launch.
 
-The program will need to correctly maintain and use a coordinate system to provide meaningful data from the simulation. This data could come in the form of simple projected latitude and longitude, distance-bearing predictions or scatter plots of posible landing zones.
+The program will need to correctly maintain and use a coordinate system to provide meaningful data from the simulation. This data could come in the form of simple projected latitude and longitude, distance-bearing predictions or scatter plots of possible landing zones.
 
 - Run multiple simulations with the given rocket and co-ordinates and produce possible landing points.
 
-The program must be able to create meaningful statistical variations to produce varying flights in the simulations. This is crucial to show the use a variety of possible landing sites should the environment chamge, minimising the chance of a dangerous launch.
+The program must be able to create meaningful statistical variations to produce varying flights in the simulations. This is crucial to show the use a variety of possible landing sites should the environment change, minimising the chance of a dangerous launch.
 
 - Output results to both the screen and to a file.
 
@@ -79,9 +65,9 @@ The program should output meaningful results to the screen for quick viewing at 
 The main class of users is the rocket hobbyist engaged in designing and flying their own rockets. The program is designed specifically for these users to simulate their rockets and predict landing zones and the severity of environmental variations.
 Several characteristics are assumed about the user;
 
-- Familarity of rocket components and design
+- Familiarity of rocket components and design
 
-We assume some knowledge of rocket components and design. This is necessary as the data will be presented in a manner that might not be entirely accessable to a user with no rocket hardware knowledge.
+We assume some knowledge of rocket components and design. This is necessary as the data will be presented in a manner that might not be entirely accessible to a user with no rocket hardware knowledge.
 
 - Experience with OpenRocket
 
@@ -89,7 +75,7 @@ We rely on the user having experience with OpenRocket, especially the process of
 
 - Technologically literate
 
-We expect some level of familarity with computer systems and using applications. Design of user interface will assume the user is comfortable with navigating typical interfaces.
+We expect some level of familiarity with computer systems and using applications. Design of user interface will assume the user is comfortable with navigating typical interfaces.
 
 - Understanding of coordinate system
 
@@ -99,11 +85,11 @@ Some understanding of latitude and longitude coordinates will be required to mak
 
 - PID Control
 
-Inclusion of PID control will be limited in the intial development of the program by the lack of native support in OpenRocket's python scripting implementation. This functionality may be developed at a later date. 
+Inclusion of PID control will be limited in the initial development of the program by the lack of native support in OpenRocket's python scripting implementation. This functionality may be developed at a later date. 
 
 -  Safety Considerations
 
-The results of the simulations will be need to be given safety margins, reducing the possible precision. Variation of parameters such as wind will need to be slighty overestimated to ensure the program gives a worst case prediction.
+The results of the simulations will be need to be given safety margins, reducing the possible precision. Variation of parameters such as wind will need to be slightly overestimated to ensure the program gives a worst case prediction.
 
 -  Internet access
 
@@ -117,11 +103,15 @@ Some limitation will need to be placed on the range of environments the program 
 
 Below the minimum required number of simulations the program output will not be reliable and should not be used to accurately predict the safety of a launch. In this configuration the program should warn the user and may not output all the usual predictions.
 
+---
+
 ## 2. References
 
 [1] “Developer's Guide,” Developer's Guide - OpenRocket wiki, 30-Apr-2020. [Online]. Available: http://wiki.openrocket.info/Developer's_Guide. [Accessed: 08-May-2020].
 
 [2] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
+
+---
 
 ## 3. Specific requirements  
 
@@ -130,10 +120,10 @@ Below the minimum required number of simulations the program output will not be 
 ### 3.1 External interfaces
 
 * Rocket Model Input
-    * Allows the user to specify a .ork file when running the program. This .ork file will describe the rocket to be modelled (Motor config, aerodynamics, weight etc)
+    * Allows the user to specify a `.ork` file when running the program. This `.ork` file will describe the rocket to be modelled (Motor config, aerodynamics, weight etc)
     * This file should be generated in the OpenRocket application by designing the desired rocket and exporting the OpenRocket rocket description to a file
     * This file should be parsed to the system by a parameter or selected in a GUI
-    * This file must be a valid OpenRocket description from a compatable version of OpenRocket
+    * This file must be a valid OpenRocket description from a compatible version of OpenRocket
 
 
 * Environmental Variables
@@ -161,7 +151,7 @@ Below the minimum required number of simulations the program output will not be 
 
 
 * PID Control
-    * The possibilty of interfacing with a PID controller designed externally is a target of the system, allowing the user to simulate the performance of their rocket under a given PID configuration
+    * The possibility of interfacing with a PID controller designed externally is a target of the system, allowing the user to simulate the performance of their rocket under a given PID configuration
     * The input format of this interface is currently unspecified, as is the method of connecting this interface.
 
 
@@ -317,11 +307,11 @@ This would allow the user to view the possible landing sites overlaid on a googl
 
 - Fix computational listeners in OpenRocket
 
-Fixing the implemenation of computational listeners would allow the program to make changes to the environment model mid-flight simulating for example varying wind speeds at different altitudes
+Fixing the implementation of computational listeners would allow the program to make changes to the environment model mid-flight simulating for example varying wind speeds at different altitudes
 
 - Motor gimbaling
 
-Implemenation of motor gimbaling could be used to simulate the path of a rocket using a controller to adjust its direction.
+Implementation of motor gimbaling could be used to simulate the path of a rocket using a controller to adjust its direction.
 
 - PID Controller simulation
 
@@ -329,7 +319,7 @@ Use the simulations to determine estimations for the PID control parameters.
 
 - Current weather integration
 
-Weather APIs could be used to fetch current environmental variables for simulation.
+Whether APIs could be used to fetch current environmental variables for simulation.
 
 
 ### 3.3 Usability Requirements
@@ -350,9 +340,9 @@ Purpose and Objective:
 
 For this system to be effective, the product needs to meet the minimum viable product. This means that the system needs to be able to import a rocket from OpenRocket and then run multiple simulations with a variety of parameters. To measure how effective the system is, it can be tested with a range of Rocket types from OpenRocket to ensure that it can be effective with a range of rocket types. It is hard to measure the effectiveness, so the best idea is to test it with a range to make sure that it will work effectively for the user. 
 
-For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repeatively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
+For the system to be efficient, the system needs to be able to complete the minimum viable product and any extensions in a reasonable time. This is means that user will be able to get the output within a reasonable time. This is also very hard to measure but the best way is to test it repetitively with a range of inputs so that the system will be able to function for all the user's needs. For it is be efficient for the user to use, the output must also be easy to understand. The minimum viable product has the output being placed in a csv file. This means that it is organised into columns and makes it easy for the user to read. This makes this efficient for the user to use because they don't have to take time trying to decipher the output.
 
-To satisify the users of this system, the sytsem needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameter. If the system has extented the minimum viable product, then it was aim to make it easy for the user, therefore satisfing them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible exteneding the system to make it easier to use. 
+To satisfy the users of this system, the system needs to be able to complete the minimum viable product, because then it can complete the main objectives of the system. If it is meets the minimum viable product, then the system can run multiple simulations with a range of parameter. If the system has extended the minimum viable product, then it was aim to make it easy for the user, therefore satisfying them more. Therefore, the satisfaction criteria for this system, is meeting the minimum viable product, and if possible extending the system to make it easier to use. 
 
 ### 3.4 Performance requirements
 
@@ -360,13 +350,13 @@ Performance requirements define the expected performance of our software, outlin
 
 - The software should provide a list of required/available parameters to the user to assist in usability
 
-- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (.ork files)
+- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (`.ork` files)
 
 - The program should support the use of a single user simulating the performance of a single modelled rocket. The user should be able to execute the program more than once simultaneously to exceed this limit. 
 
-- The user should be able to provide additional information to the program to be used for the simulations such as launchsite and environmental conditions
+- The user should be able to provide additional information to the program to be used for the simulations such as launch-site and environmental conditions
 
-- The number of supported simulations that can be run and summerised in a single execution should be guaranteed < 1000
+- The number of supported simulations that can be run and summarised in a single execution should be guaranteed < 1000
 
 - Average time taken per simulation should not exceed 0.5 seconds
 
@@ -378,9 +368,6 @@ Performance requirements define the expected performance of our software, outlin
 
 ### 3.5 Logical database requirements
 
-See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
-
-You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
 
 ![Actor Diagram](actorDiagram.svg)
 
@@ -403,15 +390,15 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 > 
 > For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
 
-The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no hardware components to this system, there are no contraints on hardware. Since this system is software there are software constraints placed on the system.
+The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no hardware components to this system, there are no constraints on hardware. Since this system is software there are software constraints placed on the system.
 
 One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is Open Rocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
 
-Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the contraints placed on this system, is the input that it should be able to recieve. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
+Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the constraints placed on this system, is the input that it should be able to receive. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
 
-The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. ZThe report format should be understandable for the user, which is why the file choice was made. 
+The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. The report format should be understandable for the user, which is why the file choice was made. 
 
-There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting prodecures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no contraints placed on the design by external standards or regulatory requirements.  
+There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting procedures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no constraints placed on the design by external standards or regulatory requirements.  
 
 ### 3.7 Nonfunctional system attributes
 
@@ -427,15 +414,15 @@ This is an open source project, as is OpenRocket. This product will be released 
 
 This system must be usable by our target users, which are rocket hobbyist. The system needs to be designed so that users can efficiently utilise its key functions. High usability can be achieved by focusing on user needs during the system design, asking users for feedback throughout development, and assessing user experience with prototypes or the finished build.
 
-Usability can be assessed from user satisfaction. Good usabilty is seen when users are positive about their experience of using our demos and prototypes. It can also be assessed when observing user experience. A new user having issues with the interface being unintuitive, or inefficient, are indicators of poor usability. 
+Usability can be assessed from user satisfaction. Good usability is seen when users are positive about their experience of using our demos and prototypes. It can also be assessed when observing user experience. A new user having issues with the interface being unintuitive, or inefficient, are indicators of poor usability. 
 
 #### Extensible
 
-This system will be designed to be highly receptive to future extensions. New functionality should be easy to integrate with the base system and not interfer with the base system. This will be worked towards with maintaining code modularity. Modularity will ensure that features can be easily plugged in, and the existing modules will be self contained.
+This system will be designed to be highly receptive to future extensions. New functionality should be easy to integrate with the base system and not interfere with the base system. This will be worked towards with maintaining code modularity. Modularity will ensure that features can be easily plugged in, and the existing modules will be self contained.
 
 #### Fault Tolerant
 
-This system will be designed in anticipation of errors and exceptional inputs. A fault tolerant system would take these inputs and errors will not result in system failiure, and return the user to an error free state. 
+This system will be designed in anticipation of errors and exceptional inputs. A fault tolerant system would take these inputs and errors will not result in system failure, and return the user to an error free state. 
 
 This attribute can be assessed with the development of test cases. 
 
@@ -443,7 +430,7 @@ This attribute can be assessed with the development of test cases.
 
 This system will maintain up to date and usable documentation for developers and users. Our documentation will be include, but not be limited to, detailed comments, architecture diagrams, project requirement specifications, and a succinct user readme. 
 
-A well documented system for developers can be observed through the ease of colaboration. Work that is poorly documented will be harder for an new worker to independently pick up. Poor documentation for users can be seen when the learning curve to understand the system is higher than reasonable.
+A well documented system for developers can be observed through the ease of collaboration. Work that is poorly documented will be harder for a new worker to independently pick up. Poor documentation for users can be seen when the learning curve to understand the system is higher than reasonable.
 
 #### Integrated
 
@@ -476,31 +463,39 @@ In order to be useful for the wider rocket community, it is vital that the softw
 
 ### 3.9 Supporting information
 
-The extension of openRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily availabe for future reference, due to the outputting of these to a CSV file.
+The extension of openRocket will add both to the ease of use and body of knowledge within the model rocket community. This project aims to simulate the flight of model rockets, in a wide range of conditions, in order to predict the landing site of these rockets. This will increase the ability to predict these during rocket launches. By being able to run multiple simulations at once, it will not only allow for a faster simulation experience, but also be have these results easily available for future reference, due to the outputting of these to a CSV file.
 
 As this is an open source project, the final software will be freely available for anyone to view and edit. This adds to the longevity of the project, as it can be improved by the community in the future. 
+
+---
 
 ## 4. Verification
 
 3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
 
+---
+
 ## 5. Development schedule.
 
 ### 5.1 Schedule
 
-Identifed dates for key project deliverables: 
+Identified dates for key project deliverables: 
 
 **Architectural prototype**
-The architectural prototype will be comeplete by 18 June 2020.
+
+The architectural prototype will be complete by 18 June 2020.
 
 **Minimum viable product**
+
 The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
 **Further releases**
+
 Further releases will occur up until the final prototype release, scheduled for the 1 October 2020.
 
 **Sprints**
-Sprints start every second Friday, due to Retrospectives occuring overy second Thursday with our Tutor, Miniruwani.
+
+Sprints start every second Friday, due to Retrospectives occurring every second Thursday with our Tutor, Miniruwani.
 
 - Weeks 6-7 Project Requirement document and Minimum viable product.
 - Weeks 8-9 Minimum viable product. (MVP Milestone due at end of sprint.)
@@ -533,19 +528,22 @@ Due to the nature of this project it does not have a budget. The project is exte
 | Not meeting deadlines by underestimating time required         | Technical    | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
 | Unresolved conflicts between team members                      | Teamwork     | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
 | Changes to project requirements                                | Requirements | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
-| Issues with itegration of software                             | Technical    | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
+| Issues with integration of software                             | Technical    | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease off integration. |
 | Bugs within the code go undetected                             | Technical    | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
 
 ### 5.4 Health and Safety
 
 The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
-Due to COVID-19 reponse no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibilty of the team member.
+
+Due to COVID-19 no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibility of the team member.
 Regular breaks will be taken in the prearranged lab slots to ensure members have a chance to stretch and avoid strain. No ethical considerations need to be made around any animal or human subjects due to the nature of the project.
 
 #### 5.4.1 Safety Plans
 
-Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the saftey concerns involved.
+Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the safety concerns involved.
 Due to the COVID-19 pandemic response safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are conducted remotely.
+
+---
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
@@ -562,6 +560,8 @@ H&S - Health and Safety
 
 ECS - School of Engineering and Computer Science.
 
+---
+
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
@@ -574,23 +574,5 @@ A one page statement of contributions, including a list of each member of the gr
 | Nicole Stallinger   | 3.2                              |
 | Caitlin Goodger     | 1,1.1,1.3.1,5.2,3.3,3.6              |
 | Matthew Butterfield | 1, 1.2, 3.8, 5.3, spelling and grammar |
-
----
-
-## Formatting Rules 
-
- * Write your document using [Markdown](https://gitlab.ecs.vuw.ac.nz/help/user/markdown#gitlab-flavored-markdown-gfm) and ensure you commit your work to your team's GitLab repository.
- * Major sections should be separated by a horizontal rule.
-
-
-## Assessment  
-
-The goal of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. The most important factor in the assessmernt of the document is how will it meet that goal. The document will be assessed for both presentation and content. 
-
-The presentation will be based on how easy it is to read, correct spelling, grammar, punctuation, clear diagrams, and so on.
-
-The content will be assessed according to its clarity, consistency, relevance, critical engagement and a demonstrated understanding of the material in the course. We look for evidence these traits are represented and assess the level of performance against these traits. While being comprehensive and easy to understand, this document must be reasonably concise too. You will be affected negatively by writing a report with too many pages (far more than what has been suggested for each section above).
-
-We aim to evaluate ENGR301 documents and projects as if they were real projects rather than academic exercises &mdash; especially as they are real projects with real clients. The best way to get a good mark in a document is to do the right thing for your project, your client, and your team. We encourage you to raise questions with your tutor or course staff, as soon as possible, so you can incorporate their feedback into your work.
 
 ---
