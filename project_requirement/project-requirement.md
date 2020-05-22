@@ -3,16 +3,14 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 ---
 
+## 0. Table of Contents
+
 - [ENGR 301 Project 14 Project Proposal and Requirements Document](#engr-301-project-14-project-proposal-and-requirements-document)
   * [1. Introduction](#1-introduction)
     + [Client](#client)
     + [1.1 Purpose](#11-purpose)
     + [1.2 Scope](#12-scope)
     + [1.3 Product overview](#13-product-overview)
-      - [1.3.1 Product perspective](#131-product-perspective)
-      - [1.3.2 Product functions](#132-product-functions)
-      - [1.3.3 User characteristics](#133-user-characteristics)
-      - [1.3.4 Limitations](#134-limitations)
   * [2. References](#2-references)
   * [3. Specific requirements](#3-specific-requirements)
     + [3.1 External interfaces](#31-external-interfaces)
@@ -23,8 +21,16 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
     + [3.6 Design constraints](#36-design-constraints)
     + [3.7 Nonfunctional system attributes](#37-nonfunctional-system-attributes)
     + [3.8 Physical and Environmental Requirements](#38-physical-and-environmental-requirements)
-      + [3.9 Supporting information](#39-supporting-information)
+    + [3.9 Supporting information](#39-supporting-information)
   * [4. Verification](#4-verification)
+    + [4.1 External Interfaces](#41-external-interfaces)
+    + [4.2 Functions](#42-functions)
+    + [4.3 Usability](#43-usability)
+    + [4.4 Performance](#44-performance)
+    + [4.5 Logical Database](#45-logical-database)
+    + [4.6 Design Constraints](#46-design-constraints)
+    + [4.7 Nonfunctional Attributes](#47-nonfunctional-attributes)
+    + [4.8 Physical and Environmental](#48-physical-and-environmental)
   * [5. Development schedule.](#5-development-schedule)
     + [5.1 Schedule](#51-schedule)
     + [5.2 Budget](#52-budget)
@@ -36,6 +42,7 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
     + [6.2 Acronyms and abbreviations](#62-acronyms-and-abbreviations)
   * [7. Contributions](#7-contributions)
 
+---
 
 ## 1. Introduction
 
