@@ -123,7 +123,7 @@ Below the minimum required number of simulations the program output will not be 
 
 [2] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
 
-[3] Civil Aviation Authority of New Zealand, Civil Aviation Rules Part 101 Gyrogliders and Parasails, Unmmanned Aircraft (including Balloons), Kites and Rockets - Operating Rules, 31 December 2018. [Online]. Available: https://www.aviation.govt.nz/assets/rules/consolidations/Part_101_Consolidation.pdf. [Accessed: 22-May-2020].
+[3] Civil Aviation Authority of New Zealand, Civil Aviation Rules Part 101 Gyrogliders and Parasails, Unmanned Aircraft (including Balloons), Kites and Rockets - Operating Rules, 31 December 2018. [Online]. Available: https://www.aviation.govt.nz/assets/rules/consolidations/Part_101_Consolidation.pdf. [Accessed: 22-May-2020].
 
 ## 3. Specific requirements  
 
