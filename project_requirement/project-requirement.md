@@ -154,11 +154,12 @@ Below the minimum required number of simulations the program output will not be 
 
 [3] Civil Aviation Authority of New Zealand, Civil Aviation Rules Part 101 Gyrogliders and Parasails, Unmanned Aircraft (including Balloons), Kites and Rockets - Operating Rules, 31 December 2018. [Online]. Available: https://www.aviation.govt.nz/assets/rules/consolidations/Part_101_Consolidation.pdf. [Accessed: 22-May-2020].
 
-[4] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
+[4] “Features of OpenRocket,” OpenRocket. [Online]. Available: http://openrocket.info/features.html. [Accessed: 22-May-2020].
 
-[5] “Features of OpenRocket,” OpenRocket. [Online]. Available: http://openrocket.info/features.html. [Accessed: 22-May-2020].
+[5] “gnu.org,” GNU Operating System. [Online]. Available: https://www.gnu.org/licenses/gpl-howto.html. [Accessed: 22-May-2020].
 
-[6] “gnu.org,” GNU Operating System. [Online]. Available: https://www.gnu.org/licenses/gpl-howto.html. [Accessed: 22-May-2020].
+[6] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
+
 
 ## 3. Specific requirements  
 
@@ -434,7 +435,7 @@ There are no constraints relating to accounting procedures or audit tracing. Thi
 
 #### Open Source
 
-This is an open source project, as is OpenRocket. This will be released under the GNU GPL v3 license, as to avoid any issues that would result from a conflicting license to OpenRocket [5][6]. 
+This is an open source project, as is OpenRocket. This will be released under the GNU GPL v3 license, as to avoid any issues that would result from a conflicting license to OpenRocket [4][5]. 
 
 #### Usable
 
@@ -605,7 +606,7 @@ Due to the nature of this project it does not have a budget. The project is exte
 
 ### 5.3 Risks 
 
-| Risks [4]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
+| Risks [6]                                                      | Risk Type    | Likelihood | Impact | Mitigation Strategies                                                                                                                                                                                                                       |
 | -------------------------------------------------------------- | ------------ | ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Program functioning unexpectedly on different devices          | Technical    | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
 | Adding team members that do not work well with the team        | Teamwork     | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
