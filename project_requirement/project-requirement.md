@@ -498,6 +498,8 @@ As this is an open source project, the final software will be freely available f
 
 ## 4. Verification
 
+This section describes the verification of this project in regards to external interfaces, functions, usability, performance, logical database, design constraints, not-functional system attributes and physical and environmental requirements.
+
 ### 4.1 External Interfaces
 
 Verification of external interfaces will include CI testing of invalid states and inputs from external entities in addition to runtime input verification to ensure external interactions are valid. Many invalid external interactions can occur:
