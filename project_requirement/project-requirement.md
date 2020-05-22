@@ -375,30 +375,19 @@ Performance requirements define the expected performance of our software, outlin
 
 ### 3.6 Design constraints
 
-see 9.5.15 and 9.5.16. for most systems, this will be around one page.
-
-> 9.5.15 Design constraints<br>
-> Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
-> 
-> 9.5.16 Standards compliance<br>
-> Specify the requirements derived from existing standards or regulations, including:
-> 
-> a) Report format;<br>
-> b) Data naming;<br>
-> c) Accounting procedures;<br>
-> d) Audit tracing.
-> 
-> For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
-
 The design constraints define the software and hardware requirements placed on the system by external standards, regulatory requirements, project limitations, existing standards and regulations. It also includes constraints placed on the system by client requirements and government requirements. Since there are no hardware components to this system, there are no constraints on hardware. Since this system is software there are software constraints placed on the system.
 
 One of the client requirements of this project is that the project is made open source. This, therefore, constrains the system to use open source resources. The largest external resource of this system is Open Rocket, which is an open source system. This means that it meets this requirement. Once, this project is completed, the source code needs to be packaged according to open source requirements. This is an important requirement that this project requires. 
 
+There are many constraints and regulations for launching rockets. Rockets have to be in accordance with the New Zealand Civil Aviation Authority [3]. As mentioned above, this project has no hardware, and no constraints, as it is simulating rockets. However, given that this project is centred around rockets, they are constraints and regulations to be aware of. These regulations stipulate the maximum size of the rocket, as well as what it can and can not be made of. These are not regulations or constraints that affect this project but will affect the larger project that this system is a part of. One of the other projects, will be using this project to simulate how their rocket will fly. These regulations will constraint them, so it is something to be aware of. 
+
 Due to the fact that this system is extending from existing software, that leads to constraints on the system. This system has to be able to integrate with OpenRocket to be able to function correctly. One of the constraints placed on this system, is the input that it should be able to receive. Since this project is an extension of OpenRocket, it means that take a rocket designing in OpenRocket as input. This constrains the system as it has to be able to function with input from OpenRocket. 
 
-The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. The report format should be understandable for the user, which is why the file choice was made. 
+The report format for the minimum viable product, is an csv file. This is due to the fact it is an easy and simple format for the user to be able to read and understand. The report format should be understandable for the user, which is why the file choice was made. The output of the simulation is the main reporting function of the system. There are no other constraints on the report format. 
 
-There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting procedures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no constraints placed on the design by external standards or regulatory requirements.  
+Due to the fact that the system is extending OpenRocket, there are some limitations around data naming. As there is a rocket being imported from OpenRocket, the data naming should be consistent with OpenRocket, to ensure that it is consistent for the user. The data naming should also be consistent across files, and inside files, to ensure consistency and ease of use. The user can also added parameters to the simulation, such as wind speed, as arguments and it is important that it is clear that these arguments have clear name. This can be helped by offering a help menu, clearly describing each argument option. This can also be mitigated by having clear data naming so it is clear to the user. 
+
+There are no constraints relating to accounting procedures or audit tracing. This is due to the fact there is no budget and no monetary transactions in the system. This means that there are no accounting procedures that need to be followed. This means that there is also no need for audit tracing to be considered. Therefore, there are no constraints placed on the design by external standards or regulatory requirements. 
 
 ### 3.7 Nonfunctional system attributes
 
