@@ -99,6 +99,14 @@ For most systems this will be about 2 pages, including a table mapping concerns 
 
 Identify the architectural viewpoints you will use to present your system's architecture. Write one sentence to outline each viewpoint. Show which viewpoint frames which architectural concern.
 
+Logical: The logical viewpoint describes the system functions for the end user. It describes how the user interacts with the system and what classes are involved. It is being represented with class and state diagrams. It also provides information about how the user will move between the classes and states. 
+
+Development: The development viewpoint describes the architecture the support the processes involved in the development cycle to manage the software. It describes the management system of the software to address the concerns regarding the management. 
+
+
+Physical: The physical viewpoint describes how the software fits with the hardware of the system. It describes the how the software deals with the hardware availabilty, reliability, performance and scalability of the system. 
+
+
 ### 4. Architectural Views
 
 (5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
