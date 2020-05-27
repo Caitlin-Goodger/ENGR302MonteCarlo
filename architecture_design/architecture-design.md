@@ -103,9 +103,11 @@ Logical: The logical viewpoint describes the system functions for the end user. 
 
 Development: The development viewpoint describes the architecture the support the processes involved in the development cycle to manage the software. It describes the management system of the software to address the concerns regarding the management. 
 
+Process: The process viewpoint describes the dynamic and non-functional requirements. These requirements inclucde concerns around performance and availability concurrency. It also describes how the logical views fits with the process view.  
 
 Physical: The physical viewpoint describes how the software fits with the hardware of the system. It describes the how the software deals with the hardware availabilty, reliability, performance and scalability of the system. 
 
+Scenarios: The scenarios viewpoint describes the user cases of the system. It describes how the user and the system interact with each other. 
 
 ### 4. Architectural Views
 
@@ -235,7 +237,7 @@ ECS - School of Engineering and Computer Science.
 |Zac Durant   | 4.1, 4.2             |
 |Zak Kiernander | 4.5          |
 |Nicole Stallinger|         |
-|Caitlin Goodger|1,1.1,5.2.1           |
+|Caitlin Goodger|1,1.1,3.2,4.4,5.2.1           |
 |Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
 
 ---
