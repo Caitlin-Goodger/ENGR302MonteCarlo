@@ -55,8 +55,6 @@ class LandingPoints(list):
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), len(self) ))
 
-    # args = self.args #
-
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
         worldpos = status.getRocketPosition()
