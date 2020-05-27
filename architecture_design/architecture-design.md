@@ -138,7 +138,7 @@ Sequence model
 ...
 
 ### 4.5 Scenarios
-...
+We have determined our 2 most important scenarios for our MVP are for the user to be able to run multiple simulations and be able to run these simulations on any valid rocket file the user imports. As such our design will utilise the orhelper which will enable the user to import any rocket file and provides a consistent interface to open rocket so regardless of the rocket imported we can be assured it will be handled. Running multiple simulations are then supported by the simulation class which will enable multiple calls for any given rocket with the optional arguments to vary environmental factors and subsequently returning landing point instances as the final result for each call.
 
 ## 5.1 Development Schedule
 
@@ -222,7 +222,7 @@ ECS - School of Engineering and Computer Science.
 | ---- | ----               |
 |Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.2.1, 5.4, 5.4.1|
 |Zac Durant   | 4.1, 4.2             |
-|Zak Kiernander |           |
+|Zak Kiernander | 4.5          |
 |Nicole Stallinger|         |
 |Caitlin Goodger|1,1.1,5.2.1           |
 |Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
