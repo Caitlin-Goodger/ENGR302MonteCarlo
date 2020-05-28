@@ -141,7 +141,7 @@ Class interaction model
 ### 4.2 Development
 
 Component Model
-![](componentDiagram.svg)
+![](componentDiagram.PNG)
 
 This diagram shows the relationships of our system with external components, and the necessary interfaces.
 
