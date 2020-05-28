@@ -21,7 +21,7 @@ unittest:
   tags:
     - shell
   script:
-    - cd lib/openrocket/java
+    - cd lib/openrocketjava/
     - ant unittest
   allow_failure: false
 
