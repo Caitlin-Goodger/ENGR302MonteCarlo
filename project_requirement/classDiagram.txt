@@ -1,0 +1,23 @@
+@startuml classDiagram
+class orhelper 
+orhelper : Provided on OpenRocket wiki to interface with OpenRocket java source code
+class openrocket
+openrocket : OpenRocket java source code providing methods for rocket simulation
+orhelper --> openrocket : Provides access to methods
+
+class main
+main : Provides entry point and access to simulation class to user
+main : Allows configuration of parameters and selection of rocket model
+class simulation
+simulation : Provides interface for user to run simulation and receive results
+class abstractlistener
+abstractlistener : Provides template for python proxy of java listeners
+class landingpoints
+landingpoints : Implements proxy interface and records landing point of simulations
+
+main --> simulation : Provides interface for user to run simulation and receive results
+landingpoints --|> abstractlistener : Implements python proxy of java classes
+simulation "1" *-- "many" landingpoints : Records simulation results
+simulation --> orhelper : Accesses OpenRocket methods
+
+@enduml

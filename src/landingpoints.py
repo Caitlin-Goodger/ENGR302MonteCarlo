@@ -5,10 +5,12 @@ from random import gauss
 import csv
 import numpy as np
 
-class LandingPoints(list):
+class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
     
     def __init__(self, args) :
+        self.landing_points = []
+        self.max_altitudes = []
         self.args = args
 
     def add_simulations(self, num):
@@ -41,19 +43,25 @@ class LandingPoints(list):
                     component.setMassOverridden(True)
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
+                ma = MaxAltitude()
                 lp = LandingPoint()
-                orh.run_simulation(sim, [lp])
-                self.append( lp )
-    
+                orh.run_simulation(sim, [lp, ma])
+                self.landing_points.append( lp )
+                self.max_altitudes.append( ma )
+
     def print_stats(self):
-        lats = [p.lat for p in self]
-        longs = [p.long for p in self]
-        with open(self.args.outfile, 'w', newline='\n') as file:
+        lats = [p.lat for p in self.landing_points]
+        longs = [p.long for p in self.landing_points]
+        altitudes = [p.max_height for p in self.max_altitudes]
+
+        with open(self.args.outfile, 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Alt"])
-            writer.writerows([[np.format_float_positional(p.lat),np.format_float_positional(p.long),np.format_float_positional(p.maxAlt)] for p in self])
+            writer.writerow(["Latitude","Longitude","Max Altitude"])
+            for p, q, r in zip(lats, longs, altitudes):
+                writer.writerow([p, q, r])
+
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), len(self) ))
+        (np.mean(lats), np.mean(longs), len(self.landing_points) ))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -70,3 +78,12 @@ class LandingPoint(abstractlistener.AbstractSimulationListener):
     
     def postStep(self, status):
         self.maxAlt = max(self.maxAlt, float(status.getRocketPosition().z))
+
+class MaxAltitude(abstractlistener.AbstractSimulationListener):
+   
+   def __init__(self) :
+        self.max_height = 0
+
+   def postStep(self, status):      
+        self.max_height = float(max(self.max_height, status.getRocketPosition().z))
+    

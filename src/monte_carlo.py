@@ -1,5 +1,4 @@
-import simulation
-
+import simulation 
 args = 0
 
 sim = simulation.Simulation()

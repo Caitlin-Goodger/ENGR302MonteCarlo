@@ -23,29 +23,44 @@ All team members are expected to contribute equally to the document and list the
 
 ---
 
-# ENGR 301 Project *NN* Architectural Design and Proof-of-Concept
+# ENGR 301 Project 14 Architectural Design and Proof-of-Concept
 
-**Authors:** a comma-separated list of the names of each member of the team.
+Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield.
 
 ## 1. Introduction
 
 One page overall introduction including sections 1.1 and 1.2 (ISO/IEC/IEEE 42010:2011(E) clause 5.2)
 
+Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features.
+
+While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause railwhip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
+
+Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
+
+The rocket uses a PID (Proportional Integral Derivative) controller to keep it fixed on an axis. Normally, parameters of PID are difficult to obtain due to the short period of time that the rocket motors are burning. Simulation can allow for estimate parameters for the PID controller.
+
 ### Client
 
-Identify the client and their contact details.
+Andre Geldenhuis is the client for this project. He has experience with rockets and experience working with similar projects. He can be reached in the Customer Channel on Mattermost. He also has occasionally Q&A sessions during ENGR301 Lectures and can be reached during those times with questions. He can also be reached at andre.geldenhuis@vuw.ac.nz.
 
 ### 1.1 Purpose
 
-One sentence describing the purpose of the system.
+The purpose of the system to provide a rocket simulation that can help determine, given certain conditions, the rocket's path and where it will likely land. By having a range of conditions, the system will show a range of paths and possible landing points.
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system.
+This product is a Rocket Simulation program. 
+
+*  The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. 
+*  The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. 
+*  The program shall provide estimate PID control parameters through the simulation.
+
 
 ### 1.3 Changes to requirements
 
 If the requirement have changed significantly since the requirements document, outline the changes here. Changes must be justified and supported by evidences, i.e., they must be substantiated. (max one page, only if required)
+
+There are currently no changes to the requirements.
 
 ## 2. References
 
@@ -66,6 +81,18 @@ This means that you should refer to information (e.g. risks, requirements, model
 See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
 
 For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
+
+#### Stakeholder Requirements
+
+##### Client
+
+##### School of Engineering and Computer Science
+* ECS requires that all aspects of the project are correctly licensed. 
+* ECS requires all aspects of the project follow the guidelines set out by ECS. 
+  
+##### Wider Rocket Community
+* To improve and extend openRocket. 
+  * This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference.
 
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
@@ -94,13 +121,18 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
+
+User interaction model
+![](../project_requirement/actorDiagram.svg)
+
+Class interaction model
+![](../project_requirement/classDiagram.svg)
 
 ### 4.2 Development
-...
 
 ### 4.3 Process
-...
+Sequence model
+![](sequenceDiagram.svg)
 
 ### 4.4 Physical 
 ...
@@ -108,21 +140,25 @@ Each architectural view should include at least one architectural model. If arch
 ### 4.5 Scenarios
 ...
 
-## 5. Development Schedule
+## 5.1 Development Schedule
 
 _For each subsection, make clear what (if anything) has changed from the requirements document._ If unchanged, these sections should be copied over from the requirements document, not simply cross-referenced.
 
 Schedules must be justified and supported by evidences; they must be either direct client requirements or direct consequences of client requirements. If the requirements document did not contain justifications or supporting evidences, then both must be provided here.
 
-### 5.1 Schedule
+Identifed dates for key project deliverables: 
 
-Identify dates for key project deliverables:
+**Architectural prototype**
+The architectural prototype will be comeplete by 18 June 2020.
 
-1. prototype(s).
-1. first deployment to the client.
-1. further improvements required or specified by the client.
+**Minimum viable product**
+The minimum viable product as defined in part 1.3.2 of this document will be completed by 4 June 2020.
 
-(1 page).
+**Further releases**
+Further releases will occur up until the final prototype release, scheduled for the 1 October 2020.
+
+**Changes to these dates**
+These dates have not been changed from the project requirement document.
 
 ### 5.2 Budget and Procurement
 
@@ -130,39 +166,66 @@ Identify dates for key project deliverables:
 
 Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).
 
-(1 page). 
+Due to the nature of this project it does not have a budget. The project is extending open source software so there is no need for any licenses to be able to use it. There is also no physical hardware for this project, so no physical items need to be purchased.
 
 #### 5.2.2 Procurement
 
-Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
-(1 page).
+As stated previously, the nature of the project being purely software means that it does not require hardware items which would need to be procured. The only software required is OpenRocket which is open source and available for access at any point. The storage of the code will be on a group gitlab which is supplied by the university.
 
 ### 5.3 Risks 
 
 Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).
 
+|                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
+| :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
+|Program functioning unexpectedly on different devices          | Technical     | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
+|Adding team members that do not work well with the team        | Teamwork      | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
+|Losing team member temporarily or permanently at crucial times | Teamwork      | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
+|Team members burning out                                       | Teamwork      | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
+|Loss of access to files                                        | Technical     | 1          | 4      | Assure that all files are on the git and on team members devices.                                                                                                                                                                           |
+|Not meeting deadlines by underestimating time required         | Technical     | 3          | 2      | Have regular meetings to manage milestones and divide tasks into smaller sections.                                                                                                                                                          |
+|Unresolved conflicts between team members                      | Teamwork      | 2          | 3      | Have a team contract with paths to bringing up issues to the rest of the group.                                                                                                                                                             |
+|Changes to project requirements                                | Requirements  | 3          | 4      | Create code that is easily adjustable. Only allow minor adjustments (or changes with good reasoning) to the project later.                                                                                                                  |
+|Issues with itegration of software                             | Technical     | 3          | 4      | Edit software to better flow between sections. Understand software used and the outputs given. Disable features that might be causing issues. Look at possibly using a different version of software for stability and ease of integration. |
+|Bugs within the code go undetected                             | Technical     | 3          | 4      | Have test cases with high coverage over the program. Check tests frequently throughout development to assure that new issues have not occurred. Have multiple people working on and checking the same code to avoid logic errors.           |
+
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety.
+The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
+Due to COVID-19 reponse no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibilty of the team member.
+Regular breaks will be taken in the prearranged lab slots to ensure members have a chance to stretch and avoid strain. No ethical considerations need to be made around any animal or human subjects due to the nature of the project.
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements.
-
+Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the saftey concerns involved.
+Due to the COVID-19 pandemic response safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are conducted remotely.
 
 ## 6. Appendices
 
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7) 
+- It is assumed that the user has access to a computer, which is able to run openRocket. 
+- It is assumed that the members of the model rocket community, and other users, are familiar with openRocket.
+- It is assumed that the user will already have a model rocket to load into openRocket.
+- It is assumed that for use of the minimum viable product, the user is able to operate Command Line / Terminal, as this does not include the use of a GUI. 
+- It is assumed that the inputs entered by the user are of the correct type in order to successfully run the simulations. 
 
 ### 6.2 Acronyms and abbreviations
 
-One page glossary as required 
+H&S - Health and Safety
+
+ECS - School of Engineering and Computer Science.
 
 ## 7. Contributions
 
-An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
+| Name | Sections Contributed|
+| ---- | ----               |
+|Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.2.1, 5.4, 5.4.1|
+|Zac Durant   | 4.1, 4.2             |
+|Zak Kiernander |           |
+|Nicole Stallinger|         |
+|Caitlin Goodger|1,1.1,5.2.1           |
+|Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
 
 ---
 
