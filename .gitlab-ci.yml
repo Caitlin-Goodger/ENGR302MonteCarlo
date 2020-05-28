@@ -21,9 +21,9 @@ unittest:
   tags:
     - shell
   script:
-    - echo "test"
-    - exit 0
-  allow_failure: true
+    - cd lib/openrocket/java
+    - ant unittest
+  allow_failure: false
 
 deploy:
   stage: Deploy
