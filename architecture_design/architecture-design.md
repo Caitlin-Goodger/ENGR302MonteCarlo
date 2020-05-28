@@ -140,7 +140,13 @@ Class interaction model
 
 ### 4.2 Development
 
+Component Model
+![](componentDiagram.svg)
+
+This diagram shows the relationships of our system with external components, and the necessary interfaces.
+
 ### 4.3 Process
+
 Sequence model
 ![](sequenceDiagram.svg)
 
