@@ -13,7 +13,7 @@ class LandingPoints(list):
 
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
-            
+
             # Load the document and get simulation
             orh = orhelper.Helper()
             doc = orh.load_doc(self.args.rocket)
@@ -32,10 +32,10 @@ class LandingPoints(list):
             for p in range(num):
                 print ('Running simulation ', p+1)
                 
-                opts.setLaunchRodAngle(math.radians( gauss(self.args.rodangle, self.args.rodanglesigma) ))    # 45 +- 5 deg in direction
-                opts.setLaunchRodDirection(math.radians( gauss(self.args.roddirection, self.args.roddirectionsigma) )) # 0 +- 5 deg in direction
-                opts.setWindSpeedAverage( gauss(self.args.windspeed, self.args.roddirectionsigma) )                # 15 +- 5 m/s in wind
-                for component_name in ('Nose cone', 'Body tube'):       # 5% in the mass of various components
+                opts.setLaunchRodAngle(math.radians( gauss(self.args.rodangle, self.args.rodanglesigma) ))
+                opts.setLaunchRodDirection(math.radians( gauss(self.args.roddirection, self.args.roddirectionsigma) ))
+                opts.setWindSpeedAverage( gauss(self.args.windspeed, self.args.roddirectionsigma) )
+                for component_name in ('Nose cone', 'Body tube'):
                     component = orh.get_component_named( rocket, component_name )
                     mass = component.getMass()
                     component.setMassOverridden(True)
@@ -50,8 +50,8 @@ class LandingPoints(list):
         longs = [p.long for p in self]
         with open(self.args.outfile, 'w', newline='\n') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude"])
-            writer.writerows([[p.lat,p.long] for p in self])
+            writer.writerow(["Latitude","Longitude","Max Alt"])
+            writer.writerows([[np.format_float_positional(p.lat),np.format_float_positional(p.long),np.format_float_positional(p.maxAlt)] for p in self])
         print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), len(self) ))
 
@@ -64,3 +64,9 @@ class LandingPoint(abstractlistener.AbstractSimulationListener):
         landing_zone = geodetic_computation.addCoordinate(launchpos, worldpos)
         self.lat = float(landing_zone.getLatitudeDeg())
         self.long = float(landing_zone.getLongitudeDeg())
+
+    def startSimulation(self, status):
+        self.maxAlt=-1
+    
+    def postStep(self, status):
+        self.maxAlt = max(self.maxAlt, float(status.getRocketPosition().z))
