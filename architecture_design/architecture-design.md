@@ -109,6 +109,10 @@ Physical: The physical viewpoint describes how the software fits with the hardwa
 
 Scenarios: The scenarios viewpoint describes the user cases of the system. It describes how the user and the system interact with each other. 
 
+Circuit Architecture: The circuit architecture viewpoint describes how the physical system is put together. Due to the fact that this is entirely a software project this section is not appropriate for this project.
+
+Hardware Architecture: The hardware architecture viewpoint describes how the hardware functions in the system, and allows it to function. Due to the fact that this is entirely a software project this section is not appropriate for this project. 
+
 ### 4. Architectural Views
 
 (5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
