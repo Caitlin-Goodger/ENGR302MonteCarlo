@@ -61,12 +61,12 @@ class LandingPoints():
 
         with open(self.args.outfile, 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Altitude", "Position upwind"])
+            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind"])
             for p, q, r , s in zip(lats, longs, altitudes, upwinds):
                 writer.writerow([p, q, r, s])
 
-        print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), len(self.landing_points) ))
+        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f. Based on %i simulations.' % \
+        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), len(self.landing_points) ))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
