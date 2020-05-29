@@ -1,6 +1,7 @@
 import abstractlistener
 import orhelper
 import math
+from jpype import *
 from random import gauss
 import csv
 import numpy as np
@@ -11,6 +12,8 @@ class LandingPoints():
     def __init__(self, args) :
         self.landing_points = []
         self.max_altitudes = []
+        self.upwind = []
+        self.parallel = []
         self.args = args
 
     def add_simulations(self, num):
@@ -45,23 +48,29 @@ class LandingPoints():
                 
                 ma = MaxAltitude()
                 lp = LandingPoint()
-                orh.run_simulation(sim, [lp, ma])
+                pu = PositionUpwind()
+                pp = PositionParallel()
+                orh.run_simulation(sim, [lp, ma, pu])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
+                self.upwind.append( pu )
+                self.parallel.append ( pp )
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
         longs = [p.long for p in self.landing_points]
         altitudes = [p.max_height for p in self.max_altitudes]
+        upwinds = [p.upwind for p in self.upwind]
+        parallels = [p.parallel for p in self.parallel]
 
         with open(self.args.outfile, 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Altitude"])
-            for p, q, r in zip(lats, longs, altitudes):
-                writer.writerow([p, q, r])
+            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind"])
+            for p, q, r , s, t in zip(lats, longs, altitudes, upwinds, parallels):
+                writer.writerow([p, q, r, s, t])
 
-        print ('Rocket landing zone %3.3f lat, %3.3f long . Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), len(self.landing_points) ))
+        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Based on %i simulations.' % \
+        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), len(self.landing_points) ))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -86,4 +95,27 @@ class MaxAltitude(abstractlistener.AbstractSimulationListener):
 
    def postStep(self, status):      
         self.max_height = float(max(self.max_height, status.getRocketPosition().z))
-    
+
+class PositionUpwind(abstractlistener.AbstractSimulationListener):
+    def __init__(self) :
+        self.upwind = 0
+
+    def endSimulation(self, status, simulation_exception):
+        upwindArrayList = status.getFlightData().get(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_X)
+        upwindArray = [] 
+        for u in upwindArrayList:
+            upwindArray.append(float(u))
+        
+        self.upwind = max(upwindArray)
+
+class PositionParallel(abstractlistener.AbstractSimulationListener):
+    def __init__(self) :
+        self.parallel = 0
+
+    def endSimulation(self, status, simulation_exception):
+        parallelArrayList = status.getFlightData().get(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_Y)
+        parallelArray = [] 
+        for p in parallelArrayList:
+            parallelArray.append(float(p))
+        
+        self.parallel = max(parallelArray)
