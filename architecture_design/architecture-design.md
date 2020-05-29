@@ -136,8 +136,14 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.1 Logical
 
+The logical view describes the how the system functions for the end user. The diagrams below help to illustrate how the system performs those functions and how the user interacts with the system. The diagram illustrates how the user interacts with each of the classes inside the system. It provides an explanation of how the classes interact with each other so that the user can use the system. 
+
+The user interaction model shows all the classes as well as the user and how they interact.  The user is shown to be on the far left of the diagram as they start off the process. The classes are shown in boxes along to top and bottom on the digram. The classes are at the top and the bottom so that it is easier for the user to read. There are red dotted lines between the two boxes for a class. This makes means that it is clear where each class sits. There are red arrows between classes to show how the classes interact with each other. These arrows are labeled with explanations so that it is clear why the two classes interact with each other. The arrows map out the entire process from the user running the system, to receiving the output at the end. Boxes with further explanations are also on the diagram to add further context as to what is happening.
+
 User interaction model
 ![](../project_requirement/actorDiagram.svg)
+
+The class interaction model shows how all the classes interact. Each class is has a box that shows the name of the class as well as a definition of the class and what it provides the user. There are then arrows between the classes show how they interact with each other. There is a definition associated with the arrow, as to why there is a connect between those two classes. 
 
 Class interaction model
 ![](../project_requirement/classDiagram.svg)
