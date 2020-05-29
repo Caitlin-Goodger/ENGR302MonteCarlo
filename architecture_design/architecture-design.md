@@ -157,6 +157,10 @@ This diagram shows the relationships of our system with external components, and
 
 ### 4.3 Process
 
+The process viewpoint describes the dynamic and non-functional requirements. It shows the process what happens when the user runs the systm. It shows all the interacts between classes and the order in which they happened. 
+
+The sequence model diagram is set up in the same way as the user interaction model as the logical view. The user is shown on the left of the diagram and the classes being shown in boxes along the top and bottom. There is also a box for the output file, where the results are put at the end of the process. There are arrows between the classes and the user that shows when they classes and users interact with each other. The arrows include a definition of the arrow and explanation of what happens. This definition helps explain the process and show what happens. There is a box in the middle of the diagram what is labeled loop. This section loops through n times and is in a loop box so that the arrows don't need to be repeated and the diagram is clearer. 
+
 Sequence model
 ![](sequenceDiagram.svg)
 
