@@ -50,7 +50,7 @@ class LandingPoints():
                 lp = LandingPoint()
                 pu = PositionUpwind()
                 pp = PositionParallel()
-                orh.run_simulation(sim, [lp, ma, pu])
+                orh.run_simulation(sim, [lp, ma, pu, pp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
