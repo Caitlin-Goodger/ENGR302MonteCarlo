@@ -14,6 +14,7 @@ class LandingPoints():
         self.max_altitudes = []
         self.upwind = []
         self.parallel = []
+        self.lateral_movement = []
         self.args = args
 
     def add_simulations(self, num):
@@ -50,11 +51,13 @@ class LandingPoints():
                 lp = LandingPoint()
                 pu = PositionUpwind()
                 pp = PositionParallel()
-                orh.run_simulation(sim, [lp, ma, pu, pp])
+                lm = LateralMovement()
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
                 self.parallel.append ( pp )
+                self.lateral_movement.append( lm )
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
@@ -62,15 +65,17 @@ class LandingPoints():
         altitudes = [p.max_height for p in self.max_altitudes]
         upwinds = [p.upwind for p in self.upwind]
         parallels = [p.parallel for p in self.parallel]
+        lateral_directions = [p.lateral_direction for p in self.lateral_movement]
+        lateral_distances = [p.lateral_distance for p in self.lateral_movement]
 
         with open(self.args.outfile, 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind"])
-            for p, q, r , s, t in zip(lats, longs, altitudes, upwinds, parallels):
-                writer.writerow([p, q, r, s, t])
+            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance", "Lateral Direction"])           
+            for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
+                writer.writerow([p, q, r, s, t, u, v])
 
-        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), len(self.landing_points) ))
+        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters. Lateral direction %3.3f degrees. Based on %i simulations.' % \
+        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -119,3 +124,16 @@ class PositionParallel(abstractlistener.AbstractSimulationListener):
             parallelArray.append(float(p))
         
         self.parallel = max(parallelArray)
+
+class LateralMovement(abstractlistener.AbstractSimulationListener):
+   
+   def __init__(self) :
+        self.lateral_distance = 0
+        self.lateral_direction = 0
+
+   def endSimulation(self, status, simulation_exception):       
+        #Lateral Distance
+        self.lateral_distance = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_XY))
+
+        #Lateral Direction
+        self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
