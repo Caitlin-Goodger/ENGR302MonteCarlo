@@ -40,7 +40,7 @@ class LandingPoints():
                 
                 opts.setLaunchRodAngle(math.radians( gauss(self.args.rodangle, self.args.rodanglesigma) ))
                 opts.setLaunchRodDirection(math.radians( gauss(self.args.roddirection, self.args.roddirectionsigma) ))
-                opts.setWindSpeedAverage( gauss(self.args.windspeed, self.args.roddirectionsigma) )
+                opts.setWindSpeedAverage( gauss(self.args.windspeed, self.args.windspeedsigma) )
                 for component_name in ('Nose cone', 'Body tube'):
                     component = orh.get_component_named( rocket, component_name )
                     mass = component.getMass()
