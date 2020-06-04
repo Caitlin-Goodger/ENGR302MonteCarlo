@@ -35,6 +35,7 @@ test-python:
       - shell
     script:
       - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
       - ls ../lib/build/jar/
       - pytest
 
