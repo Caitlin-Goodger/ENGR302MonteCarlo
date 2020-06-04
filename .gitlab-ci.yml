@@ -29,21 +29,14 @@ unittest-java:
     - ant unittest
   allow_failure: false
 
-# test-python:
-#     stage: Test
-#     tags:
-#       - shell
-#     script:
-#       - cd src/
-#       - pytest
 test-python:
     stage: Test
-  tags:
-    - shell
+    tags:
+      - shell
     script:
-    - cd lib/build/jar/
-    - ls
-    
+      - cd lib/build/jar
+      - ls
+
 
 deploy:
   stage: Deploy
