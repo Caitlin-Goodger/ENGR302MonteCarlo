@@ -94,3 +94,20 @@ def test_position_parallel():
     assert np.min(maxPositionsParallel) >= 0
     assert np.max(maxPositionsParallel) < 15
 
+def test_position_lateral_direction():
+    try:
+        from unittest.mock import patch
+    except ImportError:
+        from mock import patch
+        
+    lateralMovement=[]
+    with open(outfile, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            lateralMovement.append(float(row["Lateral Direction"]))
+    average = np.average(lateralMovement)
+    print(average)
+    assert average > 30
+    assert average < 65
+    assert np.min(lateralMovement) > 15
+    assert np.max(lateralMovement) < 75
