@@ -72,7 +72,7 @@ def test_position_upwind():
     average = np.average(maxPositionsUpwind)
     print(average)
     assert average > 45
-    assert average < 65
+    assert average < 67
     assert np.min(maxPositionsUpwind) > 30
     assert np.max(maxPositionsUpwind) < 80
 
@@ -90,11 +90,11 @@ def test_position_parallel():
     average = np.average(maxPositionsParallel)
     print(average)
     assert average >= 0
-    assert average < 5
+    assert average < 6
     assert np.min(maxPositionsParallel) >= 0
-    assert np.max(maxPositionsParallel) < 15
+    assert np.max(maxPositionsParallel) < 16
 
-def test_position_lateral_direction():
+def test_lateral_direction():
     try:
         from unittest.mock import patch
     except ImportError:
@@ -107,7 +107,25 @@ def test_position_lateral_direction():
             lateralMovement.append(float(row["Lateral Direction"]))
     average = np.average(lateralMovement)
     print(average)
-    assert average > 30
+    assert average > 25
     assert average < 65
-    assert np.min(lateralMovement) > 15
-    assert np.max(lateralMovement) < 75
+    assert np.min(lateralMovement) > 0
+    assert np.max(lateralMovement) < 80
+
+def test_lateral_distance():
+    try:
+        from unittest.mock import patch
+    except ImportError:
+        from mock import patch
+        
+    lateralDistance=[]
+    with open(outfile, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            lateralDistance.append(float(row["Lateral Distance"]))
+    average = np.average(lateralDistance)
+    print(average)
+    assert average > -0.7
+    assert average < 0.7
+    assert np.min(lateralDistance) > -3.5
+    assert np.max(lateralDistance) < 3.5
