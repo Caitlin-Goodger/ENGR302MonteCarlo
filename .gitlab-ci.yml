@@ -37,7 +37,7 @@ test-python:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
       - ls ../lib/build/jar/
-      - pytest test_args.py
+      - pytest test_sim_listeners.py
 
 
 deploy:
