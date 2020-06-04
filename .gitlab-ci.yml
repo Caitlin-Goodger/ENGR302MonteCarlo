@@ -16,7 +16,7 @@ build:
       - lib/build/jar/OpenRocket.jar
     expire_in: 1 week
 
-unittest:
+unittest-java:
   stage: Test
   tags:
     - shell
@@ -24,6 +24,15 @@ unittest:
     - cd lib/openrocketjava/
     - ant unittest
   allow_failure: false
+
+test-python:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - pytest
+    
 
 deploy:
   stage: Deploy
