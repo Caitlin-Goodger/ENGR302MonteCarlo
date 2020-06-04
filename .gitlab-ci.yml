@@ -38,8 +38,8 @@ unittest-java:
 #       - pytest
 test-python:
     stage: Test
-    tags:
-        -shell
+  tags:
+    - shell
     script:
     - cd lib/build/jar/
     - ls
