@@ -34,8 +34,9 @@ test-python:
     tags:
       - shell
     script:
-      - cd lib/build/jar
-      - ls
+      - cd src/
+      - ls ../lib/build/jar/
+      - pytest
 
 
 deploy:
