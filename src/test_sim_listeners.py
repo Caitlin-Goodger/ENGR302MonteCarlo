@@ -47,7 +47,7 @@ def test_max_altitude():
         from mock import patch
 
     maxAlts=[]
-    with open(outfile, newline='') as csvfile:
+    with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             maxAlts.append(float(row["Max Altitude"]))
@@ -65,7 +65,7 @@ def test_position_upwind():
         from mock import patch
         
     maxPositionsUpwind=[]
-    with open(outfile, newline='') as csvfile:
+    with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             maxPositionsUpwind.append(float(row["Max Position upwind"]))
@@ -83,7 +83,7 @@ def test_position_parallel():
         from mock import patch
         
     maxPositionsParallel=[]
-    with open(outfile, newline='') as csvfile:
+    with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             maxPositionsParallel.append(float(row["Max Position parallel to wind"]))
@@ -101,7 +101,7 @@ def test_lateral_direction():
         from mock import patch
         
     lateralMovement=[]
-    with open(outfile, newline='') as csvfile:
+    with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             lateralMovement.append(float(row["Lateral Direction"]))
@@ -119,7 +119,7 @@ def test_lateral_distance():
         from mock import patch
         
     lateralDistance=[]
-    with open(outfile, newline='') as csvfile:
+    with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             lateralDistance.append(float(row["Lateral Distance"]))
