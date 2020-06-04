@@ -55,8 +55,42 @@ def test_max_altitude():
     print(average)
     assert average > 12
     assert average < 25
-    assert np.min(maxAlts) > 10
-    assert np.max(maxAlts) < 30
+    assert np.min(maxAlts) > 8
+    assert np.max(maxAlts) < 32
     
-    
+def test_position_upwind():
+    try:
+        from unittest.mock import patch
+    except ImportError:
+        from mock import patch
+        
+    maxPositionsUpwind=[]
+    with open(outfile, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            maxPositionsUpwind.append(float(row["Max Position upwind"]))
+    average = np.average(maxPositionsUpwind)
+    print(average)
+    assert average > 45
+    assert average < 65
+    assert np.min(maxPositionsUpwind) > 30
+    assert np.max(maxPositionsUpwind) < 80
+
+def test_position_parallel():
+    try:
+        from unittest.mock import patch
+    except ImportError:
+        from mock import patch
+        
+    maxPositionsParallel=[]
+    with open(outfile, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            maxPositionsParallel.append(float(row["Max Position parallel to wind"]))
+    average = np.average(maxPositionsParallel)
+    print(average)
+    assert average >= 0
+    assert average < 5
+    assert np.min(maxPositionsParallel) >= 0
+    assert np.max(maxPositionsParallel) < 15
 
