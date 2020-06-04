@@ -1,6 +1,8 @@
 import simulation
 import sys
 import pytest
+import re
+
 
 # Test system defaults 
 def test_no_params():
@@ -62,3 +64,24 @@ def test_invalid(capsys):
             out,err = capsys.readouterr()
             assert "optional arguments:" in out
             assert "error: unrecognized arguments" in err
+
+# Test valid args are used
+def test_valid_args(capsys):
+    try:
+        from unittest.mock import patch
+    except ImportError:
+        from mock import patch
+
+    testargs = ["prog","-n", "5", "-lat", "60", "-long", "50", "-wsa", "1"]
+    with patch.object(sys, 'argv', testargs):  
+        with patch.object(sys, "exit"):
+            sim = simulation.Simulation()
+            args = 0
+            sim.set_args(args)
+            sim.parse_args()
+            sim.runSimulation()
+            out = capsys.readouterr()
+            lat = "60.... lat"
+            long = "50.... long"
+            assert (re.search(lat,out.out) is not None)
+            assert (re.search(long,out.out) is not None)
