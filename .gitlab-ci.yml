@@ -2,6 +2,10 @@ stages:
   - Build
   - Test
   - Deploy
+  
+before_script:
+    - pip install JPype1
+
 
 build:
   stage: Build
