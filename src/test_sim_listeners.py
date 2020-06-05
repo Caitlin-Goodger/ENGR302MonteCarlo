@@ -18,7 +18,7 @@ Check results are outputted reasonably to csv.
 
 check all inputs are within defined % range (we provide sigma)
 """
-outfile="./csv_made.csv"
+outfile="csv_made.csv"
 
 
 @pytest.fixture(autouse=True, scope="module")
