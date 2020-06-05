@@ -1,7 +1,4 @@
 import simulation 
-import os
-import sys
-import glob
 
 args = 0
 sim = simulation.Simulation()

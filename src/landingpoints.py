@@ -27,17 +27,11 @@ class LandingPoints():
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
 
-            print("Adding sims")
             # Load the document and get simulation
             orh = orhelper.Helper()
-            print("Helper added")
 
-
-            print("Using rocket at {}".format(self.resource_path(self.args.rocket)))
-            print(os.path.exists(self.resource_path(self.args.rocket)))
 
             doc = orh.load_doc(self.resource_path(self.args.rocket))
-            print("Doc loaded")
             sim = doc.getSimulation(0)
             
             # Randomize various parameters

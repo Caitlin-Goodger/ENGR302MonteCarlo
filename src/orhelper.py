@@ -17,8 +17,6 @@ class OpenRocketInstance(object):
 
         print("Startup")
             
-        print("Using jar at {}".format(self.resource_path(jar_path)))
-        print(os.path.exists(self.resource_path(jar_path)))
         startJVM(getDefaultJVMPath(), "-Djava.class.path=%s" % self.resource_path(jar_path), convertStrings=False)
  
         orp = JPackage("net").sf.openrocket
@@ -39,7 +37,7 @@ class OpenRocketInstance(object):
     def resource_path(self, relative_path):
         """ Get absolute path to resource, works for dev and for PyInstaller """
         base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-        return os.path.join(base_path, "openrocket.jar")
+        return os.path.join(base_path, relative_path)
         
 class Helper(object):
     """ This class contains a variety of useful helper functions and wrapper for using
