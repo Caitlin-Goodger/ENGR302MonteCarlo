@@ -1,6 +1,7 @@
 import sys, traceback
 from jpype import *
 import numpy as np
+import os
 
 class OpenRocketInstance(object):
     """ When instantiated, this class starts up a new openrocket instance.
@@ -16,8 +17,10 @@ class OpenRocketInstance(object):
 
         print("Startup")
             
-        startJVM(getDefaultJVMPath(), "-Djava.class.path=%s" % jar_path, convertStrings=False)
-
+        print("Using jar at {}".format(self.resource_path(jar_path)))
+        print(os.path.exists(self.resource_path(jar_path)))
+        startJVM(getDefaultJVMPath(), "-Djava.class.path=%s" % self.resource_path(jar_path), convertStrings=False)
+ 
         orp = JPackage("net").sf.openrocket
         orp.startup.Startup2.loadMotor()
     
@@ -32,6 +35,11 @@ class OpenRocketInstance(object):
             print ('Exception while calling openrocket')
             print ('Exception info : ', ty, value, tb)
             print ('Traceback : ',traceback.print_exception(ty, value, tb))
+    
+    def resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        return os.path.join(base_path, "openrocket.jar")
         
 class Helper(object):
     """ This class contains a variety of useful helper functions and wrapper for using

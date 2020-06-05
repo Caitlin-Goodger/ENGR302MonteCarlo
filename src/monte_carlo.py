@@ -1,6 +1,9 @@
 import simulation 
-args = 0
+import os
+import sys
+import glob
 
+args = 0
 sim = simulation.Simulation()
 sim.set_args(args)
 sim.parse_args()

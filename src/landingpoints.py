@@ -5,6 +5,8 @@ from jpype import *
 from random import gauss
 import csv
 import numpy as np
+import os
+import sys
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -17,12 +19,25 @@ class LandingPoints():
         self.lateral_movement = []
         self.args = args
 
+    def resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        return os.path.join(base_path, self.args.rocket)
+
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
 
+            print("Adding sims")
             # Load the document and get simulation
             orh = orhelper.Helper()
-            doc = orh.load_doc(self.args.rocket)
+            print("Helper added")
+
+
+            print("Using rocket at {}".format(self.resource_path(self.args.rocket)))
+            print(os.path.exists(self.resource_path(self.args.rocket)))
+
+            doc = orh.load_doc(self.resource_path(self.args.rocket))
+            print("Doc loaded")
             sim = doc.getSimulation(0)
             
             # Randomize various parameters
@@ -35,6 +50,7 @@ class LandingPoints():
 
             sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
+            print("Running {} sims".format(num))
             for p in range(num):
                 print ('Running simulation ', p+1)
                 
