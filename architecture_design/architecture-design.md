@@ -257,9 +257,9 @@ ECS - School of Engineering and Computer Science.
 | Name | Sections Contributed|
 | ---- | ----               |
 |Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.1, 5.2.1, 5.4, 5.4.1, Spelling & Grammar |
-|Zac Durant   | 4.1, 4.2             |
+|Zac Durant   | 4.1, 4.3             |
 |Zak Kiernander | 4.5          |
-|Nicole Stallinger|         |
+|Nicole Stallinger| 4.2        |
 |Caitlin Goodger|1,1.1,3.2,4.4,5.2.1           |
 |Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
 
