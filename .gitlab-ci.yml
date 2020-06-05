@@ -2,6 +2,10 @@ stages:
   - Build
   - Test
   - Deploy
+  
+before_script:
+    - pip install --user JPype1
+
 
 build:
   stage: Build
@@ -16,7 +20,7 @@ build:
       - lib/build/jar/OpenRocket.jar
     expire_in: 1 week
 
-unittest:
+unittest-java:
   stage: Test
   tags:
     - shell
@@ -24,6 +28,25 @@ unittest:
     - cd lib/openrocketjava/
     - ant unittest
   allow_failure: false
+
+test-python-args:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - pytest test_args.py
+
+test-python-listeners:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - pytest test_sim_listeners.py
+
 
 deploy:
   stage: Deploy
