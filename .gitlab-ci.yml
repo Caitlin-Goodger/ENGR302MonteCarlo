@@ -29,14 +29,23 @@ unittest-java:
     - ant unittest
   allow_failure: false
 
-test-python:
+test-python-args:
     stage: Test
     tags:
       - shell
     script:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - pytest
+      - pytest test_args.py
+
+test-python-listeners:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - pytest test_sim_listeners.py
 
 
 deploy:
