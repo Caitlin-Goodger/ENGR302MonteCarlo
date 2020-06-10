@@ -19,19 +19,13 @@ class LandingPoints():
         self.lateral_movement = []
         self.args = args
 
-    def resource_path(self, relative_path):
-        """ Get absolute path to resource, works for dev and for PyInstaller """
-        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-        return os.path.join(base_path, self.args.rocket)
-
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
 
             # Load the document and get simulation
             orh = orhelper.Helper()
 
-
-            doc = orh.load_doc(self.resource_path(self.args.rocket))
+            doc = orh.load_doc(self.args.rocket)
             sim = doc.getSimulation(0)
             
             # Randomize various parameters
