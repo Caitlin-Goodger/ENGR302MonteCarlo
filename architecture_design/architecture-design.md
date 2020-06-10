@@ -78,6 +78,8 @@ References to other documents or standards. Follow the IEEE Citation Reference s
 
 [6] "Sequence Diagram", PlantUML. [Online]. Available: https://plantuml.com/sequence-diagram. [Accessed: 29-May-2020]
 
+[7] "Class Diagram", PlantUML. [Online]. Available: https://plantuml.com/class-diagram. [Accessed: 29-May-2020]
+
 ## 3. Architecture
 
 Describe your system's architecture according to ISO/IEC/IEEE 42010:2011(E), ISO/IEC/IEEE 12207, ISO/IEC/IEEE 15289 and ISO/IEC/IEEE 15288.
