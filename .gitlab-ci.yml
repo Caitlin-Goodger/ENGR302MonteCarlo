@@ -26,9 +26,8 @@ package:
     - shell
   script:
     - pip install --user pyinstaller
-    - cd src
-    - pyinstaller monte_carlo.spec
-  
+    - find / -name "pyinstaller"
+
 
 unittest-java:
   stage: Test
