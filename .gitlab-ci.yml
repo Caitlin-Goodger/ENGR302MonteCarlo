@@ -19,6 +19,16 @@ build:
     paths:
       - lib/build/jar/OpenRocket.jar
     expire_in: 1 week
+    
+package:
+  stage: Build
+  tags:
+    - shell
+  script:
+    - pip install pyinstaller
+    - cd src
+    - pyinstaller monte_carlo.spec
+  
 
 unittest-java:
   stage: Test
