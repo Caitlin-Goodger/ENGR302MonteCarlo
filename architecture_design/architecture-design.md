@@ -9,27 +9,39 @@ A walking skeleton is an initial technical attempt that will form the architectu
 In the context of ENGR 301, a walking skeleton does not need to deliver any business value to your project: the aim is technical validation and risk mitigation.
 
 
-## Document
+## Table of Contents [1]
 
-The aim of the architectural design document is to describe the architecture and high-level design of the system your group is to build, to identify any critical technical issues with your design, and to explain how you have addressed the highest rated technical and architectural risks. The architecture document should also demonstrate your understanding of architectural techniques and architectural quality, using tools and associated notations as necessary to communicate the architecture precisely, unambiguously and clearly in a written technical document.
-
-Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those architectural concerns that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification.
-
-The ENGR 301 project architecture design document should be based on the standard ISO/IEC/IEEE 42010:2011(E) _Systems and software engineering &mdash; Architecture description_, plus appropriate sections from ISO/IEC/IEEE 29148:2018(E) _Systems and software engineering &mdash; Life cycle processes &mdash; Requirements engineering_; ISO/IEC/IEEE 15289:2017 _Systems and software engineering &mdash; Content of life-cycle information items (documentation)_; ISO/IEC/IEEE 15288:2015 _Systems and software engineering &mdash; System life-cycle processes_; ISO/IEC/IEEE 12207:2017 _Systems and software engineering &mdash; Software life cycle processes_ and ISO 25010 SQuaRE; with notations from ISO/ISE 19501 (UML). In particular, Annex F of ISO/IEC/IEEE 15288 and Annex F of ISO/IEC/IEEE 12207. These standards are available through the Victoria University Library subscription to the [IEEE Xplore Digital Library](https://ieeexplore.ieee.org/) (e.g., by visiting IEEE Xplore from a computer connected to the University network).
-
-The document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief.
-
-All team members are expected to contribute equally to the document and list their contributions in the last section of the document (please make sure that your continued contribution to this document can be traced in GitLab). You should work on your document in your team's GitLab repository in a directory called "M2_Architecture". If more than one team member has contributed to a particular commit, all those team member IDs should be included in the first line of the git commit message. ``git blame``, ``git diff``, file histories, etc. will be tools used to assess individual contributions, so everyone is encouraged to contribute individually (your contribution should be made to many sections of the document, rather than focusing on just a single section), commit early and commit often.
-
----
+- [ENGR 301: Architectural Design and Proof-of-Concept](#engr-301--architectural-design-and-proof-of-concept)
+  * [Proof-of-Concept](#proof-of-concept)
+  * [Table of Contents](#Table of Contents)
+- [ENGR 301 Project 14 Architectural Design and Proof-of-Concept](#engr-301-project-14-architectural-design-and-proof-of-concept)
+  * [1. Introduction](#1-introduction)
+    + [Client](#client)
+    + [1.1 Purpose](#11-purpose)
+    + [1.2 Scope](#12-scope)
+    + [1.3 Changes to requirements](#13-changes-to-requirements)
+  * [2. References](#2-references)
+  * [3. Architecture](#3-architecture)
+    + [3.1 Stakeholders](#31-stakeholders)
+    + [3.2 Architectural Viewpoints](#32-architectural-viewpoints)
+   + [4. Architectural Views](#4-architectural-views)
+    + [4.1 Logical](#41-logical)
+    + [4.2 Development](#42-development)
+    + [4.3 Process](#43-process)
+    + [4.4 Physical](#44-physical)
+    + [4.5 Scenarios](#45-scenarios)
+  * [5.1 Development Schedule](#51-development-schedule)
+    + [5.2 Budget and Procurement](#52-budget-and-procurement)
+    + [5.3 Risks](#53-risks)
+    + [5.4 Health and Safety](#54-health-and-safety)
+  * [6. Appendices](#6-appendices)
+  * [7. Contributions](#7-contributions)
 
 # ENGR 301 Project 14 Architectural Design and Proof-of-Concept
 
 Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger and Matthew Butterfield.
 
 ## 1. Introduction
-
-One page overall introduction including sections 1.1 and 1.2 (ISO/IEC/IEEE 42010:2011(E) clause 5.2)
 
 Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features.
 
@@ -58,13 +70,9 @@ This product is a Rocket Simulation program.
 
 ### 1.3 Changes to requirements
 
-If the requirement have changed significantly since the requirements document, outline the changes here. Changes must be justified and supported by evidences, i.e., they must be substantiated. (max one page, only if required)
-
 There are currently no changes to the requirements.
 
 ## 2. References
-
-References to other documents or standards. Follow the IEEE Citation Reference scheme, available from the [IEEE website](https://ieee-dataport.org/sites/default/files/analysis/27/IEEE%20Citation%20Guidelines.pdf) (PDF; 20 KB). (1 page, longer if required)
 
 [1] “GitHub Wiki TOC generator,” Generate TOC Table of Contents from GitHub Markdown or Wiki Online. [Online]. Available: http://ecotrust-canada.github.io/markdown-toc. [Accessed: 22-May-2020].
 
