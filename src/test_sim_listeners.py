@@ -34,6 +34,7 @@ def setup_module():
 #     os.remove(outfile)
 
 def test_csv_made():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
