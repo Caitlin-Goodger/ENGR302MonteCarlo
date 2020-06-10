@@ -25,7 +25,7 @@ package:
   tags:
     - shell
   script:
-    - pip install pyinstaller
+    - pip install --user pyinstaller
     - cd src
     - pyinstaller monte_carlo.spec
   
