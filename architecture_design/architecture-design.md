@@ -43,11 +43,11 @@ Caitlin Goodger, Luisa Kristen, Zac Durant, Zak Kiernander, Nicole Stallinger an
 
 ## 1. Introduction
 
-Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors with widely available propellant reloads. These rockets often exceed the speed of sound, altitudes above 30 km are not unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features.
+Amateur rockets are flown regularly worldwide. These rockets are typically flown with off the shelf rocket motors, and widely available propellant reloads. These rockets often exceed the speed of sound, with altitudes above 30 km not being unheard of. These rockets are almost never controlled, they are stable due to passive aerodynamic features.
 
 While passively stable rockets are reasonably simple and reliable if well designed, they are susceptible to a variety of disturbances, particularly early in flight. Unexpected winds can cause the rocket to weathercock; flexibility in the launch tower/rail can cause rail-whip, imparting a random launch angle to the rocket; the thrust from the rocket motor is also never perfectly symmetrical.
 
-Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be measured accurately to give a more accurate simulation to allow for smaller, finalising adjustments including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
+Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be precisely measured to give a more accurate simulation to allow for smaller, finalising adjustments, including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
 
 The rocket uses a PID (Proportional Integral Derivative) controller to keep it fixed on an axis. Normally, parameters of PID are difficult to obtain due to the short period of time that the rocket motors are burning. Simulation can allow for estimate parameters for the PID controller.
 
@@ -74,7 +74,7 @@ There are currently no changes to the requirements.
 
 ## 2. References
 
-[1] “GitHub Wiki TOC generator,” Generate TOC Table of Contents from GitHub Markdown or Wiki Online. [Online]. Available: http://ecotrust-canada.github.io/markdown-toc. [Accessed: 22-May-2020].
+[1] “GitHub Wiki TOC generator,” Generate TOC Table of Contents from GitHub Markdown or Wiki Online. [Online]. Available: http://ecotrust-canada.github.io/markdown-toc. [Accessed: 11-June-2020].
 
 [2] “Developer's Guide,” Developer's Guide - OpenRocket wiki, 30-Apr-2020. [Online]. Available: http://wiki.openrocket.info/Developer's_Guide. [Accessed: 08-May-2020].
 
@@ -100,61 +100,43 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 ### 3.1 Stakeholders
 
-See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
-
-For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
-
 #### Stakeholder Requirements
 
-##### Client
-
-##### School of Engineering and Computer Science
-* ECS requires that all aspects of the project are correctly licensed. 
-* ECS requires all aspects of the project follow the guidelines set out by ECS. 
-  
-##### Wider Rocket Community
-* To improve and extend openRocket. 
-  * This includes but is not limited to automating some processes, such as choosing variables, and exporting landing results, having the ability to export these results for future reference.
+The stakeholder requirements are consistent with those found in section 3.8 of the Project Proposal and Requirements Document.
 
 ### 3.2 Architectural Viewpoints
-(1 page, 42010 5.4) 
 
-Identify the architectural viewpoints you will use to present your system's architecture. Write one sentence to outline each viewpoint. Show which viewpoint frames which architectural concern.
+**Logical:**
 
-Logical: The logical viewpoint describes the system functions for the end user. It describes how the user interacts with the system and what classes are involved. It is being represented with class and state diagrams. It also provides information about how the user will move between the classes and states. 
+ The logical viewpoint describes the system functions for the end user. It describes how the user interacts with the system and what classes are involved. It is being represented with class and state diagrams. It also provides information about how the user will move between the classes and states. 
 
-Development: The development viewpoint describes the architecture the support the processes involved in the development cycle to manage the software. It describes the management system of the software to address the concerns regarding the management. 
+**Development:**
 
-Process: The process viewpoint describes the dynamic and non-functional requirements. These requirements include concerns around performance and availability concurrency. It also describes how the logical views fits with the process view.  
+ The development viewpoint describes the architecture the support the processes involved in the development cycle to manage the software. It describes the management system of the software to address the concerns regarding the management. 
 
-Physical: The physical viewpoint describes how the software fits with the hardware of the system. It describes the how the software deals with the hardware availability, reliability, performance and scalability of the system. 
+**Process:**
 
-Scenarios: The scenarios viewpoint describes the user cases of the system. It describes how the user and the system interact with each other. 
+The process viewpoint describes the dynamic and non-functional requirements. These requirements include concerns around performance and availability concurrency. It also describes how the logical views fits with the process view.  
 
-Circuit Architecture: The circuit architecture viewpoint describes how the physical system is put together. Due to the fact that this is entirely a software project this section is not appropriate for this project.
+**Physical:**
 
-Hardware Architecture: The hardware architecture viewpoint describes how the hardware functions in the system, and allows it to function. Due to the fact that this is entirely a software project this section is not appropriate for this project. 
+The physical viewpoint describes how the software fits with the hardware of the system. It describes the how the software deals with the hardware availability, reliability, performance and scalability of the system. 
+
+**Scenarios:**
+
+ The scenarios viewpoint describes the user cases of the system. It describes how the user and the system interact with each other. 
+
+**Circuit Architecture:**
+
+The circuit architecture viewpoint describes how the physical system is put together. Due to the fact that this is entirely a software project this section is not appropriate for this project.
+
+**Hardware Architecture:**
+
+The hardware architecture viewpoint describes how the hardware functions in the system, and allows it to function. Due to the fact that this is entirely a software project this section is not appropriate for this project. 
 
 ### 4. Architectural Views
 
-(5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
-
-Describe your system's architecture in a series of architectural views, each view corresponding to one viewpoint.
-
-You should include views from the following viewpoints (from Kruchten's 4+1 model):
-
- * Logical
- * Development
- * Process
- * Physical 
- * Scenarios - present scenarios illustrating how two of your most important use cases are supported by your architecture
-
-As appropriate you should include the following viewpoints:
-
- * Circuit Architecture
- * Hardware Architecture
-
-Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
+This section describes our system's architecture, in a series of architectural views. Each of these views corresponds to one viewpoint. 
 
 ### 4.1 Logical
 
@@ -278,7 +260,7 @@ ECS - School of Engineering and Computer Science.
 
 | Name | Sections Contributed|
 | ---- | ----               |
-|Luisa Kristen| 1, 1.1, 1.2, 3.1, 5.1, 5.2.1, 5.4, 5.4.1, Spelling & Grammar |
+|Luisa Kristen| 1, 1.1, 1.2, 3.1, 4, 5.1, 5.2.1, 5.4, 5.4.1, Spelling & Grammar |
 |Zac Durant   | 4.1, 4.3             |
 |Zak Kiernander | 4.5          |
 |Nicole Stallinger| 4.2        |
