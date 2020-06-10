@@ -27,7 +27,6 @@ def setup_module():
         from unittest.mock import patch
     except ImportError:
         from mock import patch
-    print("Creating file")
     subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
 
 # def teardown_module():
@@ -43,6 +42,7 @@ def test_csv_made():
 
 
 def test_max_altitude():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -61,6 +61,7 @@ def test_max_altitude():
     assert np.max(maxAlts) < 32
     
 def test_position_upwind():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -74,11 +75,12 @@ def test_position_upwind():
     average = np.average(maxPositionsUpwind)
     print(average)
     assert average > 45
-    assert average < 67
+    assert average < 70
     assert np.min(maxPositionsUpwind) > 28
     assert np.max(maxPositionsUpwind) < 80
 
 def test_position_parallel():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -97,6 +99,7 @@ def test_position_parallel():
     assert np.max(maxPositionsParallel) < 16
 
 def test_lateral_direction():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -115,6 +118,7 @@ def test_lateral_direction():
     assert np.max(lateralMovement) < 80
 
 def test_lateral_distance():
+    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
