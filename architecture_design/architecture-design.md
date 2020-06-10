@@ -84,6 +84,10 @@ There are currently no changes to the requirements.
 
 [5] S. Writer, “Top 10 Software Development Risks,” ITProPortal, 14-Jun-2010. [Online]. Available: https://www.itproportal.com/2010/06/14/top-ten-software-development-risks/. [Accessed: 22-May-2020].
 
+[6] "Sequence Diagram", PlantUML. [Online]. Available: https://plantuml.com/sequence-diagram. [Accessed: 29-May-2020]
+
+[7] "Class Diagram", PlantUML. [Online]. Available: https://plantuml.com/class-diagram. [Accessed: 29-May-2020]
+
 ## 3. Architecture
 
 Describe your system's architecture according to ISO/IEC/IEEE 42010:2011(E), ISO/IEC/IEEE 12207, ISO/IEC/IEEE 15289 and ISO/IEC/IEEE 15288.
