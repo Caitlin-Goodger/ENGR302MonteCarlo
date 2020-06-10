@@ -27,6 +27,7 @@ def setup_module():
         from unittest.mock import patch
     except ImportError:
         from mock import patch
+    print("Creating file")
     subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
 
 # def teardown_module():
