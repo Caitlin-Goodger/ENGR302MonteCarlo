@@ -20,7 +20,7 @@ class LandingPoints():
         self.args = args
 
     def add_simulations(self, num):
-        with orhelper.OpenRocketInstance('../lib/build/jar/OpenRocket.jar', log_level='ERROR'):
+        with orhelper.OpenRocketInstance('../lib/build/jar/openrocket.jar', log_level='ERROR'):
 
             # Load the document and get simulation
             orh = orhelper.Helper()
