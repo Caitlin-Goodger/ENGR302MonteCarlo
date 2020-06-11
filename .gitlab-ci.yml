@@ -27,7 +27,7 @@ package:
     - shell
   script:
     - cd src/
-    - pyinstaller monte_carlo.spec
+    - python -m PyInstaller monte_carlo.spec
 
 
 unittest-java:
