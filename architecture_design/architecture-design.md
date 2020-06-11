@@ -88,6 +88,8 @@ There are currently no changes to the requirements.
 
 [7] "Class Diagram", PlantUML. [Online]. Available: https://plantuml.com/class-diagram. [Accessed: 29-May-2020]
 
+[8] "What is Component Diagram", Visual-Paradigm. [Online]. Available: https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-component-diagram/ [Accessed: 29-May-2020]
+
 ## 3. Architecture
 
 Describe your system's architecture according to ISO/IEC/IEEE 42010:2011(E), ISO/IEC/IEEE 12207, ISO/IEC/IEEE 15289 and ISO/IEC/IEEE 15288.
@@ -158,6 +160,13 @@ Component Model
 ![Component Diagram](componentDiagram.PNG)
 
 This diagram shows the relationships of our system with external components, and the necessary interfaces.
+
+Most of the management for the development process is managed by GitLab, which is the version control system used for this project.  One of the risks that we had identified was the loss of files and work. We have managed this risk, by ensuring that all files and work be stored on the Gitlab, either in the repository or on the wiki if that is more appropriate. By having all the work on Gitlab, all members of the group are able to find and view the progress that is being made. 
+
+We will also create branches for issues, so that there is no chance of overwriting someone else work and have less conflicts. It allows multiple features to be developed at once by having one feature per branch. It also allows for non-functioning code to be committed to GitLab. By keeping non-functioning code off master, it means that the project will still be able to be run by running the version of master, while having code that is in the process of being developed on other branches. It also allows for a branch to be removed and never merged into master if the feature is no longer required or is unable to correctly function. Once a feature is complete, and has been tested, it can be merged back into master by creating a merge request. This allows the other group members the ability to review the code before it is merged into master. The request requires approval from other members, to ensure that multiple people agree that the branch should be merged back into master and functions correctly. This method of organisation provides benefit to the member of the project and the project itself as it allows the master branch to be kept functioning while additional features are added around it. Branching is a feature that it built into GitLab, which means that it is easy to integrate with this project.
+
+Another feature of GitLab that is being utilised for this project is the Milestones and Issues. Issues are created for something that needs to be fixed or implemented. Issues can then be assigned weights and then assigned to people. This ensures that every member of the group knows what every other member is doing. It helps ensure that multiple people don’t start working on the same issues. Issues can be grouped in Milestones that is a larger goal. An example of a Milestone could be the minimum viable product. These tools help manage the project as it helps everyone understand what is currently being work on and how close to completing each step. GitLab offers multiple graphs, including burndown charts to help illustrate this point. 
+
 
 ### 4.3 Process
 
