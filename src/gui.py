@@ -87,7 +87,7 @@ class Window:
         if self.longa.get() != '':
             args.startlong = float(self.longa.get())
         if self.nInp.get() != '':
-            args.simcount = float(self.nInp.get())
+            args.simcount = int(self.nInp.get())
         
         print(args)
         sim = simulation.Simulation()
