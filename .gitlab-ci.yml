@@ -5,6 +5,7 @@ stages:
   
 before_script:
     - pip install --user JPype1
+    - pip install --user pyinstaller
 
 
 build:
@@ -25,8 +26,8 @@ package:
   tags:
     - shell
   script:
-    - pip install --user pyinstaller
-    - find / -name "pyinstaller"
+    - cd src/
+    - pyinstaller monte_carlo.spec
 
 
 unittest-java:
