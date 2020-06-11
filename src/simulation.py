@@ -42,7 +42,7 @@ class Simulation(object):
         parser.add_argument("-rdds", "--roddirectionsigma", dest = "roddirectionsigma", default = 5, help="The rod direction sigma to launch at.", type = float)
 
         parser.add_argument("-wsa", "--windspeed", dest = "windspeed", default = 15, help="The average wind speed.", type = float)
-        parser.add_argument("-wsas", "--windspeedsigma", dest = "roddirectionsigma", default = 5, help="The average wind speed sigma.", type = float)
+        parser.add_argument("-wsas", "--windspeedsigma", dest = "windspeedsigma", default = 5, help="The average wind speed sigma.", type = float)
 
         parser.add_argument("-lat", "--lat", dest = "startlat", default= 0, help = "The starting latitude for the simulation.",  type = float)
         parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "The starting longitude for the simulation.",  type = float)

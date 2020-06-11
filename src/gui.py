@@ -63,10 +63,13 @@ class Window:
         print (self.filename)
 
     def exec(self):
-        args = Namespace(rocket='model.ork', output='./out.csv', rodangle=45, rodanglesigma=5, roddirection=0, roddirectionsigma=5,windspeed=15,windspeedsigma=5, simcount=20, lat=0, long=0, n=5)
+        args = Namespace(rocket='model.ork', outfile='./out.csv', rodangle=45, rodanglesigma=5, 
+                        roddirection=0, roddirectionsigma=5,
+                        windspeed=15,windspeedsigma=5, 
+                        startlat=0,startlong=0, simcount=20)
         
         if self.filename != '':
-            args.rocket = self.filename
+            args.outfile = self.filename
         if self.rodangle.get() != '':
             args.rodangle = float(self.rodangle.get())
         if self.rodanglesigma.get() != '':
@@ -77,14 +80,14 @@ class Window:
             args.roddirectionsigma = float(self.roddirectionsigma.get())
         if self.windspeed.get() != '':
             args.windspeed = float(self.windspeed.get())
-            # __ Sigma version
+        if self.windspeedsigmaInp.get() != '':
+            args.windspeedsigma = float(self.windspeed.get())
+        if self.lat.get() != '':
+            args.startlat = float(self.lat.get())
+        if self.longa.get() != '':
+            args.startlong = float(self.longa.get())
         if self.nInp.get() != '':
             args.simcount = float(self.nInp.get())
-        if self.lat.get() != '':
-            args.lat = float(self.lat.get())
-        if self.longa.get() != '':
-            args.long = float(self.longa.get())
-        # n iterations
         
         print(args)
         sim = simulation.Simulation()
