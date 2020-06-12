@@ -33,7 +33,6 @@ def teardown_module():
     os.remove(outfile)
 
 def test_csv_made():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -42,7 +41,6 @@ def test_csv_made():
 
 
 def test_max_altitude():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -61,7 +59,6 @@ def test_max_altitude():
     assert np.max(maxAlts) < 32
     
 def test_position_upwind():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -80,7 +77,6 @@ def test_position_upwind():
     assert np.max(maxPositionsUpwind) < 85
 
 def test_position_parallel():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -99,7 +95,6 @@ def test_position_parallel():
     assert np.max(maxPositionsParallel) < 16
 
 def test_lateral_direction():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
@@ -118,7 +113,6 @@ def test_lateral_direction():
     assert np.max(lateralMovement) < 85
 
 def test_lateral_distance():
-    setup_module()
     try:
         from unittest.mock import patch
     except ImportError:
