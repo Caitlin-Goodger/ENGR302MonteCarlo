@@ -167,7 +167,7 @@ Sequence model
 
 This project is entirely a software project. This section describes the how the software deals with the hardware availability, reliability, performance and scalability of the system. Due to the fact that this is entirely a software project these are no concerns that need to be considered. As the software is creating a simulation, it doesn't have deal with hardware availability, reliability, performance and scalability. These would the hardware features that can made it harder to integrate the software with the hardware. 
 
-However, this project is part of a larger system that does have hardware components. For this project to be able to interact with the larger system, there are some hardware concerns. When interacting with projects that have hardware, there may be some concerns around how the software integrate with the hardware of those projects. These concerns are the concerns mentioned above. While these aren't concerns for this project, they are concerns when interacting with other project. Since they aren't concerns for this project, there are no architecture views in this section, but they may need to be considered when interacting with other projects.
+However, this project is part of a larger system that does have hardware components. For this project to be able to interact with the larger system, there are some hardware concerns. When interacting with projects that have hardware, there may be some concerns around how the software integrates with the hardware of those projects. These concerns are the concerns mentioned above. While these aren't concerns for this project, they are concerns when interacting with other project. Since they aren't concerns for this project, there are no architecture views in this section, but they may need to be considered when interacting with other projects.
 
 The simulation function of this project, this will be used by groups building a rocket to simulate how the rocket design will fly, and where it could land. The simulation is not dependent on the hardware, as it can be run with any model of a rocket, as long as this was created in OpenRocket.
 
@@ -262,5 +262,5 @@ ECS - School of Engineering and Computer Science.
 |Zac Durant   | 4.1, 4.3             |
 |Zak Kiernander | 4.5          |
 |Nicole Stallinger| 4.2        |
-|Caitlin Goodger|1,1.1,3.2,4.4,5.2.1           |
+|Caitlin Goodger|1,1.1,3.2,4.1,4.2,4,34.4,5.2.1           |
 |Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
