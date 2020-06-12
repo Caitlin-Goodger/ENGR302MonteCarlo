@@ -38,48 +38,39 @@ class InputOptions(tk.Frame):
 
         #rda
         tk.Label(self, text="Rod angle").grid(column=0, row=1)
-        self.rodangleInp=tk.StringVar()
-        self.rodangle=tk.Entry(self,width=25,textvariable=self.rodangleInp)
+        self.rodangle=tk.Entry(self,width=25)
         self.rodangle.grid(column=0, row=2)
         # rdas
         tk.Label(self, text="Rod angle sigma").grid(column=0, row=3)
-        self.rodanglesigmaInp=tk.StringVar()
-        self.rodanglesigma=tk.Entry(self,width=25,textvariable=self.rodanglesigmaInp)
+        self.rodanglesigma=tk.Entry(self,width=25)
         self.rodanglesigma.grid(column=0, row=4)
         # rdd
         tk.Label(self, text="Rod direction").grid(column=0, row=5)
-        self.roddirectionInp=tk.StringVar()
-        self.roddirection=tk.Entry(self,width=25,textvariable=self.roddirectionInp)
+        self.roddirection=tk.Entry(self,width=25)
         self.roddirection.grid(column=0, row=6)
         # rdds
         tk.Label(self, text="Rod direction sigma").grid(column=0, row=7)
-        self.roddirectionsigmaInp=tk.StringVar()
-        self.roddirectionsigma=tk.Entry(self,width=25,textvariable=self.roddirectionsigmaInp)
+        self.roddirectionsigma=tk.Entry(self,width=25)
         self.roddirectionsigma.grid(column=0, row=8)
         # wsa
         tk.Label(self, text="Wind speed").grid(column=1, row=1)
-        self.windspeedInp=tk.StringVar()
-        self.windspeed=tk.Entry(self,width=25,textvariable=self.windspeedInp)
+        self.windspeed=tk.Entry(self,width=25)
         self.windspeed.grid(column=1, row=2)
         # wsas
         tk.Label(self, text="Wind speed sigma").grid(column=1, row=7)
-        self.windspeedsigmaInp=tk.StringVar()
-        self.windspeedsigma=tk.Entry(self,width=25,textvariable=self.windspeedsigmaInp)
+        self.windspeedsigma=tk.Entry(self,width=25)
         self.windspeedsigma.grid(column=1, row=8)
         # lat
         tk.Label(self, text="lat").grid(column=0, row=14)
-        self.latInp=tk.DoubleVar()
-        self.lat=tk.Entry(self,width=25,textvariable=self.latInp)
+        self.lat=tk.Entry(self,width=25)
         self.lat.grid(column=0, row=15)
         # long
         tk.Label(self, text="long").grid(column=0, row=16)
-        self.longaInp=tk.StringVar()
-        self.longa=tk.Entry(self,width=25,textvariable=self.longaInp)
+        self.longa=tk.Entry(self,width=25)
         self.longa.grid(column=0, row=17)
         # n
         tk.Label(self, text="Number of iteration").grid(column=0, row=18)
-        self.nInp=tk.StringVar()
-        self.n=tk.Entry(self,width=25,textvariable=self.nInp)
+        self.n=tk.Entry(self,width=25)
         self.n.grid(column=0, row=19)
 
         tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
@@ -106,14 +97,14 @@ class InputOptions(tk.Frame):
             args.roddirectionsigma = float(self.roddirectionsigma.get())
         if self.windspeed.get() != '':
             args.windspeed = float(self.windspeed.get())
-        if self.windspeedsigmaInp.get() != '':
+        if self.windspeedsigma.get() != '':
             args.windspeedsigma = float(self.windspeed.get())
         if self.lat.get() != '':
             args.startlat = float(self.lat.get())
         if self.longa.get() != '':
             args.startlong = float(self.longa.get())
-        if self.nInp.get() != '':
-            args.simcount = int(self.nInp.get())
+        if self.n.get() != '':
+            args.simcount = int(self.n.get())
         
         print(args)
         sim = simulation.Simulation()
