@@ -49,7 +49,9 @@ class Simulation(object):
         parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "The number of simulations to run.", type = int) 
         self.args = parser.parse_args()
 
-    def runSimulation(self) :
+    def runSimulation(self):
         points = landingpoints.LandingPoints(self.args)
         points.add_simulations(self.args.simcount)
         points.print_stats()
+        return points.getResults()
+

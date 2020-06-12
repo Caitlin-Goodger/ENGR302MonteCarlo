@@ -5,6 +5,7 @@ from jpype import *
 from random import gauss
 import csv
 import numpy as np
+from argparse import Namespace
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -74,8 +75,20 @@ class LandingPoints():
             for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
                 writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
 
-        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters. Lateral direction %3.3f degrees. Based on %i simulations.' % \
+        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altitude %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters. Lateral direction %3.3f degrees. Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
+
+    def getResults(self):
+        lats = [p.lat for p in self.landing_points]
+        longs = [p.long for p in self.landing_points]
+        altitudes = [p.max_height for p in self.max_altitudes]
+        upwinds = [p.upwind for p in self.upwind]
+        parallels = [p.parallel for p in self.parallel]
+        lateral_directions = [p.lateral_direction for p in self.lateral_movement]
+        lateral_distances = [p.lateral_distance for p in self.lateral_movement]
+
+        toReturn = Namespace(lat = np.mean(lats), long = np.mean(longs), altitude = np.mean(altitudes), upwind = np.mean(upwinds), parallel = np.mean(parallels), lateraldistance = np.mean(lateral_distances), lateraldirection = np.mean(lateral_directions), sims = len(self.landing_points) )
+        return toReturn
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      

@@ -1,5 +1,7 @@
 import tkinter as tk 
+import tkinter.ttk as ttk
 import simulation 
+import asyncio
 from tkinter import filedialog
 from argparse import Namespace
 
@@ -16,9 +18,10 @@ class MonteCarloApp(tk.Tk):
 
         #Layer frames on top of each other. The top of the stack order is the visible page.
         self.frames = {}
-        for F in (InputOptions, RunningSimulations):
-            page_name = F.__name__
-            frame = F(parent=container, controller=self)
+        self.results = Namespace(landingpoints = 'sad')
+        for f in (InputOptions, RunningSimulations, Results):
+            page_name = f.__name__
+            frame = f(parent=container, controller=self)
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
@@ -29,6 +32,9 @@ class MonteCarloApp(tk.Tk):
         #Show a frame for the given page name
         frame = self.frames[page_name]
         frame.tkraise()
+        frame.update()
+        if isinstance(frame, Results):
+                frame.displayResults()
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
@@ -87,7 +93,6 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Rocket File","*.ork")])
-        print (self.filename)
 
     def exec(self):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodangle=45, rodanglesigma=5, 
@@ -115,22 +120,42 @@ class InputOptions(tk.Frame):
             args.startlong = float(self.longa.get())
         if self.nInp.get() != '':
             args.simcount = int(self.nInp.get())
-        
-        print(args)
+
+        self.controller.show_frame("RunningSimulations")
+
         sim = simulation.Simulation()
         sim.set_args(args)
-        #sim.parse_args()
-        sim.runSimulation()
-        self.controller.show_frame("RunningSimulations")
+        self.controller.results = sim.runSimulation()
+
+        self.controller.show_frame("Results")
 
 class RunningSimulations(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        tk.Label(self, text="Running Simulations").grid(column=0, row=0)
+        # self.controller = controller
+        # self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        # self.progressBar.grid(column=0, row=1)    
+        # self.stepProgressBar()    
+
+    # def stepProgressBar(self):
+    #     self.progressBar.step(5)
+    #     self.after(50, self.stepProgressBar) # run again after 50ms,
+
+class Results(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        tk.Label(self, text="Results").grid(column=0, row=0)
         self.controller = controller
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("InputOptions"))
-        button.grid(column=0, row=0)
+
+    def displayResults(self):
+        count = 1
+        for k in list(vars(self.controller.results).keys()):
+            tk.Label(self, text=k).grid(column=0, row=count)
+            tk.Label(self, text=getattr(self.controller.results, k)).grid(column=1, row=count)
+            count = count + 1
 
 if __name__ == "__main__":
     app = MonteCarloApp()
