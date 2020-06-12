@@ -36,6 +36,10 @@ class MonteCarloApp(tk.Tk):
         if isinstance(frame, Results):
                 frame.displayResults()
 
+class Empty():
+    def get(self):
+        return ''
+
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -44,43 +48,39 @@ class InputOptions(tk.Frame):
         tk.Button(self, text='Open Rocket', width=25, command=self.getFile).grid(column=0, row=0)
 
         #rda
-        tk.Label(self, text="Rod angle").grid(column=0, row=1)
-        self.rodangle=tk.Entry(self,width=25)
-        self.rodangle.grid(column=0, row=2)
+        self.rodangle = Empty()
+        self.createLabel(tk, self.rodangle, "Rod angle", 0, 1)
         # rdas
-        tk.Label(self, text="Rod angle sigma").grid(column=0, row=3)
-        self.rodanglesigma=tk.Entry(self,width=25)
-        self.rodanglesigma.grid(column=0, row=4)
+        self.rodanglesigma = Empty()
+        self.createLabel(tk, self.rodanglesigma, "Rod angle sigma", 0, 3)
         # rdd
-        tk.Label(self, text="Rod direction").grid(column=0, row=5)
-        self.roddirection=tk.Entry(self,width=25)
-        self.roddirection.grid(column=0, row=6)
+        self.roddirection = Empty()
+        self.createLabel(tk, self.roddirection, "Rod direction", 0, 5)
         # rdds
-        tk.Label(self, text="Rod direction sigma").grid(column=0, row=7)
-        self.roddirectionsigma=tk.Entry(self,width=25)
-        self.roddirectionsigma.grid(column=0, row=8)
+        self.roddirectionsigma = Empty()
+        self.createLabel(tk, self.roddirectionsigma, "Rod direction sigma", 0, 7)
         # wsa
-        tk.Label(self, text="Wind speed").grid(column=1, row=1)
-        self.windspeed=tk.Entry(self,width=25)
-        self.windspeed.grid(column=1, row=2)
+        self.windspeed = Empty()
+        self.createLabel(tk, self.windspeed, "Wind speed", 1, 1)
         # wsas
-        tk.Label(self, text="Wind speed sigma").grid(column=1, row=7)
-        self.windspeedsigma=tk.Entry(self,width=25)
-        self.windspeedsigma.grid(column=1, row=8)
+        self.windspeedsigma = Empty()
+        self.createLabel(tk, self.windspeedsigma, "Wind speed sigma", 1, 7)
         # lat
-        tk.Label(self, text="lat").grid(column=0, row=14)
-        self.lat=tk.Entry(self,width=25)
-        self.lat.grid(column=0, row=15)
+        self.lat = Empty()
+        self.createLabel(tk, self.lat, "lat", 0, 14)
         # long
-        tk.Label(self, text="long").grid(column=0, row=16)
-        self.longa=tk.Entry(self,width=25)
-        self.longa.grid(column=0, row=17)
+        self.longa = Empty()
+        self.createLabel(tk, self.longa, "long", 0, 16)
         # n
-        tk.Label(self, text="Number of iteration").grid(column=0, row=18)
-        self.n=tk.Entry(self,width=25)
-        self.n.grid(column=0, row=19)
+        self.n = Empty()
+        self.createLabel(tk, self.n, "Number of iteration", 0, 18)
 
         tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
+
+    def createLabel(self, tk, var, name, colNum, rowNum):
+        tk.Label(self, text=name).grid(column=colNum, row=rowNum)
+        var=tk.Entry(self,width=25)
+        var.grid(column=colNum, row=rowNum+1)
 
     def getFile(self):
         self.filename =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Rocket File","*.ork")])
