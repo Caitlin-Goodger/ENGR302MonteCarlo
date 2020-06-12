@@ -4,21 +4,21 @@ import simulation
 import asyncio
 from tkinter import filedialog
 from argparse import Namespace
+import threading
 
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         #App window size
-        self.geometry("500x500")
         self.title('Loader')
         container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
+        container.pack(side="top", fill="both", expand=True, padx=5,pady=5)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
         #Layer frames on top of each other. The top of the stack order is the visible page.
         self.frames = {}
-        self.results = Namespace(landingpoints = 'sad')
+        self.results = Namespace()
         for f in (InputOptions, RunningSimulations, Results):
             page_name = f.__name__
             frame = f(parent=container, controller=self)
@@ -45,51 +45,42 @@ class InputOptions(tk.Frame):
 
         #rda
         tk.Label(self, text="Rod angle").grid(column=0, row=1)
-        self.rodangleInp=tk.StringVar()
-        self.rodangle=tk.Entry(self,width=25,textvariable=self.rodangleInp)
+        self.rodangle=tk.Entry(self,width=25)
         self.rodangle.grid(column=0, row=2)
         # rdas
-        tk.Label(self, text="rod angle sigma").grid(column=0, row=3)
-        self.rodanglesigmaInp=tk.StringVar()
-        self.rodanglesigma=tk.Entry(self,width=25,textvariable=self.rodanglesigmaInp)
+        tk.Label(self, text="Rod angle sigma").grid(column=0, row=3)
+        self.rodanglesigma=tk.Entry(self,width=25)
         self.rodanglesigma.grid(column=0, row=4)
         # rdd
-        tk.Label(self, text="rod direction").grid(column=0, row=5)
-        self.roddirectionInp=tk.StringVar()
-        self.roddirection=tk.Entry(self,width=25,textvariable=self.roddirectionInp)
+        tk.Label(self, text="Rod direction").grid(column=0, row=5)
+        self.roddirection=tk.Entry(self,width=25)
         self.roddirection.grid(column=0, row=6)
         # rdds
-        tk.Label(self, text="rod direction sigma").grid(column=0, row=7)
-        self.roddirectionsigmaInp=tk.StringVar()
-        self.roddirectionsigma=tk.Entry(self,width=25,textvariable=self.roddirectionsigmaInp)
+        tk.Label(self, text="Rod direction sigma").grid(column=0, row=7)
+        self.roddirectionsigma=tk.Entry(self,width=25)
         self.roddirectionsigma.grid(column=0, row=8)
         # wsa
-        tk.Label(self, text="wind speed").grid(column=0, row=9)
-        self.windspeedInp=tk.StringVar()
-        self.windspeed=tk.Entry(self,width=25,textvariable=self.windspeedInp)
-        self.windspeed.grid(column=0, row=10)
+        tk.Label(self, text="Wind speed").grid(column=1, row=1)
+        self.windspeed=tk.Entry(self,width=25)
+        self.windspeed.grid(column=1, row=2)
         # wsas
-        tk.Label(self, text="wind speed sigma").grid(column=0, row=11)
-        self.windspeedsigmaInp=tk.StringVar()
-        self.windspeedsigma=tk.Entry(self,width=25,textvariable=self.windspeedsigmaInp)
-        self.windspeedsigma.grid(column=0, row=12)
+        tk.Label(self, text="Wind speed sigma").grid(column=1, row=7)
+        self.windspeedsigma=tk.Entry(self,width=25)
+        self.windspeedsigma.grid(column=1, row=8)
         # lat
-        tk.Label(self, text="lat").grid(column=0, row=13)
-        self.latInp=tk.DoubleVar()
-        self.lat=tk.Entry(self,width=25,textvariable=self.latInp)
-        self.lat.grid(column=0, row=14)
+        tk.Label(self, text="lat").grid(column=0, row=14)
+        self.lat=tk.Entry(self,width=25)
+        self.lat.grid(column=0, row=15)
         # long
-        tk.Label(self, text="long").grid(column=0, row=15)
-        self.longaInp=tk.StringVar()
-        self.longa=tk.Entry(self,width=25,textvariable=self.longaInp)
-        self.longa.grid(column=0, row=16)
+        tk.Label(self, text="long").grid(column=0, row=16)
+        self.longa=tk.Entry(self,width=25)
+        self.longa.grid(column=0, row=17)
         # n
-        tk.Label(self, text="Number of iteration").grid(column=0, row=17)
-        self.nInp=tk.StringVar()
-        self.n=tk.Entry(self,width=25,textvariable=self.nInp)
-        self.n.grid(column=0, row=18)
+        tk.Label(self, text="Number of iteration").grid(column=0, row=18)
+        self.n=tk.Entry(self,width=25)
+        self.n.grid(column=0, row=19)
 
-        tk.Button(self, text='Execute', width=25, command=self.exec).grid(column=0, row=19)
+        tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
 
     def getFile(self):
         self.filename =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Rocket File","*.ork")])
@@ -112,21 +103,24 @@ class InputOptions(tk.Frame):
             args.roddirectionsigma = float(self.roddirectionsigma.get())
         if self.windspeed.get() != '':
             args.windspeed = float(self.windspeed.get())
-        if self.windspeedsigmaInp.get() != '':
+        if self.windspeedsigma.get() != '':
             args.windspeedsigma = float(self.windspeed.get())
         if self.lat.get() != '':
             args.startlat = float(self.lat.get())
         if self.longa.get() != '':
             args.startlong = float(self.longa.get())
-        if self.nInp.get() != '':
-            args.simcount = int(self.nInp.get())
-
-        self.controller.show_frame("RunningSimulations")
-
+        if self.n.get() != '':
+            args.simcount = int(self.n.get())
+        
+        print(args)
         sim = simulation.Simulation()
         sim.set_args(args)
-        self.controller.results = sim.runSimulation()
+        thread1 = threading.Thread(target = self.runSims,args=[sim])
+        thread1.start()
 
+    def runSims(self,sim):
+        self.controller.show_frame("RunningSimulations")
+        self.controller.results = sim.runSimulation()
         self.controller.show_frame("Results")
 
 class RunningSimulations(tk.Frame):
@@ -134,14 +128,14 @@ class RunningSimulations(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text="Running Simulations").grid(column=0, row=0)
-        # self.controller = controller
-        # self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
-        # self.progressBar.grid(column=0, row=1)    
-        # self.stepProgressBar()    
+        self.controller = controller
+        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        self.progressBar.grid(column=0, row=1)    
+        self.stepProgressBar()    
 
-    # def stepProgressBar(self):
-    #     self.progressBar.step(5)
-    #     self.after(50, self.stepProgressBar) # run again after 50ms,
+    def stepProgressBar(self):
+        self.progressBar.step(5)
+        self.after(50, self.stepProgressBar) # run again after 50ms,
 
 class Results(tk.Frame):
 
