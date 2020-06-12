@@ -18,7 +18,7 @@ def test_no_params():
         sim.set_args(args)
         sim.parse_args()
         assert sim.args.outfile == "./out.csv" 
-        assert sim.args.rocket == "model.ork" 
+        assert sim.args.rocket == sim.resource_path("model.ork")
         assert sim.args.simcount == 20  
         assert sim.args.rodangle == 45 
         assert sim.args.rodanglesigma == 5 

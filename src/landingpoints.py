@@ -5,6 +5,8 @@ from jpype import *
 from random import gauss
 import csv
 import numpy as np
+import os
+import sys
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -22,6 +24,7 @@ class LandingPoints():
 
             # Load the document and get simulation
             orh = orhelper.Helper()
+
             doc = orh.load_doc(self.args.rocket)
             sim = doc.getSimulation(0)
             
@@ -35,6 +38,7 @@ class LandingPoints():
 
             sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
+            print("Running {} sims".format(num))
             for p in range(num):
                 print ('Running simulation ', p+1)
                 

@@ -4,6 +4,7 @@ import abstractlistener
 import landingpoints
 import argparse
 import sys
+import os
         
 class AirStart(abstractlistener.AbstractSimulationListener):
     
@@ -32,7 +33,7 @@ class Simulation(object):
     def parse_args(self) :
         parser = DefaultHelpParser(argparse.ArgumentParser())
         
-        parser.add_argument("-rocket", "--rocket", dest = "rocket", default = "model.ork", help="The model rocket file to run the simulation with.")
+        parser.add_argument("-rocket", "--rocket", dest = "rocket", default = self.resource_path("model.ork"), help="The model rocket file to run the simulation with.")
         parser.add_argument("-o", "--output", dest = "outfile", default = "./out.csv", help="The output CSV location.")
 
         parser.add_argument("-rda", "--rodangle", dest = "rodangle", default = 45, help="The rod angle to launch at.", type = float)
@@ -48,6 +49,12 @@ class Simulation(object):
         parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "The starting longitude for the simulation.",  type = float)
         parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "The number of simulations to run.", type = int) 
         self.args = parser.parse_args()
+
+    
+    def resource_path(self, relative_path):
+        """ Get absolute path to resource, works for dev and for PyInstaller """
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        return os.path.join(base_path,relative_path)
 
     def runSimulation(self) :
         points = landingpoints.LandingPoints(self.args)

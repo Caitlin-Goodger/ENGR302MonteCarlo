@@ -72,7 +72,7 @@ def test_position_upwind():
     average = np.average(maxPositionsUpwind)
     print(average)
     assert average > 45
-    assert average < 67
+    assert average < 70
     assert np.min(maxPositionsUpwind) > 28
     assert np.max(maxPositionsUpwind) < 85
 
