@@ -21,7 +21,7 @@ check all inputs are within defined % range (we provide sigma)
 outfile="csv_made.csv"
 
 
-
+@pytest.fixture(autouse=True, scope="module")
 def setup_module():
     try:
         from unittest.mock import patch
@@ -29,8 +29,8 @@ def setup_module():
         from mock import patch
     subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
 
-# def teardown_module():
-#     os.remove(outfile)
+def teardown_module():
+    os.remove(outfile)
 
 def test_csv_made():
     setup_module()
@@ -77,7 +77,7 @@ def test_position_upwind():
     assert average > 45
     assert average < 70
     assert np.min(maxPositionsUpwind) > 28
-    assert np.max(maxPositionsUpwind) < 80
+    assert np.max(maxPositionsUpwind) < 85
 
 def test_position_parallel():
     setup_module()
@@ -115,7 +115,7 @@ def test_lateral_direction():
     assert average > 25
     assert average < 65
     assert np.min(lateralMovement) > 0
-    assert np.max(lateralMovement) < 80
+    assert np.max(lateralMovement) < 85
 
 def test_lateral_distance():
     setup_module()

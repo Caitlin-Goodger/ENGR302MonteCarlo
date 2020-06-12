@@ -46,6 +46,11 @@ test-python-listeners:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
       - pytest test_sim_listeners.py
+    artifacts:
+      when: on_failure
+      paths:
+        - src/*.log
+      expire_in: 1 day
 
 
 deploy:
