@@ -4,9 +4,8 @@ block_cipher = None
 
 
 a = Analysis(['monte_carlo.py'],
-             pathex=['/Users/zacdurant/Desktop/group-14/src'],
              binaries=[],
-             datas=[('../lib/build/jar/openrocket.jar', '../lib/build/jar/'), ('model.ork', '.')],
+             datas=[('../lib/build/jar/OpenRocket.jar', '../lib/build/jar/'), ('model.ork', '.')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],

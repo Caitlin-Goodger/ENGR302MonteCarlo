@@ -2,9 +2,11 @@ stages:
   - Build
   - Test
   - Deploy
+  - Package
   
 before_script:
     - pip install --user JPype1
+    - pip install --user pyinstaller
 
 
 build:
@@ -19,6 +21,19 @@ build:
     paths:
       - lib/build/jar/OpenRocket.jar
     expire_in: 1 week
+    
+package:
+  stage: Package
+  tags:
+    - shell
+  script:
+    - cd src/
+    - python -m PyInstaller monte_carlo.spec
+  artifacts:
+    paths:
+      - src/dist/
+    expire_in: 1 week
+
 
 unittest-java:
   stage: Test
