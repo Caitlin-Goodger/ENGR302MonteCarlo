@@ -262,5 +262,5 @@ ECS - School of Engineering and Computer Science.
 |Zac Durant   | 4.1, 4.3             |
 |Zak Kiernander | 4.5          |
 |Nicole Stallinger| 4.2        |
-|Caitlin Goodger|1,1.1,3.2,4.1,4.2,4,34.4,5.2.1           |
+|Caitlin Goodger|1,1.1,3.2,4.1,4.2,4.3,4.4,5.2.1           |
 |Matthew Butterfield| 5.1, 5.2.2, 5.3, 6.1, 6.2 |
