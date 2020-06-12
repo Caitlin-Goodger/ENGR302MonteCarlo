@@ -36,10 +36,6 @@ class MonteCarloApp(tk.Tk):
         if isinstance(frame, Results):
                 frame.displayResults()
 
-class Empty():
-    def get(self):
-        return ''
-
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -48,38 +44,37 @@ class InputOptions(tk.Frame):
         tk.Button(self, text='Open Rocket', width=25, command=self.getFile).grid(column=0, row=0)
 
         #rda
-        self.rodangle = Empty()
+        self.rodangle = tk.Entry(self,width=25)
         self.createLabel(tk, self.rodangle, "Rod angle", 0, 1)
         # rdas
-        self.rodanglesigma = Empty()
+        self.rodanglesigma = tk.Entry(self,width=25)
         self.createLabel(tk, self.rodanglesigma, "Rod angle sigma", 0, 3)
         # rdd
-        self.roddirection = Empty()
+        self.roddirection = tk.Entry(self,width=25)
         self.createLabel(tk, self.roddirection, "Rod direction", 0, 5)
         # rdds
-        self.roddirectionsigma = Empty()
+        self.roddirectionsigma = tk.Entry(self,width=25)
         self.createLabel(tk, self.roddirectionsigma, "Rod direction sigma", 0, 7)
         # wsa
-        self.windspeed = Empty()
+        self.windspeed = tk.Entry(self,width=25)
         self.createLabel(tk, self.windspeed, "Wind speed", 1, 1)
         # wsas
-        self.windspeedsigma = Empty()
+        self.windspeedsigma = tk.Entry(self,width=25)
         self.createLabel(tk, self.windspeedsigma, "Wind speed sigma", 1, 7)
         # lat
-        self.lat = Empty()
+        self.lat = tk.Entry(self,width=25)
         self.createLabel(tk, self.lat, "lat", 0, 14)
         # long
-        self.longa = Empty()
+        self.longa = tk.Entry(self,width=25)
         self.createLabel(tk, self.longa, "long", 0, 16)
         # n
-        self.n = Empty()
+        self.n = tk.Entry(self,width=25)
         self.createLabel(tk, self.n, "Number of iteration", 0, 18)
 
         tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
 
     def createLabel(self, tk, var, name, colNum, rowNum):
         tk.Label(self, text=name).grid(column=colNum, row=rowNum)
-        var=tk.Entry(self,width=25)
         var.grid(column=colNum, row=rowNum+1)
 
     def getFile(self):
@@ -89,7 +84,7 @@ class InputOptions(tk.Frame):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodangle=45, rodanglesigma=5, 
                         roddirection=0, roddirectionsigma=5,
                         windspeed=15,windspeedsigma=5, 
-                        startlat=0,startlong=0, simcount=20)
+                        startlat=0,startlong=0, simcount=25)
         
         if self.filename != '':
             args.outfile = self.filename
