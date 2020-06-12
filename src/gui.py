@@ -99,7 +99,7 @@ class InputOptions(tk.Frame):
         if self.windspeed.get() != '':
             args.windspeed = float(self.windspeed.get())
         if self.windspeedsigma.get() != '':
-            args.windspeedsigma = float(self.windspeed.get())
+            args.windspeedsigma = float(self.windspeedsigma.get())
         if self.lat.get() != '':
             args.startlat = float(self.lat.get())
         if self.longa.get() != '':
