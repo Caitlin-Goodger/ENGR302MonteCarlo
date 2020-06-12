@@ -2,6 +2,7 @@ import tkinter as tk
 import simulation 
 from tkinter import filedialog
 from argparse import Namespace
+import threading
 
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -109,18 +110,20 @@ class InputOptions(tk.Frame):
         print(args)
         sim = simulation.Simulation()
         sim.set_args(args)
-        #sim.parse_args()
-        sim.runSimulation()
+        thread1 = threading.Thread(target = self.runSims,args=[sim])
+        thread1.start()
+
+    def runSims(self,sim):
         self.controller.show_frame("RunningSimulations")
+        sim.runSimulation()
+        self.controller.show_frame("InputOptions")
 
 class RunningSimulations(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        button = tk.Button(self, text="Go to the start page",
-                           command=lambda: controller.show_frame("InputOptions"))
-        button.grid(column=0, row=0)
+        tk.Label(self, text="Runnig Simulations").grid(column=0, row=18)
 
 if __name__ == "__main__":
     app = MonteCarloApp()
