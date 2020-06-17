@@ -87,7 +87,7 @@ class LandingPoints():
         lateral_directions = [p.lateral_direction for p in self.lateral_movement]
         lateral_distances = [p.lateral_distance for p in self.lateral_movement]
 
-        toReturn = Namespace(lat = np.mean(lats), long = np.mean(longs), altitude = np.mean(altitudes), upwind = np.mean(upwinds), parallel = np.mean(parallels), lateraldistance = np.mean(lateral_distances), lateraldirection = np.mean(lateral_directions), sims = len(self.landing_points) )
+        toReturn = Namespace(lat = np.format_float_positional(np.mean(lats)), long = np.format_float_positional(np.mean(longs)), altitude = np.format_float_positional(np.mean(altitudes)), upwind = np.format_float_positional(np.mean(upwinds)), parallel = np.format_float_positional(np.mean(parallels)), lateraldistance = np.format_float_positional(np.mean(lateral_distances)), lateraldirection = np.format_float_positional(np.mean(lateral_directions)), sims = len(self.landing_points) )
         return toReturn
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
