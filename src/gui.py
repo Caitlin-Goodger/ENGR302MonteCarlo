@@ -87,7 +87,7 @@ class InputOptions(tk.Frame):
                         startlat=0,startlong=0, simcount=25)
         
         if self.filename != '':
-            args.outfile = self.filename
+            args.rocket = self.filename
         if self.rodangle.get() != '':
             args.rodangle = float(self.rodangle.get())
         if self.rodanglesigma.get() != '':
