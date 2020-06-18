@@ -40,7 +40,7 @@ class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.filename = './out.csv'
+        self.filename = 'model.ork'
         tk.Button(self, text='Open Rocket', width=25, command=self.getFile).grid(column=0, row=0)
 
         #rda
