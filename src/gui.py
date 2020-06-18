@@ -96,26 +96,19 @@ class InputOptions(tk.Frame):
                         windspeed=15,windspeedsigma=5, 
                         startlat=0,startlong=0, simcount=25)
         
-        if self.filename != '':
-            args.rocket = self.filename
-        if self.rodangle.get() != '':
-            args.rodangle = float(self.rodangle.get())
-        if self.rodanglesigma.get() != '':
-            args.rodanglesigma = float(self.rodanglesigma.get())
-        if self.roddirection.get() != '':
-            args.roddirection = float(self.roddirection.get())
-        if self.roddirectionsigma.get() != '':
-            args.roddirectionsigma = float(self.roddirectionsigma.get())
-        if self.windspeed.get() != '':
-            args.windspeed = float(self.windspeed.get())
-        if self.windspeedsigma.get() != '':
-            args.windspeedsigma = float(self.windspeedsigma.get())
-        if self.lat.get() != '':
-            args.startlat = float(self.lat.get())
-        if self.longa.get() != '':
-            args.startlong = float(self.longa.get())
-        if self.n.get() != '':
-            args.simcount = int(self.n.get())
+        values = Namespace(rocket=self.filename, outfile='./out.csv', rodangle=self.rodangle.get(), rodanglesigma=self.rodanglesigma.get(), 
+                    roddirection=self.roddirection.get(), roddirectionsigma=self.roddirectionsigma.get(),
+                    windspeed=self.windspeed.get(),windspeedsigma=self.windspeedsigma.get(), 
+                    startlat=self.lat.get(),startlong=self.longa.get(), simcount=self.n.get())
+
+        for k in args.__dict__:
+            if values.__dict__[k] != '':                
+                if k == 'rocket' or k == 'outfile':
+                    args.__dict__[k] = values.__dict__[k]
+                elif k == 'simcount':
+                    args.__dict__[k] = int(values.__dict__[k])
+                else:
+                    args.__dict__[k] = float(values.__dict__[k])
         
         sim = simulation.Simulation()
         sim.set_args(args)
