@@ -6,8 +6,9 @@ from random import gauss
 import csv
 import numpy as np
 from argparse import Namespace
+import Events
 
-class LandingPoints():
+class LandingPoints(Events.Events):
     "A list of landing points with ability to run simulations and populate itself"    
     
     def __init__(self, args) :
@@ -54,6 +55,7 @@ class LandingPoints():
                 pp = PositionParallel()
                 lm = LateralMovement()
                 orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+                self.trigger("sim_stage_done",p)
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
