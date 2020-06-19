@@ -5,8 +5,9 @@ import asyncio
 from tkinter import filedialog
 from argparse import Namespace
 import threading
+import Events
 
-class MonteCarloApp(tk.Tk):
+class MonteCarloApp(tk.Tk,Events.Events):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         #App window size
@@ -103,14 +104,20 @@ class InputOptions(tk.Frame):
                     args.__dict__[k] = float(values.__dict__[k])
         
         sim = simulation.Simulation()
-        sim.set_args(args)
+        simListen=sim.set_args(args)
+        simListen.on("sim_stage_done", self.stagedone)
+        self.controller.trigger("sim_set_simcount", args.__dict__["simcount"])
         thread1 = threading.Thread(target = self.runSims,args=[sim])
         thread1.start()
 
     def runSims(self,sim):
         self.controller.show_frame("RunningSimulations")
-        self.controller.results = sim.runSimulation()
+        self.resp=sim.runSimulation()
+        self.controller.results = self.resp.getResults()
         self.controller.show_frame("Results")
+    
+    def stagedone(self,step):
+        self.controller.trigger("sim_stage_done",step)
 
 class RunningSimulations(tk.Frame):
 
@@ -118,9 +125,20 @@ class RunningSimulations(tk.Frame):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text="Running Simulations").grid(column=0, row=0)
         self.controller = controller
-        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='determinate',length = 100)
         self.progressBar.grid(column=0, row=1)    
-        self.stepProgressBar()    
+        self.totalSteps=1
+        self.controller.on("sim_stage_done",self.setStep)
+        self.controller.on("sim_set_simcount",self.stepWorth)
+        self.progressBar["value"]=0
+        self.progressBar.update()
+    
+    def stepWorth(self,total):
+        self.totalSteps=total
+    
+    def setStep(self,upto):
+        self.progressBar["value"]=((upto+1)/self.totalSteps)*100
+        self.progressBar.update_idletasks()
 
     def stepProgressBar(self):
         self.progressBar.step(5)
