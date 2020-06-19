@@ -51,7 +51,7 @@ test-python-args:
     script:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - pytest test_args.py
+      - python -m pytest tests/test_args.py
 
 test-python-listeners:
     stage: Test
@@ -60,7 +60,7 @@ test-python-listeners:
     script:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - pytest test_sim_listeners.py
+      - python -m pytest tests/test_args.py
     artifacts:
       when: on_failure
       paths:
