@@ -10,7 +10,7 @@ class Events(object):
         else:
             self.callbacks[event_name].append(callback)
 
-    def trigger(self, event_name):
+    def trigger(self, event_name,*args):
         if self.callbacks is not None and event_name in self.callbacks:
             for callback in self.callbacks[event_name]:
-                callback(self)
+                callback(*args)
