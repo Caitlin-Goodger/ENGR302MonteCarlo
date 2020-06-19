@@ -72,7 +72,7 @@ def test_position_upwind():
     average = np.average(maxPositionsUpwind)
     print(average)
     assert average > 45
-    assert average < 67
+    assert average < 70
     assert np.min(maxPositionsUpwind) > 28
     assert np.max(maxPositionsUpwind) < 85
 
@@ -104,7 +104,7 @@ def test_lateral_direction():
     with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            lateralMovement.append(float(row["Lateral Direction"]))
+            lateralMovement.append(float(row["Lateral Direction (°)"]))
     average = np.average(lateralMovement)
     print(average)
     assert average > 25
@@ -122,7 +122,7 @@ def test_lateral_distance():
     with open(outfile) as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            lateralDistance.append(float(row["Lateral Distance"]))
+            lateralDistance.append(float(row["Lateral Distance (meters)"]))
     average = np.average(lateralDistance)
     print(average)
     assert average > -0.7

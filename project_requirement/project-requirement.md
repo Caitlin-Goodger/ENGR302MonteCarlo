@@ -465,7 +465,8 @@ It is crucial that this system is well integrated with OpenRocket. Integration i
 
 #### Portable
 
-Portability outlines how usable a system is in different operating environments.
+Portability outlines how usable a system is in different operating environments. This attribute can be achieved by packaging the project. This ensures that the project is more portable, and easily able to be used across different devices. Portability will be tested by ensuring packaged software is useable on a variety of hardware and operating systems.
+
 
 ### 3.8 Physical and Environmental Requirements 
 

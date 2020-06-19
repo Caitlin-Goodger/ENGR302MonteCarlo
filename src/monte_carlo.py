@@ -1,6 +1,6 @@
 import simulation 
-args = 0
 
+args = 0
 sim = simulation.Simulation()
 sim.set_args(args)
 sim.parse_args()
