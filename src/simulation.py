@@ -26,9 +26,12 @@ class DefaultHelpParser(argparse.ArgumentParser):
 class Simulation(object):
     def __init__(self) :
         self.args = 0
+        self.points=landingpoints.LandingPoints(self.args)
 
     def set_args(self,new_args) :
         self.args = new_args
+        self.points = landingpoints.LandingPoints(self.args)
+        return self.points
 
     def parse_args(self) :
         parser = DefaultHelpParser(argparse.ArgumentParser())
@@ -49,6 +52,13 @@ class Simulation(object):
         parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "The starting longitude for the simulation.",  type = float)
         parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "The number of simulations to run.", type = int) 
         self.args = parser.parse_args()
+        self.points = landingpoints.LandingPoints(self.args)
+        return self.points
+
+    def runSimulation(self):
+        self.points.add_simulations(self.args.simcount)
+        self.points.print_stats()
+        return self.points
 
     
     def resource_path(self, relative_path):
