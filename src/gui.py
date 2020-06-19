@@ -132,12 +132,17 @@ class RunningSimulations(tk.Frame):
         self.controller.on("sim_set_simcount",self.stepWorth)
         self.progressBar["value"]=0
         self.progressBar.update()
+
+        self.progressLabel=tk.Label(self, text="0%")
+        self.progressLabel.grid(column=0, row=2)
     
     def stepWorth(self,total):
         self.totalSteps=total
     
     def setStep(self,upto):
-        self.progressBar["value"]=((upto+1)/self.totalSteps)*100
+        percent=int(((upto+1)/self.totalSteps)*100)
+        self.progressBar["value"]=percent
+        self.progressLabel['text']=(str(percent)+"%")
         self.progressBar.update_idletasks()
 
 class Results(tk.Frame):
