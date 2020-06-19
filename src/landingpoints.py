@@ -72,7 +72,7 @@ class LandingPoints():
         lateral_directions = [p.lateral_direction for p in self.lateral_movement]
         lateral_distances = [p.lateral_distance for p in self.lateral_movement]
 
-        with open(self.args.outfile, 'w') as file:
+        with open(self.args.outfile, 'w',newline="\n") as file:
             writer = csv.writer(file)
             writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
             for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
