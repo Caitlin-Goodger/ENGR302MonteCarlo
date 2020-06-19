@@ -140,10 +140,6 @@ class RunningSimulations(tk.Frame):
         self.progressBar["value"]=((upto+1)/self.totalSteps)*100
         self.progressBar.update_idletasks()
 
-    def stepProgressBar(self):
-        self.progressBar.step(5)
-        self.after(50, self.stepProgressBar) # run again after 50ms,
-
 class Results(tk.Frame):
 
     def __init__(self, parent, controller):
