@@ -65,8 +65,3 @@ class Simulation(object):
         """ Get absolute path to resource, works for dev and for PyInstaller """
         base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_path,relative_path)
-
-    def runSimulation(self) :
-        points = landingpoints.LandingPoints(self.args)
-        points.add_simulations(self.args.simcount)
-        points.print_stats()
