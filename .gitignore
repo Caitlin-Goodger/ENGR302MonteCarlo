@@ -76,3 +76,5 @@ _minted*
 
 ## Python
 *.pyc
+
+src/out.csv
