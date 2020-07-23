@@ -588,7 +588,7 @@ Further releases will occur up until the final prototype release, scheduled for 
 
 **Sprints**
 
-Sprints start every second Friday, due to Retrospectives occurring every second Thursday with our Tutor, Miniruwani.
+Sprints start every second Monday, due to Retrospectives occurring every second Friday with our Tutor, Miniruwani.
 
 - Weeks 6-7 Project Requirement document and Minimum viable product.
 - Weeks 8-9 Minimum viable product. (MVP Milestone due at end of sprint.)
@@ -596,12 +596,12 @@ Sprints start every second Friday, due to Retrospectives occurring every second 
 - Week 12 No sprint due to test. Work on Architecture design document if possible.
   
 Trimester 2:
-- Weeks 1-2 PID Controllers
-- Weeks 3-4 PID Controllers
+- Weeks 1-2 Tech Debt and Tidy Up
+- Weeks 3-4 Convert scatter to map and Weather data
 - Weeks 5-6 Upwind rocket vectors
 - Weeks 7-8 Upwind rocket vectors
-- Weeks 9-10 Convert scatter to map
-- Weeks 11-12 Convert scatter to map
+- Weeks 9-10 PID Controllers
+- Weeks 11-12 Prepare for presentation and write manuals for customer and use
 
 ### 5.2 Budget
 
