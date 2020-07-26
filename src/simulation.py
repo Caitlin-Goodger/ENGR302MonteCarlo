@@ -27,7 +27,10 @@ class WeatherData(object):
     def read-weather-data:
         with open('testinweather.csv', mode ='r') as infile:
             reader = csv.reader(infile)
-            mydict = {rows[0]:rows[1] for rows in reader}
+            ##mydict = {rows[0]:rows[1] for rows in reader}
+            mydict = {column[0]:colum[1] for columns in reader}
+            mydict = "f"
+            
 
 
 class Simulation(object):
