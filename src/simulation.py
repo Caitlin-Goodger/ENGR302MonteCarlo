@@ -22,6 +22,9 @@ class DefaultHelpParser(argparse.ArgumentParser):
         self.print_help()
         sys.exit()
 
+class WeatherData(object):
+    def read-weather-data:
+        
 
 class Simulation(object):
     def __init__(self) :
