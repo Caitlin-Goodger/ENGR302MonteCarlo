@@ -390,23 +390,23 @@ To satisfy the users of this system, the system needs to be able to complete the
 
 Performance requirements define the expected performance of our software, outlining what the user's base expectation can be from using our product. 
 
-- The software should provide a list of required/available parameters to the user to assist in usability
+- The software should provide a list of required/available parameters to the user to assist in usability, this will be achieved by creating and enabling parameter flags that the program can be run with. 
 
-- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (`.ork` files)
+- The program should support the simulation of all valid rocket models produced in OpenRocket 1.9 (`.ork` files), this will be achieved by maintaining the current OpenRocket functionality. 
 
-- The program should support the use of a single user simulating the performance of a single modelled rocket. The user should be able to execute the program more than once simultaneously to exceed this limit. 
+- The program should support the use of a single user simulating the performance of a single modelled rocket. The user should be able to execute the program more than once simultaneously to exceed this limit. This will be achieved by ensuring the program can be opened and run multiple times, in seperate windows. 
 
-- The user should be able to provide additional information to the program to be used for the simulations such as launch-site and environmental conditions
+- The user should be able to provide additional information to the program to be used for the simulations such as launch-site and environmental conditions, we will achieve this by providing clear and easy to fill in GUI input options.
 
-- The number of supported simulations that can be run and summarised in a single execution should be guaranteed < 1000
+- The number of supported simulations that can be run and summarised in a single execution should be guaranteed < 1000, this will be achieved by validating the number of simulations specified. 
 
-- Average time taken per simulation should not exceed 0.5 seconds
+- Average time taken per simulation should not exceed 0.5 seconds, which we will achieve by optimising our code to run quickly. 
 
-- The time taken to perform the simulation should scale linearly with the number of individual simulations run
+- The time taken to perform the simulation should scale linearly with the number of individual simulations run, this will be achieved by running each simulation independently.
 
-- Resulting data should be output to the screen in a readable manner making use of summary functions and the full dataset should be output to a csv file
+- Resulting data should be output to the screen in a readable manner making use of summary functions and the full dataset should be output to a csv file.
 
-- The program should use a sensible method of statistical variation to provided a meaningful exploration of possible launch scenarios
+- The program should use a sensible method of statistical variation to provided a meaningful exploration of possible launch scenarios. This will be achieved by maintaining the current method of statistical variation provided in OpenRocket. 
 
 ### 3.5 Logical database requirements
 
@@ -465,7 +465,8 @@ It is crucial that this system is well integrated with OpenRocket. Integration i
 
 #### Portable
 
-Portability outlines how usable a system is in different operating environments.
+Portability outlines how usable a system is in different operating environments. This attribute can be achieved by packaging the project. This ensures that the project is more portable, and easily able to be used across different devices. Portability will be tested by ensuring packaged software is useable on a variety of hardware and operating systems.
+
 
 ### 3.8 Physical and Environmental Requirements 
 
@@ -587,7 +588,7 @@ Further releases will occur up until the final prototype release, scheduled for 
 
 **Sprints**
 
-Sprints start every second Friday, due to Retrospectives occurring every second Thursday with our Tutor, Miniruwani.
+Sprints start every second Monday, due to Retrospectives occurring every second Friday with our Tutor, Miniruwani.
 
 - Weeks 6-7 Project Requirement document and Minimum viable product.
 - Weeks 8-9 Minimum viable product. (MVP Milestone due at end of sprint.)
@@ -595,12 +596,12 @@ Sprints start every second Friday, due to Retrospectives occurring every second 
 - Week 12 No sprint due to test. Work on Architecture design document if possible.
   
 Trimester 2:
-- Weeks 1-2 PID Controllers
-- Weeks 3-4 PID Controllers
+- Weeks 1-2 Tech Debt and Tidy Up
+- Weeks 3-4 Convert scatter to map and Weather data
 - Weeks 5-6 Upwind rocket vectors
 - Weeks 7-8 Upwind rocket vectors
-- Weeks 9-10 Convert scatter to map
-- Weeks 11-12 Convert scatter to map
+- Weeks 9-10 PID Controllers
+- Weeks 11-12 Prepare for presentation and write manuals for customer and use
 
 ### 5.2 Budget
 
@@ -656,7 +657,7 @@ ECS - School of Engineering and Computer Science.
 
 | Name                | Sections Contributed             |
 | ------------------- | --------------------------       |
-| Luisa Kristen       | 2,3.8, 3.9, 5.1 , 6.1, 6.2, table of contents, spelling and grammar, proof-reading         |
+| Luisa Kristen       | 2, 3.4, 3.8, 3.9, 5.1 , 6.1, 6.2, table of contents, spelling and grammar, proof-reading         |
 | Zac Durant          | 5.4, 6.2, 1.3, 3.4, 3.5, 3.1, 4                   |
 | Zak Kiernander      | 3.2                              |
 | Nicole Stallinger   | 3.2, 3.7                             |
