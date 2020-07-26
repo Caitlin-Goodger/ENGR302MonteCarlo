@@ -5,6 +5,7 @@ import landingpoints
 import argparse
 import sys
 import os
+import csv
         
 class AirStart(abstractlistener.AbstractSimulationListener):
     
@@ -24,7 +25,10 @@ class DefaultHelpParser(argparse.ArgumentParser):
 
 class WeatherData(object):
     def read-weather-data:
-        
+        with open('testinweather.csv', mode ='r') as infile:
+            reader = csv.reader(infile)
+            mydict = {rows[0]:rows[1] for rows in reader}
+
 
 class Simulation(object):
     def __init__(self) :
