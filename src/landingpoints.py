@@ -6,11 +6,10 @@ from random import gauss
 import csv
 import numpy as np
 from argparse import Namespace
-import events
 import os
 import sys
 
-class LandingPoints(events.Events):
+class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
     
     def __init__(self, args) :
@@ -59,7 +58,6 @@ class LandingPoints(events.Events):
                 pp = PositionParallel()
                 lm = LateralMovement()
                 orh.run_simulation(sim, [lp, ma, pu, pp, lm])
-                self.trigger("sim_stage_done",p)
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
@@ -84,8 +82,6 @@ class LandingPoints(events.Events):
         print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
 
         (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
-        # print(isJVMStarted())
-        # shutdownJVM()
 
 
     def getResults(self):
