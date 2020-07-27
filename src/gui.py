@@ -5,40 +5,26 @@ import asyncio
 from tkinter import filedialog
 from argparse import Namespace
 import threading
-import Events
 
-class MonteCarloApp(tk.Tk,Events.Events):
+class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        print("Starting gui")
         #App window size
         self.title('Loader')
         container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True, padx=5,pady=5)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+        container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
+        container.grid_rowconfigure(0, weight = 1)
+        container.grid_columnconfigure(0, weight = 1)
+        self.geometry("500x450")
 
-        #Layer frames on top of each other. The top of the stack order is the visible page.
-        self.frames = {}
-        self.results = Namespace()
-        for f in (InputOptions, RunningSimulations, Results):
-            page_name = f.__name__
-            frame = f(parent=container, controller=self)
-            self.frames[page_name] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("InputOptions")
-
-    #Switch which frame is visible
-    def show_frame(self, page_name):
-        #Show a frame for the given page name
-        frame = self.frames[page_name]
-        frame.tkraise()
+        frame = InputOptions(container, self)
+        frame.grid(row = 0, column = 0, sticky = "nsew")
         frame.update()
-        if isinstance(frame, Results):
-                frame.displayResults()
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
+        self.parent = parent
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.filename = 'model.ork'
@@ -88,11 +74,11 @@ class InputOptions(tk.Frame):
 
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
-        tk.Label(self, text=name).grid(column=colNum, row=rowNum)
-        var.grid(column=colNum, row=rowNum+1)
+        tk.Label(self, text = name).grid(column = colNum, row = rowNum)
+        var.grid(column = colNum, row = rowNum+1)
 
     def getFile(self):
-        self.filename =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Rocket File","*.ork")])
+        self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
 
     def getWeather(self):
         self.weather_name =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Weather data","*.csv")])
@@ -103,7 +89,6 @@ class InputOptions(tk.Frame):
         for n in range(0, len(array[0])):
             name = array[0][n]
             value = array[1][n]
-            print("{} {}".format(name,value))
             if name == "rodangle":
                 self.rodangleEntry.set(value)
             if name == "rodanglesigma":
@@ -120,7 +105,7 @@ class InputOptions(tk.Frame):
                 self.latEntry.set(value)
             if name == "long":
                 self.longaEntry.set(value)
-            if name == "simcount":
+            if name == "n":
                 self.nEntry.set(value)
     
 
@@ -146,59 +131,57 @@ class InputOptions(tk.Frame):
                     args.__dict__[k] = float(values.__dict__[k])
         
         sim = simulation.Simulation()
-        simListen=sim.set_args(args)
-        simListen.on("sim_stage_done", self.stagedone)
-        self.controller.trigger("sim_set_simcount", args.__dict__["simcount"])
-        thread1 = threading.Thread(target = self.runSims,args=[sim])
-        thread1.start()
+        sim.set_args(args)
+        self.runSims(sim)
 
     def runSims(self,sim):
-        self.controller.show_frame("RunningSimulations")
-        self.resp=sim.runSimulation()
+        self.showLoading()
+        self.resp = sim.runSimulation()
         self.controller.results = self.resp.getResults()
-        self.controller.show_frame("Results")
-    
-    def stagedone(self,step):
-        self.controller.trigger("sim_stage_done",step)
+        self.showResults()
+
+    def showResults(self):
+        self.destroy()
+        resultFrame = Results(self.parent, self.controller)
+        resultFrame.grid(row = 0, column = 0, sticky = "nsew")
+        resultFrame.displayResults()
+        resultFrame.update_idletasks() 
+
+    def showLoading(self):
+        self.destroy()
+        loadingFrame = RunningSimulations(self.parent, self.controller)
+        loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
+        loadingFrame.stepProgressBar()
+        loadingFrame.update()
 
 class RunningSimulations(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        tk.Label(self, text="Running Simulations").grid(column=0, row=0)
+        tk.Label(self, text = "Running Simulations").grid(column = 0, row = 0)
         self.controller = controller
-        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='determinate',length = 100)
-        self.progressBar.grid(column=0, row=1)    
-        self.totalSteps=1
-        self.controller.on("sim_stage_done",self.setStep)
-        self.controller.on("sim_set_simcount",self.stepWorth)
-        self.progressBar["value"]=0
-        self.progressBar.update()
 
-        self.progressLabel=tk.Label(self, text="0%")
-        self.progressLabel.grid(column=0, row=2)
-    
-    def stepWorth(self,total):
-        self.totalSteps=total
-    
-    def setStep(self,upto):
-        percent=int(((upto+1)/self.totalSteps)*100)
-        self.progressBar["value"]=percent
-        self.progressLabel['text']=(str(percent)+"%")
-        self.progressBar.update_idletasks()
+        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        self.progressBar.grid(column=0, row=1)    
+        self.stepProgressBar()    
+
+    def stepProgressBar(self):
+        self.progressBar.step(5)
+        #self.after(10, self.stepProgressBar) # run again after 50ms,
+
 
 class Results(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        tk.Label(self, text="Results").grid(column=0, row=0)
+        tk.Label(self, text = "Results").grid(column = 0, row = 0)
         self.controller = controller
 
     def displayResults(self):
         count = 1
         for k in list(vars(self.controller.results).keys()):
-            tk.Label(self, text=k).grid(column=0, row=count)
-            tk.Label(self, text=getattr(self.controller.results, k)).grid(column=1, row=count)
+            tk.Label(self, text = k).grid(column = 0, row = count)
+            tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
             count = count + 1
 
 if __name__ == "__main__":

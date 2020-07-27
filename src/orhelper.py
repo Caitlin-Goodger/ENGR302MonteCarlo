@@ -2,6 +2,7 @@ import sys, traceback
 from jpype import *
 import numpy as np
 import os
+import threading
 
 class OpenRocketInstance(object):
     """ When instantiated, this class starts up a new openrocket instance.
@@ -18,6 +19,12 @@ class OpenRocketInstance(object):
         print("Startup")
         startJVM(getDefaultJVMPath(),"-Dopenrocket.3d.disable=true", "-Djava.class.path=%s" % self.resource_path(jar_path), convertStrings=False)
  
+        if isJVMStarted():
+            print("we be start")
+            if threading.active_count() > 1:
+                if not isThreadAttachedToJVM():
+                    attachThreadToJVM()
+
         orp = JPackage("net").sf.openrocket
         orp.startup.Startup2.loadMotor()
     
@@ -49,10 +56,13 @@ class Helper(object):
         self.orp = JPackage("net").sf.openrocket
 
     def load_doc(self, or_filename):
+        print("Before load")
         """ Loads a .ork file and returns the corresponding openrocket document """
         or_java_file = java.io.File(or_filename)
         loader = self.orp.file.GeneralRocketLoader()
         doc = loader.load(or_java_file)
+        print("After load")
+
         return doc
             
     def run_simulation(self, sim, listeners=None ):
