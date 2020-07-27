@@ -13,9 +13,11 @@ class MonteCarloApp(tk.Tk):
         #App window size
         self.title('Loader')
         container = tk.Frame(self)
-        container.pack(side = "top", fill = "both", expand = True, padx = 5,pady = 5)
+        container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
+        self.geometry("500x450")
+
         frame = InputOptions(container, self)
         frame.grid(row = 0, column = 0, sticky = "nsew")
         frame.update()
@@ -92,17 +94,24 @@ class InputOptions(tk.Frame):
         self.runSims(sim)
 
     def runSims(self,sim):
+        self.showLoading()
         self.resp = sim.runSimulation()
         self.controller.results = self.resp.getResults()
         self.showResults()
-    
+
     def showResults(self):
         self.destroy()
-
         resultFrame = Results(self.parent, self.controller)
         resultFrame.grid(row = 0, column = 0, sticky = "nsew")
         resultFrame.displayResults()
-        resultFrame.update()
+        resultFrame.update_idletasks() 
+
+    def showLoading(self):
+        self.destroy()
+        loadingFrame = RunningSimulations(self.parent, self.controller)
+        loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
+        loadingFrame.stepProgressBar()
+        loadingFrame.update()
 
 class RunningSimulations(tk.Frame):
 
@@ -110,6 +119,15 @@ class RunningSimulations(tk.Frame):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Running Simulations").grid(column = 0, row = 0)
         self.controller = controller
+
+        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        self.progressBar.grid(column=0, row=1)    
+        self.stepProgressBar()    
+
+    def stepProgressBar(self):
+        self.progressBar.step(5)
+        self.after(10, self.stepProgressBar) # run again after 50ms,
+
 
 class Results(tk.Frame):
 
