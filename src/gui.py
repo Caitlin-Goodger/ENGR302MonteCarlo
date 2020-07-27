@@ -46,32 +46,43 @@ class InputOptions(tk.Frame):
         tk.Button(self, text='Select .ork file', width=25, command=self.getFile).grid(column=0, row=0)
 
         #rda
-        self.rodangle = tk.Entry(self, width=25)
+        self.rodangleEntry = tk.StringVar()
+        self.rodangle = tk.Entry(self, width=25,textvariable=self.rodangleEntry)
         self.createLabel(tk, self.rodangle, "Rod angle", 0, 1, 45)
         # rdas
-        self.rodanglesigma = tk.Entry(self,width=25)
+        self.rodanglesigmaEntry = tk.StringVar()
+        self.rodanglesigma = tk.Entry(self,width=25,textvariable=self.rodanglesigmaEntry)
         self.createLabel(tk, self.rodanglesigma, "Rod angle sigma", 0, 3, 5)
         # rdd
-        self.roddirection = tk.Entry(self,width=25)
+        self.roddirectionEntry = tk.StringVar()
+        self.roddirection = tk.Entry(self,width=25,textvariable=self.roddirectionEntry)
         self.createLabel(tk, self.roddirection, "Rod direction", 0, 5, 0)
         # rdds
-        self.roddirectionsigma = tk.Entry(self,width=25)
+        self.roddirectionsigmaEntry = tk.StringVar()
+        self.roddirectionsigma = tk.Entry(self,width=25,textvariable=self.roddirectionsigmaEntry)
         self.createLabel(tk, self.roddirectionsigma, "Rod direction sigma", 0, 7 , 5)
         # wsa
-        self.windspeed = tk.Entry(self,width=25)
+        self.windspeedEntry = tk.StringVar()
+        self.windspeed = tk.Entry(self,width=25,textvariable=self.windspeedEntry)
         self.createLabel(tk, self.windspeed, "Wind speed", 1, 1, 15)
         # wsas
-        self.windspeedsigma = tk.Entry(self,width=25)
+        self.windspeedsigmaEntry = tk.StringVar()
+        self.windspeedsigma = tk.Entry(self,width=25,textvariable=self.windspeedsigmaEntry)
         self.createLabel(tk, self.windspeedsigma, "Wind speed sigma", 1, 7, 5)
         # lat
-        self.lat = tk.Entry(self,width=25)
+        self.latEntry = tk.StringVar()
+        self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
         self.createLabel(tk, self.lat, "lat", 0, 14, 0)
         # long
-        self.longa = tk.Entry(self,width=25)
+        self.longaEntry = tk.StringVar()
+        self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
         self.createLabel(tk, self.longa, "long", 0, 16, 0)
         # n
-        self.n = tk.Entry(self,width=25)
+        self.nEntry = tk.StringVar()
+        self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
         self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        # load weather
+        tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
         tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
 
@@ -82,6 +93,37 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Rocket File","*.ork")])
+
+    def getWeather(self):
+        self.weather_name =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Weather data","*.csv")])
+        data = simulation.WeatherData().read_weather_data(self.weather_name)
+        
+        array = data.to_numpy()
+        
+        for n in range(0, len(array[0])):
+            name = array[0][n]
+            value = array[1][n]
+            print("{} {}".format(name,value))
+            if name == "rodangle":
+                self.rodangleEntry.set(value)
+            if name == "rodanglesigma":
+                self.rodanglesigmaEntry.set(value)
+            if name == "roddirection":
+                self.roddirectionEntry.set(value)
+            if name == "roddirectionsigma":
+                self.roddirectionsigmaEntry.set(value)
+            if name == "windspeed":
+                self.windspeedEntry.set(value)
+            if name == "windspeedsigma":
+                self.windspeedsigmaEntry.set(value)
+            if name == "lat":
+                self.latEntry.set(value)
+            if name == "long":
+                self.longaEntry.set(value)
+            if name == "simcount":
+                self.nEntry.set(value)
+    
+
 
     def exec(self):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodangle=45, rodanglesigma=5, 

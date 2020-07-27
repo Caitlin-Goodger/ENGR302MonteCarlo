@@ -6,6 +6,7 @@ import argparse
 import sys
 import os
 import csv
+import pandas as pd
         
 class AirStart(abstractlistener.AbstractSimulationListener):
     
@@ -24,13 +25,9 @@ class DefaultHelpParser(argparse.ArgumentParser):
         sys.exit()
 
 class WeatherData(object):
-    def read-weather-data:
-        with open('testinweather.csv', mode ='r') as infile:
-            reader = csv.reader(infile)
-            ##mydict = {rows[0]:rows[1] for rows in reader}
-            mydict = {column[0]:colum[1] for columns in reader}
-            mydict = "f"
-            
+    def read_weather_data(self, name):
+        df= pd.read_csv(name, sep=',',header=None)
+        return df
 
 
 class Simulation(object):
@@ -61,6 +58,8 @@ class Simulation(object):
         parser.add_argument("-lat", "--lat", dest = "startlat", default= 0, help = "The starting latitude for the simulation.",  type = float)
         parser.add_argument("-long", "--long", dest = "startlong", default= 0, help = "The starting longitude for the simulation.",  type = float)
         parser.add_argument("-n", "--n", dest = "simcount", default = 20, help = "The number of simulations to run.", type = int) 
+        parser.add_argument("-w", "--w", dest = "weathercsv", default = "", help = "Weather csv file")
+
         self.args = parser.parse_args()
         self.points = landingpoints.LandingPoints(self.args)
         return self.points
