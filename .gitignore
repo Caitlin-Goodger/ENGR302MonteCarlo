@@ -78,3 +78,16 @@ _minted*
 *.pyc
 
 src/out.csv
+*.eng
+*.rse
+*.ork
+*.metaprops
+copyright.txt
+net.sf.openrocket.optimization.services.SimulationModifierService
+LICENSE.TXT
+ChangeLog
+fileformat.txt
+README.TXT
+MANIFEST.MF
+ReleaseNotes
+net.sf.openrocket.optimization.services.OptimizableParameterService

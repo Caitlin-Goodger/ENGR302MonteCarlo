@@ -34,8 +34,8 @@ class LandingPoints():
             rocket = opts.getRocket()
 
             # Set latitude and longitude
-            sim.getOptions().setLaunchLatitude(self.args.startlat)
-            sim.getOptions().setLaunchLongitude(self.args.startlong)
+            sim.getOptions().setLaunchLatitude(self.args.startLat)
+            sim.getOptions().setLaunchLongitude(self.args.startLong)
 
             sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
@@ -43,9 +43,9 @@ class LandingPoints():
             for p in range(num):
                 print ('Running simulation ', p+1)
                 
-                opts.setLaunchRodAngle(math.radians( gauss(self.args.rodangle, self.args.rodanglesigma) ))
-                opts.setLaunchRodDirection(math.radians( gauss(self.args.roddirection, self.args.roddirectionsigma) ))
-                opts.setWindSpeedAverage( gauss(self.args.windspeed, self.args.windspeedsigma) )
+                opts.setLaunchRodAngle(math.radians( gauss(self.args.rodAngle, self.args.rodAngleSigma) ))
+                opts.setLaunchRodDirection(math.radians( gauss(self.args.rodDirection, self.args.rodDirectionSigma) ))
+                opts.setWindSpeedAverage( gauss(self.args.windSpeed, self.args.windSpeedSigma) )
                 for component_name in ('Nose cone', 'Body tube'):
                     component = orh.get_component_named( rocket, component_name )
                     mass = component.getMass()
