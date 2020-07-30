@@ -29,8 +29,7 @@ class InputOptions(tk.Frame):
         self.controller = controller
         self.filename = 'model.ork'
         self.outfile = './out.csv'
-        tk.Button(self, text='Select .ork file', width=25, command=self.getFile).grid(column=0, row=0)
-
+        tk.Button(self, text = 'Open Rocket', width = 25, command=self.getFile).grid(column = 0, row = 0)
         #rda
         self.rodangleEntry = tk.StringVar()
         self.rodangle = tk.Entry(self, width=25,textvariable=self.rodangleEntry)
