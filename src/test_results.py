@@ -34,6 +34,7 @@ class TestSim:
     def teardown_class(self):
         os.remove(outfile)
 
+
     def test_csv_made(self):
         try:
             from unittest.mock import patch
@@ -57,6 +58,20 @@ class TestSim:
             assert "Lateral Distance (meters)" in row
             assert "Lateral Direction (°)" in row
     
-    
+    def test_latitude(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
 
-                
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Latitude"])
+                except ValueError:
+                    assert False, "not a float" 
+                # assert row["Latitude"].is_float()
+            assert count == 5
