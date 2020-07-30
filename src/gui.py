@@ -81,6 +81,9 @@ class InputOptions(tk.Frame):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
 
     def getWeather(self):
+        ''' Read parameters from csv file, example:
+        windspeed,windspeedsigma,rodangle,rodanglesigma,roddirection,roddirectionsigma,lat,long
+        10,5,10,5,0,5,40,40 '''
         self.weather_name =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Weather data","*.csv")])
         data = simulation.WeatherData().read_weather_data(self.weather_name)
         
@@ -89,24 +92,22 @@ class InputOptions(tk.Frame):
         for n in range(0, len(array[0])):
             name = array[0][n]
             value = array[1][n]
-            if name == "rodangle":
+            if name == "rodAngle":
                 self.rodangleEntry.set(value)
-            if name == "rodanglesigma":
+            if name == "rodAngleSigma":
                 self.rodanglesigmaEntry.set(value)
-            if name == "roddirection":
+            if name == "rodDirection":
                 self.roddirectionEntry.set(value)
-            if name == "roddirectionsigma":
+            if name == "rodDirectionSigma":
                 self.roddirectionsigmaEntry.set(value)
-            if name == "windspeed":
+            if name == "windSpeed":
                 self.windspeedEntry.set(value)
-            if name == "windspeedsigma":
+            if name == "windSpeedSigma":
                 self.windspeedsigmaEntry.set(value)
             if name == "lat":
                 self.latEntry.set(value)
             if name == "long":
                 self.longaEntry.set(value)
-            if name == "n":
-                self.nEntry.set(value)
     
 
 
