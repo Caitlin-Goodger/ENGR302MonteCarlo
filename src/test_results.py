@@ -41,4 +41,22 @@ class TestSim:
             from mock import patch
         assert path.exists(outfile)
 
+    def test_csv_names(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            # row = reader.next()
+            row = reader.fieldnames
+            assert "Latitude" in row
+            assert "Longitude" in row
+            assert "Max Altitude" in row
+            assert "Max Position parallel to wind" in row
+            assert "Lateral Distance (meters)" in row
+            assert "Lateral Direction (°)" in row
+    
+    
 
+                
