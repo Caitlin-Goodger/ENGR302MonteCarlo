@@ -6,17 +6,18 @@ import webview
 df = pd.read_csv("./out.csv")
 df.head()
 
-mapbox_access_token = "pk.eyJ1IjoicGxvdGx5LWRvY3MiLCJhIjoiY2s1MnNtODFwMDE4YjNscG5oYWNydXFxYSJ9.AquTxb6AI-oo7TWt01YQ9Q"#open(".mapbox_token").read()
+# open(".mapbox_token").read()
+mapbox_access_token = "pk.eyJ1IjoicGxvdGx5LWRvY3MiLCJhIjoiY2s1MnNtODFwMDE4YjNscG5oYWNydXFxYSJ9.AquTxb6AI-oo7TWt01YQ9Q"
 
 fig = go.Figure(go.Scattermapbox(
-        lat=df.Latitude,
-        lon=df.Longitude,
-        mode='markers',
-        marker=go.scattermapbox.Marker(
-            size=9
-        ),
-        # text=["Sim 1"],
-    ))
+    lat=df.Latitude,
+    lon=df.Longitude,
+    mode='markers',
+    marker=go.scattermapbox.Marker(
+        size=9
+    ),
+    # text=["Sim 1"],
+))
 
 fig.update_layout(
     autosize=True,
@@ -39,7 +40,7 @@ fig.show(renderer="iframe")
 # print(fig.show(renderer="png"))
 # fig.show()
 
-ht = open("./iframe_figures/figure_0.html","r")
+ht = open("./iframe_figures/figure_0.html", "r")
 webview.create_window('Hello world', html=ht.read())
 webview.start()
 ht.close()
