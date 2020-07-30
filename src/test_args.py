@@ -19,15 +19,15 @@ def test_no_params():
         sim.parse_args()
         assert sim.args.outfile == "./out.csv" 
         assert sim.args.rocket == sim.resource_path("model.ork")
-        assert sim.args.simcount == 20  
-        assert sim.args.rodangle == 45 
-        assert sim.args.rodanglesigma == 5 
-        assert sim.args.roddirection == 0 
-        assert sim.args.roddirectionsigma == 5
-        assert sim.args.windspeed == 15
-        assert sim.args.windspeedsigma == 5
-        assert sim.args.startlat == 0
-        assert sim.args.startlong == 0
+        assert sim.args.simCount == 20  
+        assert sim.args.rodAngle == 45 
+        assert sim.args.rodAngleSigma == 5 
+        assert sim.args.rodDirection == 0 
+        assert sim.args.rodDirectionSigma == 5
+        assert sim.args.windSpeed == 15
+        assert sim.args.windSpeedSigma == 5
+        assert sim.args.startLat == 0
+        assert sim.args.startLong == 0
 
 
 # Test the user is given overview on available parameters when using help flag
