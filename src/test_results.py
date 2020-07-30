@@ -34,7 +34,6 @@ class TestSim:
     def teardown_class(self):
         os.remove(outfile)
 
-
     def test_csv_made(self):
         try:
             from unittest.mock import patch
@@ -73,5 +72,106 @@ class TestSim:
                     float(row["Latitude"])
                 except ValueError:
                     assert False, "not a float" 
-                # assert row["Latitude"].is_float()
+            assert count == 5
+
+    def test_longitude(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Longitude"])
+                except ValueError:
+                    assert False, "not a float" 
+            assert count == 5
+
+    def test_max_altitude(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Max Altitude"])
+                except ValueError:
+                    assert False, "not a float" 
+            assert count == 5
+
+    def test_max_position_upwind(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Max Position upwind"])
+                except ValueError:
+                    assert False, "not a float" 
+            assert count == 5
+
+    def test_max_position_parallel_to_wind(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Max Position parallel to wind"])
+                except ValueError:
+                    assert False, "not a float" 
+            assert count == 5
+
+    def test_lateral_distance_meters(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Lateral Distance (meters)"])
+                except ValueError:
+                    assert False, "not a float" 
+            assert count == 5
+
+    def test_lateral_distance_degrees(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    float(row["Lateral Direction (°)"])
+                except ValueError:
+                    assert False, "not a float" 
             assert count == 5
