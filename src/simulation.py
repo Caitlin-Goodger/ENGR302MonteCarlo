@@ -26,7 +26,7 @@ class DefaultHelpParser(argparse.ArgumentParser):
 
 class WeatherData(object):
     def read_weather_data(self, name):
-        df= pd.read_csv(name, sep=',',header=None)
+        df= pd.read_csv(name, sep=', ',header=None,engine='python')
         return df
 
 
