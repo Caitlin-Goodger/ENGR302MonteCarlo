@@ -1,7 +1,7 @@
 import pytest
 import re
 import sys
-from src import simulation
+import simulation
 
 
 # Test system defaults 

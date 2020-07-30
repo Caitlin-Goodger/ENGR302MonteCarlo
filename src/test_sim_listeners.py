@@ -1,4 +1,4 @@
-from src import simulation
+import simulation
 import sys
 import subprocess
 import pytest
