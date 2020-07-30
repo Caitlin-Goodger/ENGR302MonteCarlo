@@ -29,10 +29,6 @@ package:
   script:
     - cd src/
     - python -m PyInstaller monte_carlo.spec
-  artifacts:
-    paths:
-      - src/dist/
-    expire_in: 1 week
 
 
 unittest-java:
