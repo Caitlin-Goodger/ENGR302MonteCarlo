@@ -63,6 +63,19 @@ test-python-listeners:
         - src/*.log
       expire_in: 1 day
 
+test-output-file:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - python -m pytest test_results.py
+    artifacts:
+      when: on_failure
+      paths:
+        - src/*.log
+      expire_in: 1 day
 
 deploy:
   stage: Deploy
