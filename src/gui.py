@@ -12,15 +12,15 @@ class MonteCarloApp(tk.Tk):
         print("Starting gui")
         #App window size
         self.title('Loader')
-        container = tk.Frame(self)
+        container = tk.Frame(self, name="frame")
         container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
         self.geometry("500x450")
 
-        frame = InputOptions(container, self)
-        frame.grid(row = 0, column = 0, sticky = "nsew")
-        frame.update()
+        self.frame = InputOptions(container, self)
+        self.frame.grid(row = 0, column = 0, sticky = "nsew")
+        self.frame.update()
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
@@ -110,6 +110,10 @@ class InputOptions(tk.Frame):
 
 
     def exec(self):
+        self.updateArgs()
+        self.runSims(self.sim)
+
+    def updateArgs(self):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
@@ -129,9 +133,8 @@ class InputOptions(tk.Frame):
                 else:
                     args.__dict__[k] = float(values.__dict__[k])
         
-        sim = simulation.Simulation()
-        sim.set_args(args)
-        self.runSims(sim)
+        self.sim = simulation.Simulation()
+        self.sim.set_args(args)
 
     def runSims(self,sim):
         self.showLoading()
