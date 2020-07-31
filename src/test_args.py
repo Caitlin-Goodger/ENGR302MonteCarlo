@@ -14,7 +14,7 @@ def test_no_params():
     testargs = ["prog"]
     with patch.object(sys, 'argv', testargs):  
         sim = simulation.Simulation()
-        args = 
+        args = 0
         sim.set_args(args)
         sim.parse_args()
         assert sim.args.outfile == "./out.csv" 
@@ -71,19 +71,7 @@ def test_valid_args(capsys):
         from unittest.mock import patch
     except ImportError:
         from mock import patch
-sim.set_args(args)
-        sim.parse_args()
-        assert sim.args.outfile == "./out.csv" 
-        assert sim.args.rocket == sim.resource_path("model.ork")
-        assert sim.args.simCount == 20  
-        assert sim.args.rodAngle == 45 
-        assert sim.args.rodAngleSigma == 5 
-        assert sim.args.rodDirection == 0 
-        assert sim.args.rodDirectionSigma == 5
-        assert sim.args.windSpeed == 15
-        assert sim.args.windSpeedSigma == 5
-        assert sim.args.startLat == 0
-        assert sim.args.startLong == 0
+    
     testargs = ["prog","-n", "5", "-lat", "60", "-long", "50", "-wsa", "1"]
     with patch.object(sys, 'argv', testargs):  
         with patch.object(sys, "exit"):
