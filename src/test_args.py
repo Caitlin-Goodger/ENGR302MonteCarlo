@@ -1,7 +1,7 @@
-import simulation
-import sys
 import pytest
 import re
+import sys
+import simulation
 
 
 # Test system defaults 
