@@ -114,7 +114,7 @@ class InputOptions(tk.Frame):
         self.runSims(self.sim)
 
     def updateArgs(self):
-        args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
+        self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25)
@@ -124,17 +124,17 @@ class InputOptions(tk.Frame):
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get())
 
-        for k in args.__dict__:
+        for k in self.args.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
-                    args.__dict__[k] = values.__dict__[k]
+                    self.args.__dict__[k] = values.__dict__[k]
                 elif k == 'simCount':
-                    args.__dict__[k] = int(values.__dict__[k])
+                    self.args.__dict__[k] = int(values.__dict__[k])
                 else:
-                    args.__dict__[k] = float(values.__dict__[k])
+                    self.args.__dict__[k] = float(values.__dict__[k])
         
         self.sim = simulation.Simulation()
-        self.sim.set_args(args)
+        self.sim.set_args(self.args)
 
     def runSims(self,sim):
         self.showLoading()
