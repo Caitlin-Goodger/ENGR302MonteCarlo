@@ -9,7 +9,6 @@ import threading
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        self.withdraw()
         print("Starting gui")
         #App window size
         self.title('Loader')
