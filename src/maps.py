@@ -20,8 +20,17 @@ fig = go.Figure(go.Scattermapbox(
 ))
 
 fig.update_layout(
-    autosize=True,
+    autosize=False,
     hovermode='closest',
+    width=800,
+    height=800,
+    margin=go.layout.Margin(
+        l=0,
+        r=0,
+        b=0,
+        t=0,
+        pad = 0
+    ),
     mapbox=dict(
         accesstoken=mapbox_access_token,
         bearing=0,
@@ -30,7 +39,7 @@ fig.update_layout(
             lon=df.Longitude.mean()
         ),
         pitch=0,
-        zoom=10
+        zoom=17
     ),
 )
 
@@ -41,6 +50,6 @@ fig.show(renderer="iframe")
 # fig.show()
 
 ht = open("./iframe_figures/figure_0.html", "r")
-webview.create_window('Hello world', html=ht.read())
+webview.create_window('Simulations', html=ht.read(),width=840,height=860)
 webview.start()
 ht.close()

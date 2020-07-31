@@ -51,10 +51,10 @@ class InputOptions(tk.Frame):
         self.createLabel(tk, self.windspeedsigma, "Wind speed sigma", 1, 7, 5)
         # lat
         self.lat = tk.Entry(self,width=25)
-        self.createLabel(tk, self.lat, "lat", 0, 14, 0)
+        self.createLabel(tk, self.lat, "lat", 0, 14, -41.28591)
         # long
         self.longa = tk.Entry(self,width=25)
-        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.createLabel(tk, self.longa, "long", 0, 16, 174.76992)
         # n
         self.n = tk.Entry(self,width=25)
         self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
