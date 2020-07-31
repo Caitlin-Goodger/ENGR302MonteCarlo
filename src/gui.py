@@ -12,15 +12,15 @@ class MonteCarloApp(tk.Tk):
         print("Starting gui")
         #App window size
         self.title('Loader')
-        container = tk.Frame(self)
+        container = tk.Frame(self, name="frame")
         container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
         self.geometry("500x450")
 
-        frame = InputOptions(container, self)
-        frame.grid(row = 0, column = 0, sticky = "nsew")
-        frame.update()
+        self.frame = InputOptions(container, self)
+        self.frame.grid(row = 0, column = 0, sticky = "nsew")
+        self.frame.update()
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
@@ -110,7 +110,11 @@ class InputOptions(tk.Frame):
 
 
     def exec(self):
-        args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
+        self.updateArgs()
+        self.runSims(self.sim)
+
+    def updateArgs(self):
+        self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25)
@@ -120,18 +124,17 @@ class InputOptions(tk.Frame):
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get())
 
-        for k in args.__dict__:
+        for k in self.args.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
-                    args.__dict__[k] = values.__dict__[k]
+                    self.args.__dict__[k] = values.__dict__[k]
                 elif k == 'simCount':
-                    args.__dict__[k] = int(values.__dict__[k])
+                    self.args.__dict__[k] = int(values.__dict__[k])
                 else:
-                    args.__dict__[k] = float(values.__dict__[k])
+                    self.args.__dict__[k] = float(values.__dict__[k])
         
-        sim = simulation.Simulation()
-        sim.set_args(args)
-        self.runSims(sim)
+        self.sim = simulation.Simulation()
+        self.sim.set_args(self.args)
 
     def runSims(self,sim):
         self.showLoading()
