@@ -2,6 +2,8 @@ import plotly.graph_objects as go
 import plotly as plotly
 import pandas as pd
 import webview
+import os
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("./out.csv")
 df.head()
@@ -48,8 +50,22 @@ fig.show(renderer="iframe")
 # conda install -c plotly plotly-orca
 # print(fig.show(renderer="png"))
 # fig.show()
+f = os.path.isfile('./iframe_figures/figure_0.html')
+print (f)
+if not f:
+    x = df.Longitude
+    y = df.Latitude
+    colors = (0,0,0)
+    area = np.pi*3
 
-ht = open("./iframe_figures/figure_0.html", "r")
-webview.create_window('Simulations', html=ht.read(),width=840,height=860)
-webview.start()
-ht.close()
+    # Plot
+    plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+    plt.title('Scatter plot pythonspot.com')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
+if f:
+    ht = open("./iframe_figures/figure_0.html", "r")
+    webview.create_window('Simulations', html=ht.read(),width=840,height=860)
+    webview.start()
+    ht.close()

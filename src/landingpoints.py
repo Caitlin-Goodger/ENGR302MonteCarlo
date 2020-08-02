@@ -75,7 +75,7 @@ class LandingPoints():
 
         with open(self.args.outfile, 'w',newline="\n") as file:
             writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
+            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])  
             for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
                 writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
 
