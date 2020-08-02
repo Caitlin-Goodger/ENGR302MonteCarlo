@@ -164,10 +164,9 @@ class MotorPerformance(abstractlistener.AbstractSimulationListener):
     def __init__(self, variation):
         try:
             f = float(variation)
-            self.variation = uniform(1-f,1+f)
+            self.variation = uniform(1-f, 1+f)
         except ValueError:
             self.variation = 1.0
-        print("Var: " + str(self.variation))
         
     
     def postSimpleThrustCalculation(self, status, thrust):

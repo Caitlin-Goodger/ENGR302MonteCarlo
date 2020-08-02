@@ -66,6 +66,10 @@ class InputOptions(tk.Frame):
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
         self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        # n
+        self.motorPerformanceEntry = tk.StringVar()
+        self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
+        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 0, 18, 0.1)
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
@@ -113,12 +117,12 @@ class InputOptions(tk.Frame):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25)
+                        startLat=0,startLong=0, simCount=25, motorPerformance = 0.1)
         
         values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
-                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get())
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), motorPerformance = self.motorPerformance.get())
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
