@@ -3,11 +3,27 @@ import sys
 import pytest
 import gui
 from unittest.mock import patch
+import tkinter as tk 
+import tkinter.ttk as ttk
+import os
+
+
+# import os
+# if os.environ.get('DISPLAY','') == '':
+#     print("no display")
 
 # Test system defaults 
 #@patch('gui.MonteCarloApp')
 def testChangedArgs():
+    print(os.environ)
     guiMock = gui.MonteCarloApp()
+    # guiMock.withdraw()
+    print(guiMock.frame.winfo_screen()) #withdraw()
+
+    # guiMock.
+    # tk.overrideredirect(True)
+    # print(guiMock.frame.winfo_screen()) #withdraw()
+    # guiMock.test()
     # try:
     #     from unittest.mock import patch
     # except ImportError:

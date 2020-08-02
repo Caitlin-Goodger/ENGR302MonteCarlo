@@ -20,7 +20,7 @@ class MonteCarloApp(tk.Tk):
 
         self.frame = InputOptions(container, self)
         self.frame.grid(row = 0, column = 0, sticky = "nsew")
-        # self.frame.update()
+        self.frame.update()
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
