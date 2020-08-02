@@ -30,34 +30,44 @@ class InputOptions(tk.Frame):
         self.filename = 'model.ork'
         self.outfile = './out.csv'
         tk.Button(self, text = 'Open Rocket', width = 25, command=self.getFile).grid(column = 0, row = 0)
-
         #rda
-        self.rodangle = tk.Entry(self, width = 25)
-        self.createLabel(tk, self.rodangle, "Rod angle", 0, 1, 45)
+        self.rodAngleEntry = tk.StringVar()
+        self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
+        self.createLabel(tk, self.rodAngle, "Rod angle", 0, 1, 45)
         # rdas
-        self.rodanglesigma = tk.Entry(self,width = 25)
-        self.createLabel(tk, self.rodanglesigma, "Rod angle sigma", 0, 3, 5)
+        self.rodAngleSigmaEntry = tk.StringVar()
+        self.rodAngleSigma = tk.Entry(self,width=25,textvariable=self.rodAngleSigmaEntry)
+        self.createLabel(tk, self.rodAngleSigma, "Rod angle sigma", 0, 3, 5)
         # rdd
-        self.roddirection = tk.Entry(self,width = 25)
-        self.createLabel(tk, self.roddirection, "Rod direction", 0, 5, 0)
+        self.rodDirectionEntry = tk.StringVar()
+        self.rodDirection = tk.Entry(self,width=25,textvariable=self.rodDirectionEntry)
+        self.createLabel(tk, self.rodDirection, "Rod direction", 0, 5, 0)
         # rdds
-        self.roddirectionsigma = tk.Entry(self,width = 25)
-        self.createLabel(tk, self.roddirectionsigma, "Rod direction sigma", 0, 7 , 5)
+        self.rodDirectionSigmaEntry = tk.StringVar()
+        self.rodDirectionSigma = tk.Entry(self,width=25,textvariable=self.rodDirectionSigmaEntry)
+        self.createLabel(tk, self.rodDirectionSigma, "Rod direction sigma", 0, 7 , 5)
         # wsa
-        self.windspeed = tk.Entry(self,width=25)
-        self.createLabel(tk, self.windspeed, "Wind speed", 1, 1, 15)
+        self.windSpeedEntry = tk.StringVar()
+        self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
         # wsas
-        self.windspeedsigma = tk.Entry(self,width=25)
-        self.createLabel(tk, self.windspeedsigma, "Wind speed sigma", 1, 7, 5)
+        self.windSpeedSigmaEntry = tk.StringVar()
+        self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 7, 5)
         # lat
-        self.lat = tk.Entry(self,width=25)
+        self.latEntry = tk.StringVar()
+        self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
         self.createLabel(tk, self.lat, "lat", 0, 14, -41.28591)
         # long
-        self.longa = tk.Entry(self,width=25)
+        self.longaEntry = tk.StringVar()
+        self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
         self.createLabel(tk, self.longa, "long", 0, 16, 174.76992)
         # n
-        self.n = tk.Entry(self,width=25)
+        self.nEntry = tk.StringVar()
+        self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
         self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        # load weather
+        tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
         tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
 
@@ -69,28 +79,58 @@ class InputOptions(tk.Frame):
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
 
-    def exec(self):
-        args = Namespace(rocket='model.ork', outfile='./out.csv', rodangle=45, rodanglesigma=5, 
-                        roddirection=0, roddirectionsigma=5,
-                        windspeed=15,windspeedsigma=5, 
-                        startlat=0,startlong=0, simcount=25)
+    def getWeather(self):
+        ''' Read parameters from csv file, example:
+        windspeed,windspeedsigma,rodangle,rodanglesigma,roddirection,roddirectionsigma,lat,long
+        10,5,10,5,0,5,40,40 '''
+        self.weather_name =  tk.filedialog.askopenfilename(initialdir = "./",title = "Select file",filetypes = [("Weather data","*.csv")])
+        data = simulation.WeatherData().read_weather_data(self.weather_name)
         
-        values = Namespace(rocket=self.filename, outfile='./out.csv', rodangle=self.rodangle.get(), rodanglesigma=self.rodanglesigma.get(), 
-                    roddirection=self.roddirection.get(), roddirectionsigma=self.roddirectionsigma.get(),
-                    windspeed=self.windspeed.get(),windspeedsigma=self.windspeedsigma.get(), 
-                    startlat=self.lat.get(),startlong=self.longa.get(), simcount=self.n.get())
+        array = data.to_numpy()
+        
+        for n in range(0, len(array[0])):
+            name = array[0][n]
+            value = array[1][n]
+            if name == "rodAngle":
+                self.rodAngleEntry.set(value)
+            if name == "rodAngleSigma":
+                self.rodAngleSigmaEntry.set(value)
+            if name == "rodDirection":
+                self.rodDirectionEntry.set(value)
+            if name == "rodDirectionSigma":
+                self.rodDirectionSigmaEntry.set(value)
+            if name == "windSpeed":
+                self.windSpeedEntry.set(value)
+            if name == "windSpeedSigma":
+                self.windSpeedSigmaEntry.set(value)
+            if name == "lat":
+                self.latEntry.set(value)
+            if name == "long":
+                self.longaEntry.set(value)
+
+
+    def exec(self):
+        args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
+                        rodDirection=0, rodDirectionSigma=5,
+                        windSpeed=15,windSpeedSigma=5, 
+                        startLat=0,startLong=0, simCount=25)
+        
+        values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
+                    rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
+                    windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get())
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
                     args.__dict__[k] = values.__dict__[k]
-                elif k == 'simcount':
+                elif k == 'simCount':
                     args.__dict__[k] = int(values.__dict__[k])
                 else:
                     args.__dict__[k] = float(values.__dict__[k])
         
         sim = simulation.Simulation()
-        simListen = sim.set_args(args)
+        sim.set_args(args)
         self.runSims(sim)
 
     def runSims(self,sim):
@@ -126,8 +166,6 @@ class RunningSimulations(tk.Frame):
 
     def stepProgressBar(self):
         self.progressBar.step(5)
-        self.after(10, self.stepProgressBar) # run again after 50ms,
-
 
 class Results(tk.Frame):
 
