@@ -2,7 +2,7 @@ import abstractlistener
 import orhelper
 import math
 from jpype import *
-from random import gauss
+from random import gauss, uniform
 import csv
 import numpy as np
 from argparse import Namespace
@@ -57,7 +57,8 @@ class LandingPoints():
                 pu = PositionUpwind()
                 pp = PositionParallel()
                 lm = LateralMovement()
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+                mp = MotorPerformance(self.args.motorPerformance)
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm, mp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
@@ -156,3 +157,19 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
 
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
+
+    
+class MotorPerformance(abstractlistener.AbstractSimulationListener):
+
+    def __init__(self, variation):
+        try:
+            f = float(variation)
+            self.variation = uniform(1-f,1+f)
+        except ValueError:
+            self.variation = 1.0
+        print("Var: " + str(self.variation))
+        
+    
+    def postSimpleThrustCalculation(self, status, thrust):
+        f = float(thrust * self.variation)
+        return f
