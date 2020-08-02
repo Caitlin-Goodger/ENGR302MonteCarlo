@@ -1,4 +1,3 @@
-from jpype import *
 import orhelper
 import abstractlistener
 import landingpoints
