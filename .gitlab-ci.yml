@@ -20,7 +20,7 @@ build:
   artifacts:
     paths:
       - lib/build/jar/OpenRocket.jar
-    expire_in: 1 week
+    expire_in: 2 days
     
 package:
   stage: Package
@@ -32,7 +32,7 @@ package:
   artifacts:
     paths:
       - src/dist/
-    expire_in: 1 week
+    expire_in: 2 days
 
 
 unittest-java:
