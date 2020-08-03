@@ -8,13 +8,37 @@ import unittest.mock as mock
 from argparse import Namespace
 import tkinter as tk 
 
+def testChangedArgs():
+    guiMock = gui.MonteCarloApp()
+    # try:
+    #     from unittest.mock import patch
+    # except ImportError:
+    #     from mock import patch
 
+    # with patch.object(sys, 'argv', testargs):  
+    #     guiMock = gui.MonteCarloApp()
+    guiMock.frame.rodAngleEntry.set('50')
+    print(guiMock.frame.rodAngle.get())
+    guiMock.frame.updateArgs()
 
-class TestGui:
+    sim = guiMock.frame.sim
+    assert sim.args.outfile == guiMock.frame.outfile
+    #assert sim.args.rocket == sim.resource_path(guiMock.frame.filename)
+    assert sim.args.simCount == int(guiMock.frame.n.get())
+    assert sim.args.rodAngle == float(guiMock.frame.rodAngle.get())
+    assert sim.args.rodAngleSigma == float(guiMock.frame.rodAngleSigma.get())
+    assert sim.args.rodDirection == float(guiMock.frame.rodDirection.get())
+    assert sim.args.rodDirectionSigma == float(guiMock.frame.rodDirectionSigma.get())
+    assert sim.args.windSpeed == float(guiMock.frame.windSpeed.get())
+    assert sim.args.windSpeedSigma == float(guiMock.frame.windSpeedSigma.get())
+    assert sim.args.startLat == float(guiMock.frame.lat.get())
+    assert sim.args.startLong == float(guiMock.frame.longa.get())
 
-    @classmethod
-    def updateArgs(self, guiMock):
-        guiMock.args = Namespace(rocket=guiMock.filename, outfile='./out.csv')
+# class TestGui:
+
+    # @classmethod
+    # def updateArgs(self, guiMock):
+    #     guiMock.args = Namespace(rocket=guiMock.filename, outfile='./out.csv')
 
     # #Test that given differing parameters, the final args are changed to the correct type and value
     # @patch('gui.MonteCarloApp', autospec = True)
@@ -69,23 +93,23 @@ class TestGui:
 
     #             set_widget_value.assert_called_once_with(entry, text)
 
-    def testDefaultArgs():
-        guiMock = gui.MonteCarloApp()
-        guiMock.frame.rodAngleEntry.set('50')
-        print(guiMock.frame.rodAngle.get())
-        guiMock.frame.updateArgs()
+    # def testDefaultArgs():
+    #     guiMock = gui.MonteCarloApp()
+    #     guiMock.frame.rodAngleEntry.set('50')
+    #     print(guiMock.frame.rodAngle.get())
+    #     guiMock.frame.updateArgs()
 
-        sim = guiMock.frame.sim
-        guiMock.frame.focus_set()
-        print(guiMock.frame.focus_get())
-        assert sim.args.outfile == guiMock.frame.outfile
-        assert sim.args.rocket == sim.resource_path(guiMock.frame.filename)
-        assert sim.args.simCount == int(guiMock.frame.n.get())
-        assert sim.args.rodAngle == float(guiMock.frame.rodAngle.get())
-        assert sim.args.rodAngleSigma == float(guiMock.frame.rodAngleSigma.get())
-        assert sim.args.rodDirection == float(guiMock.frame.rodDirection.get())
-        assert sim.args.rodDirectionSigma == float(guiMock.frame.rodDirectionSigma.get())
-        assert sim.args.windSpeed == float(guiMock.frame.windSpeed.get())
-        assert sim.args.windSpeedSigma == float(guiMock.frame.windSpeedSigma.get())
-        assert sim.args.startLat == float(guiMock.frame.lat.get())
-        assert sim.args.startLong == float(guiMock.frame.longa.get())
+    #     sim = guiMock.frame.sim
+    #     guiMock.frame.focus_set()
+    #     print(guiMock.frame.focus_get())
+    #     assert sim.args.outfile == guiMock.frame.outfile
+    #     assert sim.args.rocket == sim.resource_path(guiMock.frame.filename)
+    #     assert sim.args.simCount == int(guiMock.frame.n.get())
+    #     assert sim.args.rodAngle == float(guiMock.frame.rodAngle.get())
+    #     assert sim.args.rodAngleSigma == float(guiMock.frame.rodAngleSigma.get())
+    #     assert sim.args.rodDirection == float(guiMock.frame.rodDirection.get())
+    #     assert sim.args.rodDirectionSigma == float(guiMock.frame.rodDirectionSigma.get())
+    #     assert sim.args.windSpeed == float(guiMock.frame.windSpeed.get())
+    #     assert sim.args.windSpeedSigma == float(guiMock.frame.windSpeedSigma.get())
+    #     assert sim.args.startLat == float(guiMock.frame.lat.get())
+    #     assert sim.args.startLong == float(guiMock.frame.longa.get())
