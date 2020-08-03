@@ -63,7 +63,7 @@ test-python-listeners:
         - src/*.log
       expire_in: 1 day
 
-test-output-file:
+test-python-output-file:
     stage: Test
     tags:
       - shell
