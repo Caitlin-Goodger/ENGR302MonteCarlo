@@ -1,7 +1,7 @@
 import abstractlistener
 import orhelper
 import math
-from jpype import *
+from jpype import JClass
 from random import gauss
 import csv
 import numpy as np
