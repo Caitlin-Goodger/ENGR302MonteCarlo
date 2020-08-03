@@ -2,7 +2,7 @@ import abstractlistener
 import orhelper
 import math
 from jpype import *
-from random import gauss
+from random import gauss, uniform
 import csv
 import numpy as np
 from argparse import Namespace
@@ -58,7 +58,8 @@ class LandingPoints():
                 pp = PositionParallel()
                 lm = LateralMovement()
                 wd = WindListener(self.args.windDirection, self.args.windSpeed)
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd])
+                mp = MotorPerformance(self.args.motorPerformance)
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd, mp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
@@ -169,5 +170,18 @@ class WindListener(abstractlistener.AbstractSimulationListener):
 
     def preWindModel(self, status):
         self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
-        print(self.windDirection)
         return self.windDirection
+    
+class MotorPerformance(abstractlistener.AbstractSimulationListener):
+
+    def __init__(self, variation):
+        try:
+            f = float(variation)
+            self.variation = uniform(1-f, 1+f)
+        except ValueError:
+            self.variation = 1.0
+        
+    
+    def postSimpleThrustCalculation(self, status, thrust):
+        f = float(thrust * self.variation)
+        return f
