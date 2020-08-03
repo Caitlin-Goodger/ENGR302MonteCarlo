@@ -57,7 +57,7 @@ class InputOptions(tk.Frame):
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 5, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
@@ -73,7 +73,7 @@ class InputOptions(tk.Frame):
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
-        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 0, 18, 0.1)
+        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
