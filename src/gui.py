@@ -8,19 +8,20 @@ import threading
 
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        print("Starting gui")
-        #App window size
-        self.title('Loader')
-        container = tk.Frame(self, name="frame")
-        container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
-        container.grid_rowconfigure(0, weight = 1)
-        container.grid_columnconfigure(0, weight = 1)
-        self.geometry("500x450")
+        # tk.Tk.__init__(self, *args, **kwargs)
+        # print("Starting gui")
+        # #App window size
+        # self.title('Loader')
+        # container = tk.Frame(self, name="frame")
+        # container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
+        # container.grid_rowconfigure(0, weight = 1)
+        # container.grid_columnconfigure(0, weight = 1)
+        # self.geometry("500x450")
 
-        self.frame = InputOptions(container, self)
-        self.frame.grid(row = 0, column = 0, sticky = "nsew")
-        self.frame.update()
+        # self.frame = InputOptions(container, self)
+        # self.frame.grid(row = 0, column = 0, sticky = "nsew")
+        # self.frame.update()
+        InputOptions(None,self)
 
 class InputOptions(tk.Frame):
     def __init__(self, parent, controller):
