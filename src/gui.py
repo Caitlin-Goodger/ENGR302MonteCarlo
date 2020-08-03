@@ -53,7 +53,11 @@ class InputOptions(tk.Frame):
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 7, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 3, 5)
+        # wd
+        self.windDirectionEntry = tk.StringVar()
+        self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
@@ -107,18 +111,20 @@ class InputOptions(tk.Frame):
                 self.latEntry.set(value)
             if name == "long":
                 self.longaEntry.set(value)
+            if name == "windDirection":
+                self.windDirectionEntry.set(value)
 
 
     def exec(self):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25)
+                        startLat=0,startLong=0, simCount=25, windDirection=0)
         
         values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
-                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get())
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get())
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                

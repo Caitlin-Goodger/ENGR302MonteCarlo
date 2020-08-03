@@ -57,12 +57,13 @@ class LandingPoints():
                 pu = PositionUpwind()
                 pp = PositionParallel()
                 lm = LateralMovement()
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+                wd = WindListener(self.args.windDirection, self.args.windSpeed)
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
                 self.parallel.append ( pp )
-                self.lateral_movement.append( lm )    
+                self.lateral_movement.append( lm )   
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
@@ -156,3 +157,17 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
 
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
+
+class WindListener(abstractlistener.AbstractSimulationListener):
+    def __init__(self, direction, speed):
+        try:
+            self.direction = float(direction)
+            self.speed = float(speed)
+        except ValueError:
+            self.direction = 0
+            self.speed = 0
+
+    def preWindModel(self, status):
+        self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
+        print(self.windDirection)
+        return self.windDirection
