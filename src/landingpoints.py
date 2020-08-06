@@ -59,7 +59,7 @@ class LandingPoints():
                 lm = LateralMovement()
                 wd = WindListener(self.args.windDirection, self.args.windSpeed)
                 mp = MotorPerformance(self.args.motorPerformance)
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd, mp])
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm, mp, wd])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
@@ -159,7 +159,7 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
 
-class WindListener(abstractlistener.AbstractSimulationListener):
+class WindListener(abstractlistener.AbstractCompListener):
     def __init__(self, direction, speed):
         try:
             self.direction = float(direction)
@@ -172,7 +172,7 @@ class WindListener(abstractlistener.AbstractSimulationListener):
         self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
         return self.windDirection
     
-class MotorPerformance(abstractlistener.AbstractSimulationListener):
+class MotorPerformance(abstractlistener.AbstractCompListener):
 
     def __init__(self, variation):
         try:
