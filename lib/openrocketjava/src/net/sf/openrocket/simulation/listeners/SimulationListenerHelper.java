@@ -291,8 +291,10 @@ public class SimulationListenerHelper {
 
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
-				 if(l.getClass().getName().contains("proxy")) continue;
-				wind = ((SimulationComputationListener) l).preWindModel(status);
+//				if(l.getClass().getName().contains("proxy")) continue;
+				Coordinate c = ((SimulationComputationListener) l).preWindModel(status);
+				if (c == null) continue;
+				wind = c;
 				if (modID != status.getModID()) {
 					warn(status, l);
 					modID = status.getModID();
