@@ -54,6 +54,7 @@ class Simulation(object):
 
         parser.add_argument("-wsa", "--windspeed", dest = "windSpeed", default = 15, help="The average wind speed.", type = float)
         parser.add_argument("-wsas", "--windspeedsigma", dest = "windSpeedSigma", default = 5, help="The average wind speed sigma.", type = float)
+        parser.add_argument("-wd", "--winddirection", dest = "windDirection", default = 0, help="The wind direction.", type = float)
 
         parser.add_argument("-lat", "--lat", dest = "startLat", default= 0, help = "The starting latitude for the simulation.",  type = float)
         parser.add_argument("-long", "--long", dest = "startLong", default= 0, help = "The starting longitude for the simulation.",  type = float)
