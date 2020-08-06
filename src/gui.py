@@ -144,7 +144,7 @@ class InputOptions(tk.Frame):
                         return False
                 else:
                     if not (self.checkFloatValue(values.__dict__[k])):
-                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be an float value")
+                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be a float value")
                         return False
         return True
 
