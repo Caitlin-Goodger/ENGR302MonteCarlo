@@ -1,3 +1,13 @@
+# Performance Assessment 1 - Tri 2
+Further support updates: 
+- Reworking GUI to support also include Linux and Mac (Prior only windows supported)
+- Weather csv input for GUI parameters
+- Moter performance and wind direction 
+- - java and py side
+Starting development for 
+- Maps display
+- Refactoring of tests
+
 # Performance Assessment 2 
 
 We are currently in the process of developing two seperate features:
