@@ -292,8 +292,6 @@ public class SimulationListenerHelper {
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
 //				if(l.getClass().getName().contains("proxy")) continue;
-				System.out.println("Running preWind for " + l.getClass().getName());
-				System.out.println(((SimulationComputationListener) l).preWindModel(status).toString());
 				Coordinate c = ((SimulationComputationListener) l).preWindModel(status);
 				if (c == null) {
 					continue;
@@ -611,8 +609,6 @@ public class SimulationListenerHelper {
 		for (SimulationListener l : status.getSimulationConditions().getSimulationListenerList()) {
 			if (l instanceof SimulationComputationListener) {
 //			  if(l.getClass().getName().contains("proxy")) continue;
-				System.out.println("Running postThurst for " + l.getClass().getName());
-				System.out.println(((SimulationComputationListener) l).postSimpleThrustCalculation(status, thrust));
 				t = ((SimulationComputationListener) l).postSimpleThrustCalculation(status, thrust);
 				if (modID != status.getModID()) {
 					warn(status, l);
