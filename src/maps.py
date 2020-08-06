@@ -3,6 +3,7 @@ import plotly as plotly
 import pandas as pd
 import webview
 import numpy as np
+from threading import Timer
 
 df = pd.read_csv("./out.csv")
 df.head()
@@ -35,5 +36,22 @@ base="""
 f.write(base)
 f.close()
 
-webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
-webview.start(http_server=True)
+window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
+def evaluate_js(window):
+    result = window.evaluate_js(
+        r"""
+        Object.values(map._layers).filter(a=>!!a._latlng).map(a=>Object.values(a._latlng).join()).join("\n")
+        """
+    )
+
+    print(result)
+
+# def autoClose():
+#     print("Auto closed")
+#     window.destroy()
+
+# r = Timer(5.0, autoClose)
+# r.start()
+
+webview.start(evaluate_js,window,debug=True, http_server=True,gui="qt")
+
