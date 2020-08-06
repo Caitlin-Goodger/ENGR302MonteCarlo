@@ -7,6 +7,15 @@ Further support updates:
 Starting development for 
 - Maps display
 - Refactoring of tests
+ 
+Instructions to run Maps
+- Maps are currently not merged into master, so ensure that you are on the maps branch
+1. Checkout desired branch of repo (maps)
+2. cd group14/lib/openrocketjava
+3. ant jar
+4. cd ../../src
+5. python gui.py to run the simulations that you want to map. 
+6. python maps.py
 
 # Performance Assessment 2 
 
