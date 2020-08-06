@@ -77,19 +77,19 @@ test-python-output-file:
         - src/*.log
       expire_in: 1 day
 
-test-gui:
-    stage: Test
-    tags:
-      - shell
-    script:
-      - cd src/
-      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - python -m pytest test_gui.py
-    artifacts:
-      when: on_failure
-      paths:
-        - src/*.log
-      expire_in: 1 day
+#test-gui:
+#    stage: Test
+#    tags:
+#      - shell
+#    script:
+#      - cd src/
+#      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+#      - python -m pytest test_gui.py
+#    artifacts:
+#      when: on_failure
+#      paths:
+#        - src/*.log
+#      expire_in: 1 day
 
 deploy:
   stage: Deploy
