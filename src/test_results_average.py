@@ -161,3 +161,32 @@ class TestSim:
             lateralTotal = lateralTotal/count
             toCompare = Decimal(lateralTotal).quantize(Decimal("11.000"))
             assert (results[304:347].decode("utf-8") == "Lateral distance " + str(toCompare) + " meters from start. ")
+    
+    def test_average_lateral_direction(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            lateralTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    lateralTotal = lateralTotal + float(row["Lateral Direction (°)"])
+                except ValueError:
+                    assert False, "not a float" 
+            lateralTotal = lateralTotal/count
+            toCompare = Decimal(lateralTotal).quantize(Decimal("11.000"))
+            assert (results[347:420].decode("utf-8") == "Lateral direction " + str(toCompare) + " degrees from from the start (relative to East). ")
+    
+    def test_num_simulations(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        assert (results[420:443].decode("utf-8") == "Based on 5 simulations.")
