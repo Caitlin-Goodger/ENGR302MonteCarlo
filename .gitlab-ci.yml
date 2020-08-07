@@ -63,6 +63,21 @@ test-python-listeners:
         - src/*.log
       expire_in: 1 day
 
+test-python-maps:
+    stage: Test
+    tags:
+      - shell
+    variables:
+      QT_QPA_PLATFORM: "offscreen"
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - pytest test_maps.py
+    artifacts:
+      when: on_failure
+      paths:
+        - src/*.log
+      expire_in: 1 day
 
 deploy:
   stage: Deploy

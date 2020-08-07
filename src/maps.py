@@ -40,18 +40,18 @@ window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html
 def evaluate_js(window):
     result = window.evaluate_js(
         r"""
-        Object.values(map._layers).filter(a=>!!a._latlng).map(a=>Object.values(a._latlng).join()).join("\n")
+        "Latitude,Longitude\n"+Object.values(map._layers).filter(a=>!!a._latlng).map(a=>Object.values(a._latlng).join()).join("\n")
         """
     )
 
     print(result)
 
-# def autoClose():
-#     print("Auto closed")
-#     window.destroy()
+def autoClose():
+    # print("Auto closed")
+    window.destroy()
 
-# r = Timer(5.0, autoClose)
-# r.start()
+r = Timer(5.0, autoClose)
+r.start()
 
 webview.start(evaluate_js,window,debug=True, http_server=True,gui="qt")
 
