@@ -55,5 +55,26 @@ class TestSim:
             latTotal = latTotal/count
 
             toCompare = Decimal(latTotal).quantize(Decimal("1.000"))
-            assert (results[153:183].decode("utf-8") == "Rocket landing zone " + str(toCompare) + " lat")
+            assert (results[153:185].decode("utf-8") == "Rocket landing zone " + str(toCompare) + " lat, ")
+
+    def test_average_longitude(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            longTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    longTotal = longTotal + float(row["Longitude"])
+                except ValueError:
+                    assert False, "not a float" 
+            longTotal = longTotal/count
+            toCompare = Decimal(longTotal).quantize(Decimal("1.000"))
+            assert (results[185:196].decode("utf-8") == str(toCompare) + " long.")
 
