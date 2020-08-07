@@ -1,5 +1,6 @@
 import tkinter as tk 
 import tkinter.ttk as ttk
+from tkinter.messagebox import showinfo
 import simulation 
 import asyncio
 from tkinter import filedialog
@@ -118,8 +119,6 @@ class InputOptions(tk.Frame):
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
 
-
-
     def exec(self):
         values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
@@ -128,20 +127,24 @@ class InputOptions(tk.Frame):
 
         if(self.checkValues(values)):
             self.parseAndRun(values)
-        else:
-            pass
-            # TODO give feedback to user
 
     def checkValues(self, values):
+
+        self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
+                    rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
+                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation')
+
         for k in values.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
                     pass # is string
                 elif k == 'simCount':
                     if not (self.checkIntValue(values.__dict__[k])):
+                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be an integer value")
                         return False
                 else:
                     if not (self.checkFloatValue(values.__dict__[k])):
+                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be a float value")
                         return False
         return True
 
