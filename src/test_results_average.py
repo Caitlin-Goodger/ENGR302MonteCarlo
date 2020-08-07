@@ -76,5 +76,46 @@ class TestSim:
                     assert False, "not a float" 
             longTotal = longTotal/count
             toCompare = Decimal(longTotal).quantize(Decimal("1.000"))
-            assert (results[185:196].decode("utf-8") == str(toCompare) + " long.")
+            assert (results[185:197].decode("utf-8") == str(toCompare) + " long. ")
 
+    def test_average_max_altitude(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            altTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    altTotal = altTotal + float(row["Max Altitude"])
+                except ValueError:
+                    assert False, "not a float" 
+            altTotal = altTotal/count
+            toCompare = Decimal(altTotal).quantize(Decimal("11.000"))
+            assert (results[197:225].decode("utf-8") == "Max altitude " + str(toCompare) + " metres. ")
+
+    def test_average_max_pos_upwind(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            upwindTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    upwindTotal = upwindTotal + float(row["Max Position upwind"])
+                except ValueError:
+                    assert False, "not a float" 
+            upwindTotal = upwindTotal/count
+            toCompare = Decimal(upwindTotal).quantize(Decimal("11.000"))
+            assert (results[225:259].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres.")
