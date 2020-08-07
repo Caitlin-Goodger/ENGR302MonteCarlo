@@ -1,8 +1,8 @@
 import abstractlistener
 import orhelper
 import math
-from jpype import JClass
-from random import gauss
+from jpype import *
+from random import gauss, uniform
 import csv
 import numpy as np
 from argparse import Namespace
@@ -57,12 +57,14 @@ class LandingPoints():
                 pu = PositionUpwind()
                 pp = PositionParallel()
                 lm = LateralMovement()
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+                wd = WindListener(self.args.windDirection, self.args.windSpeed)
+                mp = MotorPerformance(self.args.motorPerformance)
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd, mp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
                 self.parallel.append ( pp )
-                self.lateral_movement.append( lm )    
+                self.lateral_movement.append( lm )   
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
@@ -78,7 +80,7 @@ class LandingPoints():
             writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
             for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
                 writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
-
+        file.close()
         print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
 
         (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
@@ -156,3 +158,30 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
 
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
+
+class WindListener(abstractlistener.AbstractSimulationListener):
+    def __init__(self, direction, speed):
+        try:
+            self.direction = float(direction)
+            self.speed = float(speed)
+        except ValueError:
+            self.direction = 0
+            self.speed = 0
+
+    def preWindModel(self, status):
+        self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
+        return self.windDirection
+    
+class MotorPerformance(abstractlistener.AbstractSimulationListener):
+
+    def __init__(self, variation):
+        try:
+            f = float(variation)
+            self.variation = uniform(1-f, 1+f)
+        except ValueError:
+            self.variation = 1.0
+        
+    
+    def postSimpleThrustCalculation(self, status, thrust):
+        f = float(thrust * self.variation)
+        return f

@@ -183,10 +183,10 @@ public abstract class AbstractSimulationStepper implements SimulationStepper {
 				thrust += motor.getThrust();
 			}
 		}
-		
+
 		// Post-listeners
 		thrust = SimulationListenerHelper.firePostThrustCalculation(status, thrust);
-		
+
 		checkNaN(thrust);
 		
 		return thrust;
