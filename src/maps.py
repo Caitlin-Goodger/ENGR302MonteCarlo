@@ -1,5 +1,3 @@
-import plotly.graph_objects as go
-import plotly as plotly
 import pandas as pd
 import webview
 import numpy as np
