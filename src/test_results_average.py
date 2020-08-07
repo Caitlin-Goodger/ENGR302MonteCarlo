@@ -118,4 +118,46 @@ class TestSim:
                     assert False, "not a float" 
             upwindTotal = upwindTotal/count
             toCompare = Decimal(upwindTotal).quantize(Decimal("11.000"))
-            assert (results[225:259].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres.")
+            assert (results[225:260].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres. ")
+
+    def test_average_max_pos_parallel(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            parallelTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    parallelTotal = parallelTotal + float(row["Max Position parallel to wind"])
+                except ValueError:
+                    assert False, "not a float" 
+            parallelTotal = parallelTotal/count
+            toCompare = Decimal(parallelTotal).quantize(Decimal("11.000"))
+            assert (results[260:304].decode("utf-8") == "Max position parallel to wind " + str(toCompare) + " metres. ")
+
+    def test_average_lateral_distance(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+        results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            lateralTotal = 0
+            count = 0
+            for row in reader:
+                count +=1
+                try:
+                    lateralTotal = lateralTotal + float(row["Lateral Distance (meters)"])
+                except ValueError:
+                    assert False, "not a float" 
+            lateralTotal = lateralTotal/count
+            toCompare = Decimal(lateralTotal).quantize(Decimal("11.000"))
+            assert (results[304:347].decode("utf-8") == "Lateral distance " + str(toCompare) + " meters from start. ")
