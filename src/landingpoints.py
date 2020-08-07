@@ -90,7 +90,8 @@ class LandingPoints():
 
     def isWritable(self,path):
         try:
-            filehandle = open( path, 'w' )
+            fileTest = open( path, 'w' )
+            fileTest.close()
         except IOError:
             return False
         return True
