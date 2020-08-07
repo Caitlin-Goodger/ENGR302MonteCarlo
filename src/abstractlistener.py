@@ -39,7 +39,9 @@ class AbstractSimulationListener(object):
     def recoveryDeviceDeployment(self, status, recovery_device):
         return True
 
-    # SimulationComputationListener
+
+class AbstractCompListener(AbstractSimulationListener):
+        # SimulationComputationListener
     def preAccelerationCalculation(self, status):
         return None
     

@@ -1,3 +1,22 @@
+# Performance Assessment 1 - Tri 2
+Further support updates: 
+- Reworking GUI to support also include Linux and Mac (Prior only windows supported)
+- Weather csv input for GUI parameters
+- Moter performance and wind direction 
+- - java and py side
+Starting development for 
+- Maps display
+- Refactoring of tests
+ 
+Instructions to run Maps
+- Maps are currently not merged into master, so ensure that you are on the maps branch
+1. Checkout desired branch of repo (maps)
+2. cd group14/lib/openrocketjava
+3. ant jar
+4. cd ../../src
+5. python gui.py to run the simulations that you want to map. 
+6. python maps.py
+
 # Performance Assessment 2 
 
 We are currently in the process of developing two seperate features:

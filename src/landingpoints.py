@@ -57,9 +57,12 @@ class LandingPoints():
                 pu = PositionUpwind()
                 pp = PositionParallel()
                 lm = LateralMovement()
-                wd = WindListener(self.args.windDirection, self.args.windSpeed)
-                mp = MotorPerformance(self.args.motorPerformance)
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm, wd, mp])
+
+                # Disabled due to runner issue
+                # wd = WindListener(self.args.windDirection, self.args.windSpeed)
+                # mp = MotorPerformance(self.args.motorPerformance)
+                
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
@@ -84,6 +87,13 @@ class LandingPoints():
         print ('Rocket landing zone %3.3f lat, %3.3f long. Max altitude %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
         (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
 
+    def isWritable(self,path):
+        try:
+            fileTest = open( path, 'w' )
+            fileTest.close()
+        except IOError:
+            return False
+        return True
 
     def getResults(self):
         lats = [p.lat for p in self.landing_points]
@@ -158,7 +168,7 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
 
-class WindListener(abstractlistener.AbstractSimulationListener):
+class WindListener(abstractlistener.AbstractCompListener):
     def __init__(self, direction, speed):
         try:
             self.direction = float(direction)
@@ -171,7 +181,7 @@ class WindListener(abstractlistener.AbstractSimulationListener):
         self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
         return self.windDirection
     
-class MotorPerformance(abstractlistener.AbstractSimulationListener):
+class MotorPerformance(abstractlistener.AbstractCompListener):
 
     def __init__(self, variation):
         try:

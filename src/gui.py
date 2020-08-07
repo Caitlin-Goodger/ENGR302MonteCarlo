@@ -1,5 +1,6 @@
 import tkinter as tk 
 import tkinter.ttk as ttk
+from tkinter.messagebox import showinfo
 import simulation 
 import asyncio
 from tkinter import filedialog
@@ -29,7 +30,7 @@ class InputOptions(tk.Frame):
         self.controller = controller
         self.filename = 'model.ork'
         self.outfile = './out.csv'
-        tk.Button(self, text = 'Open Rocket', width = 25, command=self.getFile).grid(column = 0, row = 0)
+        tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
         #rda
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
@@ -118,7 +119,6 @@ class InputOptions(tk.Frame):
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
 
-
     def exec(self):
         self.updateArgs()
         self.runSims(self.sim)
@@ -134,7 +134,49 @@ class InputOptions(tk.Frame):
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get())
 
-        for k in self.args.__dict__:
+        if(self.checkValues(values)):
+            self.parseAndRun(values)
+
+    def checkValues(self, values):
+
+        self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
+                    rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
+                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation')
+
+        for k in values.__dict__:
+            if values.__dict__[k] != '':                
+                if k == 'rocket' or k == 'outfile':
+                    pass # is string
+                elif k == 'simCount':
+                    if not (self.checkIntValue(values.__dict__[k])):
+                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be an integer value")
+                        return False
+                else:
+                    if not (self.checkFloatValue(values.__dict__[k])):
+                        showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be a float value")
+                        return False
+        return True
+
+    def checkIntValue(self,value):
+        try: 
+            int(value)
+            return True
+        except ValueError:
+            return False
+    def checkFloatValue(self,value):
+        try: 
+            float(value)
+            return True
+        except ValueError:
+            return False
+
+    def parseAndRun(self, values):
+        args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
+                        rodDirection=0, rodDirectionSigma=5,
+                        windSpeed=15,windSpeedSigma=5, 
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
+
+        for k in args.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
                     self.args.__dict__[k] = values.__dict__[k]
