@@ -8,6 +8,7 @@ import numpy as np
 from argparse import Namespace
 import os
 import sys
+from decimal import Decimal
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -85,7 +86,9 @@ class LandingPoints():
                 writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
         file.close()
         print ('Rocket landing zone %3.3f lat, %3.3f long. Max altitude %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
-        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
+        (float(format(np.mean(lats))), float(format(np.mean(longs))), float(format(np.mean(altitudes))), float(format(np.mean(upwinds))), float(format(np.mean(parallels))), float(format(np.mean(lateral_distances))), float(format(np.mean(lateral_directions))), len(self.landing_points)))
+        
+
 
     def isWritable(self,path):
         try:
@@ -106,6 +109,9 @@ class LandingPoints():
 
         toReturn = Namespace(lat = np.format_float_positional(np.mean(lats)), long = np.format_float_positional(np.mean(longs)), altitude = np.format_float_positional(np.mean(altitudes)), upwind = np.format_float_positional(np.mean(upwinds)), parallel = np.format_float_positional(np.mean(parallels)), lateraldistance = np.format_float_positional(np.mean(lateral_distances)), lateraldirection = np.format_float_positional(np.mean(lateral_directions)), sims = len(self.landing_points) )
         return toReturn
+
+    def format(self, s):
+        return (Decimal(float(s)).quantize(Decimal("11.000")))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
