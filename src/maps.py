@@ -3,7 +3,7 @@ import webview
 import numpy as np
 from threading import Timer
 
-df = pd.read_csv("./out.csv")
+df = pd.read_csv("./maps_test.csv")
 df.head()
 
 f = open("./iframe_figures/figure_0.html", "w")
