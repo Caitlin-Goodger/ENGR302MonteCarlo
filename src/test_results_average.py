@@ -54,8 +54,8 @@ class TestSim:
                     assert False, "not a float" 
             latTotal = latTotal/count
 
-            toCompare = Decimal(latTotal).quantize(Decimal("1.000"))
-            assert (results[153:185].decode("utf-8") == "Rocket landing zone " + str(toCompare) + " lat, ")
+            toCompare = '{0:+.3f}'.format(latTotal)
+            assert (results[153:184].decode("utf-8") == "Rocket landing zone " + str(toCompare) + " lat,")
 
     def test_average_longitude(self):
         try:
@@ -75,8 +75,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             longTotal = longTotal/count
-            toCompare = Decimal(longTotal).quantize(Decimal("1.000"))
-            assert (results[185:197].decode("utf-8") == str(toCompare) + " long. ")
+            toCompare = '{0:+.3f}'.format(longTotal)
+            assert (results[185:197].decode("utf-8") == str(toCompare) + " long.")
 
     def test_average_max_altitude(self):
         try:
@@ -96,8 +96,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             altTotal = altTotal/count
-            toCompare = Decimal(altTotal).quantize(Decimal("11.000"))
-            assert (results[197:225].decode("utf-8") == "Max altitude " + str(toCompare) + " metres. ")
+            toCompare = '{0:.3f}'.format(altTotal)
+            assert (results[198:226].decode("utf-8") == "Max altitude " + str(toCompare) + " metres. ")
 
     def test_average_max_pos_upwind(self):
         try:
@@ -117,8 +117,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             upwindTotal = upwindTotal/count
-            toCompare = Decimal(upwindTotal).quantize(Decimal("11.000"))
-            assert (results[225:260].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres. ")
+            toCompare = '{0:+.3f}'.format(upwindTotal)
+            assert (results[226:261].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres.")
 
     def test_average_max_pos_parallel(self):
         try:
@@ -138,8 +138,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             parallelTotal = parallelTotal/count
-            toCompare = Decimal(parallelTotal).quantize(Decimal("11.000"))
-            assert (results[260:304].decode("utf-8") == "Max position parallel to wind " + str(toCompare) + " metres. ")
+            toCompare = '{0:+.3f}'.format(parallelTotal)
+            assert (results[262:307].decode("utf-8") == "Max position parallel to wind " + str(toCompare) + " metres. ")
 
     def test_average_lateral_distance(self):
         try:
@@ -159,8 +159,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             lateralTotal = lateralTotal/count
-            toCompare = Decimal(lateralTotal).quantize(Decimal("11.000"))
-            assert (results[304:347].decode("utf-8") == "Lateral distance " + str(toCompare) + " meters from start. ")
+            toCompare = '{0:+.3f}'.format(lateralTotal)
+            assert (results[307:350].decode("utf-8") == "Lateral distance " + str(toCompare) + " meters from start.")
     
     def test_average_lateral_direction(self):
         try:
@@ -180,8 +180,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             lateralTotal = lateralTotal/count
-            toCompare = Decimal(lateralTotal).quantize(Decimal("11.000"))
-            assert (results[347:420].decode("utf-8") == "Lateral direction " + str(toCompare) + " degrees from from the start (relative to East). ")
+            toCompare = '{0:+.3f}'.format(lateralTotal)
+            assert (results[351:423].decode("utf-8") == "Lateral direction " + str(toCompare) + " degrees from from the start (relative to East).")
     
     def test_num_simulations(self):
         try:
@@ -189,4 +189,4 @@ class TestSim:
         except ImportError:
             from mock import patch
         results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
-        assert (results[420:443].decode("utf-8") == "Based on 5 simulations.")
+        assert (results[424:447].decode("utf-8") == "Based on 5 simulations.")
