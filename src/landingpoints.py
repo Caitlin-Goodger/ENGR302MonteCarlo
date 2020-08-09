@@ -58,11 +58,10 @@ class LandingPoints():
                 pp = PositionParallel()
                 lm = LateralMovement()
 
-                # Disabled due to runner issue
-                # wd = WindListener(self.args.windDirection, self.args.windSpeed)
-                # mp = MotorPerformance(self.args.motorPerformance)
-                
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+                wd = WindListener(self.args.windDirection, self.args.windSpeed)
+                mp = MotorPerformance(self.args.motorPerformance)
+
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm,wd,mp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
