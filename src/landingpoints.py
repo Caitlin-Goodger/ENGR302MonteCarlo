@@ -8,6 +8,7 @@ import numpy as np
 from argparse import Namespace
 import os
 import sys
+from decimal import Decimal
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -78,18 +79,16 @@ class LandingPoints():
         lateral_directions = [p.lateral_direction for p in self.lateral_movement]
         lateral_distances = [p.lateral_distance for p in self.lateral_movement]
 
-        if self.isWritable(self.args.outfile):
-            with open(self.args.outfile, 'w',newline="\n") as file:
-                writer = csv.writer(file)
-                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
-                for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
-                    writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
-            file.close()
-        else:
-            print("Warning: unable to write to file: "+ self.args.outfile)
-        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
+        with open(self.args.outfile, 'w',newline="\n") as file:
+            writer = csv.writer(file)
+            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
+            for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_distances, lateral_directions):
+                writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
+        file.close()
+        print ('Rocket landing zone %+3.3f lat, %+3.3f long. Max altitude %3.3f metres. Max position upwind %+3.3f metres. Max position parallel to wind %+3.3f metres. Lateral distance %+3.3f meters from start. Lateral direction %+3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
+        (float(format(np.mean(lats))), float(format(np.mean(longs))), float(format(np.mean(altitudes))), float(format(np.mean(upwinds))), float(format(np.mean(parallels))), float(format(np.mean(lateral_distances))), float(format(np.mean(lateral_directions))), len(self.landing_points)))
+        
 
-        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
 
     def isWritable(self,path):
         try:
@@ -110,6 +109,9 @@ class LandingPoints():
 
         toReturn = Namespace(lat = np.format_float_positional(np.mean(lats)), long = np.format_float_positional(np.mean(longs)), altitude = np.format_float_positional(np.mean(altitudes)), upwind = np.format_float_positional(np.mean(upwinds)), parallel = np.format_float_positional(np.mean(parallels)), lateraldistance = np.format_float_positional(np.mean(lateral_distances)), lateraldirection = np.format_float_positional(np.mean(lateral_directions)), sims = len(self.landing_points) )
         return toReturn
+
+    def format(self, s):
+        return (Decimal(float(s)).quantize(Decimal("11.000")))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
