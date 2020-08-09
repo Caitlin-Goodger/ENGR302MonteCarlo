@@ -5,6 +5,7 @@ stages:
   - Package
   
 before_script:
+    - apt-get install -y python3-pip
     - pip install --user JPype1
     - pip install --user pyinstaller
     - pip install -r requirements.txt
