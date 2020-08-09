@@ -1,7 +1,6 @@
 stages:
   - Build
   - Test
-  - Deploy
   - Package
   
 before_script:
@@ -63,12 +62,3 @@ test-python-listeners:
         - src/*.log
       expire_in: 1 day
 
-
-deploy:
-  stage: Deploy
-  tags:
-    - shell
-  script:
-    - echo "deploy"
-    - exit 0
-  allow_failure: true
