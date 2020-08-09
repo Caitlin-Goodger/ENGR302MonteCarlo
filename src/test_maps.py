@@ -7,7 +7,7 @@ import io
 # needs -s flag when running with pytest
 def test_cords_passed_correctly():
     mapRunner = subprocess.run(["python", "./maps.py"],universal_newlines=True,stdout=subprocess.PIPE)
-    # print(mapRunner.stdout)
+    print(mapRunner.stdout)
     df = pd.read_csv("./maps_test.csv")
     df.head()
 
