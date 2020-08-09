@@ -5,8 +5,9 @@ stages:
   - Package
   
 before_script:
-    - pip3 install JPype1
-    - pip3 install pyinstaller
+    - pip3 install --user JPype1
+    - pip3 install --user pyinstaller
+    - pip3 install --user pytest
     - pip3 install -r requirements.txt
 
 
