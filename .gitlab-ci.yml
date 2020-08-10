@@ -5,6 +5,7 @@ stages:
   - Package
   
 before_script:
+    - source ~/.bashrc
     - pip install --user JPype1
     - pip install --user pyinstaller
     - pip install -r requirements.txt
