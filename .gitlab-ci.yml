@@ -5,10 +5,9 @@ stages:
   - Package
   
 before_script:
-    - pip3 install --user JPype1
-    - pip3 install --user pyinstaller
-    - pip3 install --user pytest
-    - pip3 install -r requirements.txt
+    - pip install --user JPype1
+    - pip install --user pyinstaller
+    - pip install -r requirements.txt
 
 
 build:
@@ -30,7 +29,7 @@ package:
     - shell
   script:
     - cd src/
-    - python3 -m PyInstaller monte_carlo.spec
+    - python -m PyInstaller monte_carlo.spec
 
 
 unittest-java:
