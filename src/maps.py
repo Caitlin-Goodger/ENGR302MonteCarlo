@@ -3,6 +3,9 @@ import webview
 import numpy as np
 from threading import Timer
 
+from flask import Flask,send_from_directory
+flaskServer = Flask(__name__)
+
 df = pd.read_csv("./maps_test.csv")
 df.head()
 
@@ -34,7 +37,19 @@ base="""
 f.write(base)
 f.close()
 
-window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
+
+@flaskServer.route('/')
+def index():
+    return base
+@flaskServer.route('/leaf/<path:path>')
+def leafServe(path):
+    return send_from_directory('./iframe_figures/leaf/',path)
+
+
+
+
+# window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
+window =webview.create_window('Simulations', flaskServer,width=900,height=900)
 def evaluate_js(window):
     result = window.evaluate_js(
         r"""
@@ -44,12 +59,12 @@ def evaluate_js(window):
 
     print(result)
 
-def autoClose():
-    # print("Auto closed")
-    window.destroy()
+# def autoClose():
+#     # print("Auto closed")
+#     window.destroy()
 
-r = Timer(5.0, autoClose)
-r.start()
+# r = Timer(5.0, autoClose)
+# r.start()
 
-webview.start(evaluate_js,window,debug=True, http_server=True,gui="qt")
-
+# webview.start(evaluate_js,window,debug=True, http_server=True,gui="qt")
+webview.start(window,debug=True,gui="qt")
