@@ -600,8 +600,8 @@ Trimester 2:
 - Weeks 3-4 Convert scatter to map and Weather data
 - Weeks 5-6 Upwind rocket vectors
 - Weeks 7-8 Upwind rocket vectors
-- Weeks 9-10 PID Controllers
-- Weeks 11-12 Prepare for presentation and write manuals for customer and use
+- Weeks 9-10 Prepare for presentation and write manuals for customer and use
+- Weeks 11-12 PID Controllers
 
 ### 5.2 Budget
 
