@@ -3,6 +3,7 @@ import webview
 import numpy as np
 from threading import Timer
 import urllib.request
+import os
 
 from flask import Flask,send_from_directory,Response
 flaskServer = Flask(__name__)
@@ -44,6 +45,7 @@ f.close()
 @flaskServer.route('/')
 def index():
     print("Base get")
+    # print(os.path.exists(os.path.join(os.getcwd(),"iframe_figures","tilecache","stub.txt")))
     return base
 @flaskServer.route('/leaf/<path:path>')
 def leafServe(path):
@@ -52,21 +54,31 @@ def leafServe(path):
 @flaskServer.route('/tiles/<string:s>/<string:z>/<string:x>/<string:y>.png')
 def tileServe(s,z,x,y):
     print("Tile serve")
-    req = urllib.request.Request(
-    url="https://"+s+".tile.openstreetmap.org/"+z+"/"+x+"/"+y+".png", 
-    data=None, 
-    headers={
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
-    }
-    )
-    print("https://"+s+".tile.openstreetmap.org/"+z+"/"+x+"/"+y+".png")
-    return Response(urllib.request.urlopen(req).read(), mimetype='image/png')
-@flaskServer.after_request
-def add_header(response):
-    response.cache_control.max_age = 86400
-    response.cache_control.public=True
-    response.cache_control.immutable=True
-    return response
+    filename=s+"-"+z+"-"+x+"-"+y+".png"
+    filePath=os.path.join(os.getcwd(),"iframe_figures","tilecache",filename)
+    if os.path.exists(filePath):
+        print("Served from Cache")
+        return send_from_directory('./iframe_figures/tilecache/',filename)
+    else:
+        req = urllib.request.Request(
+        url="https://"+s+".tile.openstreetmap.org/"+z+"/"+x+"/"+y+".png", 
+        data=None, 
+        headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Safari/537.36'
+        }
+        )
+        imgBuf=urllib.request.urlopen(req).read()
+        ff = open(filePath, "wb")
+        ff.write(imgBuf)
+        ff.close()
+        print("https://"+s+".tile.openstreetmap.org/"+z+"/"+x+"/"+y+".png")
+        return Response(imgBuf, mimetype='image/png')
+# @flaskServer.after_request
+# def add_header(response):
+#     response.cache_control.max_age = 86400
+#     response.cache_control.public=True
+#     response.cache_control.immutable=True
+#     return response
 
 # window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
 window =webview.create_window('Simulations', flaskServer,width=900,height=900)
