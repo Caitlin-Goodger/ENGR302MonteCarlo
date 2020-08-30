@@ -1,7 +1,6 @@
 stages:
   - Build
   - Test
-  - Deploy
   - Package
   
 before_script:
@@ -47,28 +46,47 @@ test-python-args:
     script:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - pytest test_args.py
+      - python -m pytest test_args.py
 
-test-python-listeners:
+test-python-output-file:
     stage: Test
     tags:
       - shell
     script:
       - cd src/
       - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
-      - pytest test_sim_listeners.py
+      - python -m pytest test_results.py
     artifacts:
       when: on_failure
       paths:
         - src/*.log
       expire_in: 1 day
 
+#test-gui:
+#    stage: Test
+#    tags:
+#      - shell
+#    script:
+#      - cd src/
+#      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+#      - python -m pytest test_gui.py
+#    artifacts:
+#      when: on_failure
+#      paths:
+#        - src/*.log
+#      expire_in: 1 day
 
-deploy:
-  stage: Deploy
-  tags:
-    - shell
-  script:
-    - echo "deploy"
-    - exit 0
-  allow_failure: true
+test-python-results-average:
+    stage: Test
+    tags:
+      - shell
+    script:
+      - cd src/
+      - cp ../lib/build/jar/OpenRocket.jar ../lib/build/jar/openrocket.jar
+      - python -m pytest test_results_average.py
+    artifacts:
+      when: on_failure
+      paths:
+        - src/*.log
+      expire_in: 1 day
+
