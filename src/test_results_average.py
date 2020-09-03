@@ -33,7 +33,8 @@ class TestSim:
         except ImportError:
             from mock import patch
         results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
-        assert (results[0:153].decode("utf-8") == "Startup\nStarting openrocket\nRunning 5 sims\nRunning simulation  1\nRunning simulation  2\nRunning simulation  3\nRunning simulation  4\nRunning simulation  5\n")
+        output = results[0:153].decode("utf-8")
+        assert ("Running simulation" in output)
     
     def test_average_latitude(self):
         try:
@@ -55,7 +56,8 @@ class TestSim:
             latTotal = latTotal/count
 
             toCompare = '{0:+.3f}'.format(latTotal)
-            assert (results[153:184].decode("utf-8") == "Rocket landing zone " + str(toCompare) + " lat,")
+            output = results[153:184].decode("utf-8")
+            assert ("Rocket landing zone" in output and toCompare in output)
 
     def test_average_longitude(self):
         try:
@@ -76,7 +78,8 @@ class TestSim:
                     assert False, "not a float" 
             longTotal = longTotal/count
             toCompare = '{0:+.3f}'.format(longTotal)
-            assert (results[185:197].decode("utf-8") == str(toCompare) + " long.")
+            output = results[185:197].decode("utf-8")
+            assert ("long" in output and toCompare in output)
 
     def test_average_max_altitude(self):
         try:
@@ -97,7 +100,8 @@ class TestSim:
                     assert False, "not a float" 
             altTotal = altTotal/count
             toCompare = '{0:.3f}'.format(altTotal)
-            assert (results[198:226].decode("utf-8") == "Max altitude " + str(toCompare) + " metres. ")
+            output = results[198:226].decode("utf-8")
+            assert ("Max altitude" in output and toCompare in output)
 
     def test_average_max_pos_upwind(self):
         try:
@@ -118,7 +122,8 @@ class TestSim:
                     assert False, "not a float" 
             upwindTotal = upwindTotal/count
             toCompare = '{0:+.3f}'.format(upwindTotal)
-            assert (results[226:261].decode("utf-8") == "Max position upwind " + str(toCompare) + " metres.")
+            output = results[226:261].decode("utf-8")
+            assert ("Max position upwind" in output and toCompare in output)
 
     def test_average_max_pos_parallel(self):
         try:
@@ -139,7 +144,8 @@ class TestSim:
                     assert False, "not a float" 
             parallelTotal = parallelTotal/count
             toCompare = '{0:+.3f}'.format(parallelTotal)
-            assert (results[262:307].decode("utf-8") == "Max position parallel to wind " + str(toCompare) + " metres. ")
+            output = results[262:307].decode("utf-8")
+            assert ("Max position parallel to wind" in output and toCompare in output)
 
     def test_average_lateral_distance(self):
         try:
@@ -160,7 +166,8 @@ class TestSim:
                     assert False, "not a float" 
             lateralTotal = lateralTotal/count
             toCompare = '{0:+.3f}'.format(lateralTotal)
-            assert (results[307:350].decode("utf-8") == "Lateral distance " + str(toCompare) + " meters from start.")
+            output = results[307:350].decode("utf-8")
+            assert (toCompare in output and "Lateral distance" in output)
     
     def test_average_lateral_direction(self):
         try:
@@ -181,7 +188,8 @@ class TestSim:
                     assert False, "not a float" 
             lateralTotal = lateralTotal/count
             toCompare = '{0:+.3f}'.format(lateralTotal)
-            assert (results[351:423].decode("utf-8") == "Lateral direction " + str(toCompare) + " degrees from from the start (relative to East).")
+            output = results[351:423].decode("utf-8")
+            assert ("Lateral direction" in output and toCompare in output)
     
     def test_num_simulations(self):
         try:
@@ -189,4 +197,5 @@ class TestSim:
         except ImportError:
             from mock import patch
         results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
-        assert (results[424:447].decode("utf-8") == "Based on 5 simulations.")
+        output = results[424:447].decode("utf-8")
+        assert ( "Based on 5 simulations" in output)
