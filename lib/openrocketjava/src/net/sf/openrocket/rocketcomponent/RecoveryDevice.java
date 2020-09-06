@@ -113,6 +113,9 @@ public abstract class RecoveryDevice extends MassObject {
 		setMaterial(material);
 	}
 	
+	public void setDeployEvent (DeployEvent e) {
+		this.deployEvent = e;
+	}
 	
 
 	
