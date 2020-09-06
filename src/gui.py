@@ -121,13 +121,15 @@ class InputOptions(tk.Frame):
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
 
-    def upwindCalc(self):
-        self.updateUpwindArgs()
-        self.runUpwindArgs(self.sim)
+    #def upwindCalc(self):
+        #self.updateUpwindArgs()
+        #self.runUpwindArgs(self.sim)
 
     def runUpwindArgs(self,sim):
         self.showUpwindCalculating()
         self.resp = sim.runUpwindSimulations()
+        self.upwind = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
+
         # Handle output from running upwind sims
         # self.controller.upWindResults = self.resp.getResults()
         # Eventually return to input screen with any user edited values
@@ -189,8 +191,6 @@ class InputOptions(tk.Frame):
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
-
-        upwind = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
