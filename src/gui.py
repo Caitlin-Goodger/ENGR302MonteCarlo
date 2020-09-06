@@ -121,7 +121,8 @@ class InputOptions(tk.Frame):
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
 
-    #def upwindCalc(self):
+    def upwindCalc(self):
+        return
         #self.updateUpwindArgs()
         #self.runUpwindArgs(self.sim)
 
