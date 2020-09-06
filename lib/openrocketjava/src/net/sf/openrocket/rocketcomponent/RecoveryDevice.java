@@ -98,6 +98,11 @@ public abstract class RecoveryDevice extends MassObject {
 	
 	private Material.Surface material;
 
+	public void setDeployEventCustom(String event) {
+		if (event.equals("never")) {
+			this.deployEvent = DeployEvent.NEVER;
+		}
+	}
 	
 	public RecoveryDevice() {
 		this(Prefs.getDefaultComponentMaterial(RecoveryDevice.class, Material.Type.SURFACE));
