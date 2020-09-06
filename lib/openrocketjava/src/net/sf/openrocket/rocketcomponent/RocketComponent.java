@@ -13,6 +13,7 @@ import net.sf.openrocket.util.LineStyle;
 import net.sf.openrocket.util.MathUtil;
 import net.sf.openrocket.util.SafetyMutex;
 import net.sf.openrocket.util.UniqueID;
+import net.sf.openrocket.rocketcomponent.Parachute;
 
 import javax.swing.event.ChangeListener;
 import java.awt.*;
@@ -1258,6 +1259,15 @@ public abstract class RocketComponent implements ChangeSource, Cloneable, Iterab
 		return children.clone();
 	}
 	
+	public RocketComponent getParachute(){
+		checkState();
+		for (RocketComponent c : children) {
+			if (c instanceof Parachute) {
+				return c;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * Returns the position of the child in this components child list, or -1 if the
