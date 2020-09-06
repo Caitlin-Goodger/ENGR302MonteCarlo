@@ -73,14 +73,7 @@ def tileServe(s,z,x,y):
         ff.close()
         print("https://"+s+".tile.openstreetmap.org/"+z+"/"+x+"/"+y+".png")
         return Response(imgBuf, mimetype='image/png')
-# @flaskServer.after_request
-# def add_header(response):
-#     response.cache_control.max_age = 86400
-#     response.cache_control.public=True
-#     response.cache_control.immutable=True
-#     return response
 
-# window =webview.create_window('Simulations', url="./iframe_figures/figure_0.html",width=900,height=900)
 window =webview.create_window('Simulations', flaskServer,width=900,height=900)
 def evaluate_js(window):
     result = window.evaluate_js(
@@ -91,17 +84,8 @@ def evaluate_js(window):
 
     print(result)
 
-# def autoClose():
-#     # print("Auto closed")
-#     window.destroy()
-
-# r = Timer(5.0, autoClose)
-# r.start()
-
-# webview.start(evaluate_js,window,debug=True, http_server=True,gui="qt")
-# webview.start(window,debug=True,gui="qt")
-# input("a")
-if __name__ == '__main__':
-    flaskServer.config['PROPAGATE_EXCEPTIONS'] = True
-    flaskServer.config['TESTING'] = True
-    flaskServer.run(host='0.0.0.0', port=80,debug=True,threaded=False,processes=1)
+webview.start(window,debug=True,gui="qt")
+# if __name__ == '__main__':
+#     flaskServer.config['PROPAGATE_EXCEPTIONS'] = True
+#     flaskServer.config['TESTING'] = True
+#     flaskServer.run(host='0.0.0.0', port=80,debug=True,threaded=False,processes=1)
