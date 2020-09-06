@@ -50,15 +50,15 @@ class InputOptions(tk.Frame):
         # wsa
         self.windSpeedEntry = tk.StringVar()
         self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
-        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 0, 9, 15)
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 3, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 1, 5)
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 5, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 3, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
@@ -78,7 +78,9 @@ class InputOptions(tk.Frame):
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
-        tk.Button(self, text='Execute', width=25, command=self.exec,padx=0).grid(column=0, row=20)
+        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=20)
+
+        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=20)
 
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
@@ -118,6 +120,18 @@ class InputOptions(tk.Frame):
                 self.longaEntry.set(value)
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
+
+    def upwindCalc(self):
+        self.updateUpwindArgs()
+        self.runUpwindArgs(self.sim)
+
+    def runUpwindArgs(self,sim):
+        self.showUpwindCalculating()
+        self.resp = sim.runUpwindSimulations()
+        # Handle output from running upwind sims
+        # self.controller.upWindResults = self.resp.getResults()
+        # Eventually return to input screen with any user edited values
+        # self.showResults()
 
     def exec(self):
         self.updateArgs()
@@ -176,6 +190,8 @@ class InputOptions(tk.Frame):
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
 
+        upwind = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
+
         for k in args.__dict__:
             if values.__dict__[k] != '':                
                 if k == 'rocket' or k == 'outfile':
@@ -201,12 +217,34 @@ class InputOptions(tk.Frame):
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
 
+    def showUpwindCalculating(self):
+        self.destroy()
+        loadingFrame = UpwindVector(self.parent, self.controller)
+        loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
+        loadingFrame.stepProgressBar()
+        loadingFrame.update()
+
     def showLoading(self):
         self.destroy()
         loadingFrame = RunningSimulations(self.parent, self.controller)
         loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
         loadingFrame.stepProgressBar()
         loadingFrame.update()
+
+class UpwindVector(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        tk.Label(self, text = "Calculating Upwind Vector").grid(column = 0, row = 0)
+        self.controller = controller
+
+        self.progressBar = ttk.Progressbar(self,orient='horizontal', mode='indeterminate')
+        self.progressBar.grid(column=0, row=1)    
+        self.stepProgressBar()    
+
+    def stepProgressBar(self):
+        self.progressBar.step(5)
+
 
 class RunningSimulations(tk.Frame):
 
