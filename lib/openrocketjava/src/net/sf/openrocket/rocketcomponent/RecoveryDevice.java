@@ -116,12 +116,7 @@ public abstract class RecoveryDevice extends MassObject {
 	public RecoveryDevice(double length, double radius, Material material) {
 		super(length, radius);
 		setMaterial(material);
-	}
-	
-	public void setDeployEvent (DeployEvent e) {
-		this.deployEvent = e;
-	}
-	
+	}	
 
 	
 	public abstract double getArea();
