@@ -99,8 +99,16 @@ public abstract class RecoveryDevice extends MassObject {
 	private Material.Surface material;
 
 	public void setDeployEventCustom(String event) {
-		if (event.equals("never")) {
+		if (event.equalsIgnoreCase("never")) {
 			this.deployEvent = DeployEvent.NEVER;
+		} else if (event.equalsIgnoreCase("launch")) {
+			this.deployEvent = DeployEvent.LAUNCH;
+		} else if (event.equalsIgnoreCase("altitude")) {
+			this.deployEvent = DeployEvent.ALTITUDE;
+		} else if (event.equalsIgnoreCase("apogee")) {
+			this.deployEvent = DeployEvent.APOGEE;
+		} else {
+			this.deployEvent = DeployEvent.EJECTION;
 		}
 	}
 	
