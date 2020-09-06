@@ -1259,13 +1259,13 @@ public abstract class RocketComponent implements ChangeSource, Cloneable, Iterab
 		return children.clone();
 	}
 	
-	public RocketComponent getParachute(){
+	public Parachute getParachute(){
 		checkState();
 		for (RocketComponent c : this.children) {
 			if (c instanceof Parachute) {
-				return c;
+				return ((Parachute) c);
 			}
-			c.getParachute();
+			return c.getParachute();
 		}
 		return null;
 	}
