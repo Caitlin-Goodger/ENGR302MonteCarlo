@@ -28,23 +28,28 @@ class LandingPoints():
             orh = orhelper.Helper()
 
             doc = orh.load_doc(self.args.rocket)
-            # doc.getRocket().getChild(0).getChild(1).getParachute().setDeployEventCustom("never")
-            # print(doc.getRocket().getChild(0).getChild(1).getParachute().getDeployEvent())
-            sim = doc.getSimulation(0)
-            
-            # Randomize various parameters
-            opts = sim.getOptions()
-            rocket = opts.getRocket()
+            parachute_setting = doc.getRocket().getParachute().getDeployEvent().toString()
+            # print(doc.getRocket().getParachute())
+            # doc.getRocket().getParachute().setDeployEventCustom("never")
+            # print(doc.getRocket().getParachute().getDeployEvent())
 
-            # Set latitude and longitude
-            sim.getOptions().setLaunchLatitude(self.args.startLat)
-            sim.getOptions().setLaunchLongitude(self.args.startLong)
-
-            sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
             print("Running {} sims".format(num))
             for p in range(num):
                 print ('Running simulation ', p+1)
+
+                sim = doc.getSimulation(0)
+                # Randomize various parameters
+                opts = sim.getOptions()
+                rocket = opts.getRocket()
+                
+                
+
+                # Set latitude and longitude
+                sim.getOptions().setLaunchLatitude(self.args.startLat)
+                sim.getOptions().setLaunchLongitude(self.args.startLong)
+
+                sim.getOptions().setLaunchRodAngle(math.pi/3)
                 
                 opts.setLaunchRodAngle(math.radians( gauss(self.args.rodAngle, self.args.rodAngleSigma) ))
                 opts.setLaunchRodDirection(math.radians( gauss(self.args.rodDirection, self.args.rodDirectionSigma) ))

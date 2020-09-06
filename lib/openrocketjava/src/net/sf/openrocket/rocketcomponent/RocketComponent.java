@@ -1265,7 +1265,8 @@ public abstract class RocketComponent implements ChangeSource, Cloneable, Iterab
 			if (c instanceof Parachute) {
 				return ((Parachute) c);
 			}
-			return c.getParachute();
+			Parachute next = c.getParachute();
+			if (next != null) return next;
 		}
 		return null;
 	}
