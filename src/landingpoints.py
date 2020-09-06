@@ -28,8 +28,9 @@ class LandingPoints():
             orh = orhelper.Helper()
 
             doc = orh.load_doc(self.args.rocket)
-            doc.getRocket().getChild(0).getChild(1).getParachute().setDeployEventCustom("never")
-            print(doc.getRocket().getChild(0).getChild(1).getParachute().getDeployEvent())
+            # print(doc.getRocket().getParachute())
+            # doc.getRocket().getParachute().setDeployEventCustom("never")
+            # print(doc.getRocket().getParachute().getDeployEvent())
             sim = doc.getSimulation(0)
             
             # Randomize various parameters
