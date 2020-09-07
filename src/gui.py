@@ -35,52 +35,79 @@ class InputOptions(tk.Frame):
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
         self.createLabel(tk, self.rodAngle, "Rod angle", 0, 1, 45)
+        self.rowconfigure(3, minsize=10)
         # rdas
         self.rodAngleSigmaEntry = tk.StringVar()
         self.rodAngleSigma = tk.Entry(self,width=25,textvariable=self.rodAngleSigmaEntry)
-        self.createLabel(tk, self.rodAngleSigma, "Rod angle sigma", 0, 3, 5)
+        self.createLabel(tk, self.rodAngleSigma, "Rod angle sigma", 0, 4, 5)
+        self.rowconfigure(6, minsize=10)
         # rdd
         self.rodDirectionEntry = tk.StringVar()
         self.rodDirection = tk.Entry(self,width=25,textvariable=self.rodDirectionEntry)
-        self.createLabel(tk, self.rodDirection, "Rod direction", 0, 5, 0)
+        self.createLabel(tk, self.rodDirection, "Rod direction", 0, 7, 0)
+        self.rowconfigure(9, minsize=10)
         # rdds
         self.rodDirectionSigmaEntry = tk.StringVar()
         self.rodDirectionSigma = tk.Entry(self,width=25,textvariable=self.rodDirectionSigmaEntry)
-        self.createLabel(tk, self.rodDirectionSigma, "Rod direction sigma", 0, 7 , 5)
+        self.createLabel(tk, self.rodDirectionSigma, "Rod direction sigma", 0, 10 , 5)
+        self.rowconfigure(12, minsize=15)
         # wsa
         self.windSpeedEntry = tk.StringVar()
         self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
-        self.createLabel(tk, self.windSpeed, "Wind speed", 0, 9, 15)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 1, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 4, 5)
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 3, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
         self.createLabel(tk, self.lat, "lat", 0, 14, 0)
+        self.rowconfigure(16, minsize=15)
         # long
         self.longaEntry = tk.StringVar()
         self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
-        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.createLabel(tk, self.longa, "long", 0, 17, 0)
+        self.rowconfigure(19, minsize=15)
         # n
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
-        self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        self.createLabel(tk, self.n, "Number of iteration", 0, 20, 25)
+        self.rowconfigure(21, minsize=15)
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
         self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
+
+        # Upwind rocket vector only fields
+        self.upwindMinAngleEntry = tk.StringVar()
+        self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
+        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 7, -15)
+
+        # Upwind rocket vector only fields
+
+        tk.Label(self, text = "Upwind Vector Calculation Parameters").grid(column = 1, row = 12)
+        self.upwindMinAngleEntry = tk.StringVar()
+        self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
+        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 14, -15)
+
+        self.upwindMaxAngleEntry = tk.StringVar()
+        self.upwindMaxAngle = tk.Entry(self,width=25,textvariable=self.upwindMaxAngleEntry)
+        self.createLabel(tk, self.upwindMaxAngle, "Upwind Max Angle", 1, 17, 15)
+
+        self.upwindStepSizeEntry = tk.StringVar()
+        self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
+        self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 1, 20, 2)
+
         # load weather
+        self.rowconfigure(24, minsize=15)
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
-
-        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=20)
-
-        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=20)
+        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=25)
+        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=25)
 
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
