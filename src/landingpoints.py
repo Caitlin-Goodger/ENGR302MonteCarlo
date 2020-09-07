@@ -19,6 +19,7 @@ class LandingPoints():
         self.upwind = []
         self.parallel = []
         self.lateral_movement = []
+        self.parachute_fail = []
         self.args = args
 
     def add_simulations(self, num):
@@ -33,6 +34,8 @@ class LandingPoints():
             # doc.getRocket().getParachute().setDeployEventCustom("never")
             # print(doc.getRocket().getParachute().getDeployEvent())
 
+            parachuteFlag = False
+
             # Run num simulations and add to self
             print("Running {} sims".format(num))
             for p in range(num):
@@ -43,7 +46,9 @@ class LandingPoints():
                 opts = sim.getOptions()
                 rocket = opts.getRocket()
                 
-                
+                if (p == (num - self.args.parachute)):
+                    doc.getRocket().getParachute().setDeployEventCustom("never")
+                    parachuteFlag = True
 
                 # Set latitude and longitude
                 sim.getOptions().setLaunchLatitude(self.args.startLat)
@@ -75,6 +80,7 @@ class LandingPoints():
                 self.upwind.append( pu )
                 self.parallel.append ( pp )
                 self.lateral_movement.append( lm )   
+                self.parachute_fail.append (parachuteFlag)
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
@@ -84,13 +90,13 @@ class LandingPoints():
         parallels = [p.parallel for p in self.parallel]
         lateral_directions = [p.lateral_direction for p in self.lateral_movement]
         lateral_distances = [p.lateral_distance for p in self.lateral_movement]
-
+        
         if self.isWritable(self.args.outfile):
             with open(self.args.outfile, 'w',newline="\n") as file:
                 writer = csv.writer(file)
-                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])           
-                for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_distances, lateral_directions):
-                    writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
+                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)", "Parachute failed"])           
+                for p, q, r , s, t, u, v, f in zip(lats, longs, altitudes, upwinds, parallels, lateral_distances, lateral_directions, self.parachute_fail):
+                    writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v), f])
             file.close()
         else:
             print("Warning: unable to write to file: "+ self.args.outfile)
