@@ -34,7 +34,7 @@ class LandingPoints():
             # doc.getRocket().getParachute().setDeployEventCustom("never")
             # print(doc.getRocket().getParachute().getDeployEvent())
 
-            parachuteFlag = false
+            parachuteFlag = False
 
             # Run num simulations and add to self
             print("Running {} sims".format(num))
@@ -48,7 +48,7 @@ class LandingPoints():
                 
                 if (p == (num - self.args.parachute)):
                     doc.getRocket().getParachute().setDeployEventCustom("never")
-                    parachuteFlag = true
+                    parachuteFlag = True
 
                 # Set latitude and longitude
                 sim.getOptions().setLaunchLatitude(self.args.startLat)
@@ -94,7 +94,7 @@ class LandingPoints():
         if self.isWritable(self.args.outfile):
             with open(self.args.outfile, 'w',newline="\n") as file:
                 writer = csv.writer(file)
-                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)", "Parachute fail?"])           
+                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)", "Parachute failed"])           
                 for p, q, r , s, t, u, v, f in zip(lats, longs, altitudes, upwinds, parallels, lateral_distances, lateral_directions, self.parachute_fail):
                     writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v), f])
             file.close()
