@@ -75,6 +75,11 @@ class InputOptions(tk.Frame):
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
         self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
+
+        # parachute failure
+        self.parachuteFailure = tk.StringVar()
+        self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
+        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 14, 0)
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
@@ -127,12 +132,12 @@ class InputOptions(tk.Frame):
         self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
         
         values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
-                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get())
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
 
         if(self.checkValues(values)):
             self.parseAndRun(values)
@@ -141,7 +146,8 @@ class InputOptions(tk.Frame):
 
         self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
                     rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
-                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation')
+                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation',
+                    parachute = 'Number of Parachute Failures')
 
         for k in values.__dict__:
             if values.__dict__[k] != '':                
@@ -174,7 +180,7 @@ class InputOptions(tk.Frame):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
