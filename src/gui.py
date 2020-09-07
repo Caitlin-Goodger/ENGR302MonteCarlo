@@ -147,7 +147,7 @@ class InputOptions(tk.Frame):
         self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
                     rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
                     startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation',
-                    parachute = Number of Parachute Failures)
+                    parachute = 'Number of Parachute Failures')
 
         for k in values.__dict__:
             if values.__dict__[k] != '':                
