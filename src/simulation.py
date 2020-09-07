@@ -60,6 +60,7 @@ class Simulation(object):
         parser.add_argument("-n", "--n", dest = "simCount", default = 20, help = "The number of simulations to run.", type = int) 
         parser.add_argument("-w", "--w", dest = "weathercsv", default = "", help = "Weather csv file")
         parser.add_argument("-mp", "--motor-performance", dest = "motorPerformance", default = "", help = "Variation of motor performance e.g. 0.1")
+        parser.add_argument("-pf", "--parachute-failure", dest = "parachute", default = "0", help = "Number of sims to run with failure deployment")
 
         self.args = parser.parse_args()
         self.points = landingpoints.LandingPoints(self.args)
