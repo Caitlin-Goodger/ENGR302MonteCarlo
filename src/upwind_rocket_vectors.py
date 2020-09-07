@@ -1,3 +1,5 @@
+import simulation 
+
 class UpwindRocketVectors(object):
     def __init__(self) :
         self.args = 0
@@ -7,26 +9,45 @@ class UpwindRocketVectors(object):
 
     def set_args(self,new_args,new_upwind_args) :
         self.args = new_args
+        self.args.rodAngleSigma = 0
+        
         self.upwind_args = new_upwind_args
+        self.correct_order()
     
     def run_analysis(self):
-        pass
 
-        # currentAngle = self.args.minValue
-        # while currentAngle < self.args.maxValue :
-        #     print(currentAngle)
-        #     currentAngle += self.args.stepValue
+        currentAngle = self.upwind_args.upwindMinAngle
+        while currentAngle < self.upwind_args.upwindMaxAngle :
 
-        # loop through
-        # - start at first value
-        # - while smaller than second value
-        # - increment value: step
-            # run num of monte carlo
-            # check output distance
-            # - average/max?
-            # if smaller
-            # - update bestAngle to currentAngle value
-            # - update bestDistance to output distance value
+            # update new value of rodAngle
+            self.args.rodAngle = currentAngle
+
+            # run simulation
+            sim = simulation.Simulation()
+            sim.set_args(self.args)
+            sim.parse_args()
+            simulationValue = sim.runSimulation()
+
+            # get distance 
+            distance = simulationValue.getResults().lateraldistance
+
+            # update value if smaller
+            if self.bestDistance == -1 or self.bestDistance < distance :
+                self.bestDistance = distance
+                self.bestAngle = currentAngle
+
+            currentAngle += self.upwind_args.upwindStepSize
+
+    def correct_order(self) :
+        if self.upwind_args.upwindStepSize < 0 : 
+            self.upwind_args.upwindStepSize = self.upwind_args.upwindStepSize * -1
+        
+        if self.upwind_args.upwindMinAngle > self.upwind_args.upwindMaxAngle :
+            minValue = self.upwind_args.upwindMaxAngle
+            maxValue = self.upwind_args.upwindMinAngle
+
+            self.upwind_args.upwindMinAngle = minValue
+            self.upwind_args.upwindMaxAngle = maxValue
 
     def get_args(self) :
         return self.args
