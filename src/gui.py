@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter.messagebox import showinfo
 import simulation 
+import upwind_rocket_vectors
 import asyncio
 from tkinter import filedialog
 from argparse import Namespace
@@ -17,7 +18,7 @@ class MonteCarloApp(tk.Tk):
         container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
-        self.geometry("500x450")
+        self.geometry("500x550")
 
         self.frame = InputOptions(container, self)
         self.frame.grid(row = 0, column = 0, sticky = "nsew")
@@ -66,18 +67,24 @@ class InputOptions(tk.Frame):
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
-        self.createLabel(tk, self.lat, "lat", 0, 14, 0)
-        self.rowconfigure(16, minsize=15)
+        self.createLabel(tk, self.lat, "lat", 0, 13, 0)
+        self.rowconfigure(15, minsize=15)
         # long
         self.longaEntry = tk.StringVar()
         self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
-        self.createLabel(tk, self.longa, "long", 0, 17, 0)
-        self.rowconfigure(19, minsize=15)
+        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.rowconfigure(18, minsize=15)
         # n
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
-        self.createLabel(tk, self.n, "Number of iteration", 0, 20, 25)
-        self.rowconfigure(21, minsize=15)
+        self.createLabel(tk, self.n, "Number of iteration", 0, 19, 25)
+        self.rowconfigure(21, minsize=20)
+
+        # parachute failure
+        self.parachuteFailure = tk.StringVar()
+        self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
+        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 0, 22, 0)
+        
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
@@ -88,26 +95,24 @@ class InputOptions(tk.Frame):
         self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
         self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 7, -15)
 
-        # Upwind rocket vector only fields
-
-        tk.Label(self, text = "Upwind Vector Calculation Parameters").grid(column = 1, row = 12)
+        tk.Label(self, text = "Upwind Vector Calculation Parameters").grid(column = 1, row = 14)
         self.upwindMinAngleEntry = tk.StringVar()
         self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
-        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 14, -15)
+        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 16, -15)
 
         self.upwindMaxAngleEntry = tk.StringVar()
         self.upwindMaxAngle = tk.Entry(self,width=25,textvariable=self.upwindMaxAngleEntry)
-        self.createLabel(tk, self.upwindMaxAngle, "Upwind Max Angle", 1, 17, 15)
+        self.createLabel(tk, self.upwindMaxAngle, "Upwind Max Angle", 1, 19, 15)
 
         self.upwindStepSizeEntry = tk.StringVar()
         self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
-        self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 1, 20, 2)
-
+        self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 1, 22, 2)
+        
         # load weather
         self.rowconfigure(24, minsize=15)
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
-        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=25)
-        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=25)
+        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=26)
+        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=26)
 
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
@@ -149,14 +154,42 @@ class InputOptions(tk.Frame):
                 self.windDirectionEntry.set(value)
 
     def upwindCalc(self):
-        return
-        #self.updateUpwindArgs()
-        #self.runUpwindArgs(self.sim)
+        self.updateArgs()
+        self.updateUpwindArgs()
+        self.runUpwindArgs(self.upwindSim)
+
+    def updateUpwindArgs(self):
+        self.upwindArgs = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
+        
+        values = Namespace(upwindMinAngle = self.upwindMinAngle.get(), upwindMaxAngle = self.upwindMaxAngle.get(), upwindStepSize = self.upwindStepSize.get())
+        if(self.checkUpwindValues(values)):
+            self.parseAndRunUpwind(values)
+
+    def checkUpwindValues(self, values):
+        self.upwindNames = Namespace(upwindMinAngle='Upwind Min Angle', upwindMaxAngle='Upwind Max Angle', upwindStepSize='Upwind Step Size')
+
+        for k in values.__dict__:
+            if values.__dict__[k] != '':                
+                if not (self.checkFloatValue(values.__dict__[k])):
+                    showinfo("Invalid Input", "Incorrect input: "+ self.upwindNames.__dict__[k] + " needs to be a float value")
+                    return False
+        return True
+
+    def parseAndRunUpwind(self, values):
+        self.upwindArgs = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
+
+        for k in self.upwindArgs.__dict__:
+            if values.__dict__[k] != '':                
+                self.upwindArgs.__dict__[k] = float(values.__dict__[k])
+        
+        self.upwindSim = upwind_rocket_vectors.UpwindRocketVectors()
+        self.upwindSim.set_args(self.args, self.upwindArgs)
 
     def runUpwindArgs(self,sim):
         self.showUpwindCalculating()
-        self.resp = sim.runUpwindSimulations()
-        self.upwind = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
+        self.upwindResp = sim.run_analysis()
+        self.controller.upwindResults = Namespace(bestAngle = self.upwindResp.get_bestAngle(), bestDistance = self.upwindResp.getBestDistance())
+        self.showUpwindResults()
 
         # Handle output from running upwind sims
         # self.controller.upWindResults = self.resp.getResults()
@@ -171,12 +204,12 @@ class InputOptions(tk.Frame):
         self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
         
         values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
-                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get())
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
 
         if(self.checkValues(values)):
             self.parseAndRun(values)
@@ -185,7 +218,8 @@ class InputOptions(tk.Frame):
 
         self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
                     rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
-                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation')
+                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation',
+                    parachute = 'Number of Parachute Failures')
 
         for k in values.__dict__:
             if values.__dict__[k] != '':                
@@ -218,7 +252,7 @@ class InputOptions(tk.Frame):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
@@ -241,6 +275,13 @@ class InputOptions(tk.Frame):
     def showResults(self):
         self.destroy()
         resultFrame = Results(self.parent, self.controller)
+        resultFrame.grid(row = 0, column = 0, sticky = "nsew")
+        resultFrame.displayResults()
+        resultFrame.update_idletasks() 
+
+    def showUpwindResults(self):
+        self.destroy()
+        resultFrame = UpwindResults(self.parent, self.controller)
         resultFrame.grid(row = 0, column = 0, sticky = "nsew")
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
@@ -298,6 +339,20 @@ class Results(tk.Frame):
     def displayResults(self):
         count = 1
         for k in list(vars(self.controller.results).keys()):
+            tk.Label(self, text = k).grid(column = 0, row = count)
+            tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
+            count = count + 1
+
+class UpwindResults(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        tk.Label(self, text = "Upwind Results").grid(column = 0, row = 0)
+        self.controller = controller
+
+    def displayResults(self):
+        count = 1
+        for k in list(vars(self.controller.upwindResults).keys()):
             tk.Label(self, text = k).grid(column = 0, row = count)
             tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
             count = count + 1
