@@ -31,7 +31,7 @@ class InputOptions(tk.Frame):
         self.filename = 'model.ork'
         self.outfile = 'out.csv'
         tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
-        tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 2, row = 0)
+        tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 1, row = 1)
         #rda
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
@@ -51,36 +51,36 @@ class InputOptions(tk.Frame):
         # wsa
         self.windSpeedEntry = tk.StringVar()
         self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
-        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 3, 15)
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 3, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 5, 5)
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 5, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
-        self.createLabel(tk, self.lat, "lat", 0, 14, 0)
+        self.createLabel(tk, self.lat, "lat", 0, 9, 0)
         # long
         self.longaEntry = tk.StringVar()
         self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
-        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.createLabel(tk, self.longa, "long", 0, 11, 0)
         # n
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
-        self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        self.createLabel(tk, self.n, "Number of iteration", 0, 13, 25)
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
-        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
+        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 9, 0.1)
 
         # parachute failure
         self.parachuteFailure = tk.StringVar()
         self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
-        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 14, 0)
+        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 11, 0)
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
