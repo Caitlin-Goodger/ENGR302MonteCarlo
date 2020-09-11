@@ -29,7 +29,7 @@ class InputOptions(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.filename = 'model.ork'
-        self.outfile = './out.csv'
+        self.outfile = 'out.csv'
         tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
         tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 2, row = 0)
         #rda
@@ -138,7 +138,7 @@ class InputOptions(tk.Frame):
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
         
-        values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
+        values = Namespace(rocket=self.filename, outfile=self.outfile, rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
