@@ -98,6 +98,19 @@ public abstract class RecoveryDevice extends MassObject {
 	
 	private Material.Surface material;
 
+	public void setDeployEventCustom(String event) {
+		if (event.equalsIgnoreCase("never") || event.equalsIgnoreCase("RecoveryDevice.RecoveryDevice.DeployEvent.NEVER")) {
+			this.deployEvent = DeployEvent.NEVER;
+		} else if (event.equalsIgnoreCase("launch") || event.equalsIgnoreCase("RecoveryDevice.RecoveryDevice.DeployEvent.LAUNCH")) {
+			this.deployEvent = DeployEvent.LAUNCH;
+		} else if (event.equalsIgnoreCase("altitude") || event.equalsIgnoreCase("RecoveryDevice.RecoveryDevice.DeployEvent.ALTITUDE")) {
+			this.deployEvent = DeployEvent.ALTITUDE;
+		} else if (event.equalsIgnoreCase("apogee") || event.equalsIgnoreCase("RecoveryDevice.RecoveryDevice.DeployEvent.APOGEE")) {
+			this.deployEvent = DeployEvent.APOGEE;
+		} else {
+			this.deployEvent = DeployEvent.EJECTION;
+		}
+	}
 	
 	public RecoveryDevice() {
 		this(Prefs.getDefaultComponentMaterial(RecoveryDevice.class, Material.Type.SURFACE));
@@ -111,9 +124,7 @@ public abstract class RecoveryDevice extends MassObject {
 	public RecoveryDevice(double length, double radius, Material material) {
 		super(length, radius);
 		setMaterial(material);
-	}
-	
-	
+	}	
 
 	
 	public abstract double getArea();
