@@ -31,6 +31,7 @@ class InputOptions(tk.Frame):
         self.filename = 'model.ork'
         self.outfile = './out.csv'
         tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
+        tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 2, row = 0)
         #rda
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
@@ -92,6 +93,9 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
+    
+    def saveFile(self):
+        self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file", filetypes = [("csv","*.csv")])
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
