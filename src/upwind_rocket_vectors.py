@@ -6,6 +6,13 @@ class UpwindRocketVectors(object):
         self.upwind_args = 0
         self.bestAngle = 0
         self.bestDistance = -1
+        self.distance_array = []
+        
+        self.sim = simulation.Simulation()
+        # args = 0
+        # self.sim.set_args(args)
+        # self.sim.parse_args()
+
 
     def set_args(self,new_args,new_upwind_args) :
         self.args = new_args
@@ -17,24 +24,26 @@ class UpwindRocketVectors(object):
     def run_analysis(self):
 
         currentAngle = self.upwind_args.upwindMinAngle
-        while currentAngle < self.upwind_args.upwindMaxAngle :
+        while currentAngle <= self.upwind_args.upwindMaxAngle :
 
             # update new value of rodAngle
             self.args.rodAngle = currentAngle
 
             # run simulation
-            sim = simulation.Simulation()
-            sim.set_args(self.args)
-            sim.parse_args()
-            simulationValue = sim.runSimulation()
+            self.sim.set_args(self.args)
+            self.sim.parse_args()
+            simulationValue = self.sim.runSimulation()
 
             # get distance 
-            distance = simulationValue.getResults().lateraldistance
+            distance = simulationValue.getResults().__dict__['lateraldistance']
 
             # update value if smaller
             if self.bestDistance == -1 or self.bestDistance < distance :
                 self.bestDistance = distance
                 self.bestAngle = currentAngle
+
+            # store distances for possible use/testing
+            self.distance_array.append(distance)
 
             currentAngle += self.upwind_args.upwindStepSize
 
@@ -60,3 +69,6 @@ class UpwindRocketVectors(object):
 
     def get_bestDistance(self) :
         return self.bestDistance
+
+    def get_distance_array(self) :
+        return self.distance_array
