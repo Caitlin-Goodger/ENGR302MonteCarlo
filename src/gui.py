@@ -191,11 +191,6 @@ class InputOptions(tk.Frame):
         self.controller.upwindResults = Namespace(bestAngle = self.upwindResp.get_bestAngle(), bestDistance = self.upwindResp.getBestDistance())
         self.showUpwindResults()
 
-        # Handle output from running upwind sims
-        # self.controller.upWindResults = self.resp.getResults()
-        # Eventually return to input screen with any user edited values
-        # self.showResults()
-
     def exec(self):
         self.updateArgs()
         self.runSims(self.sim)
@@ -301,7 +296,6 @@ class InputOptions(tk.Frame):
         loadingFrame.update()
 
 class UpwindVector(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Calculating Upwind Vector").grid(column = 0, row = 0)
