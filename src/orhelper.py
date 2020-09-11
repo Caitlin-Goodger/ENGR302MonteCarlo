@@ -18,8 +18,12 @@ class OpenRocketInstance(object):
         """
 
         print("Startup")
+
+        if isJVMStarted():
+            return
+
         startJVM(getDefaultJVMPath(),"-Dopenrocket.3d.disable=true", "-Djava.class.path=%s" % self.resource_path(jar_path), convertStrings=False)
- 
+
         if isJVMStarted():
             if threading.active_count() > 1:
                 if not isThreadAttachedToJVM():
@@ -33,7 +37,7 @@ class OpenRocketInstance(object):
              
     def __exit__(self, ty, value, tb):
         
-        shutdownJVM()
+        # shutdownJVM() #TODO requires implemenation
         
         if not ty is None:
             print ('Exception while calling openrocket')
