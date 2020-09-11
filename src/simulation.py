@@ -61,7 +61,8 @@ class Simulation(object):
         parser.add_argument("-w", "--w", dest = "weathercsv", default = "", help = "Weather csv file")
         parser.add_argument("-mp", "--motor-performance", dest = "motorPerformance", default = "", help = "Variation of motor performance e.g. 0.1")
 
-        self.args = parser.parse_args()
+        self.args, unknown = parser.parse_known_args()
+
         self.points = landingpoints.LandingPoints(self.args)
         return self.points
 
