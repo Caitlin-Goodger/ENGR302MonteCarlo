@@ -95,7 +95,7 @@ class InputOptions(tk.Frame):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
     
     def saveFile(self):
-        self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file", defaultextension = ".csv")
+        self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
