@@ -38,7 +38,7 @@ class UpwindRocketVectors(object):
             distance = simulationValue.getResults().__dict__['lateraldistance']
 
             # update value if smaller
-            if self.bestDistance == -1 or self.bestDistance < distance :
+            if self.bestDistance == -1 or self.bestDistance > distance :
                 self.bestDistance = distance
                 self.bestAngle = currentAngle
 

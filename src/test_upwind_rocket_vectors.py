@@ -14,22 +14,6 @@ args = Namespace(rocket='model.ork', outfile='./urv_tests.csv', rodAngle=45, rod
 
 class TestSim:
 
-    @classmethod
-    def setup_class(self):
-        try:
-            from unittest.mock import patch
-        except ImportError:
-            from mock import patch
-        upwind_args = Namespace(upwindStepSize=20, upwindMaxAngle=10, upwindMinAngle=-10) # TODO LOWER STEP SIZE    
-        urv_main = UpwindRocketVectors()
-        urv_main.set_args(args,upwind_args)
-        urv_main.run_analysis()
-
-
-    # @classmethod
-    # def teardown_class(self):
-    #     os.remove(args.__dict__['outfile'])
-
     def test_basic_input(self):
         try:
             from unittest.mock import patch
@@ -78,31 +62,58 @@ class TestSim:
         assert (returned_upwind_args.upwindMaxAngle == 5)
         assert (returned_upwind_args.upwindMinAngle == -5)
 
-
-    # def test_output(self):
-    #     try:
-    #         from unittest.mock import patch
-    #     except ImportError:
-    #         from mock import patch
-
-    #     upwind_args = Namespace(upwindStepSize=100, upwindMaxAngle=10, upwindMinAngle=-10)    
-    #     urv_main = UpwindRocketVectors()
-    #     urv_main.set_args(args,upwind_args)
-    #     urv_main.run_analysis()
-
-    def test_output(self):
+    def test_output_valid_angle(self):
         try:
             from unittest.mock import patch
         except ImportError:
             from mock import patch
 
-        pass
-        # assert (self.urv_main.get_bestAngle() <= 10 ) 
-        # assert (self.urv_main.get_bestAngle() >= -10) 
+        upwind_args = Namespace(upwindStepSize=10, upwindMaxAngle=10, upwindMinAngle=-10)     
+        urv = UpwindRocketVectors()
+        urv.set_args(args,upwind_args)
+        urv.run_analysis()
 
 
+        assert (urv.get_bestAngle() <= 10 ) 
+        assert (urv.get_bestAngle() >= -10) 
+        
+
+    def test_output_positive(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        upwind_args = Namespace(upwindStepSize=10, upwindMaxAngle=10, upwindMinAngle=-10)     
+        urv = UpwindRocketVectors()
+        urv.set_args(args,upwind_args)
+        urv.run_analysis()
 
 
-# array size
-# array correct smaller
-# output is +ve
+        assert (float(urv.get_bestDistance()) >= 0 )
+
+    def test_output_array_size(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        upwind_args = Namespace(upwindStepSize=10, upwindMaxAngle=10, upwindMinAngle=-10)     
+        urv = UpwindRocketVectors()
+        urv.set_args(args,upwind_args)
+        urv.run_analysis()
+
+        assert (len(urv.get_distance_array()) == 3)
+
+    def test_output_smallest_option(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        upwind_args = Namespace(upwindStepSize=10, upwindMaxAngle=10, upwindMinAngle=-10)     
+        urv = UpwindRocketVectors()
+        urv.set_args(args,upwind_args)
+        urv.run_analysis()
+
+        assert (min(urv.get_distance_array()) == urv.get_bestDistance())
