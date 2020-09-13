@@ -2,12 +2,13 @@ import abstractlistener
 import orhelper
 import math
 from jpype import *
-from random import gauss
+from random import gauss, uniform
 import csv
 import numpy as np
 from argparse import Namespace
 import os
 import sys
+from decimal import Decimal
 
 class LandingPoints():
     "A list of landing points with ability to run simulations and populate itself"    
@@ -18,6 +19,7 @@ class LandingPoints():
         self.upwind = []
         self.parallel = []
         self.lateral_movement = []
+        self.parachute_fail = []
         self.args = args
 
     def add_simulations(self, num):
@@ -27,21 +29,32 @@ class LandingPoints():
             orh = orhelper.Helper()
 
             doc = orh.load_doc(self.args.rocket)
-            sim = doc.getSimulation(0)
-            
-            # Randomize various parameters
-            opts = sim.getOptions()
-            rocket = opts.getRocket()
+            parachute_setting = doc.getRocket().getParachute().getDeployEvent().toString()
+            # print(doc.getRocket().getParachute())
+            # doc.getRocket().getParachute().setDeployEventCustom("never")
+            # print(doc.getRocket().getParachute().getDeployEvent())
 
-            # Set latitude and longitude
-            sim.getOptions().setLaunchLatitude(self.args.startLat)
-            sim.getOptions().setLaunchLongitude(self.args.startLong)
+            parachuteFlag = False
 
-            sim.getOptions().setLaunchRodAngle(math.pi/3)
             # Run num simulations and add to self
             print("Running {} sims".format(num))
             for p in range(num):
                 print ('Running simulation ', p+1)
+
+                sim = doc.getSimulation(0)
+                # Randomize various parameters
+                opts = sim.getOptions()
+                rocket = opts.getRocket()
+                
+                if (p == (num - self.args.parachute)):
+                    doc.getRocket().getParachute().setDeployEventCustom("never")
+                    parachuteFlag = True
+
+                # Set latitude and longitude
+                sim.getOptions().setLaunchLatitude(self.args.startLat)
+                sim.getOptions().setLaunchLongitude(self.args.startLong)
+
+                sim.getOptions().setLaunchRodAngle(math.pi/3)
                 
                 opts.setLaunchRodAngle(math.radians( gauss(self.args.rodAngle, self.args.rodAngleSigma) ))
                 opts.setLaunchRodDirection(math.radians( gauss(self.args.rodDirection, self.args.rodDirectionSigma) ))
@@ -57,12 +70,17 @@ class LandingPoints():
                 pu = PositionUpwind()
                 pp = PositionParallel()
                 lm = LateralMovement()
-                orh.run_simulation(sim, [lp, ma, pu, pp, lm])
+
+                wd = WindListener(self.args.windDirection, self.args.windSpeed)
+                mp = MotorPerformance(self.args.motorPerformance)
+
+                orh.run_simulation(sim, [lp, ma, pu, pp, lm,wd,mp])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
                 self.upwind.append( pu )
                 self.parallel.append ( pp )
-                self.lateral_movement.append( lm )    
+                self.lateral_movement.append( lm )   
+                self.parachute_fail.append (parachuteFlag)
 
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
@@ -72,17 +90,28 @@ class LandingPoints():
         parallels = [p.parallel for p in self.parallel]
         lateral_directions = [p.lateral_direction for p in self.lateral_movement]
         lateral_distances = [p.lateral_distance for p in self.lateral_movement]
+        
+        if self.isWritable(self.args.outfile):
+            with open(self.args.outfile, 'w',newline="\n",encoding="utf-8") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)", "Parachute failed"])           
+                for p, q, r , s, t, u, v, f in zip(lats, longs, altitudes, upwinds, parallels, lateral_distances, lateral_directions, self.parachute_fail):
+                    writer.writerow([np.format_float_positional(p), np.format_float_positional(q), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v), f])
+            file.close()
+        else:
+            print("Warning: unable to write to file: "+ self.args.outfile)
+        print ('Rocket landing zone %+3.3f lat, %+3.3f long. Max altitude %3.3f metres. Max position upwind %+3.3f metres. Max position parallel to wind %+3.3f metres. Lateral distance %+3.3f meters from start. Lateral direction %+3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
+        (float(format(np.mean(lats))), float(format(np.mean(longs))), float(format(np.mean(altitudes))), float(format(np.mean(upwinds))), float(format(np.mean(parallels))), float(format(np.mean(lateral_distances))), float(format(np.mean(lateral_directions))), len(self.landing_points)))
+        
 
-        with open(self.args.outfile, 'w',newline="\n",encoding="utf-8") as file:
-            writer = csv.writer(file)
-            writer.writerow(["Latitude","Longitude","Max Altitude", "Max Position upwind", "Max Position parallel to wind", "Lateral Distance (meters)", "Lateral Direction (°)"])  
-            for p, q, r , s, t, u, v in zip(lats, longs, altitudes, upwinds, parallels, lateral_directions, lateral_distances):
-                writer.writerow([np.format_float_positional(p,precision=15,trim="k",unique=False), np.format_float_positional(q,precision=15,trim="k",unique=False), np.format_float_positional(r), np.format_float_positional(s), np.format_float_positional(t), np.format_float_positional(u), np.format_float_positional(v)])
 
-        print ('Rocket landing zone %3.3f lat, %3.3f long. Max altiture %3.3f metres. Max position upwind %3.3f metres. Max position parallel to wind %3.3f metres. Lateral distance %3.3f meters from start. Lateral direction %3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
-
-        (np.mean(lats), np.mean(longs), np.mean(altitudes), np.mean(upwinds), np.mean(parallels), np.mean(lateral_distances), np.mean(lateral_directions), len(self.landing_points) ))
-
+    def isWritable(self,path):
+        try:
+            fileTest = open( path, 'w' )
+            fileTest.close()
+        except IOError:
+            return False
+        return True
 
     def getResults(self):
         lats = [p.lat for p in self.landing_points]
@@ -95,6 +124,9 @@ class LandingPoints():
 
         toReturn = Namespace(lat = np.format_float_positional(np.mean(lats)), long = np.format_float_positional(np.mean(longs)), altitude = np.format_float_positional(np.mean(altitudes)), upwind = np.format_float_positional(np.mean(upwinds)), parallel = np.format_float_positional(np.mean(parallels)), lateraldistance = np.format_float_positional(np.mean(lateral_distances)), lateraldirection = np.format_float_positional(np.mean(lateral_directions)), sims = len(self.landing_points) )
         return toReturn
+
+    def format(self, s):
+        return (Decimal(float(s)).quantize(Decimal("11.000")))
 
 class LandingPoint(abstractlistener.AbstractSimulationListener):
     def endSimulation(self, status, simulation_exception):      
@@ -156,3 +188,30 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
 
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
+
+class WindListener(abstractlistener.AbstractCompListener):
+    def __init__(self, direction, speed):
+        try:
+            self.direction = float(direction)
+            self.speed = float(speed)
+        except ValueError:
+            self.direction = 0
+            self.speed = 0
+
+    def preWindModel(self, status):
+        self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
+        return self.windDirection
+    
+class MotorPerformance(abstractlistener.AbstractCompListener):
+
+    def __init__(self, variation):
+        try:
+            f = float(variation)
+            self.variation = uniform(1-f, 1+f)
+        except ValueError:
+            self.variation = 1.0
+        
+    
+    def postSimpleThrustCalculation(self, status, thrust):
+        f = float(thrust * self.variation)
+        return f

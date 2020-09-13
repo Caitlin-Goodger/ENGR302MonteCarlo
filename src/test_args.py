@@ -1,7 +1,7 @@
-import simulation
-import sys
 import pytest
 import re
+import sys
+import simulation
 
 
 # Test system defaults 
@@ -71,7 +71,7 @@ def test_valid_args(capsys):
         from unittest.mock import patch
     except ImportError:
         from mock import patch
-
+    
     testargs = ["prog","-n", "5", "-lat", "60", "-long", "50", "-wsa", "1"]
     with patch.object(sys, 'argv', testargs):  
         with patch.object(sys, "exit"):

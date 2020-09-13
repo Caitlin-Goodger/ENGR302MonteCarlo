@@ -3,6 +3,7 @@ from jpype import *
 import numpy as np
 import os
 import threading
+import landingpoints as lp
 
 class OpenRocketInstance(object):
     """ When instantiated, this class starts up a new openrocket instance.
@@ -71,10 +72,13 @@ class Helper(object):
             # we have to pass in an array of length 0 ..
             listener_array = JArray(self.orp.simulation.listeners.AbstractSimulationListener, 1)(0)
         else:
-            listener_array = [JProxy( ( self.orp.simulation.listeners.SimulationListener, 
-                                        self.orp.simulation.listeners.SimulationEventListener,
-                                        self.orp.simulation.listeners.SimulationComputationListener
-                                        ) , inst=c) for c in listeners]
+            listener_array = []
+            for lis in listeners:
+                if type(lis) is lp.WindListener or type(lis) is lp.MotorPerformance:
+                    listener_array.append(JProxy(self.orp.simulation.listeners.SimulationComputationListener, inst = lis))
+                else:
+                    listener_array.append(JProxy( ( self.orp.simulation.listeners.SimulationListener, 
+                                        self.orp.simulation.listeners.SimulationEventListener) , inst=lis))
 
         sim.getOptions().randomizeSeed() # Need to do this otherwise exact same numbers will be generated for each identical run
         sim.simulate( listener_array )

@@ -1,4 +1,3 @@
-from jpype import *
 import orhelper
 import abstractlistener
 import landingpoints
@@ -54,11 +53,14 @@ class Simulation(object):
 
         parser.add_argument("-wsa", "--windspeed", dest = "windSpeed", default = 15, help="The average wind speed.", type = float)
         parser.add_argument("-wsas", "--windspeedsigma", dest = "windSpeedSigma", default = 5, help="The average wind speed sigma.", type = float)
+        parser.add_argument("-wd", "--winddirection", dest = "windDirection", default = 0, help="The wind direction.", type = float)
 
         parser.add_argument("-lat", "--lat", dest = "startLat", default= 0, help = "The starting latitude for the simulation.",  type = float)
         parser.add_argument("-long", "--long", dest = "startLong", default= 0, help = "The starting longitude for the simulation.",  type = float)
         parser.add_argument("-n", "--n", dest = "simCount", default = 20, help = "The number of simulations to run.", type = int) 
         parser.add_argument("-w", "--w", dest = "weathercsv", default = "", help = "Weather csv file")
+        parser.add_argument("-mp", "--motor-performance", dest = "motorPerformance", default = "", help = "Variation of motor performance e.g. 0.1")
+        parser.add_argument("-pf", "--parachute-failure", dest = "parachute", default = 0, help = "Number of sims to run with failure deployment", type = int)
 
         self.args = parser.parse_args()
         self.points = landingpoints.LandingPoints(self.args)
