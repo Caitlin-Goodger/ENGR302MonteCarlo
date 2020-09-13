@@ -62,7 +62,6 @@ class Simulation(object):
         parser.add_argument("-mp", "--motor-performance", dest = "motorPerformance", default = "", help = "Variation of motor performance e.g. 0.1")
         parser.add_argument("-pf", "--parachute-failure", dest = "parachute", default = 0, help = "Number of sims to run with failure deployment", type = int)
 
-        # self.args, unknown = parser.parse_known_args()
         self.args = parser.parse_args()
 
         self.points = landingpoints.LandingPoints(self.args)
