@@ -10,7 +10,8 @@ from upwind_rocket_vectors import UpwindRocketVectors
 args = Namespace(rocket='model.ork', outfile='./urv_tests.csv', rodAngle=45, rodAngleSigma=5, 
                 rodDirection=0, rodDirectionSigma=5,
                 windSpeed=15,windSpeedSigma=5, 
-                startLat=0,startLong=0, simCount=1, windDirection=0, motorPerformance = 0.1)
+                startLat=0,startLong=0, simCount=1, 
+                windDirection=0, motorPerformance = 0.1, parachute = 0)
 
 class TestSim:
 
