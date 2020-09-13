@@ -129,8 +129,8 @@ class InputOptions(tk.Frame):
                 self.windDirectionEntry.set(value)
 
     def exec(self):
-        self.updateArgs()
-        self.runSims(self.sim)
+        if(self.updateArgs()):
+            self.runSims(self.sim)
 
     def updateArgs(self):
         self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
@@ -145,6 +145,8 @@ class InputOptions(tk.Frame):
 
         if(self.checkValues(values)):
             self.parseAndRun(values)
+            return True
+        return False
 
     def checkValues(self, values):
 
