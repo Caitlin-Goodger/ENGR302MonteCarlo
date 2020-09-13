@@ -13,8 +13,6 @@ df.head()
 
 f = open("./iframe_figures/figure_0.html", "w")
 
-mapbox_access_token = "pk.eyJ1IjoicGxvdGx5LWRvY3MiLCJhIjoiY2s1MnNtODFwMDE4YjNscG5oYWNydXFxYSJ9.AquTxb6AI-oo7TWt01YQ9Q"
-
 markers=""
 
 for index, row in df.iterrows():
@@ -45,7 +43,6 @@ f.close()
 @flaskServer.route('/')
 def index():
     print("Base get")
-    # print(os.path.exists(os.path.join(os.getcwd(),"iframe_figures","tilecache","stub.txt")))
     return base
 @flaskServer.route('/leaf/<path:path>')
 def leafServe(path):
