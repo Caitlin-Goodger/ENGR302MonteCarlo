@@ -8,7 +8,7 @@ import os
 from flask import Flask,send_from_directory,Response
 flaskServer = Flask(__name__)
 
-df = pd.read_csv("./maps_test.csv")
+df = pd.read_csv("./out.csv")
 df.head()
 
 f = open("./iframe_figures/figure_0.html", "w")
@@ -16,9 +16,12 @@ f = open("./iframe_figures/figure_0.html", "w")
 markers=""
 
 for index, row in df.iterrows():
-    markers+="L.marker([{lat},{long}]).addTo(map);".format(long=row["Longitude"],lat=row["Latitude"])
+    markers+=("(L.marker([{lat},{long}]).addTo(map))"+("._icon.classList.add('huechange')" if row["Parachute failed"] else "")+";").format(long=row["Longitude"],lat=row["Latitude"])
     
 base="""
+<style>
+img.huechange { filter: hue-rotate(120deg); }
+</style>
 <link rel="stylesheet" href="./leaf/leaflet.css" />
 <script src="./leaf/leaflet.js"></script>
 <body style="margin:0px;">
