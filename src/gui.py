@@ -29,8 +29,9 @@ class InputOptions(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.filename = 'model.ork'
-        self.outfile = './out.csv'
+        self.outfile = 'out.csv'
         tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
+        tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 1, row = 1)
         #rda
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
@@ -50,36 +51,36 @@ class InputOptions(tk.Frame):
         # wsa
         self.windSpeedEntry = tk.StringVar()
         self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
-        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 3, 15)
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 3, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 5, 5)
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 5, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
-        self.createLabel(tk, self.lat, "lat", 0, 14, 0)
+        self.createLabel(tk, self.lat, "lat", 0, 9, 0)
         # long
         self.longaEntry = tk.StringVar()
         self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
-        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.createLabel(tk, self.longa, "long", 0, 11, 0)
         # n
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
-        self.createLabel(tk, self.n, "Number of iteration", 0, 18, 25)
+        self.createLabel(tk, self.n, "Number of iteration", 0, 13, 25)
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
-        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
+        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 9, 0.1)
 
         # parachute failure
         self.parachuteFailure = tk.StringVar()
         self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
-        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 14, 0)
+        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 11, 0)
         # load weather
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
 
@@ -92,6 +93,9 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
+    
+    def saveFile(self):
+        self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
@@ -134,7 +138,7 @@ class InputOptions(tk.Frame):
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
         
-        values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
+        values = Namespace(rocket=self.filename, outfile=self.outfile, rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
