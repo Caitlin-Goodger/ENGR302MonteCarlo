@@ -187,8 +187,8 @@ class InputOptions(tk.Frame):
 
     def runUpwindArgs(self,sim):
         self.showUpwindCalculating()
-        self.upwindResp = sim.run_analysis()
-        self.controller.upwindResults = Namespace(bestAngle = self.upwindResp.get_bestAngle(), bestDistance = self.upwindResp.getBestDistance())
+        self.upwindSim.run_analysis()
+        self.controller.upwindResults = Namespace(bestAngle = self.upwindSim.get_bestAngle(), bestDistance = self.upwindSim.get_bestDistance())
         self.showUpwindResults()
 
     def exec(self):
@@ -348,7 +348,7 @@ class UpwindResults(tk.Frame):
         count = 1
         for k in list(vars(self.controller.upwindResults).keys()):
             tk.Label(self, text = k).grid(column = 0, row = count)
-            tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
+            tk.Label(self, text=getattr(self.controller.upwindResults, k)).grid(column = 1, row = count)
             count = count + 1
 
 if __name__ == "__main__":

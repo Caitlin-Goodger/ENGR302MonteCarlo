@@ -22,16 +22,13 @@ class UpwindRocketVectors(object):
         self.correct_order()
     
     def run_analysis(self):
-
         currentAngle = self.upwind_args.upwindMinAngle
         while currentAngle <= self.upwind_args.upwindMaxAngle :
-
             # update new value of rodAngle
             self.args.rodAngle = currentAngle
 
             # run simulation
             self.sim.set_args(self.args)
-            self.sim.parse_args()
             simulationValue = self.sim.runSimulation()
 
             # get distance 
