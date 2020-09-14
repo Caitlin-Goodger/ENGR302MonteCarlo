@@ -1,4 +1,6 @@
 import simulation 
+import csv
+import numpy as np
 
 class UpwindRocketVectors(object):
     def __init__(self) :
@@ -7,7 +9,9 @@ class UpwindRocketVectors(object):
         self.bestAngle = 0
         self.bestDistance = -1
         self.distance_array = []
-        
+        self.angle_array = []
+
+
         self.sim = simulation.Simulation()
         # args = 0
         # self.sim.set_args(args)
@@ -41,8 +45,12 @@ class UpwindRocketVectors(object):
 
             # store distances for possible use/testing
             self.distance_array.append(distance)
+            self.angle_array.append(currentAngle)
+
 
             currentAngle += self.upwind_args.upwindStepSize
+
+        self.print_stats()
 
     def correct_order(self) :
         if self.upwind_args.upwindStepSize < 0 : 
@@ -69,3 +77,25 @@ class UpwindRocketVectors(object):
 
     def get_distance_array(self) :
         return self.distance_array
+
+    def get_angle_array(self) :
+        return self.angle_array
+
+    def print_stats(self):
+
+        if self.isWritable(self.args.outfile):
+            with open(self.args.outfile, 'w',newline="\n") as file:
+                writer = csv.writer(file)
+                writer.writerow(["Angle","Distance"])           
+                for p, q in zip(self.angle_array,self.distance_array):
+                    writer.writerow([p, q])
+
+            file.close()
+
+    def isWritable(self,path):
+        try:
+            fileTest = open( path, 'w' )
+            fileTest.close()
+        except IOError:
+            return False
+        return True
