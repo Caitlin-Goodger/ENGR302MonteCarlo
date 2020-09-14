@@ -123,9 +123,13 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
+        if type(self.filename) is tuple :
+            self.filename = "model.ork"
     
     def saveFile(self):
         self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
+        if type(self.outfile) is tuple :
+            self.outfile = "./out.csv"
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
