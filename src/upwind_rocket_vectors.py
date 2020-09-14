@@ -86,7 +86,7 @@ class UpwindRocketVectors(object):
         if self.isWritable(self.args.outfile):
             with open(self.args.outfile, 'w',newline="\n") as file:
                 writer = csv.writer(file)
-                writer.writerow(["Angle","Distance"])           
+                writer.writerow(["Angle","Lateral Distance"])           
                 for p, q in zip(self.angle_array,self.distance_array):
                     writer.writerow([p, q])
 
