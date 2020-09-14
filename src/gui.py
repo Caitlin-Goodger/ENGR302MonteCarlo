@@ -18,7 +18,7 @@ class MonteCarloApp(tk.Tk):
         container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
-        self.geometry("500x550")
+        self.geometry("700x550")
 
         self.frame = InputOptions(container, self)
         self.frame.grid(row = 0, column = 0, sticky = "nsew")
@@ -30,89 +30,91 @@ class InputOptions(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.filename = 'model.ork'
-        self.outfile = './out.csv'
+        self.outfile = 'out.csv'
         tk.Button(self, text = 'select .ork file', width = 25, command=self.getFile).grid(column = 0, row = 0)
+        tk.Button(self, text = 'select output file', width = 25, command=self.saveFile).grid(column = 2, row = 0)
+        
+        #Monte carlo header
+        tk.Label(self, text = "Monte Carlo Parameters").grid(column = 0, row = 2,columnspan = 2)
+        
         #rda
         self.rodAngleEntry = tk.StringVar()
         self.rodAngle = tk.Entry(self, width=25,textvariable=self.rodAngleEntry)
-        self.createLabel(tk, self.rodAngle, "Rod angle", 0, 1, 45)
+        self.createLabel(tk, self.rodAngle, "Rod angle", 0, 4, 45)
         self.rowconfigure(3, minsize=10)
         # rdas
         self.rodAngleSigmaEntry = tk.StringVar()
         self.rodAngleSigma = tk.Entry(self,width=25,textvariable=self.rodAngleSigmaEntry)
-        self.createLabel(tk, self.rodAngleSigma, "Rod angle sigma", 0, 4, 5)
+        self.createLabel(tk, self.rodAngleSigma, "Rod angle sigma", 0, 7, 5)
         self.rowconfigure(6, minsize=10)
         # rdd
         self.rodDirectionEntry = tk.StringVar()
         self.rodDirection = tk.Entry(self,width=25,textvariable=self.rodDirectionEntry)
-        self.createLabel(tk, self.rodDirection, "Rod direction", 0, 7, 0)
+        self.createLabel(tk, self.rodDirection, "Rod direction", 0, 10, 0)
         self.rowconfigure(9, minsize=10)
         # rdds
         self.rodDirectionSigmaEntry = tk.StringVar()
         self.rodDirectionSigma = tk.Entry(self,width=25,textvariable=self.rodDirectionSigmaEntry)
-        self.createLabel(tk, self.rodDirectionSigma, "Rod direction sigma", 0, 10 , 5)
+        self.createLabel(tk, self.rodDirectionSigma, "Rod direction sigma", 0, 13 , 5)
         self.rowconfigure(12, minsize=15)
         # wsa
         self.windSpeedEntry = tk.StringVar()
         self.windSpeed = tk.Entry(self,width=25,textvariable=self.windSpeedEntry)
-        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 1, 15)
+        self.createLabel(tk, self.windSpeed, "Wind speed", 1, 13, 15)
         # wsas
         self.windSpeedSigmaEntry = tk.StringVar()
         self.windSpeedSigma = tk.Entry(self,width=25,textvariable=self.windSpeedSigmaEntry)
-        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 4, 5)
+        self.createLabel(tk, self.windSpeedSigma, "Wind speed sigma", 1, 16, 5)
         # wd
         self.windDirectionEntry = tk.StringVar()
         self.windDirection = tk.Entry(self,width=25,textvariable=self.windDirectionEntry)
-        self.createLabel(tk, self.windDirection, "Wind direction", 1, 7, 0)
+        self.createLabel(tk, self.windDirection, "Wind direction", 1, 19, 0)
         # lat
         self.latEntry = tk.StringVar()
         self.lat = tk.Entry(self,width=25,textvariable=self.latEntry)
-        self.createLabel(tk, self.lat, "lat", 0, 13, 0)
+        self.createLabel(tk, self.lat, "lat", 0, 16, 0)
         self.rowconfigure(15, minsize=15)
         # long
         self.longaEntry = tk.StringVar()
         self.longa = tk.Entry(self,width=25,textvariable=self.longaEntry)
-        self.createLabel(tk, self.longa, "long", 0, 16, 0)
+        self.createLabel(tk, self.longa, "long", 0, 19, 0)
         self.rowconfigure(18, minsize=15)
         # n
         self.nEntry = tk.StringVar()
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
-        self.createLabel(tk, self.n, "Number of iteration", 0, 19, 25)
+        self.createLabel(tk, self.n, "Number of iteration", 1, 4, 25)
         self.rowconfigure(21, minsize=20)
 
         # parachute failure
         self.parachuteFailure = tk.StringVar()
         self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
-        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 0, 22, 0)
+        self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 7, 0)
         
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
-        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 7, 0.1)
+        self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 10, 0.1)
 
         # Upwind rocket vector only fields
+        tk.Label(self, text = "Upwind Vector").grid(column = 2, row = 1)
+        tk.Label(self, text = "Calculation Parameters").grid(column = 2, row = 2)
         self.upwindMinAngleEntry = tk.StringVar()
         self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
-        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 7, -15)
-
-        tk.Label(self, text = "Upwind Vector Calculation Parameters").grid(column = 1, row = 14)
-        self.upwindMinAngleEntry = tk.StringVar()
-        self.upwindMinAngle = tk.Entry(self,width=25,textvariable=self.upwindMinAngleEntry)
-        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 1, 16, -15)
+        self.createLabel(tk, self.upwindMinAngle, "Upwind Min Angle", 2, 4, -15)
 
         self.upwindMaxAngleEntry = tk.StringVar()
         self.upwindMaxAngle = tk.Entry(self,width=25,textvariable=self.upwindMaxAngleEntry)
-        self.createLabel(tk, self.upwindMaxAngle, "Upwind Max Angle", 1, 19, 15)
+        self.createLabel(tk, self.upwindMaxAngle, "Upwind Max Angle", 2, 7, 15)
 
         self.upwindStepSizeEntry = tk.StringVar()
         self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
-        self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 1, 22, 2)
+        self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 2, 10, 2)
         
         # load weather
         self.rowconfigure(24, minsize=15)
-        tk.Button(self, text='Load data from csv', width=25, command=self.getWeather).grid(column=1, row=0)
-        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=26)
-        tk.Button(self, text='Calculate Upwind Vector', command=self.upwindCalc ,padx=0).grid(column=1, row=26)
+        tk.Button(self, text='Load data from csv', width=25, command=self.getWeather, padx=0).grid(column=1, row=0)
+        tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=26, columnspan = 2)
+        tk.Button(self, text='Calculate Upwind Vector', width=25, command=self.upwindCalc ,padx=0).grid(column=2, row=26)
 
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
@@ -121,6 +123,9 @@ class InputOptions(tk.Frame):
 
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
+    
+    def saveFile(self):
+        self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
@@ -201,7 +206,7 @@ class InputOptions(tk.Frame):
                         windSpeed=15,windSpeedSigma=5, 
                         startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
         
-        values = Namespace(rocket=self.filename, outfile='./out.csv', rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
+        values = Namespace(rocket=self.filename, outfile=self.outfile, rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
                     startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
