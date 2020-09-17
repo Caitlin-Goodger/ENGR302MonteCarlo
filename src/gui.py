@@ -7,6 +7,8 @@ import asyncio
 from tkinter import filedialog
 from argparse import Namespace
 import threading
+from os import path
+
 
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -125,11 +127,15 @@ class InputOptions(tk.Frame):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
         if type(self.filename) is tuple :
             self.filename = "model.ork"
+            showinfo("Invalid Input", "Empty input: default value (model.ork) will be used instead")
+
     
     def saveFile(self):
         self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
         if type(self.outfile) is tuple :
             self.outfile = "./out.csv"
+            showinfo("Invalid Input", "Empty input: default value (./out.csv) will be used instead")
+
 
     def getWeather(self):
         ''' Read parameters from csv file, example:
@@ -239,6 +245,10 @@ class InputOptions(tk.Frame):
                     if not (self.checkFloatValue(values.__dict__[k])):
                         showinfo("Invalid Input", "Incorrect input: "+ self.names.__dict__[k] + " needs to be a float value")
                         return False
+
+        if not (path.exists(values.__dict__['rocket'])):
+            showinfo("Error", "Missing file: "+ values.__dict__['rocket'] + ". Please check the ork file is in the location specified.")
+            return False                        
         return True
 
     def checkIntValue(self,value):
@@ -268,7 +278,7 @@ class InputOptions(tk.Frame):
                     self.args.__dict__[k] = int(values.__dict__[k])
                 else:
                     self.args.__dict__[k] = float(values.__dict__[k])
-        
+
         self.sim = simulation.Simulation()
         self.sim.set_args(self.args)
 
