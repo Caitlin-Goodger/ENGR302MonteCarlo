@@ -74,7 +74,7 @@ class LandingPoints():
                 wd = WindListener(self.args.windDirection, self.args.windSpeed)
                 mp = MotorPerformance(self.args.motorPerformance)
 
-                rf = RollFinListener(0.007, 0.2)
+                rf = FinListener(0.007, 0.2)
                 orh.run_simulation(sim, [lp, ma, pu, pp, lm,wd,mp, rf])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
@@ -218,24 +218,27 @@ class MotorPerformance(abstractlistener.AbstractCompListener):
         return f
 
 
-class RollFinListener (abstractlistener.AbstractCompListener):
+class FinListener (abstractlistener.AbstractCompListener):
 
     def __init__(self, p, i):
         self.name = "CONTROL"
         self.desired_roll = 0.0
+        self.desired_pitch = 0.0
         self.fin_turn_rate = 10 * math.pi / 180
         self.max_angle = 15 * math.pi / 180
         self.kP = p
         self.kI = i
-        self.current_roll_rate = 1
+        self.current_roll_rate = 0
+        self.current_pitch_rate = 0
         self.prevTime = 0
+        self.finpos = 0
 
     def postFlightConditions(self, status, flight_conditions):
         self.current_roll_rate = flight_conditions.getRollRate()
+        self.current_pitch_rate = flight_conditions.getPitchRate()
 
     def postStep(self, status):
         fins = None
-        finpos = 0
         for c in status.getConfiguration():
             if ("FinSet" in c.getClass().toString() and self.name == c.getName()):
                 fins = c
@@ -246,7 +249,7 @@ class RollFinListener (abstractlistener.AbstractCompListener):
         deltaT = status.getSimulationTime() - self.prevTime
         self.prevTime = status.getSimulationTime()
 
-        error = self.desired_roll - self.current_roll_rate
+        error = self.desired_roll - self.current_roll_rate - self.current_pitch_rate
 
         p = self.kP * error
         i = self.kI * error
@@ -256,10 +259,9 @@ class RollFinListener (abstractlistener.AbstractCompListener):
         if abs(value) > self.max_angle:
             value = self.max_angle if value > self.max_angle else -self.max_angle
         
-        if finpos < value:
-            finpos = min(finpos + self.fin_turn_rate * deltaT,value)
+        if self.finpos < value:
+            self.finpos = min(self.finpos + self.fin_turn_rate * deltaT,value)
         else:
-            finpos = max(finpos - self.fin_turn_rate, value)
+            self.finpos = max(self.finpos - self.fin_turn_rate, value)
         
-        print("set fin pos to: " +  str(finpos))
-        fins.setCantAngle(finpos)
+        fins.setCantAngle(self.finpos)

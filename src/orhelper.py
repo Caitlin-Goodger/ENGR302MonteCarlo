@@ -74,7 +74,7 @@ class Helper(object):
         else:
             listener_array = []
             for lis in listeners:
-                if type(lis) is lp.WindListener or type(lis) is lp.MotorPerformance or type(lis) is lp.RollFinListener:
+                if type(lis) is lp.WindListener or type(lis) is lp.MotorPerformance or type(lis) is lp.FinListener:
                     listener_array.append(JProxy(self.orp.simulation.listeners.SimulationComputationListener, inst = lis))
                 else:
                     listener_array.append(JProxy( ( self.orp.simulation.listeners.SimulationListener, 
