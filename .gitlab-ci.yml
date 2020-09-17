@@ -6,6 +6,7 @@ stages:
 before_script:
     - pip install --user JPype1
     - pip install --user pyinstaller
+    - pip install -r requirements.txt
 
 
 build:
@@ -19,7 +20,7 @@ build:
   artifacts:
     paths:
       - lib/build/jar/OpenRocket.jar
-    expire_in: 1 week
+    expire_in: 2 days
     
 package:
   stage: Package

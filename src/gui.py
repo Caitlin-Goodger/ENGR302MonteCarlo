@@ -357,6 +357,11 @@ class Results(tk.Frame):
             tk.Label(self, text = k).grid(column = 0, row = count)
             tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
             count = count + 1
+        tk.Button(self, text = 'Display Maps', width = 25, command=self.mapping).grid(column = 0, row = count)
+
+    def mapping(self):
+        self.controller.destroy()
+        import maps
 
 class UpwindResults(tk.Frame):
 
@@ -371,6 +376,12 @@ class UpwindResults(tk.Frame):
             tk.Label(self, text = k).grid(column = 0, row = count)
             tk.Label(self, text=getattr(self.controller.upwindResults, k)).grid(column = 1, row = count)
             count = count + 1
+
+        
+    
+    
+        
+
 
 if __name__ == "__main__":
     app = MonteCarloApp()

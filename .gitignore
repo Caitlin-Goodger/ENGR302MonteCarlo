@@ -92,3 +92,5 @@ README.TXT
 MANIFEST.MF
 ReleaseNotes
 net.sf.openrocket.optimization.services.OptimizableParameterService
+
+src/iframe_figures/figure_0.html
