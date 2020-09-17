@@ -1,4 +1,4 @@
-# Performance Assessment 3 - Tri 2
+# Performance Assessment 2 - Tri 2
 Further support updates: 
 - Upwind Rocket Vectors
 	- This includes the logic and GUI capabilities to run this. 
