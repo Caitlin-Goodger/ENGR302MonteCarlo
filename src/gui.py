@@ -362,7 +362,6 @@ class Results(tk.Frame):
     def mapping(self):
         self.controller.destroy()
         import maps
-        maps()
 
 class UpwindResults(tk.Frame):
 
