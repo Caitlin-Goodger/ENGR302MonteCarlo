@@ -1,3 +1,25 @@
+# Performance Assessment 3 - Tri 2
+Further support updates: 
+- Upwind Rocket Vectors
+	- This includes the logic and GUI capabilities to run this. 
+- Parachute Failures
+	-  This includes modification of both the Java and Python to add this capability.
+	- This was an important extension, requested by our Client.
+- Further Map display
+	- Support for displaying Parachute failures on the Map was added.
+	- Bug fixes for Mapping was added.
+	- Merged into master, integrated into GUI.
+- Further tests were added
+	- This includes additional tests in the test suite, as well as manual testing (reflected in the manual testing document  on the Wiki).
+
+Running instructions:
+1. Checkout desired branch of repo (master)
+2. cd group14/lib/openrocketjava
+3. `ant jar`
+4. cd ../../src
+5. `python gui.py`
+
+
 # Performance Assessment 1 - Tri 2
 Further support updates: 
 - Reworking GUI to support also include Linux and Mac (Prior only windows supported)
