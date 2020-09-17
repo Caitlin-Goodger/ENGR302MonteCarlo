@@ -27,7 +27,7 @@ class TestSim:
             from unittest.mock import patch
         except ImportError:
             from mock import patch
-        subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
+        subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5', '-pf', '2'])
 
 
     @classmethod
@@ -56,6 +56,7 @@ class TestSim:
             assert "Max Position parallel to wind" in row
             assert "Lateral Distance (meters)" in row
             assert "Lateral Direction (°)" in row
+            assert "Parachute failed" in row
     
     def test_latitude(self):
         try:
@@ -175,3 +176,21 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             assert count == 5
+
+    def test_parachute_failure_number(self):
+        try:
+            from unittest.mock import patch
+        except ImportError:
+            from mock import patch
+
+        with open(outfile) as csvfile:
+            reader = csv.DictReader(csvfile)
+            false = 0
+            true = 0
+            for row in reader:
+                if row["Parachute failed"] in "False":
+                    false += 1
+                if row["Parachute failed"] in "True":
+                    true += 1
+            assert true == 2
+            assert false == 3
