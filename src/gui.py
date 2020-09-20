@@ -168,6 +168,12 @@ class InputOptions(tk.Frame):
                 self.longaEntry.set(value)
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
+            if name == "iterations":
+                self.nEntry.set(value)
+            if name == "parachuteFailure":
+                self.parachuteFailure.set(value)
+            if name == "motorPerformance":
+                self.motorPerformanceEntry.set(value)
 
     def upwindCalc(self):
         self.updateArgs()
