@@ -9,7 +9,6 @@ import landingpoints
 
 class Mapping():
     def __init__(self,out):
-        print(out)
         from flask import Flask,send_from_directory,Response
         flaskServer = Flask(__name__)
 

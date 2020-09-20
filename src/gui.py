@@ -8,6 +8,7 @@ from tkinter import filedialog
 from argparse import Namespace
 import threading
 from os import path
+import maps
 
 
 class MonteCarloApp(tk.Tk):
@@ -293,7 +294,6 @@ class InputOptions(tk.Frame):
         self.destroy()
         resultFrame = Results(self.parent, self.controller,self.outfile)
         resultFrame.grid(row = 0, column = 0, sticky = "nsew")
-        out = self.outfile
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
 
@@ -363,9 +363,7 @@ class Results(tk.Frame):
         tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
 
     def displayMap(self):
-        print(self.out)
         self.controller.destroy()
-        import maps
         maps.Mapping(self.out)
 
 class UpwindResults(tk.Frame):
