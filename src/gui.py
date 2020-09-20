@@ -291,8 +291,9 @@ class InputOptions(tk.Frame):
 
     def showResults(self):
         self.destroy()
-        resultFrame = Results(self.parent, self.controller)
+        resultFrame = Results(self.parent, self.controller,self.outfile)
         resultFrame.grid(row = 0, column = 0, sticky = "nsew")
+        out = self.outfile
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
 
@@ -347,10 +348,11 @@ class RunningSimulations(tk.Frame):
 
 class Results(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller,out):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Results").grid(column = 0, row = 0)
         self.controller = controller
+        self.out = out
 
     def displayResults(self):
         count = 1
@@ -361,8 +363,10 @@ class Results(tk.Frame):
         tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
 
     def displayMap(self):
+        print(self.out)
         self.controller.destroy()
         import maps
+        maps.Mapping(self.out)
 
 class UpwindResults(tk.Frame):
 
