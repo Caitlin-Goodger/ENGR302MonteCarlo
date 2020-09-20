@@ -13,9 +13,6 @@ class UpwindRocketVectors(object):
 
 
         self.sim = simulation.Simulation()
-        # args = 0
-        # self.sim.set_args(args)
-        # self.sim.parse_args()
 
 
     def set_args(self,new_args,new_upwind_args) :
@@ -82,7 +79,6 @@ class UpwindRocketVectors(object):
         return self.angle_array
 
     def print_stats(self):
-
         if self.isWritable(self.args.outfile):
             with open(self.args.outfile, 'w',newline="\n") as file:
                 writer = csv.writer(file)

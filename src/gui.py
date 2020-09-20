@@ -92,7 +92,7 @@ class InputOptions(tk.Frame):
         self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
         self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 7, 0)
         
-        # n
+        # Motor Peformance
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
         self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 10, 0.1)
@@ -112,9 +112,9 @@ class InputOptions(tk.Frame):
         self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
         self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 2, 10, 2)
         
-        # load weather
+        # load weather from csv
         self.rowconfigure(24, minsize=15)
-        tk.Button(self, text='Load data from csv', width=25, command=self.getWeather, padx=0).grid(column=1, row=0)
+        tk.Button(self, text='Load data from csv', width=25, command=self.readDataFromCSV, padx=0).grid(column=1, row=0)
         tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=26, columnspan = 2)
         tk.Button(self, text='Calculate Upwind Vector', width=25, command=self.upwindCalc ,padx=0).grid(column=2, row=26)
 
@@ -137,7 +137,7 @@ class InputOptions(tk.Frame):
             showinfo("Invalid Input", "Empty input: default value (./out.csv) will be used instead")
 
 
-    def getWeather(self):
+    def readDataFromCSV(self):
         ''' Read parameters from csv file, example:
         windspeed,windspeedsigma,rodangle,rodanglesigma,roddirection,roddirectionsigma,lat,long
         10,5,10,5,0,5,40,40 '''
@@ -257,6 +257,7 @@ class InputOptions(tk.Frame):
             return True
         except ValueError:
             return False
+    
     def checkFloatValue(self,value):
         try: 
             float(value)
@@ -357,9 +358,9 @@ class Results(tk.Frame):
             tk.Label(self, text = k).grid(column = 0, row = count)
             tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
             count = count + 1
-        tk.Button(self, text = 'Display Maps', width = 25, command=self.mapping).grid(column = 0, row = count)
+        tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
 
-    def mapping(self):
+    def displayMap(self):
         self.controller.destroy()
         import maps
 

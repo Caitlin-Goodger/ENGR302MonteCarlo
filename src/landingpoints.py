@@ -22,6 +22,9 @@ class LandingPoints():
         self.parachute_fail = []
         self.args = args
 
+    def getOutFile(self):
+        return self.args.outfile
+
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/OpenRocket.jar', log_level='ERROR'):
 
@@ -30,10 +33,6 @@ class LandingPoints():
 
             doc = orh.load_doc(self.args.rocket)
             parachute_setting = doc.getRocket().getParachute().getDeployEvent().toString()
-            # print(doc.getRocket().getParachute())
-            # doc.getRocket().getParachute().setDeployEventCustom("never")
-            # print(doc.getRocket().getParachute().getDeployEvent())
-
             parachuteFlag = False
 
             # Run num simulations and add to self
@@ -204,7 +203,6 @@ class WindListener(abstractlistener.AbstractCompListener):
         return self.windDirection
     
 class MotorPerformance(abstractlistener.AbstractCompListener):
-
     def __init__(self, variation):
         try:
             f = float(variation)
@@ -219,7 +217,6 @@ class MotorPerformance(abstractlistener.AbstractCompListener):
 
 
 class FinListener (abstractlistener.AbstractCompListener):
-
     def __init__(self, p, i):
         self.name = "CONTROL"
         self.desired_roll = 0.0
