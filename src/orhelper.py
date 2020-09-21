@@ -5,6 +5,7 @@ import os
 import threading
 import landingpoints as lp
 
+# Provided OpenRocket interface from OpenRocket wiki
 class OpenRocketInstance(object):
     """ When instantiated, this class starts up a new openrocket instance.
         This class is designed to be called using the 'with' construct. This
@@ -106,7 +107,7 @@ class Helper(object):
         return output
 
     def get_final_values(self, simulation, variables, branch_number = 0):
-        
+        """ Get values out of OpenRocket simdata object"""
         branch = simulation.getSimulatedData().getBranch(branch_number)
         output = dict()
         for v in variables:            
@@ -144,6 +145,7 @@ class Helper(object):
         raise ValueError(root.toString()+' has no component named '+name)
 
     def get_Landing_Listener(self):
+        """ Return landing listener"""
         return self.orp.simulation.listeners.Landing()
 
 class JIterator(object):
