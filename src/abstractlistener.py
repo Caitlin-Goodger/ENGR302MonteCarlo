@@ -41,7 +41,7 @@ class AbstractSimulationListener(object):
 
 
 class AbstractCompListener(AbstractSimulationListener):
-        # SimulationComputationListener
+    # SimulationComputationListener
     def preAccelerationCalculation(self, status):
         return None
     
