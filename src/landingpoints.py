@@ -10,9 +10,10 @@ import os
 import sys
 from decimal import Decimal
 
+# A list of landing points with ability to run simulations and populate itself
 class LandingPoints():
-    "A list of landing points with ability to run simulations and populate itself"    
     
+    # Initialise all arguments 
     def __init__(self, args) :
         self.landing_points = []
         self.max_altitudes = []
@@ -22,9 +23,7 @@ class LandingPoints():
         self.parachute_fail = []
         self.args = args
 
-    def getOutFile(self):
-        return self.args.outfile
-
+    # Add a simulation 
     def add_simulations(self, num):
         with orhelper.OpenRocketInstance('../lib/build/jar/OpenRocket.jar', log_level='ERROR'):
 
@@ -64,6 +63,7 @@ class LandingPoints():
                     component.setMassOverridden(True)
                     component.setOverrideMass( mass * gauss(1.0, 0.05) )
                 
+                # Call computation listeners
                 ma = MaxAltitude()
                 lp = LandingPoint()
                 pu = PositionUpwind()
@@ -82,6 +82,7 @@ class LandingPoints():
                 self.lateral_movement.append( lm )   
                 self.parachute_fail.append (parachuteFlag)
 
+    # Print the results to the screen and out file
     def print_stats(self):
         lats = [p.lat for p in self.landing_points]
         longs = [p.long for p in self.landing_points]
@@ -104,7 +105,7 @@ class LandingPoints():
         (float(format(np.mean(lats))), float(format(np.mean(longs))), float(format(np.mean(altitudes))), float(format(np.mean(upwinds))), float(format(np.mean(parallels))), float(format(np.mean(lateral_distances))), float(format(np.mean(lateral_directions))), len(self.landing_points)))
         
 
-
+    # Check if the test is writable
     def isWritable(self,path):
         try:
             fileTest = open( path, 'w' )
@@ -113,6 +114,7 @@ class LandingPoints():
             return False
         return True
 
+    # Gets the results and return them
     def getResults(self):
         lats = [p.lat for p in self.landing_points]
         longs = [p.long for p in self.landing_points]
@@ -125,10 +127,14 @@ class LandingPoints():
         toReturn = Namespace(lat = np.format_float_positional(np.mean(lats)), long = np.format_float_positional(np.mean(longs)), altitude = np.format_float_positional(np.mean(altitudes)), upwind = np.format_float_positional(np.mean(upwinds)), parallel = np.format_float_positional(np.mean(parallels)), lateraldistance = np.format_float_positional(np.mean(lateral_distances)), lateraldirection = np.format_float_positional(np.mean(lateral_directions)), sims = len(self.landing_points) )
         return toReturn
 
+    # Format a given float into a string
     def format(self, s):
         return (Decimal(float(s)).quantize(Decimal("11.000")))
 
+# Computation listeners for landing points
 class LandingPoint(abstractlistener.AbstractSimulationListener):
+    # Defines the actions that should be completed at the end of a simulation
+    # Sets the conditions and landing zone at the end of the simulation
     def endSimulation(self, status, simulation_exception):      
         worldpos = status.getRocketPosition()
         conditions = status.getSimulationConditions()
@@ -138,24 +144,36 @@ class LandingPoint(abstractlistener.AbstractSimulationListener):
         self.lat = float(landing_zone.getLatitudeDeg())
         self.long = float(landing_zone.getLongitudeDeg())
 
+    # Defines the actions that should be completed at the start of a simulation
+    # Decreases the maximum altitude 
     def startSimulation(self, status):
         self.maxAlt=-1
     
+    # Defines the actions that should be completed at the end of each step
+    # Updates the maximum Altitude
     def postStep(self, status):
         self.maxAlt = max(self.maxAlt, float(status.getRocketPosition().z))
 
+# Computation listeners for the maximum altitude 
 class MaxAltitude(abstractlistener.AbstractSimulationListener):
    
+   # Sets the max height to 0
    def __init__(self) :
         self.max_height = 0
 
+    # Defines the actions that should be completed at the end of each step
+    # Updates the maximum height
    def postStep(self, status):      
         self.max_height = float(max(self.max_height, status.getRocketPosition().z))
 
+# Computation listeners for the upwind position
 class PositionUpwind(abstractlistener.AbstractSimulationListener):
+    #Set the upwind position to 0
     def __init__(self) :
         self.upwind = 0
 
+    # Defines the actions that should be completed at the end of a simulation
+    # Gets the direction upwind at the end of the simulation
     def endSimulation(self, status, simulation_exception):
         upwindArrayList = status.getFlightData().get(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_X)
         upwindArray = [] 
@@ -164,10 +182,14 @@ class PositionUpwind(abstractlistener.AbstractSimulationListener):
         
         self.upwind = max(upwindArray)
 
+# Computation listeners for the parallel position
 class PositionParallel(abstractlistener.AbstractSimulationListener):
+    #Set the parallel position to 0
     def __init__(self) :
         self.parallel = 0
 
+    # Defines the actions that should be completed at the end of a simulation
+    # Gets the direction paralell at the end of the simulation
     def endSimulation(self, status, simulation_exception):
         parallelArrayList = status.getFlightData().get(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_Y)
         parallelArray = [] 
@@ -176,12 +198,16 @@ class PositionParallel(abstractlistener.AbstractSimulationListener):
         
         self.parallel = max(parallelArray)
 
+# Computation listeners for the lateral movement
 class LateralMovement(abstractlistener.AbstractSimulationListener):
    
+   # Sets the lateral distance and direcition to 0
    def __init__(self) :
         self.lateral_distance = 0
         self.lateral_direction = 0
 
+    # Defines the actions that should be completed at the end of a simulation
+    # Sets the lateral distance and direcition
    def endSimulation(self, status, simulation_exception):       
         #Lateral Distance
         self.lateral_distance = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_XY))
@@ -189,7 +215,9 @@ class LateralMovement(abstractlistener.AbstractSimulationListener):
         #Lateral Direction
         self.lateral_direction = float(status.getFlightData().getLast(JClass("net.sf.openrocket.simulation.FlightDataType").TYPE_POSITION_DIRECTION))
 
+# Computation listeners for the wind 
 class WindListener(abstractlistener.AbstractCompListener):
+    # Set the direction and speed of the wind if available, and 0 otherwise
     def __init__(self, direction, speed):
         try:
             self.direction = float(direction)
@@ -198,11 +226,14 @@ class WindListener(abstractlistener.AbstractCompListener):
             self.direction = 0
             self.speed = 0
 
+    # Set the wind direction
     def preWindModel(self, status):
         self.windDirection = JClass("net.sf.openrocket.util.Coordinate")(self.speed * math.sin(self.direction), self.speed * math.cos(self.direction), 0)
         return self.windDirection
-    
+
+# Computation listeners for the motor performance    
 class MotorPerformance(abstractlistener.AbstractCompListener):
+    # Set the motor performance if available, and 1 otherwise
     def __init__(self, variation):
         try:
             f = float(variation)
@@ -210,13 +241,15 @@ class MotorPerformance(abstractlistener.AbstractCompListener):
         except ValueError:
             self.variation = 1.0
         
-    
+    # Set the motor performance
     def postSimpleThrustCalculation(self, status, thrust):
         f = float(thrust * self.variation)
         return f
 
-
+# Computation listeners for the fins
 class FinListener (abstractlistener.AbstractCompListener):
+
+    # Initialise all relevent fin parameters
     def __init__(self, p, i):
         self.name = "CONTROL"
         self.desired_roll = 0.0
@@ -230,10 +263,13 @@ class FinListener (abstractlistener.AbstractCompListener):
         self.prevTime = 0
         self.finpos = 0
 
+    # Set the roll and pitch rate
     def postFlightConditions(self, status, flight_conditions):
         self.current_roll_rate = flight_conditions.getRollRate()
         self.current_pitch_rate = flight_conditions.getPitchRate()
 
+    # Defines the actions that should be completed at the end of each step
+    # Calculate the PID and adjust fin as required
     def postStep(self, status):
         fins = None
         for c in status.getConfiguration():
