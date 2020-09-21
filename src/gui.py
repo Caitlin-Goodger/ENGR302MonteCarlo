@@ -9,7 +9,7 @@ from argparse import Namespace
 import threading
 from os import path
 
-
+#Parent GUI TK class of app. Contains various frames outlined below.
 class MonteCarloApp(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -26,7 +26,10 @@ class MonteCarloApp(tk.Tk):
         self.frame.grid(row = 0, column = 0, sticky = "nsew")
         self.frame.update()
 
+#Start frame of GUI. Contains all options for simulation start, upwind simulations, and import options.
 class InputOptions(tk.Frame):
+    
+    # Initialise the starting frame, containing the input parameters for the simulations. 
     def __init__(self, parent, controller):
         self.parent = parent
         tk.Frame.__init__(self, parent)
@@ -86,17 +89,14 @@ class InputOptions(tk.Frame):
         self.n = tk.Entry(self,width=25,textvariable=self.nEntry)
         self.createLabel(tk, self.n, "Number of iteration", 1, 4, 25)
         self.rowconfigure(21, minsize=20)
-
         # parachute failure
         self.parachuteFailure = tk.StringVar()
         self.parachute= tk.Entry(self,width=25, textvariable=self.parachuteFailure)
         self.createLabel(tk, self.parachute, "Number of Parachute Failures", 1, 7, 0)
-        
         # n
         self.motorPerformanceEntry = tk.StringVar()
         self.motorPerformance = tk.Entry(self,width=25,textvariable=self.motorPerformanceEntry)
         self.createLabel(tk, self.motorPerformance, "Motor performance variation", 1, 10, 0.1)
-
         # Upwind rocket vector only fields
         tk.Label(self, text = "Upwind Vector").grid(column = 2, row = 1)
         tk.Label(self, text = "Calculation Parameters").grid(column = 2, row = 2)
@@ -111,32 +111,33 @@ class InputOptions(tk.Frame):
         self.upwindStepSizeEntry = tk.StringVar()
         self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
         self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 2, 10, 2)
-        
         # load weather
         self.rowconfigure(24, minsize=15)
         tk.Button(self, text='Load data from csv', width=25, command=self.getWeather, padx=0).grid(column=1, row=0)
         tk.Button(self, text='Execute Monte Carlo', width=25, command=self.exec,padx=0).grid(column=0, row=26, columnspan = 2)
         tk.Button(self, text='Calculate Upwind Vector', width=25, command=self.upwindCalc ,padx=0).grid(column=2, row=26)
 
+    # Create a label for a given variable
     def createLabel(self, tk, var, name, colNum, rowNum, insertValue):
         var.insert(0,insertValue)
         tk.Label(self, text = name).grid(column = colNum, row = rowNum)
         var.grid(column = colNum, row = rowNum+1)
 
+    #Get the rocket spec file
     def getFile(self):
         self.filename = tk.filedialog.askopenfilename(initialdir = "./", title = "Select file", filetypes = [("Rocket File","*.ork")])
         if type(self.filename) is tuple :
             self.filename = "model.ork"
             showinfo("Invalid Input", "Empty input: default value (model.ork) will be used instead")
 
-    
+    # Save the data outputted from the simulations.
     def saveFile(self):
         self.outfile = tk.filedialog.asksaveasfilename(initialdir = "./",initialfile="out.csv", title = "Select file",filetypes = [("CSV","*.csv")], defaultextension = ".csv")
         if type(self.outfile) is tuple :
             self.outfile = "./out.csv"
             showinfo("Invalid Input", "Empty input: default value (./out.csv) will be used instead")
 
-
+    # Read the weather file and load it into the simulation
     def getWeather(self):
         ''' Read parameters from csv file, example:
         windspeed,windspeedsigma,rodangle,rodanglesigma,roddirection,roddirectionsigma,lat,long
@@ -145,7 +146,7 @@ class InputOptions(tk.Frame):
         data = simulation.WeatherData().read_weather_data(self.weather_name)
         
         array = data.to_numpy()
-        
+        # Set all values in the csv file
         for n in range(0, len(array[0])):
             name = array[0][n]
             value = array[1][n]
@@ -168,11 +169,13 @@ class InputOptions(tk.Frame):
             if name == "windDirection":
                 self.windDirectionEntry.set(value)
 
+    # Update the calculations
     def upwindCalc(self):
         self.updateArgs()
         self.updateUpwindArgs()
         self.runUpwindArgs(self.upwindSim)
 
+    # Update the upwind arguments
     def updateUpwindArgs(self):
         self.upwindArgs = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
         
@@ -180,6 +183,7 @@ class InputOptions(tk.Frame):
         if(self.checkUpwindValues(values)):
             self.parseAndRunUpwind(values)
 
+    # Check the upwind values
     def checkUpwindValues(self, values):
         self.upwindNames = Namespace(upwindMinAngle='Upwind Min Angle', upwindMaxAngle='Upwind Max Angle', upwindStepSize='Upwind Step Size')
 
@@ -190,6 +194,7 @@ class InputOptions(tk.Frame):
                     return False
         return True
 
+    # Parse upwind rocket vector arguments
     def parseAndRunUpwind(self, values):
         self.upwindArgs = Namespace(upwindMinAngle = -25, upwindMaxAngle = 25, upwindStepSize = 2)
 
@@ -199,17 +204,20 @@ class InputOptions(tk.Frame):
         
         self.upwindSim = upwind_rocket_vectors.UpwindRocketVectors()
         self.upwindSim.set_args(self.args, self.upwindArgs)
-
+    
+    # Run upwind rocket vectors
     def runUpwindArgs(self,sim):
         self.showUpwindCalculating()
         self.upwindSim.run_analysis()
         self.controller.upwindResults = Namespace(bestAngle = self.upwindSim.get_bestAngle(), bestDistance = self.upwindSim.get_bestDistance())
         self.showUpwindResults()
 
+    # Run monte carlo simulations
     def exec(self):
         if(self.updateArgs()):
             self.runSims(self.sim)
 
+    # Update arguments for simulation
     def updateArgs(self):
         self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
@@ -226,6 +234,7 @@ class InputOptions(tk.Frame):
             return True
         return False
 
+    # Check all inputs are valid and appropriate
     def checkValues(self, values):
 
         self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
@@ -251,12 +260,15 @@ class InputOptions(tk.Frame):
             return False                        
         return True
 
+    # Check if a given value is an integer
     def checkIntValue(self,value):
         try: 
             int(value)
             return True
         except ValueError:
             return False
+    
+    # Check if a given value is a float
     def checkFloatValue(self,value):
         try: 
             float(value)
@@ -264,6 +276,7 @@ class InputOptions(tk.Frame):
         except ValueError:
             return False
 
+    # Parse and Run The simulations
     def parseAndRun(self, values):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
@@ -282,12 +295,14 @@ class InputOptions(tk.Frame):
         self.sim = simulation.Simulation()
         self.sim.set_args(self.args)
 
+    # Run the loading and result screen
     def runSims(self,sim):
         self.showLoading()
         self.resp = sim.runSimulation()
         self.controller.results = self.resp.getResults()
         self.showResults()
 
+    # Show the results screen
     def showResults(self):
         self.destroy()
         resultFrame = Results(self.parent, self.controller)
@@ -295,6 +310,7 @@ class InputOptions(tk.Frame):
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
 
+    # Show the upwind rocket vector result screen
     def showUpwindResults(self):
         self.destroy()
         resultFrame = UpwindResults(self.parent, self.controller)
@@ -302,6 +318,7 @@ class InputOptions(tk.Frame):
         resultFrame.displayResults()
         resultFrame.update_idletasks() 
 
+    # Show the upwind rocket vector calculating screen
     def showUpwindCalculating(self):
         self.destroy()
         loadingFrame = UpwindVector(self.parent, self.controller)
@@ -309,6 +326,7 @@ class InputOptions(tk.Frame):
         loadingFrame.stepProgressBar()
         loadingFrame.update()
 
+    # Show the loading screen
     def showLoading(self):
         self.destroy()
         loadingFrame = RunningSimulations(self.parent, self.controller)
@@ -316,6 +334,7 @@ class InputOptions(tk.Frame):
         loadingFrame.stepProgressBar()
         loadingFrame.update()
 
+#Upwind vector frame. Indicates simulation progress while the upwind vector simulation calculations are occuring. 
 class UpwindVector(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -329,9 +348,8 @@ class UpwindVector(tk.Frame):
     def stepProgressBar(self):
         self.progressBar.step(5)
 
-
+#Running monte carlo frame. Indicates simulation progress while the monte carlo simulations are occuring. 
 class RunningSimulations(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Running Simulations").grid(column = 0, row = 0)
@@ -344,8 +362,8 @@ class RunningSimulations(tk.Frame):
     def stepProgressBar(self):
         self.progressBar.step(5)
 
+#Results frame. Shows results from monte carlo simulations. Give option to display maps.
 class Results(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Results").grid(column = 0, row = 0)
@@ -363,8 +381,8 @@ class Results(tk.Frame):
         self.controller.destroy()
         import maps
 
+#Upwind vector results frame. Displays the optimal upwind vector for the given simulation parameters. 
 class UpwindResults(tk.Frame):
-
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         tk.Label(self, text = "Upwind Results").grid(column = 0, row = 0)
@@ -377,12 +395,7 @@ class UpwindResults(tk.Frame):
             tk.Label(self, text=getattr(self.controller.upwindResults, k)).grid(column = 1, row = count)
             count = count + 1
 
-        
-    
-    
-        
-
-
+            
 if __name__ == "__main__":
     app = MonteCarloApp()
     app.mainloop()
