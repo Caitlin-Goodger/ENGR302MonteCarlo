@@ -21,6 +21,7 @@ check all inputs are within defined % range (we provide sigma)
 outfile="csv_results.csv"
 
 class TestSim:
+    # Setup the simulations
     @classmethod
     def setup_class(self):
         try:
@@ -29,11 +30,12 @@ class TestSim:
             from mock import patch
         subprocess.call([sys.executable,'monte_carlo.py','--output', outfile,'--n','5', '-pf', '2'])
 
-
+    # Remove the outfile
     @classmethod
     def teardown_class(self):
         os.remove(outfile)
 
+    # Test the csv file has been made
     def test_csv_made(self):
         try:
             from unittest.mock import patch
@@ -41,6 +43,7 @@ class TestSim:
             from mock import patch
         assert path.exists(outfile)
 
+    # Test the names of the headers in the csv file
     def test_csv_names(self):
         try:
             from unittest.mock import patch
@@ -58,6 +61,7 @@ class TestSim:
             assert "Lateral Direction (°)" in row
             assert "Parachute failed" in row
     
+    # Test the latitude outputs, and is in the format of floats
     def test_latitude(self):
         try:
             from unittest.mock import patch
@@ -74,7 +78,8 @@ class TestSim:
                 except ValueError:
                     assert False, "not a float" 
             assert count == 5
-
+    
+    # Test the Longitude outputs, and is in the format of floats
     def test_longitude(self):
         try:
             from unittest.mock import patch
@@ -92,6 +97,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Max Altitude outputs, and is in the format of floats
     def test_max_altitude(self):
         try:
             from unittest.mock import patch
@@ -109,6 +115,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Max Position upwind outputs, and is in the format of floats
     def test_max_position_upwind(self):
         try:
             from unittest.mock import patch
@@ -126,6 +133,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Max Position parallel to wind outputs, and is in the format of floats
     def test_max_position_parallel_to_wind(self):
         try:
             from unittest.mock import patch
@@ -143,6 +151,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Lateral Distance outputs, and is in the format of floats
     def test_lateral_distance_meters(self):
         try:
             from unittest.mock import patch
@@ -160,6 +169,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Lateral Direction outputs, and is in the format of floats
     def test_lateral_distance_degrees(self):
         try:
             from unittest.mock import patch
@@ -177,6 +187,7 @@ class TestSim:
                     assert False, "not a float" 
             assert count == 5
 
+    # Test the Parachute failure outputs, and is in the format of booleans
     def test_parachute_failure_number(self):
         try:
             from unittest.mock import patch
