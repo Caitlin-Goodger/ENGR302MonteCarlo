@@ -3,6 +3,7 @@ import csv
 import numpy as np
 
 class UpwindRocketVectors(object):
+    # Initialise all parameters
     def __init__(self) :
         self.args = 0
         self.upwind_args = 0
@@ -14,7 +15,7 @@ class UpwindRocketVectors(object):
 
         self.sim = simulation.Simulation()
 
-
+    # Sets all the arguments 
     def set_args(self,new_args,new_upwind_args) :
         self.args = new_args
         self.args.rodAngleSigma = 0
@@ -22,6 +23,7 @@ class UpwindRocketVectors(object):
         self.upwind_args = new_upwind_args
         self.correct_order()
     
+    # Run the upwind rocket vector analysis
     def run_analysis(self):
         currentAngle = self.upwind_args.upwindMinAngle
         while currentAngle <= self.upwind_args.upwindMaxAngle :
@@ -49,6 +51,7 @@ class UpwindRocketVectors(object):
 
         self.print_stats()
 
+    # Order the values by size
     def correct_order(self) :
         if self.upwind_args.upwindStepSize < 0 : 
             self.upwind_args.upwindStepSize = self.upwind_args.upwindStepSize * -1
@@ -60,24 +63,31 @@ class UpwindRocketVectors(object):
             self.upwind_args.upwindMinAngle = minValue
             self.upwind_args.upwindMaxAngle = maxValue
 
+    # Get the arguments
     def get_args(self) :
         return self.args
 
+    # Get the upwind argument
     def get_upwind_args(self) :
         return self.upwind_args
 
+    # Get the best angle
     def get_bestAngle(self) :
         return self.bestAngle
 
+    # Get the best distance
     def get_bestDistance(self) :
         return self.bestDistance
 
+    # Get the distance array
     def get_distance_array(self) :
         return self.distance_array
 
+    # Get the angle array
     def get_angle_array(self) :
         return self.angle_array
 
+    # Print the summary statistics
     def print_stats(self):
         if self.isWritable(self.args.outfile):
             with open(self.args.outfile, 'w',newline="\n") as file:
@@ -88,6 +98,7 @@ class UpwindRocketVectors(object):
 
             file.close()
 
+    # Check a given pathway is a writeable file
     def isWritable(self,path):
         try:
             fileTest = open( path, 'w' )

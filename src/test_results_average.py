@@ -22,11 +22,13 @@ check all inputs are within defined % range (we provide sigma)
 """
 outfile="csv_results.csv"
 
+# Test Simulation output
 class TestSim:
     @classmethod
     def teardown_class(self):
         os.remove(outfile)
 
+    # Tests the simulation prints summary data
     def test_print_running(self):
         try:
             from unittest.mock import patch
@@ -36,6 +38,7 @@ class TestSim:
         output = results[0:153].decode("utf-8")
         assert ("Running simulation" in output)
     
+    # Tests the average latitude outputs to CSV and Command line correctly
     def test_average_latitude(self):
         try:
             from unittest.mock import patch
@@ -59,6 +62,7 @@ class TestSim:
             output = results[153:184].decode("utf-8")
             assert ("Rocket landing zone" in output and toCompare in output)
 
+    # Tests the average longitude outputs to CSV and Command line correctly
     def test_average_longitude(self):
         try:
             from unittest.mock import patch
@@ -81,6 +85,7 @@ class TestSim:
             output = results[185:197].decode("utf-8")
             assert ("long" in output and toCompare in output)
 
+    # Tests the average max altitude outputs to CSV and Command line correctly
     def test_average_max_altitude(self):
         try:
             from unittest.mock import patch
@@ -103,6 +108,7 @@ class TestSim:
             output = results[198:226].decode("utf-8")
             assert ("Max altitude" in output and toCompare in output)
 
+    # Tests the average max position upwind outputs to CSV and Command line correctly
     def test_average_max_pos_upwind(self):
         try:
             from unittest.mock import patch
@@ -125,6 +131,7 @@ class TestSim:
             output = results[226:261].decode("utf-8")
             assert ("Max position upwind" in output and toCompare in output)
 
+    # Tests the average max position parallel outputs to CSV and Command line correctly
     def test_average_max_pos_parallel(self):
         try:
             from unittest.mock import patch
@@ -147,6 +154,7 @@ class TestSim:
             output = results[262:307].decode("utf-8")
             assert ("Max position parallel to wind" in output and toCompare in output)
 
+    # Tests the average lateral distance outputs to CSV and Command line correctly
     def test_average_lateral_distance(self):
         try:
             from unittest.mock import patch
@@ -169,6 +177,7 @@ class TestSim:
             output = results[307:350].decode("utf-8")
             assert (toCompare in output and "Lateral distance" in output)
     
+     # Tests the average lateral direction outputs to CSV and Command line correctly
     def test_average_lateral_direction(self):
         try:
             from unittest.mock import patch
@@ -191,6 +200,7 @@ class TestSim:
             output = results[351:423].decode("utf-8")
             assert ("Lateral direction" in output and toCompare in output)
     
+    # Tests it runs the correct number of simulations
     def test_num_simulations(self):
         try:
             from unittest.mock import patch
