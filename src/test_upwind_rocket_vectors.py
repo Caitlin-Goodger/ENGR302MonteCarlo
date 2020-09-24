@@ -15,6 +15,7 @@ args = Namespace(rocket='model.ork', outfile='./urv_tests.csv', rodAngle=45, rod
 
 class TestSim:
 
+    # Test basic command line input
     def test_basic_input(self):
         try:
             from unittest.mock import patch
@@ -31,6 +32,7 @@ class TestSim:
         assert (returned_upwind_args.upwindMaxAngle == 10)
         assert (returned_upwind_args.upwindMinAngle == -10)
         
+    # Test a negative step step size converts to positive
     def test_negative_step_input(self):
         try:
             from unittest.mock import patch
@@ -47,6 +49,7 @@ class TestSim:
         assert (returned_upwind_args.upwindMaxAngle == 10)
         assert (returned_upwind_args.upwindMinAngle == -10)
 
+    # Test negative angles convert to positive
     def test_reversed_angles_input(self):
         try:
             from unittest.mock import patch
@@ -63,6 +66,7 @@ class TestSim:
         assert (returned_upwind_args.upwindMaxAngle == 5)
         assert (returned_upwind_args.upwindMinAngle == -5)
 
+    # Test the output is a valid angle
     def test_output_valid_angle(self):
         try:
             from unittest.mock import patch
@@ -79,6 +83,7 @@ class TestSim:
         assert (urv.get_bestAngle() >= -10) 
         
 
+    # Test the outpout of the best distance is positive
     def test_output_positive(self):
         try:
             from unittest.mock import patch
@@ -93,6 +98,7 @@ class TestSim:
 
         assert (float(urv.get_bestDistance()) >= 0 )
 
+    # Test the output is of size 3 
     def test_output_array_size(self):
         try:
             from unittest.mock import patch
@@ -106,6 +112,7 @@ class TestSim:
 
         assert (len(urv.get_distance_array()) == 3)
 
+    # Test the output is the smalles option. 
     def test_output_smallest_option(self):
         try:
             from unittest.mock import patch
