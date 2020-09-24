@@ -94,3 +94,4 @@ ReleaseNotes
 net.sf.openrocket.optimization.services.OptimizableParameterService
 
 src/iframe_figures/figure_0.html
+src/iframe_figures/tilecache/
