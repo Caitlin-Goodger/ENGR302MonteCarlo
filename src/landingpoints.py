@@ -217,8 +217,8 @@ class MotorPerformance(abstractlistener.AbstractCompListener):
 
 
 class FinListener (abstractlistener.AbstractCompListener):
-    def __init__(self, p, i):
-        self.name = "CONTROL"
+    def __init__(self, p, i, name):
+        self.name = name
         self.desired_roll = 0.0
         self.desired_pitch = 0.0
         self.fin_turn_rate = 10 * math.pi / 180
