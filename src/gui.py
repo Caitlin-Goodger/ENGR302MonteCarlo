@@ -8,7 +8,7 @@ from tkinter import filedialog
 from argparse import Namespace
 import threading
 from os import path
-import maps
+# import maps
 
 
 class MonteCarloApp(tk.Tk):
@@ -21,7 +21,7 @@ class MonteCarloApp(tk.Tk):
         container.pack(side = "top", fill = "both", expand = True, padx = 5, pady = 5)
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
-        self.geometry("700x550")
+        self.geometry("900x550")
 
         self.frame = InputOptions(container, self)
         self.frame.grid(row = 0, column = 0, sticky = "nsew")
@@ -113,6 +113,18 @@ class InputOptions(tk.Frame):
         self.upwindStepSize = tk.Entry(self,width=25,textvariable=self.upwindStepSizeEntry)
         self.createLabel(tk, self.upwindStepSize, "Upwind Step Size", 2, 10, 2)
         
+        #PID Fields
+        tk.Label(self, text = "PID Parameters").grid(column = 3, row = 2)
+
+        self.pValue = tk.StringVar()
+        self.pValue = tk.Entry(self,width=25,textvariable=self.pValue)
+        self.createLabel(tk, self.pValue, "P Value", 3, 4, 0.007)
+
+        self.iValue = tk.StringVar()
+        self.iValue = tk.Entry(self,width=25,textvariable=self.iValue)
+        self.createLabel(tk, self.iValue, "I Value", 3, 7, 0.2)
+
+
         # load weather from csv
         self.rowconfigure(24, minsize=15)
         tk.Button(self, text='Load data from csv', width=25, command=self.readDataFromCSV, padx=0).grid(column=1, row=0)
@@ -221,12 +233,13 @@ class InputOptions(tk.Frame):
         self.args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0, pValue = 0.007, iValue = 0.2)
         
         values = Namespace(rocket=self.filename, outfile=self.outfile, rodAngle=self.rodAngle.get(), rodAngleSigma=self.rodAngleSigma.get(), 
                     rodDirection=self.rodDirection.get(), rodDirectionSigma=self.rodDirectionSigma.get(),
                     windSpeed=self.windSpeed.get(),windSpeedSigma=self.windSpeedSigma.get(), 
-                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), parachute = self.parachute.get())
+                    startLat=self.lat.get(),startLong=self.longa.get(), simCount=self.n.get(), windDirection=self.windDirection.get(), motorPerformance = self.motorPerformance.get(), 
+                    parachute = self.parachute.get(), pValue = self.pValue.get(), iValue = self.iValue.get())
 
         if(self.checkValues(values)):
             self.parseAndRun(values)
@@ -237,8 +250,7 @@ class InputOptions(tk.Frame):
 
         self.names = Namespace(rocket='filename', outfile='outfile', rodAngle='Rod angle', rodAngleSigma='Rod angle sigma', 
                     rodDirection='Rod direction', rodDirectionSigma='Rod direction sigma', windSpeed='Wind speed',windSpeedSigma='Wind speed sigma', 
-                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation',
-                    parachute = 'Number of Parachute Failures')
+                    startLat='lat',startLong='long', simCount='Number of iteration', windDirection='Wind direction', motorPerformance = 'Motor performance variation', parachute = 'Number of Parachute Failures', pValue = 'P Value', iValue= 'I Value')
 
         for k in values.__dict__:
             if values.__dict__[k] != '':                
@@ -276,7 +288,7 @@ class InputOptions(tk.Frame):
         args = Namespace(rocket='model.ork', outfile='./out.csv', rodAngle=45, rodAngleSigma=5, 
                         rodDirection=0, rodDirectionSigma=5,
                         windSpeed=15,windSpeedSigma=5, 
-                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0)
+                        startLat=0,startLong=0, simCount=25, windDirection=0, motorPerformance = 0.1, parachute = 0, pValue = 0.007, iValue = 0.2)
 
         for k in args.__dict__:
             if values.__dict__[k] != '':                
@@ -368,9 +380,9 @@ class Results(tk.Frame):
             count = count + 1
         tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
 
-    def displayMap(self):
-        self.controller.destroy()
-        maps.Mapping(self.out)
+    # def displayMap(self):
+    #     self.controller.destroy()
+    #     maps.Mapping(self.out)
 
 class UpwindResults(tk.Frame):
 
