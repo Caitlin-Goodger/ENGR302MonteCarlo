@@ -228,7 +228,7 @@ class InputOptions(tk.Frame):
                 pass
             except Exception as e:
                 print(e)
-                self.showSimError()
+                self.showSimError(e)
                 pass
 
     # Update arguments for simulation
@@ -349,9 +349,10 @@ class InputOptions(tk.Frame):
         loadingFrame.update()
 
     # Show the sim error screen
-    def showSimError(self):
+    def showSimError(self,e):
         self.destroy()
         loadingFrame = HandleSimError(self.parent, self.controller)
+        loadingFrame.setError(e)
         loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
         loadingFrame.update()
 
@@ -386,8 +387,14 @@ class RunningSimulations(tk.Frame):
 class HandleSimError(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.label=None
         tk.Label(self, text = "Simulation error has occured check console").grid(column = 0, row = 0)
         self.controller = controller
+    def setError(self,e):
+        print("a")
+        if not(self.label is None):
+            self.label.destroy()
+        self.label=tk.Label(self, text = str(e)).grid(column = 0, row = 1)
 
 #Results frame. Shows results from monte carlo simulations. Give option to display maps.
 class Results(tk.Frame):
