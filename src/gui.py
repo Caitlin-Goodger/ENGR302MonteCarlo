@@ -223,7 +223,13 @@ class InputOptions(tk.Frame):
     # Run monte carlo simulations
     def exec(self):
         if(self.updateArgs()):
-            self.runSims(self.sim)
+            try:
+                self.runSims(self.sim)
+                pass
+            except Exception as e:
+                print(e)
+                self.showSimError(e)
+                pass
 
     # Update arguments for simulation
     def updateArgs(self):
@@ -342,6 +348,14 @@ class InputOptions(tk.Frame):
         loadingFrame.stepProgressBar()
         loadingFrame.update()
 
+    # Show the sim error screen
+    def showSimError(self,e):
+        self.destroy()
+        loadingFrame = HandleSimError(self.parent, self.controller)
+        loadingFrame.setError(e)
+        loadingFrame.grid(row = 0, column = 0, sticky = "nsew")
+        loadingFrame.update()
+
 #Upwind vector frame. Indicates simulation progress while the upwind vector simulation calculations are occuring. 
 class UpwindVector(tk.Frame):
     def __init__(self, parent, controller):
@@ -369,6 +383,17 @@ class RunningSimulations(tk.Frame):
 
     def stepProgressBar(self):
         self.progressBar.step(5)
+# Error messages frame. Displays any errors to user.
+class HandleSimError(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.label=None
+        tk.Label(self, text = "Simulation error has occured check console").grid(column = 0, row = 0)
+        self.controller = controller
+    def setError(self,e):
+        if not(self.label is None):
+            self.label.destroy()
+        self.label=tk.Label(self, text = str(e)).grid(column = 0, row = 1)
 
 #Results frame. Shows results from monte carlo simulations. Give option to display maps.
 class Results(tk.Frame):
