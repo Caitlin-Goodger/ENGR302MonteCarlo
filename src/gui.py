@@ -391,7 +391,6 @@ class HandleSimError(tk.Frame):
         tk.Label(self, text = "Simulation error has occured check console").grid(column = 0, row = 0)
         self.controller = controller
     def setError(self,e):
-        print("a")
         if not(self.label is None):
             self.label.destroy()
         self.label=tk.Label(self, text = str(e)).grid(column = 0, row = 1)
