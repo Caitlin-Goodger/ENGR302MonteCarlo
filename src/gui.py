@@ -383,7 +383,7 @@ class RunningSimulations(tk.Frame):
 
     def stepProgressBar(self):
         self.progressBar.step(5)
-
+# Error messages frame. Displays any errors to user.
 class HandleSimError(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
