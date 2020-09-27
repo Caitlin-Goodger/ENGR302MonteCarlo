@@ -61,6 +61,9 @@ class Simulation(object):
         parser.add_argument("-w", "--w", dest = "weathercsv", default = "", help = "Weather csv file")
         parser.add_argument("-mp", "--motor-performance", dest = "motorPerformance", default = "", help = "Variation of motor performance e.g. 0.1")
         parser.add_argument("-pf", "--parachute-failure", dest = "parachute", default = 0, help = "Number of sims to run with failure deployment", type = int)
+        parser.add_argument("-pp", "--proportional", dest = "pValue", default = 0.007, help = "Proportional value for fin listener PID", type = float)
+        parser.add_argument("-pi", "--integral", dest = "iValue", default = 0.2, help = "Integral value for fin listener PID", type = float)
+        parser.add_argument("-fn", "--finName", dest = "finName", default = "CONTROL", help = "Fin name for PID")
 
         self.args = parser.parse_args()
 
