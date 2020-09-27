@@ -28,6 +28,9 @@ def test_no_params():
         assert sim.args.windSpeedSigma == 5
         assert sim.args.startLat == 0
         assert sim.args.startLong == 0
+        assert sim.args.pValue == 0.007
+        assert sim.args.iValue == 0.2
+        assert sim.args.finName == "CONTROL"
 
 
 # Test the user is given overview on available parameters when using help flag
