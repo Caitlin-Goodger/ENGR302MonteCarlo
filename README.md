@@ -35,9 +35,11 @@ Instructions to run Maps
 1. Checkout desired branch of repo (maps)
 2. cd group14/lib/openrocketjava
 3. ant jar
-4. cd ../../src
-5. python gui.py to run the simulations that you want to map. 
-6. python maps.py
+4. cd ../../
+5. pip install -r requirements.txt
+6. cd ./src
+7. python gui.py to run the simulations that you want to map. 
+8. python maps.py
 
 # Performance Assessment 2 
 
