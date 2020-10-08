@@ -16,8 +16,10 @@ Running instructions:
 1. Checkout desired branch of repo (master)
 2. cd group14/lib/openrocketjava
 3. `ant jar`
-4. cd ../../src
-5. `python gui.py`
+4. cd ../../
+5. pip install -r requirements.txt
+6. cd ./src
+7. `python gui.py`
 
 
 # Performance Assessment 1 - Tri 2

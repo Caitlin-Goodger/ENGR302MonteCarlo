@@ -3,7 +3,6 @@ import re
 import sys
 import simulation
 
-
 # Test system defaults 
 def test_no_params():
     try:

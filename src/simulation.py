@@ -7,38 +7,49 @@ import os
 import csv
 import pandas as pd
         
+#Class for setting Rocking position for an Air Start          
 class AirStart(abstractlistener.AbstractSimulationListener):
     
+    #Initialise the start altitude to the altitude given
     def __init__(self, altitude) :
         self.start_altitude = altitude
     
+    #Start the simulation by adding the starting altitude to the Rocket posistion
     def startSimulation(self, status) :        
         position = status.getRocketPosition()
         position = position.add(0.0, 0.0, self.start_altitude)
         status.setRocketPosition(position)
-    
+
+
+#Parser to read help  
 class DefaultHelpParser(argparse.ArgumentParser):
+    #Print help if there is an arror
     def error(self, message):
         sys.stderr.write('error: %s\n' % message)
         self.print_help()
         sys.exit()
 
+#Class for reading in the weather data that has been provided
 class WeatherData(object):
+    #Read in weather data. It's a csv file
     def read_weather_data(self, name):
         df= pd.read_csv(name, sep=', ',header=None,engine='python')
         return df
 
-
+#Simulation class for reading args and starting the simulations
 class Simulation(object):
+    #Initialise the args and the landing points
     def __init__(self) :
         self.args = 0
         self.points=landingpoints.LandingPoints(self.args)
 
+    #Set the arguments with the arguments that have been provided by the user
     def set_args(self,new_args) :
         self.args = new_args
         self.points = landingpoints.LandingPoints(self.args)
         return self.points
 
+    #Parse the arguments
     def parse_args(self) :
         parser = DefaultHelpParser(argparse.ArgumentParser())
         
@@ -70,12 +81,13 @@ class Simulation(object):
         self.points = landingpoints.LandingPoints(self.args)
         return self.points
 
+    #Run the simulations with the args provided
     def runSimulation(self):
         self.points.add_simulations(self.args.simCount)
         self.points.print_stats()
         return self.points
 
-    
+    #Get the resource path
     def resource_path(self, relative_path):
         """ Get absolute path to resource, works for dev and for PyInstaller """
         base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
