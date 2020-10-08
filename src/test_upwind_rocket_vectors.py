@@ -11,7 +11,8 @@ args = Namespace(rocket='model.ork', outfile='./urv_tests.csv', rodAngle=45, rod
                 rodDirection=0, rodDirectionSigma=5,
                 windSpeed=15,windSpeedSigma=5, 
                 startLat=0,startLong=0, simCount=1, 
-                windDirection=0, motorPerformance = 0.1, parachute = 0)
+                windDirection=0, motorPerformance = 0.1, parachute = 0,
+                pValue=0.007,iValue=0.2,finName = "CONTROL")
 
 class TestSim:
 
