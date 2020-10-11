@@ -59,7 +59,7 @@ class TestSim:
             latTotal = latTotal/count
 
             toCompare = '{0:+.3f}'.format(latTotal)
-            output = results[153:184].decode("utf-8")
+            output = results[153:190].decode("utf-8")
             assert ("Rocket landing zone" in output and toCompare in output)
 
     # Tests the average longitude outputs to CSV and Command line correctly
@@ -82,7 +82,7 @@ class TestSim:
                     assert False, "not a float" 
             longTotal = longTotal/count
             toCompare = '{0:+.3f}'.format(longTotal)
-            output = results[185:197].decode("utf-8")
+            output = results[185:210].decode("utf-8")
             assert ("long" in output and toCompare in output)
 
     # Tests the average max altitude outputs to CSV and Command line correctly
@@ -207,5 +207,5 @@ class TestSim:
         except ImportError:
             from mock import patch
         results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
-        output = results[424:447].decode("utf-8")
+        output = results[418:450].decode("utf-8")
         assert ( "Based on 5 simulations" in output)
