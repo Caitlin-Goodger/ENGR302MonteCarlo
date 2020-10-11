@@ -73,7 +73,7 @@ class LandingPoints():
                 wd = WindListener(self.args.windDirection, self.args.windSpeed)
                 mp = MotorPerformance(self.args.motorPerformance)
 
-                rf = FinListener(0.007, 0.2)
+                rf = FinListener(self.args.pValue, self.args.iValue)
                 orh.run_simulation(sim, [lp, ma, pu, pp, lm,wd,mp, rf])
                 self.landing_points.append( lp )
                 self.max_altitudes.append( ma )
