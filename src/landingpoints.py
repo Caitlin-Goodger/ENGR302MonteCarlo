@@ -101,7 +101,7 @@ class LandingPoints():
             file.close()
         else:
             print("Warning: unable to write to file: "+ self.args.outfile)
-        print ('Rocket landing zone %+3.3f lat, %+3.3f long. Max altitude %3.3f metres. Max position upwind %+3.3f metres. Max position parallel to wind %+3.3f metres. Lateral distance %+3.3f meters from start. Lateral direction %+3.3f degrees from from the start (relative to East). Based on %i simulations.' % \
+        print ('Rocket landing zone %+3.3f lat, %+3.3f long. Max altitude %3.3f metres. Max position upwind %+3.3f metres. Max position parallel to wind %+3.3f metres. Lateral distance %+3.3f meters from start. Lateral direction %+3.3f degrees from the start (relative to East). Based on %i simulations.' % \
         (float(format(np.mean(lats))), float(format(np.mean(longs))), float(format(np.mean(altitudes))), float(format(np.mean(upwinds))), float(format(np.mean(parallels))), float(format(np.mean(lateral_distances))), float(format(np.mean(lateral_directions))), len(self.landing_points)))
         
 
