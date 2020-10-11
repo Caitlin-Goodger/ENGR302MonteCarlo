@@ -207,5 +207,5 @@ class TestSim:
         except ImportError:
             from mock import patch
         results = subprocess.check_output([sys.executable,'monte_carlo.py','--output', outfile,'--n','5'])
-        output = results[424:450].decode("utf-8")
+        output = results[418:450].decode("utf-8")
         assert ( "Based on 5 simulations" in output)
