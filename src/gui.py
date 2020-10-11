@@ -8,7 +8,7 @@ from tkinter import filedialog
 from argparse import Namespace
 import threading
 from os import path
-# import maps
+import maps
 
 #Parent GUI TK class of app. Contains various frames outlined below.
 class MonteCarloApp(tk.Tk):
@@ -427,11 +427,11 @@ class Results(tk.Frame):
             tk.Label(self, text = k).grid(column = 0, row = count)
             tk.Label(self, text=getattr(self.controller.results, k)).grid(column = 1, row = count)
             count = count + 1
-    #    tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
+        tk.Button(self, text = 'Display Maps', width = 25, command=self.displayMap).grid(column = 0, row = count)
 
-    # def displayMap(self):
-    #     self.controller.destroy()
-    #     maps.Mapping(self.out)
+    def displayMap(self):
+         self.controller.destroy()
+         maps.Mapping(self.out)
 
 #Upwind vector results frame. Displays the optimal upwind vector for the given simulation parameters. 
 class UpwindResults(tk.Frame):
