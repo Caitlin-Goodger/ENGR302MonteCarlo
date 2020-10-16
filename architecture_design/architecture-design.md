@@ -1,4 +1,4 @@
-# ENGR 301: Architectural Design and Proof-of-Concept
+﻿# ENGR 301: Architectural Design and Proof-of-Concept
 
 ## Table of Contents [1]
 
@@ -39,8 +39,6 @@ While passively stable rockets are reasonably simple and reliable if well design
 
 Amateur rockets are often designed in OpenRocket. OpenRocket gives the ability to simulate rockets while altering some parameter variables as a suggestion for the rocket’s performance. After a rocket has been built, it can be precisely measured to give a more accurate simulation to allow for smaller, finalising adjustments, including moving the centre of mass. Automation can allow follow this process to be sped up and determine to a higher confidence of the safety of the flight.
 
-The rocket uses a PID (Proportional Integral Derivative) controller to keep it fixed on an axis. Normally, parameters of PID are difficult to obtain due to the short period of time that the rocket motors are burning. Simulation can allow for estimate parameters for the PID controller.
-
 ### Client
 
 Andre Geldenhuis is the client for this project. He has experience with rockets and experience working with similar projects. He can be reached in the Customer Channel on Mattermost. He also has occasionally Q&A sessions during ENGR301 Lectures and can be reached during those times with questions. He can also be reached at andre.geldenhuis@vuw.ac.nz.
@@ -55,12 +53,11 @@ This product is a Rocket Simulation program.
 
 *  The program shall provide an automation of simulation program OpenRocket to give a prediction of the flight performance of a rocket. 
 *  The program shall provide likely landing locations based on varying parameters such as launch angle and parachute ejection time, through a form of Monte Carlo simulation to determine whether the flight is safe. 
-*  The program shall provide estimate PID control parameters through the simulation.
 
 
 ### 1.3 Changes to requirements
 
-There are currently no changes to the requirements.
+The program originally was scoped to either generate suitable PID control parameters through the simulations, or take PID values as input parameters. This because out of scope for this project due to the limitations brought by OpenRocket. This feature would require complex and messy changes to OpenRocket and is not well supported. 
 
 ## 2. References
 
