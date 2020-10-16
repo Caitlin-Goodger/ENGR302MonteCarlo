@@ -1,3 +1,20 @@
+# Performance Assessment 3 - Tri 2
+Further support updates: 
+- Documentation Comments 
+- Minor Bug fixes
+- Implementation of PID
+ 
+
+Running instructions:
+1. Checkout desired branch of repo (master)
+2. cd group14/lib/openrocketjava
+3. `ant jar`
+4. cd ../../
+5. pip install -r requirements.txt
+6. cd ./src
+7. `python gui.py`
+
+
 # Performance Assessment 2 - Tri 2
 Further support updates: 
 - Upwind Rocket Vectors
