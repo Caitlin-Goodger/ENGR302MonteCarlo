@@ -190,7 +190,7 @@ The architectural prototype will be complete by 18 June 2020. This date was chos
 The minimum viable product as defined in part 1.3.2 of the Project Requirement document will be completed by 4 June 2020. This date was chosen based on time estimations; the combined estimated time for all tickets required estimated a completion date of the 4th of June. 
 
 **Further releases**
-Further releases will occur up until the final prototype release, scheduled for the 1 October 2020. This is the last week scheduled for this project. 
+Further releases will occur up until the final prototype release, scheduled for the 16 October 2020. This is the last week scheduled for this project. 
 
 **Changes to these dates**
 These dates have not been changed from the project requirement document.
@@ -209,7 +209,7 @@ As stated previously, the nature of the project being purely software means that
 
 |                          Risks                          | Risk Type | Likelihood | Impact | Mitigation Strategies                                                                          |
 | :-----------------------------------------------------: | --------- | ---------- | ------ | ---------------------------------------------------------------------------------------------- |
-|Program functioning unexpectedly on different devices          | Technical     | 2          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
+|Program functioning unexpectedly on different devices          | Technical     | 5          | 3      | Test on multiple different devices.                                                                                                                                                                                                         |
 |Adding team members that do not work well with the team        | Teamwork      | 1          | 2      | Have a team contract which all members agree to at time of joining the group.                                                                                                                                                               |
 |Losing team member temporarily or permanently at crucial times | Teamwork      | 1          | 3      | Communicate and document issues, progress and plans to the git.                                                                                                                                                                             |
 |Team members burning out                                       | Teamwork      | 3          | 3      | Members communicate when they are having issues. Members have regular breaks during lab times.                                                                                                                                              |
@@ -224,7 +224,8 @@ As stated previously, the nature of the project being purely software means that
 
 The project does not involve any external work or testing at any other workplaces or sites. This limits H&S concerns to those present in the team members development environment.
 
-Due to COVID-19 response no work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibility of the team member.
+Due to COVID-19 response limited work is taking place in the Victoria University labs and thus all H&S risks such as cable management, occupational strain and workspace ergonomics are the responsibility of the team member. 
+
 Regular breaks will be taken in the prearranged lab slots to ensure members have a chance to stretch and avoid strain. 
 
 No ethical considerations need to be made around any animal or human subjects due to the nature of the project.
@@ -233,16 +234,18 @@ No ethical considerations need to be made around any animal or human subjects du
 
 Project requirements do not involve risk of death, serious harm, harm or injury. The nature of the project as a pure software development exercise limits the safety concerns involved.
 
-Due to the COVID-19 pandemic response safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are conducted remotely.
+Due to the COVID-19 pandemic response, safety concerns around the observation of social distancing and quarantine procedure were raised and have been addressed by ensuring all team meetings and work sessions are able to be conducted remotely. 
+
+During the duration of the project, if New Zealand moves to Alert Level 2 or above, all lab sessions will be held remotely.
 
 ## 6. Appendices
 
 ### 6.1 Assumptions and dependencies 
 
-- It is assumed that the user has access to a computer, which is able to run openRocket. 
+- It is assumed that the user has access to a computer, which is able to run openRocket version 1.1.9. 
 - It is assumed that the members of the model rocket community, and other users, are familiar with openRocket.
-- It is assumed that the user will already have a model rocket to load into openRocket.
-- It is assumed that for use of the minimum viable product, the user is able to operate Command Line / Terminal, as this does not include the use of a GUI. 
+- It is assumed that the user will already have a model rocket to load into openRocket, built in openRocket version 1.1.9.
+- It is assumed that the user is able to operate Command Line / Terminal. 
 - It is assumed that the inputs entered by the user are of the correct type in order to successfully run the simulations. 
 
 ### 6.2 Acronyms and abbreviations
